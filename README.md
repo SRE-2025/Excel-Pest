@@ -60,9 +60,13 @@ python3 -m http.server 8000
 
 ## Deploying
 
-Production deploys run automatically when changes to `site/**` land on `main`.
-The first-time AWS setup (creating the bucket, CloudFront, and the deploy role)
-and the GitHub secrets/variables to add are documented in
+**Active path: AWS Amplify.** Connect this repo in the AWS Amplify console and it
+builds and hosts on every push, with a free `*.amplifyapp.com` link for testing
+and a no-downtime path to attach the real domain later. Step-by-step:
+**[docs/AMPLIFY.md](docs/AMPLIFY.md)**.
+
+**Alternative path: S3 + CloudFront.** A CloudFormation stack + a (manual-only)
+GitHub Actions workflow are also included if you move off Amplify later. See
 **[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md)**.
 
 ## ⚠️ Pay Your Invoice page

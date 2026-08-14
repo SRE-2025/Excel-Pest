@@ -1,4 +1,10 @@
-# Deployment — Connect GitHub to AWS
+# Deployment — S3 + CloudFront (alternative path)
+
+> **The active hosting path for this project is AWS Amplify** — see
+> [AMPLIFY.md](AMPLIFY.md). This document describes the alternative S3 +
+> CloudFront setup, kept for teams that prefer it or move off Amplify later.
+> The GitHub Actions workflow for this path is manual-only and will not run
+> automatically.
 
 This site deploys to **AWS S3 + CloudFront**. GitHub Actions authenticates to
 AWS using **OIDC** — an IAM role is assumed at deploy time, so there are **no

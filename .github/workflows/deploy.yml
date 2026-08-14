@@ -1,5 +1,10 @@
-name: Deploy site to AWS
+name: Deploy site to AWS (S3 + CloudFront — alternative)
 
+# NOTE: The active hosting path for this project is AWS Amplify (see
+# docs/AMPLIFY.md). This workflow is the ALTERNATIVE S3 + CloudFront path and is
+# manual-only (workflow_dispatch) so it never runs or fails automatically.
+# It stays here in case you move off Amplify later.
+#
 # Deploys the static site in ./site to S3 and invalidates CloudFront.
 # Authentication uses GitHub OIDC -> an IAM role (no stored AWS keys).
 #
@@ -12,9 +17,7 @@ name: Deploy site to AWS
 #     S3_BUCKET                bucket name output by the CloudFormation stack
 
 on:
-  push:
-    branches: ["main"]
-    paths: ["site/**", ".github/workflows/deploy.yml"]
+  # Manual-only: Amplify is the active path, so this does not auto-run.
   workflow_dispatch: {}
 
 concurrency:

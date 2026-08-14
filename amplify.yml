@@ -1,0 +1,16 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - echo "Static site — no dependencies to install."
+    build:
+      commands:
+        - echo "No build step. Publishing pre-built static files from ./site"
+  artifacts:
+    # Everything Amplify serves comes from ./site
+    baseDirectory: site
+    files:
+      - '**/*'
+  cache:
+    paths: []
