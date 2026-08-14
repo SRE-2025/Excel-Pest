@@ -277,6 +277,7 @@ def header():
         for label, url in NAV
     )
     return """<body>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <header class="site-header">
     <div class="topbar"><div class="container">
       <span>Family-owned in Buda since {founded} · Licensed &amp; insured · {license}</span>
@@ -362,7 +363,13 @@ def footer():
       </div>
     </div>
   </footer>
+  <button class="to-top" aria-label="Back to top">↑</button>
+  <div class="mobile-bar">
+    <a class="mb-call" href="tel:{ptel}">📞 Call Now</a>
+    <a class="mb-quote" href="/contact.html">Free Estimate</a>
+  </div>
   <script src="/js/main.js"></script>
+  <script src="/js/interactive.js"></script>
 </body>
 </html>""".format(
         name=html.escape(BIZ["name"]), founded=BIZ["founded"], street=html.escape(BIZ["street"]),
@@ -693,6 +700,95 @@ def service_area_hub():
     return assemble("Service Area — Pest Control Across Central Texas | Excel Pest", desc, canonical, body, schema)
 
 
+PESTS = [
+    {"emo": "🦂", "name": "Scorpions", "href": "/services/scorpion-control.html", "cta": "See scorpion control",
+     "signs": "Sightings in bathtubs, closets and along baseboards, especially after rain or drought.",
+     "desc": "The striped bark scorpion thrives in Hill Country limestone and slips inside through tiny gaps. We treat harborage and seal them out."},
+    {"emo": "🐜", "name": "Ants", "href": "/services/pest-control.html", "cta": "See pest control",
+     "signs": "Trails along counters and foundations, mounds in the yard, or ants around pet bowls.",
+     "desc": "Central Texas ants range from nuisance trails to fire ants. We treat the colony at the source, inside and out."},
+    {"emo": "🪳", "name": "Cockroaches", "href": "/services/pest-control.html", "cta": "See pest control",
+     "signs": "Roaches at night in the kitchen or bath, egg cases, or a musty odor.",
+     "desc": "Roaches love our warm, humid stretches. Our treatments target where they hide and breed, not just where you see them."},
+    {"emo": "🐀", "name": "Rodents", "href": "/services/rodent-control.html", "cta": "See rodent control",
+     "signs": "Droppings, gnaw marks, scratching in the attic or walls at night.",
+     "desc": "Rats and mice chew wiring and foul insulation. We remove them and seal the entry points so they don't return."},
+    {"emo": "🪵", "name": "Termites", "href": "/services/termite-control.html", "cta": "See termite control",
+     "signs": "Mud tubes on the foundation, hollow-sounding wood, or a swarm after spring rain.",
+     "desc": "Subterranean termites work out of sight for years. A licensed inspection tells you where you stand — and we treat and warranty it."},
+    {"emo": "🕷️", "name": "Spiders", "href": "/services/pest-control.html", "cta": "See pest control",
+     "signs": "Webs in corners, garages and eaves; egg sacs; more sightings in fall.",
+     "desc": "Spiders follow other insects indoors. Our exterior barrier reduces the prey that draws them in."},
+    {"emo": "🦟", "name": "Mosquitoes", "href": "/services/mosquito-misting.html", "cta": "See mosquito control",
+     "signs": "Bites at dusk, swarms near standing water, a backyard you can't use.",
+     "desc": "We treat breeding sites and install misting systems that keep the yard usable all season."},
+    {"emo": "🦝", "name": "Wildlife", "href": "/services/wildlife-removal.html", "cta": "See wildlife removal",
+     "signs": "Noises in the attic, torn soffits or vents, animals under the deck.",
+     "desc": "Raccoons, squirrels and opossums treat homes like hollow trees. We remove them humanely and close the entry points."},
+    {"emo": "🌱", "name": "Lawn pests", "href": "/services/lawn-pest-control.html", "cta": "See lawn pest control",
+     "signs": "Spreading brown patches, spongy turf, or moths lifting off the grass at dusk.",
+     "desc": "Chinch bugs, grubs and armyworms damage turf from below. We diagnose the real cause and treat it."},
+]
+
+
+def stat_band():
+    return """
+  <section class="statband"><div class="container">
+    <div><div class="stat__num" data-count="28">0</div><div class="stat__lbl">Years serving Central Texas</div></div>
+    <div><div class="stat__num" data-count="5.0" data-decimals="1">0</div><div class="stat__lbl">Google rating</div></div>
+    <div><div class="stat__num" data-count="41" data-suffix="+">0</div><div class="stat__lbl">5-star reviews</div></div>
+    <div><div class="stat__num" data-count="27">0</div><div class="stat__lbl">Cities covered</div></div>
+    <div><div class="stat__num">A+</div><div class="stat__lbl">BBB accredited</div></div>
+  </div></section>"""
+
+
+def pest_identifier():
+    buttons = "\n".join(
+        '        <button class="pest-btn" aria-pressed="false" data-emo="{emo}" data-name="{name}" '
+        'data-signs="{signs}" data-desc="{desc}" data-href="{href}" data-cta="{cta}">'
+        '<span class="emo">{emo}</span>{name}</button>'.format(
+            emo=p["emo"], name=html.escape(p["name"]), signs=html.escape(p["signs"]),
+            desc=html.escape(p["desc"]), href=p["href"], cta=html.escape(p["cta"]))
+        for p in PESTS
+    )
+    return """
+  <section class="section">
+    <div class="container">
+      <div class="section-head text-center" style="max-width:660px;margin:0 auto 34px;">
+        <span class="eyebrow">Find your pest</span>
+        <h2>What's bugging you?</h2>
+        <p class="lead">Tap what you're seeing — we'll show you the signs and the fix.</p>
+      </div>
+      <div class="identifier">
+        <div class="pest-grid" data-pest-grid>
+{buttons}
+        </div>
+        <div class="pest-panel" data-pest-panel aria-live="polite"></div>
+      </div>
+    </div>
+  </section>""".format(buttons=buttons)
+
+
+def area_checker():
+    cities_json = json.dumps([{"name": c, "slug": PRIORITY_CITY_SLUG.get(c, "")} for c in ALL_CITIES])
+    return """
+  <section class="section section--soft">
+    <div class="container text-center">
+      <span class="eyebrow">Do we serve you?</span>
+      <h2>Check your city in one tap</h2>
+      <p class="lead" style="max-width:640px;margin:0 auto 22px;">Type your city or ZIP for an instant answer —
+         we cover 27 Central Texas cities.</p>
+      <form class="checker" data-checker data-cities='{cities}'>
+        <div class="checker__row">
+          <input type="text" placeholder="e.g. Kyle, Dripping Springs, 78610" aria-label="Your city or ZIP code">
+          <button type="submit" class="btn btn--primary" data-checker-go>Check coverage</button>
+        </div>
+        <div class="checker__result" role="status" aria-live="polite"></div>
+      </form>
+    </div>
+  </section>""".format(cities=cities_json)
+
+
 def home():
     canonical = BIZ["domain"] + "/"
     svc_cards = "".join("""        <article class="card card--link">
@@ -704,22 +800,59 @@ def home():
                              blurb=html.escape(s["lead"].split(". ")[0] + "."))
         for s in SERVICES)
     city_links = " · ".join('<a href="/locations/%s.html">%s</a>' % (l["slug"], html.escape(l["city"])) for l in LOCATIONS)
+    spotlight = """
+        <div class="spotlight" data-spotlight>
+          <div class="stars">★★★★★</div>
+          <div class="spotlight__slide on">
+            <blockquote class="spotlight__q">"Been with this company for 30+ years."</blockquote>
+            <cite>— Karla Mathews</cite><div class="meta">Google review · 2026</div>
+          </div>
+          <div class="spotlight__slide">
+            <blockquote class="spotlight__q">"We have used Excel Pest / Research Turf for 13+ years — pergola,
+               patio, masonry, tree trimming, plus regular lawn care."</blockquote>
+            <cite>— Judy Buck</cite><div class="meta">Google review · 2026</div>
+          </div>
+          <div class="spotlight__dots" aria-label="Choose a review"></div>
+          <a class="card__link" href="/reviews.html" style="display:inline-block;margin-top:16px;">Read more reviews →</a>
+        </div>"""
+    flow = """
+  <section class="section">
+    <div class="container">
+      <div class="section-head text-center" style="max-width:620px;margin:0 auto 34px;">
+        <span class="eyebrow">Simple from the first call</span>
+        <h2>How it works</h2>
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step__num">1</div><h3>Free estimate</h3>
+          <p class="mb-0">Call or text and we assess the problem and give you a clear quote — no pressure, no surprise pricing.</p></div>
+        <div class="step"><div class="step__num">2</div><h3>Targeted treatment</h3>
+          <p class="mb-0">A local technician treats the source inside and out with water-based products, safe for family and pets.</p></div>
+        <div class="step"><div class="step__num">3</div><h3>Keep them out</h3>
+          <p class="mb-0">We seal entry points and set a schedule that fits your home, backed by our warranty.</p></div>
+      </div>
+    </div>
+  </section>"""
     body = """
   <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <span class="hero__orb o1" aria-hidden="true"></span>
+    <span class="hero__orb o2" aria-hidden="true"></span>
+    <span class="hero__orb o3" aria-hidden="true"></span>
     <div class="container">
-      <span class="eyebrow">The crew Buda has trusted since {founded}</span>
-      <h1>Family-owned pest control for Central Texas.</h1>
-      <p>Pest, rodent, wildlife and lawn-pest control done by the same local crew since {founded} —
+      <span class="eyebrow anim-up s1">The crew Buda has trusted since {founded}</span>
+      <h1 class="anim-up s2">Family-owned pest control for Central Texas.</h1>
+      <p class="anim-up s3">Pest, rodent, wildlife and lawn-pest control done by the same local crew since {founded} —
          with water-based products chosen for your family and your four-legged family members.</p>
-      <div class="hero__actions">
+      <div class="hero__actions anim-up s4">
         <a class="btn btn--primary" href="/contact.html">Get My Free Estimate</a>
         <a class="btn btn--ghost" href="tel:{ptel}">Call {phone}</a>
       </div>
-      <div class="badges">
+      <div class="badges anim-up s5">
         <span class="badge">★ {rating} rating · {reviews} Google reviews</span>
         <span class="badge">BBB A+ · accredited 2007</span>
         <span class="badge">Licensed &amp; insured · {license}</span>
       </div>
+      <div class="hero__cue anim-up s5"><span class="chev" aria-hidden="true">↓</span> Scroll to explore</div>
     </div>
   </section>
 
@@ -729,10 +862,11 @@ def home():
     <span><b>BBB A+</b> accredited</span>
     <span><b>{license}</b> · licensed &amp; insured</span>
   </div></section>
+{statband}
 
   <section class="section">
     <div class="container">
-      <div class="text-center" style="max-width:680px;margin:0 auto 40px;">
+      <div class="section-head text-center" style="max-width:680px;margin:0 auto 40px;">
         <span class="eyebrow">What we do</span>
         <h2>Everything crawling, gnawing, or buzzing — handled</h2>
         <p class="lead">One local company for the pests inside your walls, the rodents in your attic, the
@@ -743,6 +877,7 @@ def home():
       </div>
     </div>
   </section>
+{identifier}
 
   <section class="section section--soft">
     <div class="container split">
@@ -761,20 +896,11 @@ def home():
         <a class="btn btn--outline" href="/about.html">Read our story</a>
       </div>
       <div>
-        <div class="review-card">
-          <div class="stars">★★★★★</div>
-          <blockquote>"Been with this company for 30+ years."</blockquote>
-          <cite>Karla Mathews</cite><div class="meta">Google review · 2026</div>
-          <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
-          <div class="stars">★★★★★</div>
-          <blockquote>"We have used Excel Pest / Research Turf for 13+ years — pergola, patio, masonry, tree
-             trimming, plus regular lawn care."</blockquote>
-          <cite>Judy Buck</cite><div class="meta">Google review · 2026</div>
-          <a class="card__link" href="/reviews.html" style="display:inline-block;margin-top:14px;">Read more reviews →</a>
-        </div>
+{spotlight}
       </div>
     </div>
   </section>
+{flow}
 
   <section class="section">
     <div class="container">
@@ -788,24 +914,26 @@ def home():
       </div>
     </div>
   </section>
+{checker}
 
-  <section class="section section--soft">
+  <section class="section">
     <div class="container text-center">
       <span class="eyebrow">Local coverage</span>
-      <h2>Serving 27 Central Texas cities</h2>
+      <h2>Dedicated local pages across the corridor</h2>
       <p class="lead" style="max-width:720px;margin:0 auto 18px;">From South Austin through Hays County and into
-         the Hill Country. Dedicated local pages for:</p>
+         the Hill Country:</p>
       <p style="font-size:1.05rem;">{city_links}</p>
-      <a class="btn btn--outline" href="/service-area.html">See the full service area →</a>
+      <a class="btn btn--outline" href="/service-area.html">See all 27 cities →</a>
     </div>
   </section>
 
-  <section class="section">
+  <section class="section section--soft">
     <div class="container">{cross}</div>
   </section>""".format(
         founded=BIZ["founded"], ptel=BIZ["phone_tel"], phone=BIZ["phone"], rating=BIZ["rating"],
         reviews=BIZ["reviews"], license=BIZ["license"], svc_cards=svc_cards, owner=BIZ["owner"],
-        city_links=city_links, cross=crosslink_block(),
+        city_links=city_links, cross=crosslink_block(), statband=stat_band(),
+        identifier=pest_identifier(), spotlight=spotlight, flow=flow, checker=area_checker(),
     )
     desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. 5.0-star, BBB A+, licensed. Free estimates — call (737) 201-3059."
     schema = [business_schema(with_rating=True), {
@@ -1032,12 +1160,17 @@ def faq():
     canonical = BIZ["domain"] + "/faq.html"
     crumbs = [("Home", "/"), ("FAQ", None)]
     items = "".join(
-        '<h3>%s</h3><p>%s</p>' % (html.escape(q), a) for q, a in FAQS
+        """
+        <div class="acc-item">
+          <button class="acc-head">{q}<span class="ic" aria-hidden="true">+</span></button>
+          <div class="acc-body"><div class="acc-body__inner">{a}</div></div>
+        </div>""".format(q=html.escape(q), a=a)
+        for q, a in FAQS
     )
     body = page_hero("Frequently Asked Questions", "Quick answers about our Central Texas pest control.", crumbs) + """
   <section class="section">
-    <div class="container" style="max-width:820px;">
-      <div class="prose">
+    <div class="container">
+      <div class="accordion">
 {items}
       </div>
     </div>

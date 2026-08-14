@@ -193,6 +193,7 @@
   </script>
 </head>
 <body>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <header class="site-header">
     <div class="topbar"><div class="container">
       <span>Family-owned in Buda since 1998 · Licensed &amp; insured · TPCL 0786979</span>
@@ -221,20 +222,25 @@
   </header>
 
   <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <span class="hero__orb o1" aria-hidden="true"></span>
+    <span class="hero__orb o2" aria-hidden="true"></span>
+    <span class="hero__orb o3" aria-hidden="true"></span>
     <div class="container">
-      <span class="eyebrow">The crew Buda has trusted since 1998</span>
-      <h1>Family-owned pest control for Central Texas.</h1>
-      <p>Pest, rodent, wildlife and lawn-pest control done by the same local crew since 1998 —
+      <span class="eyebrow anim-up s1">The crew Buda has trusted since 1998</span>
+      <h1 class="anim-up s2">Family-owned pest control for Central Texas.</h1>
+      <p class="anim-up s3">Pest, rodent, wildlife and lawn-pest control done by the same local crew since 1998 —
          with water-based products chosen for your family and your four-legged family members.</p>
-      <div class="hero__actions">
+      <div class="hero__actions anim-up s4">
         <a class="btn btn--primary" href="/contact.html">Get My Free Estimate</a>
         <a class="btn btn--ghost" href="tel:+17372013059">Call (737) 201-3059</a>
       </div>
-      <div class="badges">
+      <div class="badges anim-up s5">
         <span class="badge">★ 5.0 rating · 41 Google reviews</span>
         <span class="badge">BBB A+ · accredited 2007</span>
         <span class="badge">Licensed &amp; insured · TPCL 0786979</span>
       </div>
+      <div class="hero__cue anim-up s5"><span class="chev" aria-hidden="true">↓</span> Scroll to explore</div>
     </div>
   </section>
 
@@ -245,9 +251,17 @@
     <span><b>TPCL 0786979</b> · licensed &amp; insured</span>
   </div></section>
 
+  <section class="statband"><div class="container">
+    <div><div class="stat__num" data-count="28">0</div><div class="stat__lbl">Years serving Central Texas</div></div>
+    <div><div class="stat__num" data-count="5.0" data-decimals="1">0</div><div class="stat__lbl">Google rating</div></div>
+    <div><div class="stat__num" data-count="41" data-suffix="+">0</div><div class="stat__lbl">5-star reviews</div></div>
+    <div><div class="stat__num" data-count="27">0</div><div class="stat__lbl">Cities covered</div></div>
+    <div><div class="stat__num">A+</div><div class="stat__lbl">BBB accredited</div></div>
+  </div></section>
+
   <section class="section">
     <div class="container">
-      <div class="text-center" style="max-width:680px;margin:0 auto 40px;">
+      <div class="section-head text-center" style="max-width:680px;margin:0 auto 40px;">
         <span class="eyebrow">What we do</span>
         <h2>Everything crawling, gnawing, or buzzing — handled</h2>
         <p class="lead">One local company for the pests inside your walls, the rodents in your attic, the
@@ -299,6 +313,30 @@
     </div>
   </section>
 
+  <section class="section">
+    <div class="container">
+      <div class="section-head text-center" style="max-width:660px;margin:0 auto 34px;">
+        <span class="eyebrow">Find your pest</span>
+        <h2>What's bugging you?</h2>
+        <p class="lead">Tap what you're seeing — we'll show you the signs and the fix.</p>
+      </div>
+      <div class="identifier">
+        <div class="pest-grid" data-pest-grid>
+        <button class="pest-btn" aria-pressed="false" data-emo="🦂" data-name="Scorpions" data-signs="Sightings in bathtubs, closets and along baseboards, especially after rain or drought." data-desc="The striped bark scorpion thrives in Hill Country limestone and slips inside through tiny gaps. We treat harborage and seal them out." data-href="/services/scorpion-control.html" data-cta="See scorpion control"><span class="emo">🦂</span>Scorpions</button>
+        <button class="pest-btn" aria-pressed="false" data-emo="🐜" data-name="Ants" data-signs="Trails along counters and foundations, mounds in the yard, or ants around pet bowls." data-desc="Central Texas ants range from nuisance trails to fire ants. We treat the colony at the source, inside and out." data-href="/services/pest-control.html" data-cta="See pest control"><span class="emo">🐜</span>Ants</button>
+        <button class="pest-btn" aria-pressed="false" data-emo="🪳" data-name="Cockroaches" data-signs="Roaches at night in the kitchen or bath, egg cases, or a musty odor." data-desc="Roaches love our warm, humid stretches. Our treatments target where they hide and breed, not just where you see them." data-href="/services/pest-control.html" data-cta="See pest control"><span class="emo">🪳</span>Cockroaches</button>
+        <button class="pest-btn" aria-pressed="false" data-emo="🐀" data-name="Rodents" data-signs="Droppings, gnaw marks, scratching in the attic or walls at night." data-desc="Rats and mice chew wiring and foul insulation. We remove them and seal the entry points so they don&#x27;t return." data-href="/services/rodent-control.html" data-cta="See rodent control"><span class="emo">🐀</span>Rodents</button>
+        <button class="pest-btn" aria-pressed="false" data-emo="🪵" data-name="Termites" data-signs="Mud tubes on the foundation, hollow-sounding wood, or a swarm after spring rain." data-desc="Subterranean termites work out of sight for years. A licensed inspection tells you where you stand — and we treat and warranty it." data-href="/services/termite-control.html" data-cta="See termite control"><span class="emo">🪵</span>Termites</button>
+        <button class="pest-btn" aria-pressed="false" data-emo="🕷️" data-name="Spiders" data-signs="Webs in corners, garages and eaves; egg sacs; more sightings in fall." data-desc="Spiders follow other insects indoors. Our exterior barrier reduces the prey that draws them in." data-href="/services/pest-control.html" data-cta="See pest control"><span class="emo">🕷️</span>Spiders</button>
+        <button class="pest-btn" aria-pressed="false" data-emo="🦟" data-name="Mosquitoes" data-signs="Bites at dusk, swarms near standing water, a backyard you can&#x27;t use." data-desc="We treat breeding sites and install misting systems that keep the yard usable all season." data-href="/services/mosquito-misting.html" data-cta="See mosquito control"><span class="emo">🦟</span>Mosquitoes</button>
+        <button class="pest-btn" aria-pressed="false" data-emo="🦝" data-name="Wildlife" data-signs="Noises in the attic, torn soffits or vents, animals under the deck." data-desc="Raccoons, squirrels and opossums treat homes like hollow trees. We remove them humanely and close the entry points." data-href="/services/wildlife-removal.html" data-cta="See wildlife removal"><span class="emo">🦝</span>Wildlife</button>
+        <button class="pest-btn" aria-pressed="false" data-emo="🌱" data-name="Lawn pests" data-signs="Spreading brown patches, spongy turf, or moths lifting off the grass at dusk." data-desc="Chinch bugs, grubs and armyworms damage turf from below. We diagnose the real cause and treat it." data-href="/services/lawn-pest-control.html" data-cta="See lawn pest control"><span class="emo">🌱</span>Lawn pests</button>
+        </div>
+        <div class="pest-panel" data-pest-panel aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
   <section class="section section--soft">
     <div class="container split">
       <div>
@@ -316,17 +354,38 @@
         <a class="btn btn--outline" href="/about.html">Read our story</a>
       </div>
       <div>
-        <div class="review-card">
+
+        <div class="spotlight" data-spotlight>
           <div class="stars">★★★★★</div>
-          <blockquote>"Been with this company for 30+ years."</blockquote>
-          <cite>Karla Mathews</cite><div class="meta">Google review · 2026</div>
-          <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
-          <div class="stars">★★★★★</div>
-          <blockquote>"We have used Excel Pest / Research Turf for 13+ years — pergola, patio, masonry, tree
-             trimming, plus regular lawn care."</blockquote>
-          <cite>Judy Buck</cite><div class="meta">Google review · 2026</div>
-          <a class="card__link" href="/reviews.html" style="display:inline-block;margin-top:14px;">Read more reviews →</a>
+          <div class="spotlight__slide on">
+            <blockquote class="spotlight__q">"Been with this company for 30+ years."</blockquote>
+            <cite>— Karla Mathews</cite><div class="meta">Google review · 2026</div>
+          </div>
+          <div class="spotlight__slide">
+            <blockquote class="spotlight__q">"We have used Excel Pest / Research Turf for 13+ years — pergola,
+               patio, masonry, tree trimming, plus regular lawn care."</blockquote>
+            <cite>— Judy Buck</cite><div class="meta">Google review · 2026</div>
+          </div>
+          <div class="spotlight__dots" aria-label="Choose a review"></div>
+          <a class="card__link" href="/reviews.html" style="display:inline-block;margin-top:16px;">Read more reviews →</a>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-head text-center" style="max-width:620px;margin:0 auto 34px;">
+        <span class="eyebrow">Simple from the first call</span>
+        <h2>How it works</h2>
+      </div>
+      <div class="flow">
+        <div class="step"><div class="step__num">1</div><h3>Free estimate</h3>
+          <p class="mb-0">Call or text and we assess the problem and give you a clear quote — no pressure, no surprise pricing.</p></div>
+        <div class="step"><div class="step__num">2</div><h3>Targeted treatment</h3>
+          <p class="mb-0">A local technician treats the source inside and out with water-based products, safe for family and pets.</p></div>
+        <div class="step"><div class="step__num">3</div><h3>Keep them out</h3>
+          <p class="mb-0">We seal entry points and set a schedule that fits your home, backed by our warranty.</p></div>
       </div>
     </div>
   </section>
@@ -346,16 +405,32 @@
 
   <section class="section section--soft">
     <div class="container text-center">
-      <span class="eyebrow">Local coverage</span>
-      <h2>Serving 27 Central Texas cities</h2>
-      <p class="lead" style="max-width:720px;margin:0 auto 18px;">From South Austin through Hays County and into
-         the Hill Country. Dedicated local pages for:</p>
-      <p style="font-size:1.05rem;"><a href="/locations/buda.html">Buda</a> · <a href="/locations/kyle.html">Kyle</a> · <a href="/locations/san-marcos.html">San Marcos</a> · <a href="/locations/dripping-springs.html">Dripping Springs</a> · <a href="/locations/wimberley.html">Wimberley</a> · <a href="/locations/driftwood.html">Driftwood</a> · <a href="/locations/manchaca.html">Manchaca</a> · <a href="/locations/del-valle.html">Del Valle</a></p>
-      <a class="btn btn--outline" href="/service-area.html">See the full service area →</a>
+      <span class="eyebrow">Do we serve you?</span>
+      <h2>Check your city in one tap</h2>
+      <p class="lead" style="max-width:640px;margin:0 auto 22px;">Type your city or ZIP for an instant answer —
+         we cover 27 Central Texas cities.</p>
+      <form class="checker" data-checker data-cities='[{"name": "Austin", "slug": ""}, {"name": "Barton Creek", "slug": ""}, {"name": "Bear Creek", "slug": ""}, {"name": "Bee Cave", "slug": ""}, {"name": "Blanco", "slug": ""}, {"name": "Briarcliff", "slug": ""}, {"name": "Buda", "slug": "buda"}, {"name": "Canyon Lake", "slug": ""}, {"name": "Creedmoor", "slug": ""}, {"name": "Del Valle", "slug": "del-valle"}, {"name": "Driftwood", "slug": "driftwood"}, {"name": "Dripping Springs", "slug": "dripping-springs"}, {"name": "Hudson Bend", "slug": ""}, {"name": "Johnson City", "slug": ""}, {"name": "Kyle", "slug": "kyle"}, {"name": "Lakeway", "slug": ""}, {"name": "Lost Creek", "slug": ""}, {"name": "Manchaca", "slug": "manchaca"}, {"name": "Mustang Ridge", "slug": ""}, {"name": "Niederwald", "slug": ""}, {"name": "Point Venture", "slug": ""}, {"name": "Redwood", "slug": ""}, {"name": "San Marcos", "slug": "san-marcos"}, {"name": "Sunset Valley", "slug": ""}, {"name": "Uhland", "slug": ""}, {"name": "West Lake Hills", "slug": ""}, {"name": "Wimberley", "slug": "wimberley"}]'>
+        <div class="checker__row">
+          <input type="text" placeholder="e.g. Kyle, Dripping Springs, 78610" aria-label="Your city or ZIP code">
+          <button type="submit" class="btn btn--primary" data-checker-go>Check coverage</button>
+        </div>
+        <div class="checker__result" role="status" aria-live="polite"></div>
+      </form>
     </div>
   </section>
 
   <section class="section">
+    <div class="container text-center">
+      <span class="eyebrow">Local coverage</span>
+      <h2>Dedicated local pages across the corridor</h2>
+      <p class="lead" style="max-width:720px;margin:0 auto 18px;">From South Austin through Hays County and into
+         the Hill Country:</p>
+      <p style="font-size:1.05rem;"><a href="/locations/buda.html">Buda</a> · <a href="/locations/kyle.html">Kyle</a> · <a href="/locations/san-marcos.html">San Marcos</a> · <a href="/locations/dripping-springs.html">Dripping Springs</a> · <a href="/locations/wimberley.html">Wimberley</a> · <a href="/locations/driftwood.html">Driftwood</a> · <a href="/locations/manchaca.html">Manchaca</a> · <a href="/locations/del-valle.html">Del Valle</a></p>
+      <a class="btn btn--outline" href="/service-area.html">See all 27 cities →</a>
+    </div>
+  </section>
+
+  <section class="section section--soft">
     <div class="container">
       <div class="crosslink">
         <span class="eyebrow">Need landscaping, not pest control?</span>
@@ -411,6 +486,12 @@
       </div>
     </div>
   </footer>
+  <button class="to-top" aria-label="Back to top">↑</button>
+  <div class="mobile-bar">
+    <a class="mb-call" href="tel:+17372013059">📞 Call Now</a>
+    <a class="mb-quote" href="/contact.html">Free Estimate</a>
+  </div>
   <script src="/js/main.js"></script>
+  <script src="/js/interactive.js"></script>
 </body>
 </html>
