@@ -474,6 +474,7 @@ def header():
 {links}
         <li class="nav-cta">
           <a class="nav-invoice" href="/pay-invoice.html">Pay Invoice</a>
+          <a class="nav-call" href="tel:{ptel}">📞 {phone}</a>
           <a class="btn btn--primary" href="/contact.html">Free Estimate</a>
         </li>
       </ul>
@@ -589,18 +590,49 @@ def crosslink_block():
 IMG_REGISTRY = []
 
 
-def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page=""):
-    """Render a branded production image placeholder and register it for the image brief.
-    kind: 'ai' (ChatGPT prompt in `spec`) or 'photo' (real-photo requirement in `spec')."""
-    IMG_REGISTRY.append({"kind": kind, "label": label, "filename": filename, "alt": alt, "spec": spec, "page": page})
-    tag = ('<span class="tagpill ai">AI · generate</span>' if kind == "ai"
-           else '<span class="tagpill photo">Real photo needed</span>')
+def scene_svg(alt):
+    """A polished, on-brand Central Texas dusk scene used until a real image is dropped in."""
     return (
-        '<div class="img-slot {ratio}" data-img-kind="{kind}" data-filename="{fn}" title="{alt}">'
-        '<div class="img-slot__inner"><span class="emo" aria-hidden="true">{emo}</span>{tag}'
-        '<div class="lbl">{label}</div><div class="fn">{fn}</div></div></div>'
-    ).format(ratio=ratio, kind=kind, fn=html.escape(filename), emo=emo, tag=tag, label=html.escape(label),
-             alt=html.escape(alt))
+        '<svg class="slot-art" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" '
+        'role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
+        '<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">'
+        '<stop offset="0" stop-color="#0a1f44"/><stop offset="1" stop-color="#1c3a6e"/></linearGradient></defs>'
+        '<rect width="400" height="225" fill="url(#sky)"/>'
+        '<circle cx="315" cy="66" r="30" fill="#f26419" opacity="0.92"/>'
+        '<path d="M0 165 Q100 128 200 160 T400 150 V225 H0 Z" fill="#12305f"/>'
+        '<path d="M0 190 Q120 160 240 185 T400 180 V225 H0 Z" fill="#0c2249"/>'
+        '<g fill="#071633"><rect x="72" y="140" width="7" height="42"/>'
+        '<circle cx="75" cy="132" r="24"/><circle cx="54" cy="142" r="16"/><circle cx="97" cy="142" r="16"/></g>'
+        '<g><rect x="250" y="142" width="66" height="46" fill="#eaf0fa"/>'
+        '<path d="M244 144 L283 116 L322 144 Z" fill="#f26419"/>'
+        '<rect x="268" y="160" width="15" height="28" fill="#0a1f44"/>'
+        '<rect x="293" y="156" width="13" height="13" fill="#0a1f44"/></g>'
+        '</svg>'
+    ).format(alt=html.escape(alt))
+
+
+def portrait_svg(alt):
+    return (
+        '<svg class="slot-art" viewBox="0 0 200 200" role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
+        '<rect width="200" height="200" fill="#eef2f9"/>'
+        '<circle cx="100" cy="150" r="66" fill="#0a1f44"/>'
+        '<circle cx="100" cy="76" r="38" fill="#0a1f44"/>'
+        '<circle cx="100" cy="100" r="92" fill="none" stroke="#f26419" stroke-width="6" opacity="0.5"/>'
+        '</svg>'
+    ).format(alt=html.escape(alt))
+
+
+def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="", art="scene", caption=""):
+    """Render polished placeholder ARTWORK (so pages look finished) and register the slot for the
+    image brief. The real filename + spec live in an HTML comment for the dev; kind: 'ai' | 'photo'."""
+    IMG_REGISTRY.append({"kind": kind, "label": label, "filename": filename, "alt": alt, "spec": spec, "page": page})
+    comment = "<!-- IMAGE SLOT ({k}): {fn} — {spec} -->".format(
+        k=kind.upper(), fn=filename, spec=spec.replace("--", "—"))
+    art_svg = portrait_svg(alt) if art == "portrait" else scene_svg(alt)
+    badge = '' if art == "portrait" else '<span class="slot-badge" aria-hidden="true">%s</span>' % emo
+    cap = '<figcaption class="slot-cap">%s</figcaption>' % html.escape(caption) if caption else ''
+    return ('<figure class="img-slot {ratio}" data-filename="{fn}">{comment}{art}{badge}{cap}</figure>'
+            ).format(ratio=ratio, fn=html.escape(filename), comment=comment, art=art_svg, badge=badge, cap=cap)
 
 
 # ---------- Schema builders ----------
@@ -931,6 +963,7 @@ def service_area_hub():
       <div class="coverage">
         <div class="coverage__map" role="img" aria-label="Coverage centered on our Buda headquarters, reaching across Hays and Travis counties and into the Hill Country">
           <span class="cov-ring r1"></span><span class="cov-ring r2"></span><span class="cov-ring r3"></span>{pins}
+          <span class="cov-scale">Schematic · centered on our Buda HQ</span>
         </div>
         <div class="coverage__copy">
           <span class="eyebrow">Do we serve you?</span>
@@ -1097,28 +1130,21 @@ def home():
     gallery = """
   <section class="section section--soft">
     <div class="container">
-      <div class="section-head text-center" style="max-width:660px;margin:0 auto 30px;">
-        <span class="eyebrow">Real crews, real Central Texas homes</span>
-        <h2>No stock photos — this is us</h2>
-        <p class="lead">Our own team, trucks and finished work go here. These slots are ready for the client's
-           real photographs (see the image brief for the shot list).</p>
+      <div class="section-head text-center" style="max-width:660px;margin:0 auto 34px;">
+        <span class="eyebrow">Why homeowners choose us</span>
+        <h2>Local expertise you can actually trust</h2>
+        <p class="lead">Twenty-eight years, one owner, and a 5.0 rating — the things a national franchise can't copy.</p>
       </div>
-      <div class="grid grid--3">{slots}</div>
+      <div class="grid grid--3">
+        <div class="card"><div class="card__icon">🛡️</div><h3>Licensed &amp; insured</h3>
+          <p class="mb-0">Texas {license}, with continuous annual technician education — the same trained techs on every visit, not a rotating call center.</p></div>
+        <div class="card"><div class="card__icon">🐾</div><h3>Safe for family &amp; pets</h3>
+          <p class="mb-0">Water-based products applied only where needed. See our <a href="/pet-family-safety.html">pet &amp; family safety</a> approach.</p></div>
+        <div class="card"><div class="card__icon">📍</div><h3>Local since {founded}</h3>
+          <p class="mb-0">Family-owned in Buda, 5.0★ across {reviews} reviews. We know the Central Texas pest calendar because we live it.</p></div>
+      </div>
     </div>
-  </section>""".format(slots=(
-        img_slot("photo", "👷", "Excel Pest crew on the job in Central Texas", "photos/crew-on-site.webp",
-                 "The Excel Pest crew working at a Central Texas home",
-                 "Real photo of the crew on a job (client to supply). Outdoors at a Buda-area home if possible.",
-                 ratio="ratio-square", page="/") +
-        img_slot("photo", "🚚", "Excel Pest service truck", "photos/service-truck.webp",
-                 "Excel Pest & Lawn Control service truck",
-                 "Real photo of a branded service truck (client to supply).",
-                 ratio="ratio-square", page="/") +
-        img_slot("photo", "🏡", "A finished, pest-free Central Texas home", "photos/finished-home.webp",
-                 "A Central Texas home Excel Pest protects",
-                 "Real photo of a completed job / protected home (client to supply).",
-                 ratio="ratio-square", page="/")
-    ))
+  </section>""".format(license=BIZ["license"], founded=BIZ["founded"], reviews=BIZ["reviews"])
     body = """
   <section class="hero">
     <div class="hero__bg" aria-hidden="true"></div>
@@ -1297,11 +1323,11 @@ def about():
         owner_photo=img_slot("photo", "🧑‍🔧", "Owner Gye Hutson", "photos/gye-hutson.webp",
                              "Gye Hutson, owner of Excel Pest & Lawn Control",
                              "Real portrait photo of owner Gye Hutson (client to supply).",
-                             ratio="ratio-square", page="/about.html"),
+                             ratio="ratio-square", page="/about.html", art="portrait"),
         mgr_photo=img_slot("photo", "👩‍💼", "Megan Avery", "photos/megan-avery.webp",
                            "Megan Avery, Director of Office Operations",
                            "Real photo of Megan Avery, Director of Office Operations (client to supply).",
-                           ratio="ratio-square", page="/about.html"),
+                           ratio="ratio-square", page="/about.html", art="portrait"),
     )
     body += cta_band()
     desc = "Family-owned in Buda since 1998, still run by owner Gye Hutson. 5.0-star, BBB A+, licensed Texas pest control (TPCL 0786979). Read the Excel Pest story."
@@ -1711,9 +1737,28 @@ def main():
     print("Image slots registered: %d (see docs/IMAGE-BRIEF.md)" % len(IMG_REGISTRY))
 
 
+# Real photos to request from the client that aren't tied to a single on-page slot
+# (the homepage now uses a trust band instead of empty photo boxes, but the client
+# should still gather these for future galleries / social / the About page).
+REAL_PHOTO_REQUESTS = [
+    {"kind": "photo", "label": "Crew on the job", "filename": "photos/crew-on-site.webp",
+     "alt": "The Excel Pest crew working at a Central Texas home",
+     "spec": "Real photo of the crew on a job — outdoors at a Buda-area home if possible.", "page": "future gallery"},
+    {"kind": "photo", "label": "Branded service truck", "filename": "photos/service-truck.webp",
+     "alt": "Excel Pest & Lawn Control service truck",
+     "spec": "Real photo of a branded service truck.", "page": "future gallery"},
+    {"kind": "photo", "label": "Finished / protected home", "filename": "photos/finished-home.webp",
+     "alt": "A Central Texas home Excel Pest protects",
+     "spec": "Real photo of a completed job or protected home.", "page": "future gallery"},
+    {"kind": "photo", "label": "Technician (e.g. Tim) at work", "filename": "photos/technician.webp",
+     "alt": "An Excel Pest technician treating a home",
+     "spec": "Real photo of a named technician at work (reviews mention Tim).", "page": "future gallery"},
+]
+
+
 def write_image_brief():
     ai = [i for i in IMG_REGISTRY if i["kind"] == "ai"]
-    photo = [i for i in IMG_REGISTRY if i["kind"] == "photo"]
+    photo = [i for i in IMG_REGISTRY if i["kind"] == "photo"] + REAL_PHOTO_REQUESTS
     lines = [
         "# Image Brief — Austin Excel Pest & Lawn Control",
         "",

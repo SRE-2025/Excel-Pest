@@ -7,27 +7,9 @@ filename, alt text, and either a ChatGPT generation prompt (AI) or a real-photo 
 WebP and compress → drop into `site/` at the path shown → the styled placeholder is replaced.
 Every image must keep its alt text. Never AI-generate real people, trucks, or completed jobs.
 
-## Real photos to request from the client (5)
+## Real photos to request from the client (6)
 
 These must be genuine photographs — do not generate them.
-
-### Excel Pest crew on the job in Central Texas
-- **File:** `site/photos/crew-on-site.webp`
-- **Alt text:** The Excel Pest crew working at a Central Texas home
-- **Used on:** /
-- **Requirement:** Real photo of the crew on a job (client to supply). Outdoors at a Buda-area home if possible.
-
-### Excel Pest service truck
-- **File:** `site/photos/service-truck.webp`
-- **Alt text:** Excel Pest & Lawn Control service truck
-- **Used on:** /
-- **Requirement:** Real photo of a branded service truck (client to supply).
-
-### A finished, pest-free Central Texas home
-- **File:** `site/photos/finished-home.webp`
-- **Alt text:** A Central Texas home Excel Pest protects
-- **Used on:** /
-- **Requirement:** Real photo of a completed job / protected home (client to supply).
 
 ### Owner Gye Hutson
 - **File:** `site/photos/gye-hutson.webp`
@@ -40,6 +22,30 @@ These must be genuine photographs — do not generate them.
 - **Alt text:** Megan Avery, Director of Office Operations
 - **Used on:** /about.html
 - **Requirement:** Real photo of Megan Avery, Director of Office Operations (client to supply).
+
+### Crew on the job
+- **File:** `site/photos/crew-on-site.webp`
+- **Alt text:** The Excel Pest crew working at a Central Texas home
+- **Used on:** future gallery
+- **Requirement:** Real photo of the crew on a job — outdoors at a Buda-area home if possible.
+
+### Branded service truck
+- **File:** `site/photos/service-truck.webp`
+- **Alt text:** Excel Pest & Lawn Control service truck
+- **Used on:** future gallery
+- **Requirement:** Real photo of a branded service truck.
+
+### Finished / protected home
+- **File:** `site/photos/finished-home.webp`
+- **Alt text:** A Central Texas home Excel Pest protects
+- **Used on:** future gallery
+- **Requirement:** Real photo of a completed job or protected home.
+
+### Technician (e.g. Tim) at work
+- **File:** `site/photos/technician.webp`
+- **Alt text:** An Excel Pest technician treating a home
+- **Used on:** future gallery
+- **Requirement:** Real photo of a named technician at work (reviews mention Tim).
 
 ## AI images to generate in ChatGPT (8)
 
