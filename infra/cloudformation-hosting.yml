@@ -1,0 +1,213 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: >
+  Static website hosting for Austin Excel Pest & Lawn Control.
+  Provisions a private S3 bucket, a CloudFront distribution (with Origin Access
+  Control), and an IAM role that GitHub Actions assumes via OIDC to deploy.
+  No long-lived AWS access keys are stored in GitHub.
+
+Parameters:
+  ProjectName:
+    Type: String
+    Default: excel-pest
+    Description: Short name used to prefix resource names.
+
+  GitHubOrg:
+    Type: String
+    Default: SRE-2025
+    Description: GitHub organisation or user that owns the repository.
+
+  GitHubRepo:
+    Type: String
+    Default: Excel-Pest
+    Description: GitHub repository name (without the org prefix).
+
+  GitHubBranch:
+    Type: String
+    Default: "*"
+    Description: >
+      Branch allowed to deploy. Use "*" to allow any branch, or e.g. "main".
+
+  DomainName:
+    Type: String
+    Default: ""
+    Description: >
+      Optional custom domain (e.g. excelpest-lawncontrol.com). Leave blank to
+      use the default CloudFront domain. If set, also supply AcmCertificateArn.
+
+  AcmCertificateArn:
+    Type: String
+    Default: ""
+    Description: >
+      Optional ACM certificate ARN (must be in us-east-1 for CloudFront).
+      Required only if DomainName is set.
+
+  CreateOIDCProvider:
+    Type: String
+    AllowedValues: ["true", "false"]
+    Default: "true"
+    Description: >
+      Set to "false" if the GitHub OIDC provider already exists in this account
+      (only one per account is allowed).
+
+Conditions:
+  HasCustomDomain: !Not [!Equals [!Ref DomainName, ""]]
+  HasCert: !Not [!Equals [!Ref AcmCertificateArn, ""]]
+  UseCustomDomain: !And [!Condition HasCustomDomain, !Condition HasCert]
+  ShouldCreateOIDC: !Equals [!Ref CreateOIDCProvider, "true"]
+
+Resources:
+
+  # ---------- S3: private origin bucket ----------
+  SiteBucket:
+    Type: AWS::S3::Bucket
+    DeletionPolicy: Retain
+    UpdateReplacePolicy: Retain
+    Properties:
+      BucketName: !Sub "${ProjectName}-site-${AWS::AccountId}"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: AES256
+      VersioningConfiguration:
+        Status: Enabled
+
+  # ---------- CloudFront: Origin Access Control ----------
+  OriginAccessControl:
+    Type: AWS::CloudFront::OriginAccessControl
+    Properties:
+      OriginAccessControlConfig:
+        Name: !Sub "${ProjectName}-oac"
+        OriginAccessControlOriginType: s3
+        SigningBehavior: always
+        SigningProtocol: sigv4
+
+  # ---------- CloudFront distribution ----------
+  Distribution:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Comment: !Sub "${ProjectName} static site"
+        Enabled: true
+        DefaultRootObject: index.html
+        HttpVersion: http2and3
+        PriceClass: PriceClass_100
+        Aliases: !If [UseCustomDomain, [!Ref DomainName], !Ref "AWS::NoValue"]
+        Origins:
+          - Id: S3Origin
+            DomainName: !GetAtt SiteBucket.RegionalDomainName
+            OriginAccessControlId: !Ref OriginAccessControl
+            S3OriginConfig:
+              OriginAccessIdentity: ""
+        DefaultCacheBehavior:
+          TargetOriginId: S3Origin
+          ViewerProtocolPolicy: redirect-to-https
+          Compress: true
+          # AWS managed "CachingOptimized" policy
+          CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+        CustomErrorResponses:
+          - ErrorCode: 403
+            ResponseCode: 404
+            ResponsePagePath: /404.html
+            ErrorCachingMinTTL: 60
+          - ErrorCode: 404
+            ResponseCode: 404
+            ResponsePagePath: /404.html
+            ErrorCachingMinTTL: 60
+        ViewerCertificate:
+          !If
+            - UseCustomDomain
+            - AcmCertificateArn: !Ref AcmCertificateArn
+              SslSupportMethod: sni-only
+              MinimumProtocolVersion: TLSv1.2_2021
+            - CloudFrontDefaultCertificate: true
+
+  # ---------- Bucket policy: allow only this distribution ----------
+  SiteBucketPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref SiteBucket
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: AllowCloudFrontServiceRead
+            Effect: Allow
+            Principal:
+              Service: cloudfront.amazonaws.com
+            Action: s3:GetObject
+            Resource: !Sub "${SiteBucket.Arn}/*"
+            Condition:
+              StringEquals:
+                AWS:SourceArn: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}"
+
+  # ---------- GitHub OIDC provider (optional) ----------
+  GitHubOIDCProvider:
+    Type: AWS::IAM::OIDCProvider
+    Condition: ShouldCreateOIDC
+    Properties:
+      Url: https://token.actions.githubusercontent.com
+      ClientIdList:
+        - sts.amazonaws.com
+      ThumbprintList:
+        - 6938fd4d98bab03faadb97b34396831e3780aea1
+        - 1c58a3a8518e8759bf075b76b750d4f2df264fcd
+
+  # ---------- IAM role assumed by GitHub Actions ----------
+  DeployRole:
+    Type: AWS::IAM::Role
+    Properties:
+      RoleName: !Sub "${ProjectName}-github-deploy"
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: !If
+                - ShouldCreateOIDC
+                - !Ref GitHubOIDCProvider
+                - !Sub "arn:aws:iam::${AWS::AccountId}:oidc-provider/token.actions.githubusercontent.com"
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              StringEquals:
+                token.actions.githubusercontent.com:aud: sts.amazonaws.com
+              StringLike:
+                token.actions.githubusercontent.com:sub: !Sub "repo:${GitHubOrg}/${GitHubRepo}:*"
+      Policies:
+        - PolicyName: deploy-site
+          PolicyDocument:
+            Version: "2012-10-17"
+            Statement:
+              - Sid: SyncBucket
+                Effect: Allow
+                Action:
+                  - s3:ListBucket
+                  - s3:GetObject
+                  - s3:PutObject
+                  - s3:DeleteObject
+                Resource:
+                  - !GetAtt SiteBucket.Arn
+                  - !Sub "${SiteBucket.Arn}/*"
+              - Sid: InvalidateCache
+                Effect: Allow
+                Action:
+                  - cloudfront:CreateInvalidation
+                  - cloudfront:GetInvalidation
+                Resource: !Sub "arn:aws:cloudfront::${AWS::AccountId}:distribution/${Distribution}"
+
+Outputs:
+  BucketName:
+    Description: S3 bucket that holds the site files.
+    Value: !Ref SiteBucket
+  DistributionId:
+    Description: CloudFront distribution ID (use for cache invalidation).
+    Value: !Ref Distribution
+  DistributionDomain:
+    Description: Public CloudFront URL for the site.
+    Value: !GetAtt Distribution.DomainName
+  DeployRoleArn:
+    Description: IAM role ARN GitHub Actions assumes. Add as secret AWS_DEPLOY_ROLE_ARN.
+    Value: !GetAtt DeployRole.Arn
