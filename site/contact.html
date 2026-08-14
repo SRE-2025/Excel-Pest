@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Contact &amp; Free Estimate — Austin Excel Pest &amp; Lawn Control</title>
   <meta name="description" content="Request a free pest control estimate in Austin and Central Texas. Call (737) 201-3059, text (737) 350-8553, or send us a message.">
+  <link rel="canonical" href="https://excelpest-lawncontrol.com/contact.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Contact — Austin Excel Pest &amp; Lawn Control">
+  <meta property="og:description" content="Call (737) 201-3059, text (737) 350-8553, or request a free estimate online.">
+  <meta property="og:url" content="https://excelpest-lawncontrol.com/contact.html">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
   <!--
@@ -67,7 +72,7 @@
       <div>
         <div class="card">
           <h3 class="mt-0">Request an estimate</h3>
-          <form action="#" method="post" novalidate>
+          <form action="mailto:office@excelpest-lawncontrol.com" method="post" data-estimate novalidate>
             <div class="field">
               <label for="name">Name</label>
               <input id="name" name="name" type="text" autocomplete="name" required>
@@ -95,7 +100,7 @@
               <textarea id="message" name="message" rows="4"></textarea>
             </div>
             <button class="btn btn--primary" type="submit" style="width:100%;">Send Request</button>
-            <p class="hero__note" style="color:var(--muted);">By submitting, you agree to be contacted about your request.</p>
+            <p class="hero__note" style="color:var(--muted);" data-form-note>By submitting, you agree to be contacted about your request.</p>
           </form>
         </div>
       </div>
