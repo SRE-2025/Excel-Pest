@@ -175,6 +175,61 @@
     go(0); rearm();
   }
 
+  /* ---------- Hero parallax ---------- */
+  var heroBg = $(".hero__bg");
+  var orbs = $$(".hero__orb");
+  if (!reduce && (heroBg || orbs.length)) {
+    window.addEventListener("scroll", function () {
+      var y = window.pageYOffset || 0;
+      if (y > 800) return;
+      if (heroBg) heroBg.style.transform = "translateY(" + (y * 0.18) + "px)";
+      orbs.forEach(function (o, i) { o.style.transform = "translateY(" + (y * (0.08 + i * 0.05)) + "px)"; });
+    }, { passive: true });
+  }
+
+  /* ---------- Multi-step estimate wizard ---------- */
+  var wiz = $("[data-wizard]");
+  if (wiz) {
+    wiz.classList.add("js");
+    var steps = $$(".wiz-step", wiz);
+    var fill = $("[data-wiz-fill]", wiz);
+    var count = $("[data-wiz-count]", wiz);
+    var review = $("[data-wiz-review]", wiz);
+    var cur = 0;
+    function field(n) { var el = wiz.elements[n]; return el ? (el.value || "").trim() : ""; }
+    function render() {
+      steps.forEach(function (s, i) { s.classList.toggle("active", i === cur); });
+      var pct = ((cur + 1) / steps.length) * 100;
+      if (fill) fill.style.width = pct + "%";
+      if (count) count.textContent = "Step " + (cur + 1) + " of " + steps.length;
+      if (cur === steps.length - 1 && review) {
+        var rows = [["Service", field("service")], ["Seeing", field("pest")],
+                    ["Name", field("name")], ["Phone", field("phone")], ["City", field("city")]];
+        review.innerHTML = "<strong>Quick review</strong>" + rows.filter(function (r) { return r[1]; })
+          .map(function (r) { return "<div><b>" + r[0] + ":</b> " + r[1] + "</div>"; }).join("");
+      }
+      var focusable = steps[cur].querySelector("input, select, textarea");
+      if (focusable && cur > 0) { try { focusable.focus({ preventScroll: true }); } catch (e) {} }
+    }
+    function validStep() {
+      var req = $$("[required]", steps[cur]);
+      for (var i = 0; i < req.length; i++) {
+        if (!req[i].value.trim()) {
+          req[i].focus(); req[i].style.borderColor = "var(--orange)";
+          return false;
+        }
+      }
+      return true;
+    }
+    wiz.addEventListener("click", function (e) {
+      var t = e.target.closest("[data-wiz-next], [data-wiz-back]");
+      if (!t) return;
+      if (t.hasAttribute("data-wiz-next")) { if (validStep() && cur < steps.length - 1) { cur++; render(); } }
+      else if (cur > 0) { cur--; render(); }
+    });
+    render();
+  }
+
   /* ---------- FAQ accordion ---------- */
   $$(".acc-item").forEach(function (item) {
     var head = $(".acc-head", item);

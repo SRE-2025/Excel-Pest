@@ -24,12 +24,15 @@
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var get = function (n) { var el = form.elements[n]; return el ? el.value.trim() : ''; };
-      var body =
-        'Name: ' + get('name') + '\n' +
-        'Phone: ' + get('phone') + '\n' +
-        'Email: ' + get('email') + '\n' +
-        'Service: ' + get('service') + '\n\n' +
-        get('message');
+      var lines = [
+        'Name: ' + get('name'),
+        'Phone: ' + get('phone'),
+        'Email: ' + get('email'),
+        'Service: ' + get('service')
+      ];
+      if (get('pest')) lines.push('Seeing: ' + get('pest'));
+      if (get('city')) lines.push('City: ' + get('city'));
+      var body = lines.join('\n') + '\n\n' + get('message');
       var subject = 'Free estimate request' + (get('name') ? ' — ' + get('name') : '');
       window.location.href =
         'mailto:office@excelpest-lawncontrol.com' +

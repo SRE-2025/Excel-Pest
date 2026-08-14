@@ -270,18 +270,40 @@
       <div>
         <div class="card">
           <h3 class="mt-0">Request an estimate</h3>
-          <form action="mailto:office@excelpest-lawncontrol.com" method="post" data-estimate novalidate>
-            <div class="field"><label for="name">Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" required></div>
-            <div class="field"><label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
-            <div class="field"><label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email"></div>
-            <div class="field"><label for="service">What do you need help with?</label>
-              <select id="service" name="service"><option>General Pest Control</option><option>Scorpion Control</option><option>Termite Control</option><option>Termite Letters (WDI)</option><option>Rodent Control</option><option>Wildlife Removal</option><option>Mosquito Misting Systems</option><option>Lawn Pest Control</option><option>Not sure / other</option></select></div>
-            <div class="field"><label for="message">Tell us what you're seeing</label>
-              <textarea id="message" name="message" rows="4"></textarea></div>
-            <button class="btn btn--primary" type="submit" style="width:100%;">Send Request</button>
+          <form action="mailto:office@excelpest-lawncontrol.com" method="post" class="wizard" data-estimate data-wizard novalidate>
+            <div class="wiz-prog"><span data-wiz-fill></span></div>
+            <div class="wiz-count" data-wiz-count>Step 1 of 3</div>
+
+            <fieldset class="wiz-step active" data-step="0">
+              <div class="field"><label for="service">What do you need help with?</label>
+                <select id="service" name="service"><option>General Pest Control</option><option>Scorpion Control</option><option>Termite Control</option><option>Termite Letters (WDI)</option><option>Rodent Control</option><option>Wildlife Removal</option><option>Mosquito Misting Systems</option><option>Lawn Pest Control</option><option>Not sure / other</option></select></div>
+              <div class="field"><label>Seeing something specific? <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+                <div class="pest-choice"><label><input type="radio" name="pest" value="Scorpions"><span>🦂 Scorpions</span></label><label><input type="radio" name="pest" value="Ants"><span>🐜 Ants</span></label><label><input type="radio" name="pest" value="Roaches"><span>🪳 Roaches</span></label><label><input type="radio" name="pest" value="Rodents"><span>🐀 Rodents</span></label><label><input type="radio" name="pest" value="Termites"><span>🪵 Termites</span></label><label><input type="radio" name="pest" value="Wildlife"><span>🦝 Wildlife</span></label><label><input type="radio" name="pest" value="Mosquitoes"><span>🦟 Mosquitoes</span></label><label><input type="radio" name="pest" value="Lawn pests"><span>🌱 Lawn pests</span></label></div></div>
+              <div class="wiz-nav"><span></span><button type="button" class="btn btn--primary" data-wiz-next>Next →</button></div>
+            </fieldset>
+
+            <fieldset class="wiz-step" data-step="1">
+              <div class="field"><label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required></div>
+              <div class="field"><label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+              <div class="field"><label for="email">Email <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+                <input id="email" name="email" type="email" autocomplete="email"></div>
+              <div class="wiz-nav"><button type="button" class="btn btn--outline" data-wiz-back>← Back</button>
+                <button type="button" class="btn btn--primary" data-wiz-next>Next →</button></div>
+            </fieldset>
+
+            <fieldset class="wiz-step" data-step="2">
+              <div class="field"><label for="city">Your city</label>
+                <input id="city" name="city" type="text" list="city-list" autocomplete="address-level2" placeholder="e.g. Kyle">
+                <datalist id="city-list"><option value="Austin"></option><option value="Barton Creek"></option><option value="Bear Creek"></option><option value="Bee Cave"></option><option value="Blanco"></option><option value="Briarcliff"></option><option value="Buda"></option><option value="Canyon Lake"></option><option value="Creedmoor"></option><option value="Del Valle"></option><option value="Driftwood"></option><option value="Dripping Springs"></option><option value="Hudson Bend"></option><option value="Johnson City"></option><option value="Kyle"></option><option value="Lakeway"></option><option value="Lost Creek"></option><option value="Manchaca"></option><option value="Mustang Ridge"></option><option value="Niederwald"></option><option value="Point Venture"></option><option value="Redwood"></option><option value="San Marcos"></option><option value="Sunset Valley"></option><option value="Uhland"></option><option value="West Lake Hills"></option><option value="Wimberley"></option></datalist></div>
+              <div class="field"><label for="message">Anything else we should know?</label>
+                <textarea id="message" name="message" rows="3"></textarea></div>
+              <div class="wiz-review" data-wiz-review></div>
+              <div class="wiz-nav"><button type="button" class="btn btn--outline" data-wiz-back>← Back</button>
+                <button class="btn btn--primary" type="submit">Send Request</button></div>
+            </fieldset>
+
             <p class="hero__note" style="color:var(--muted);" data-form-note>By submitting, you agree to be contacted about your request.</p>
           </form>
         </div>

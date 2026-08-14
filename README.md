@@ -59,14 +59,32 @@ infra/cloudformation-hosting.yml   Alternative S3 + CloudFront infrastructure
 docs/AMPLIFY.md docs/DEPLOYMENT.md
 ```
 
-### Pages
+### Pages (46 total)
 
 - **Core:** Home, Services, Service Area, Reviews, Offers, About, Pet & Family
   Safety, FAQ, Contact
 - **Services (8):** general pest, scorpion, termite control, termite letters
-  (WDI), rodent, wildlife, mosquito misting, lawn pest
-- **Cities (8):** Buda, Kyle, San Marcos, Dripping Springs, Wimberley,
-  Driftwood, Manchaca, Del Valle (+ all 27 listed on the hub)
+  (WDI), rodent, wildlife, mosquito misting, lawn pest — each with a mini-FAQ
+  (FAQPage schema) and an image slot
+- **Cities (27):** every service-area city has its own local page with unique
+  copy, nearby-city links, and city-scoped schema
+
+### Interactive features (js/interactive.js)
+
+Scroll-progress bar, shrink-on-scroll header, scroll-reveal, count-up stats,
+cinematic hero with parallax, animated pest identifier, instant service-area
+checker, testimonial spotlight, "how it works" flow, animated coverage map
+(service area), FAQ accordions, a **multi-step estimate wizard** (contact),
+back-to-top, and a mobile call/estimate bar. All respect `prefers-reduced-motion`
+and degrade without JS.
+
+### Images
+
+`tools/build.py` renders branded image slots and auto-generates
+**`docs/IMAGE-BRIEF.md`** — every slot with its filename, alt text, and either a
+ChatGPT generation prompt (AI) or a real-photo requirement (crew, trucks, owner
+Gye Hutson, office manager Megan Avery, finished jobs). Drop real files into
+`site/` at the listed paths to replace the placeholders.
 
 ### SEO built in
 

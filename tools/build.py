@@ -183,6 +183,70 @@ SERVICES = [
 ]
 SERVICE_BY_SLUG = {s["slug"]: s for s in SERVICES}
 
+# Per-service mini-FAQ (adds FAQPage schema + an accordion to each service page)
+SERVICE_FAQS = {
+    "pest-control": [
+        ("How often should I have pest control done?", "Most Central Texas homes do best on a recurring quarterly plan that stays ahead of the seasonal surges. We'll recommend a schedule for your property — and one-time and emergency visits are available too."),
+        ("Are the products safe for my kids and pets?", "Yes. Our products are water-based and applied by licensed technicians. See our <a href=\"/pet-family-safety.html\">pet &amp; family safety</a> page."),
+        ("Do you treat inside and outside?", "Both. Every visit covers interior trouble spots and a full exterior barrier around the foundation, eaves and entry points."),
+    ],
+    "scorpion-control": [
+        ("Why do I still see scorpions after treating inside?", "Because scorpions live outside — in rock, cedar and wood piles — and wander in. Lasting control treats the perimeter and seals entry points, not just the interior."),
+        ("When is scorpion season in Central Texas?", "They're most active in the warm months and move toward homes during drought (for water) and after heavy rain (to escape it). Year-round exclusion keeps them out."),
+        ("Are Central Texas scorpions dangerous?", "The striped bark scorpion's sting is painful but rarely medically serious for most people — still not something you want indoors, which is why we focus on keeping them out."),
+    ],
+    "termite-control": [
+        ("How do I know if I have termites?", "Common signs are mud tubes on the foundation, hollow-sounding or blistered wood, and swarms after spring rain. A licensed inspection confirms it."),
+        ("Do you offer a warranty?", "Yes — we back our termite work with a warranty. Ask for details during your inspection."),
+        ("How often should I have a termite inspection?", "An annual inspection is smart in Central Texas, where soil movement gives termites constant access to foundations."),
+    ],
+    "termite-letters": [
+        ("What is a termite letter / WDI report?", "It's the official Wood Destroying Insect inspection report, on the state form that lenders and title companies require for many closings."),
+        ("How fast can you get it done?", "Tell us your closing date and property and we schedule promptly and turn the paperwork around quickly."),
+        ("What if the inspection finds termites?", "You'll get clear options, including <a href=\"/services/termite-control.html\">treatment</a> before your deadline."),
+    ],
+    "rodent-control": [
+        ("What's the difference between removal and exclusion?", "Removal gets rid of the rodents inside; exclusion seals the gaps that let them in. We do both — trapping alone just repeats."),
+        ("Where do rodents usually get in?", "Rooflines, weep holes, pipe penetrations and the garage are common entry points in Central Texas homes. We find and seal them."),
+        ("Are the treatments safe around pets?", "We choose methods with your family and pets in mind and place them where pets can't reach."),
+    ],
+    "wildlife-removal": [
+        ("Do you remove wildlife humanely?", "Yes — we use humane live-trapping and hands-on removal, then seal the entry points so animals can't return."),
+        ("What animals do you handle?", "Common Central Texas intruders like raccoons, squirrels and opossums in attics, soffits and under decks."),
+        ("Will they come back?", "Not through the same opening — we repair and seal the entry points as part of the job."),
+    ],
+    "mosquito-misting": [
+        ("How does a misting system work?", "It runs on a schedule you control, releasing a fine treatment around your landscaping to knock down mosquitoes before they gather."),
+        ("Do I still need to deal with standing water?", "Reducing standing water helps, and we treat breeding sites as part of control — the misting system handles the rest."),
+        ("Is misting safe for my yard and pets?", "We use water-based products and tune the system to your landscaping, and we'll walk you through anything to know for pets."),
+    ],
+    "lawn-pest-control": [
+        ("How do I know if it's bugs or drought killing my lawn?", "Spreading brown patches, spongy turf, or moths lifting off at dusk usually mean chinch bugs, grubs or armyworms — we diagnose the real cause before treating."),
+        ("Do you handle weeds and disease too?", "Yes — along with lawn pests we treat weeds and turf disease like brown patch."),
+        ("Do you do landscaping and sod installation?", "That's our sister company, <a href=\"" + BIZ["sister_url"] + "\" rel=\"noopener\">Research Turf Management</a>. We handle the pests, weeds and disease."),
+    ],
+}
+
+# Per-service inline image (ChatGPT generation prompt)
+SERVICE_IMAGES = {
+    "pest-control": ("🏡", "pest-control-exterior-treatment.webp", "Excel Pest technician treating the exterior of a Central Texas home",
+        "A licensed pest control technician in a clean plain uniform spraying a water-based treatment along the exterior foundation of a limestone Central Texas home, live oak trees and Hill Country landscaping behind, warm morning light, photorealistic, no text, no logos, no watermark, no visible brand names."),
+    "scorpion-control": ("🦂", "scorpion-hill-country.webp", "Striped bark scorpion on Hill Country limestone",
+        "A close, detailed photo of a striped bark scorpion on pale limestone rock at dusk in the Texas Hill Country, cedar and dry grass softly blurred behind, natural light, photorealistic, no text, no logos, no watermark."),
+    "termite-control": ("🪵", "termite-mud-tubes.webp", "Termite mud tubes on a home foundation",
+        "A macro photo of subterranean termite mud tubes running up the concrete foundation of a Central Texas home, weathered slab and soil visible, natural daylight, photorealistic, no text, no logos, no watermark."),
+    "termite-letters": ("📄", "termite-letter-inspection.webp", "Inspector performing a WDI termite inspection on a home",
+        "A pest control inspector with a clipboard and flashlight examining the foundation and eaves of a suburban Central Texas home during a real-estate inspection, warm daylight, photorealistic, no text, no logos, no watermark."),
+    "rodent-control": ("🐀", "rodent-exclusion-sealing.webp", "Technician sealing a rodent entry point on a home",
+        "A technician sealing a rodent entry gap along the roofline of a Central Texas home with exclusion mesh, ladder and tools visible, live oaks nearby, clear daylight, photorealistic, no text, no logos, no watermark."),
+    "wildlife-removal": ("🦝", "wildlife-attic-raccoon.webp", "Raccoon at an attic vent of a Central Texas home",
+        "A raccoon peeking out of an attic gable vent on a suburban Central Texas home at dusk, cedar and oak around the roof, natural light, photorealistic, no text, no logos, no watermark."),
+    "mosquito-misting": ("🦟", "mosquito-misting-pergola.webp", "Mosquito misting nozzle on a backyard pergola",
+        "A backyard mosquito misting system nozzle mounted on a wooden pergola in a lush Central Texas backyard at golden hour, patio and native plants around, a fine mist visible, photorealistic, no text, no logos, no watermark."),
+    "lawn-pest-control": ("🌱", "lawn-chinch-bug-damage.webp", "Chinch bug damage in a St. Augustine lawn",
+        "A close view of a St. Augustine lawn in Central Texas with a spreading brown chinch-bug patch, healthy green grass beside damaged turf, bright daylight, photorealistic, no text, no logos, no watermark."),
+}
+
 # --------------------------------------------------------------------------
 # Priority-corridor city pages
 # --------------------------------------------------------------------------
@@ -235,9 +299,126 @@ LOCATIONS = [
         "angle": "New builds on former farmland push rodents, ants and scorpions into fresh neighborhoods, while the rural lots bring their own wildlife pressure. We cover both from our nearby Buda base, with recurring plans built for the local calendar.",
         "nearby": ["manchaca", "buda", "kyle"],
     },
+    {
+        "slug": "austin", "city": "Austin", "county": "Travis County",
+        "lead": "Austin is the heart of our region, and we have treated homes across the city — from South Austin, where Excel Pest began in 1998, to the neighborhoods ringing downtown. City living does not mean fewer pests; it means roaches, ants, rodents and scorpions adapting to dense blocks, older foundations and greenbelt edges.",
+        "angle": "We work the established bungalows of South and Central Austin and the new builds on the fringe alike, timing recurring service to the city's long, warm pest season.",
+        "nearby": ["sunset-valley", "manchaca", "west-lake-hills"],
+    },
+    {
+        "slug": "barton-creek", "city": "Barton Creek", "county": "Travis County",
+        "lead": "Barton Creek is greenbelt country — upscale homes tucked against limestone bluffs, live oaks and canyon land on the western edge of Austin. That beautiful setting is also prime scorpion and wildlife habitat.",
+        "angle": "Homes backing to the greenbelt see scorpions, spiders and the occasional wildlife visitor. We treat the perimeter and seal entry points so the wild stays outside.",
+        "nearby": ["west-lake-hills", "lost-creek", "bee-cave"],
+    },
+    {
+        "slug": "bear-creek", "city": "Bear Creek", "county": "Hays County",
+        "lead": "Bear Creek sits just south of Austin in northern Hays County, a quieter community of homes on wooded lots. Cedar, oak and creek bottoms keep pest and wildlife pressure steady year-round.",
+        "angle": "Wooded lots invite scorpions, rodents and wildlife toward the house. We build treatments around the whole property, not just the walls.",
+        "nearby": ["buda", "manchaca", "driftwood"],
+    },
+    {
+        "slug": "bee-cave", "city": "Bee Cave", "county": "Travis County",
+        "lead": "Bee Cave is Hill Country living on the doorstep of Lake Travis — limestone, cedar and upscale homes on rocky terrain. Scorpions and wildlife come with the territory out here.",
+        "angle": "Rock landscaping and cedar are exactly what scorpions love. Our exclusion-first approach treats harborage and seals the gaps that let them inside.",
+        "nearby": ["lakeway", "west-lake-hills", "barton-creek"],
+    },
+    {
+        "slug": "blanco", "city": "Blanco", "county": "Blanco County",
+        "lead": "Blanco sits on its namesake river in the heart of the Hill Country, a small town surrounded by ranch land, limestone and cedar. It is scorpion and rodent country through and through.",
+        "angle": "Rural homes and ranchettes face constant pressure from scorpions, rodents and wildlife off the surrounding land. We treat the perimeter and outbuildings, not just the house.",
+        "nearby": ["wimberley", "johnson-city", "dripping-springs"],
+    },
+    {
+        "slug": "briarcliff", "city": "Briarcliff", "county": "Travis County",
+        "lead": "Briarcliff is a lakeside village on the south shore of Lake Travis, full of hillside homes among cedar and oak. Waterfront and wooded lots keep scorpions, spiders and wildlife in the picture.",
+        "angle": "Homes on the slopes above the lake see scorpions and the wildlife the cedar draws. We treat and seal so the view stays yours and the pests stay out.",
+        "nearby": ["lakeway", "point-venture", "bee-cave"],
+    },
+    {
+        "slug": "canyon-lake", "city": "Canyon Lake", "county": "Comal County",
+        "lead": "Canyon Lake spreads around the Guadalupe River and its reservoir in Comal County — lake homes, weekend places and full-time Hill Country living. Lakeside humidity and cedar mean mosquitoes, scorpions and rodents.",
+        "angle": "Vacation homes that sit empty invite rodents and wildlife, while the water feeds mosquitoes. We treat, seal and set a schedule that fits how the home is used.",
+        "nearby": ["wimberley", "blanco", "san-marcos"],
+    },
+    {
+        "slug": "creedmoor", "city": "Creedmoor", "county": "Travis County",
+        "lead": "Creedmoor is a small rural community in southeastern Travis County, surrounded by farmland and quick new development along the SH-130 corridor. Open land and fresh construction push pests toward homes.",
+        "angle": "Cleared lots displace rodents, ants and scorpions into new neighborhoods, and rural acreage brings wildlife. We cover both from our nearby Buda base.",
+        "nearby": ["mustang-ridge", "del-valle", "buda"],
+    },
+    {
+        "slug": "hudson-bend", "city": "Hudson Bend", "county": "Travis County",
+        "lead": "Hudson Bend reaches out on a peninsula into Lake Travis, all cedar, limestone and lake homes. Waterfront living here comes with scorpions, spiders and wildlife.",
+        "angle": "Rock and cedar around lake homes are scorpion habitat, and empty second homes draw rodents. We treat harborage and seal the home tight.",
+        "nearby": ["lakeway", "point-venture", "briarcliff"],
+    },
+    {
+        "slug": "johnson-city", "city": "Johnson City", "county": "Blanco County",
+        "lead": "Johnson City anchors Blanco County in the Hill Country — ranch land, limestone and small-town homes under big live oaks. Scorpions, rodents and wildlife are simply part of life out here.",
+        "angle": "Homes surrounded by ranch land face steady pest and wildlife pressure. We treat the perimeter and outbuildings and seal the house against what the land sends toward it.",
+        "nearby": ["blanco", "dripping-springs", "wimberley"],
+    },
+    {
+        "slug": "lakeway", "city": "Lakeway", "county": "Travis County",
+        "lead": "Lakeway is the hub of the Lake Travis area — established upscale neighborhoods, golf communities and hillside homes among cedar and limestone. It is prime scorpion and wildlife territory.",
+        "angle": "Manicured rock landscaping and cedar greenbelt draw scorpions and wildlife toward the house. Our exclusion-first treatments keep them on the outside.",
+        "nearby": ["bee-cave", "hudson-bend", "briarcliff"],
+    },
+    {
+        "slug": "lost-creek", "city": "Lost Creek", "county": "Travis County",
+        "lead": "Lost Creek is a wooded, upscale neighborhood on the western edge of Austin, wrapped in greenbelt, live oaks and limestone canyon. That setting brings scorpions, spiders and the occasional wildlife guest.",
+        "angle": "Homes against the greenbelt see the pests the wild edge sends their way. We treat the perimeter and seal entry points for lasting control.",
+        "nearby": ["west-lake-hills", "barton-creek", "lakeway"],
+    },
+    {
+        "slug": "mustang-ridge", "city": "Mustang Ridge", "county": "Travis County",
+        "lead": "Mustang Ridge is a small rural city where Travis, Caldwell and Hays counties meet along the SH-130 corridor, surrounded by farmland and new growth. Open country and fresh building stir pests up.",
+        "angle": "Rural acreage brings rodents and wildlife while new development pushes ants and scorpions into fresh homes. We handle the full range from nearby Buda.",
+        "nearby": ["creedmoor", "del-valle", "niederwald"],
+    },
+    {
+        "slug": "niederwald", "city": "Niederwald", "county": "Hays County",
+        "lead": "Niederwald is a small community spanning the Hays–Caldwell county line east of Kyle, a rural stretch of farmland and scattered homes that is growing with the region. Country living keeps pest and rodent pressure high.",
+        "angle": "Farmland and open lots mean rodents, ants and scorpions looking for a way indoors. We treat and seal, timed to the Central Texas seasons.",
+        "nearby": ["kyle", "uhland", "buda"],
+    },
+    {
+        "slug": "point-venture", "city": "Point Venture", "county": "Travis County",
+        "lead": "Point Venture is a small village on a peninsula in Lake Travis, full of lakeside homes and weekend places among the cedar. Waterfront and second-home living bring scorpions, mosquitoes and rodents.",
+        "angle": "Homes that sit empty invite rodents and wildlife, and the lakeside cedar shelters scorpions. We treat, seal and schedule around how you use the place.",
+        "nearby": ["briarcliff", "hudson-bend", "lakeway"],
+    },
+    {
+        "slug": "redwood", "city": "Redwood", "county": "Guadalupe County",
+        "lead": "Redwood is a community just east of San Marcos in Guadalupe County, a rural-residential stretch along the river bottoms and farmland. Humidity and open land keep mosquitoes, roaches and rodents active.",
+        "angle": "River-bottom humidity feeds mosquitoes and roaches while farmland brings rodents. We treat the source and seal the home against them.",
+        "nearby": ["san-marcos", "kyle", "uhland"],
+    },
+    {
+        "slug": "sunset-valley", "city": "Sunset Valley", "county": "Travis County",
+        "lead": "Sunset Valley is a small city entirely surrounded by South Austin, a leafy enclave of established homes among big trees. Mature landscaping and older foundations give ants, roaches and rodents plenty of ways in.",
+        "angle": "Big trees and established homes mean well-worn pest trails. We treat interior and exterior and seal the entry points for lasting results.",
+        "nearby": ["austin", "manchaca", "west-lake-hills"],
+    },
+    {
+        "slug": "uhland", "city": "Uhland", "county": "Hays County",
+        "lead": "Uhland is a small city on the Hays–Caldwell line between Kyle and San Marcos, a rural community growing along the corridor. Farmland and new lots keep rodents and pests moving toward homes.",
+        "angle": "Open country brings rodents and scorpions while new construction stirs up ants. We cover it all from our nearby Buda office.",
+        "nearby": ["kyle", "niederwald", "san-marcos"],
+    },
+    {
+        "slug": "west-lake-hills", "city": "West Lake Hills", "county": "Travis County",
+        "lead": "West Lake Hills is an upscale community in the hills just west of downtown Austin — limestone, live oaks and established homes on wooded lots. That prized setting is also scorpion and wildlife habitat.",
+        "angle": "Rock landscaping, cedar and greenbelt draw scorpions and wildlife toward the house. Our exclusion-first approach treats harborage and seals them out.",
+        "nearby": ["lost-creek", "barton-creek", "bee-cave"],
+    },
 ]
 LOCATION_BY_SLUG = {l["slug"]: l for l in LOCATIONS}
-PRIORITY_CITY_SLUG = {l["city"]: l["slug"] for l in LOCATIONS}
+CITY_SLUG = {l["city"]: l["slug"] for l in LOCATIONS}
+PRIORITY_CITY_SLUG = CITY_SLUG  # backwards-compatible alias
+# Cities featured on the homepage (the core corridor)
+PRIORITY_CITIES = ["buda", "kyle", "san-marcos", "dripping-springs", "wimberley", "driftwood", "manchaca", "del-valle"]
 
 # --------------------------------------------------------------------------
 # HTML building blocks
@@ -405,6 +586,23 @@ def crosslink_block():
       </div>""".format(sister=BIZ["sister_name"], url=BIZ["sister_url"])
 
 
+IMG_REGISTRY = []
+
+
+def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page=""):
+    """Render a branded production image placeholder and register it for the image brief.
+    kind: 'ai' (ChatGPT prompt in `spec`) or 'photo' (real-photo requirement in `spec')."""
+    IMG_REGISTRY.append({"kind": kind, "label": label, "filename": filename, "alt": alt, "spec": spec, "page": page})
+    tag = ('<span class="tagpill ai">AI · generate</span>' if kind == "ai"
+           else '<span class="tagpill photo">Real photo needed</span>')
+    return (
+        '<div class="img-slot {ratio}" data-img-kind="{kind}" data-filename="{fn}" title="{alt}">'
+        '<div class="img-slot__inner"><span class="emo" aria-hidden="true">{emo}</span>{tag}'
+        '<div class="lbl">{label}</div><div class="fn">{fn}</div></div></div>'
+    ).format(ratio=ratio, kind=kind, fn=html.escape(filename), emo=emo, tag=tag, label=html.escape(label),
+             alt=html.escape(alt))
+
+
 # ---------- Schema builders ----------
 
 def business_schema(with_rating=True, with_reviews=False):
@@ -526,7 +724,30 @@ def render_service(s):
     sections = "".join(
         "<h2>%s</h2>%s" % (html.escape(h), body) for h, body in s["sections"]
     )
+    emo, fn, alt, prompt = SERVICE_IMAGES[s["slug"]]
+    hero_img = img_slot("ai", emo, alt, "services/" + fn, alt, prompt, ratio="ratio-wide",
+                        page="/services/" + s["slug"] + ".html")
+    faqs = SERVICE_FAQS.get(s["slug"], [])
+    faq_items = "".join(
+        ('<div class="acc-item"><button class="acc-head">{q}<span class="ic" aria-hidden="true">+</span></button>'
+         '<div class="acc-body"><div class="acc-body__inner">{a}</div></div></div>').format(q=html.escape(q), a=a)
+        for q, a in faqs
+    )
+    faq_section = ("""
+  <section class="section section--soft service-faq">
+    <div class="container">
+      <div class="section-head text-center" style="margin-bottom:26px;">
+        <span class="eyebrow">Good questions</span>
+        <h2>{name} — FAQ</h2>
+      </div>
+      <div class="accordion">{items}</div>
+    </div>
+  </section>""".format(name=html.escape(s["nav"]), items=faq_items)) if faqs else ""
+
     body = page_hero(s["h1"], s["desc"].split(". ")[0] + ".", crumbs) + """
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">{hero_img}</div>
+  </section>
   <section class="section">
     <div class="container split">
       <div class="prose">
@@ -544,7 +765,7 @@ def render_service(s):
       <div>
         <div class="card">
           <h3 class="mt-0">What we handle</h3>
-          <ul class="info-list" style="margin:0 0 14px;"><li><span class="value" style="font-weight:600;font-size:1rem;">Common issues we treat:</span></li></ul>
+          <p style="margin:0 0 8px;font-weight:600;">Common issues we treat:</p>
           <ul class="prose" style="margin:0;">{treats}</ul>
           <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
           <p style="margin:0;"><strong>Serving:</strong> Buda, Kyle, San Marcos, Dripping Springs, Wimberley and
@@ -556,12 +777,20 @@ def render_service(s):
         </div>
       </div>
     </div>
-  </section>""".format(
-        lead=s["lead"], sections=sections, treats=treats, ptel=BIZ["phone_tel"], phone=BIZ["phone"],
-    )
+  </section>""".format(hero_img=hero_img, lead=s["lead"], sections=sections, treats=treats,
+                       ptel=BIZ["phone_tel"], phone=BIZ["phone"])
     body += related_services_grid(s["related"])
+    body += faq_section
     body += cta_band()
     schema = [business_schema(), service_schema(s), breadcrumb_schema(crumbs)]
+    if faqs:
+        import re as _re
+        schema.append({
+            "@context": "https://schema.org", "@type": "FAQPage",
+            "mainEntity": [{"@type": "Question", "name": q,
+                            "acceptedAnswer": {"@type": "Answer", "text": _re.sub("<[^>]+>", "", a)}}
+                           for q, a in faqs],
+        })
     return assemble(s["title"], s["desc"], canonical, body, schema)
 
 
@@ -674,26 +903,59 @@ def services_hub():
 def service_area_hub():
     canonical = BIZ["domain"] + "/service-area.html"
     crumbs = [("Home", "/"), ("Service Area", None)]
-    items = []
-    for c in ALL_CITIES:
-        if c in PRIORITY_CITY_SLUG:
-            items.append('<li><a href="/locations/%s.html">%s</a></li>' % (PRIORITY_CITY_SLUG[c], html.escape(c)))
+    items = "\n        ".join(
+        '<li><a href="/locations/%s.html">%s</a></li>' % (CITY_SLUG[c], html.escape(c))
+        for c in ALL_CITIES
+    )
+    # Schematic coverage pins (angle/radius around the Buda HQ — stylised, not to scale)
+    pins = [
+        ("Buda", 0, 0, True), ("Kyle", 200, 62, False), ("San Marcos", 205, 128, False),
+        ("Wimberley", 250, 150, False), ("Dripping Springs", 300, 120, False),
+        ("Driftwood", 265, 95, False), ("Manchaca", 25, 70, False), ("Austin", 350, 110, False),
+        ("West Lake Hills", 330, 150, False), ("Bee Cave", 315, 175, False),
+        ("Lakeway", 335, 200, False), ("Del Valle", 60, 120, False), ("Canyon Lake", 225, 205, False),
+    ]
+    pin_html = ""
+    for name, ang, dist, hq in pins:
+        if hq:
+            pin_html += '\n        <span class="cov-hq">%s<small>HQ</small></span>' % html.escape(name)
         else:
-            items.append('<li><span>%s</span></li>' % html.escape(c))
-    grid = "\n        ".join(items)
+            import math as _m
+            x = 50 + (dist / 4.2) * _m.cos(_m.radians(ang))
+            y = 50 + (dist / 4.2) * _m.sin(_m.radians(ang))
+            slug = CITY_SLUG.get(name, "")
+            pin_html += '\n        <a class="cov-pin" style="left:%.1f%%;top:%.1f%%" href="/locations/%s.html"><span class="dot"></span>%s</a>' % (x, y, slug, html.escape(name))
     body = page_hero("Service Area — 27 Central Texas Cities", "From South Austin through Hays County and into the Hill Country.", crumbs) + """
   <section class="section">
     <div class="container">
-      <p class="lead">Our core corridor runs Buda–Kyle–Plum Creek–Dripping Springs–Wimberley–South Austin, and
-         our full service area stretches west into the Hill Country and south to San Marcos. We have covered this
-         ground since {founded}.</p>
+      <div class="coverage">
+        <div class="coverage__map" role="img" aria-label="Coverage centered on our Buda headquarters, reaching across Hays and Travis counties and into the Hill Country">
+          <span class="cov-ring r1"></span><span class="cov-ring r2"></span><span class="cov-ring r3"></span>{pins}
+        </div>
+        <div class="coverage__copy">
+          <span class="eyebrow">Do we serve you?</span>
+          <h2 class="mt-0">Check your city in one tap</h2>
+          <p>We have covered this ground since {founded} — a core corridor of Buda–Kyle–Plum Creek–Dripping
+             Springs–Wimberley–South Austin, reaching west into the Hill Country and south to San Marcos.</p>
+          <form class="checker" data-checker data-cities='{cities}' style="max-width:none;">
+            <div class="checker__row">
+              <input type="text" placeholder="e.g. Kyle, Dripping Springs, 78610" aria-label="Your city or ZIP code">
+              <button type="submit" class="btn btn--primary" data-checker-go>Check</button>
+            </div>
+            <div class="checker__result" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+
+      <h2 style="margin-top:56px;">All 27 cities we serve</h2>
       <ul class="city-grid">
         {grid}
       </ul>
-      <p style="margin-top:16px;color:var(--muted);">Cities shown as links have a dedicated page. Not sure if we
-         reach you? <a href="/contact.html">Ask us</a> — if you are in or near {county}, we probably do.</p>
+      <p style="margin-top:16px;color:var(--muted);">Every city links to its own local page. Not sure if we reach
+         you? <a href="/contact.html">Ask us</a> — if you are in or near Hays or Travis County, we probably do.</p>
     </div>
-  </section>""".format(founded=BIZ["founded"], grid=grid, county="Hays County")
+  </section>""".format(founded=BIZ["founded"], grid=items, pins=pin_html,
+                       cities=json.dumps([{"name": c, "slug": CITY_SLUG.get(c, "")} for c in ALL_CITIES]))
     body += cta_band()
     schema = [business_schema(), breadcrumb_schema(crumbs)]
     desc = "Excel Pest serves 27 Central Texas cities — Buda, Kyle, San Marcos, Dripping Springs, Wimberley and more. Family-owned since 1998. Call (737) 201-3059."
@@ -799,7 +1061,7 @@ def home():
         </article>""".format(icon=s["icon"], name=html.escape(s["nav"]), slug=s["slug"],
                              blurb=html.escape(s["lead"].split(". ")[0] + "."))
         for s in SERVICES)
-    city_links = " · ".join('<a href="/locations/%s.html">%s</a>' % (l["slug"], html.escape(l["city"])) for l in LOCATIONS)
+    city_links = " · ".join('<a href="/locations/%s.html">%s</a>' % (LOCATION_BY_SLUG[s]["slug"], html.escape(LOCATION_BY_SLUG[s]["city"])) for s in PRIORITY_CITIES)
     spotlight = """
         <div class="spotlight" data-spotlight>
           <div class="stars">★★★★★</div>
@@ -832,6 +1094,31 @@ def home():
       </div>
     </div>
   </section>"""
+    gallery = """
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head text-center" style="max-width:660px;margin:0 auto 30px;">
+        <span class="eyebrow">Real crews, real Central Texas homes</span>
+        <h2>No stock photos — this is us</h2>
+        <p class="lead">Our own team, trucks and finished work go here. These slots are ready for the client's
+           real photographs (see the image brief for the shot list).</p>
+      </div>
+      <div class="grid grid--3">{slots}</div>
+    </div>
+  </section>""".format(slots=(
+        img_slot("photo", "👷", "Excel Pest crew on the job in Central Texas", "photos/crew-on-site.webp",
+                 "The Excel Pest crew working at a Central Texas home",
+                 "Real photo of the crew on a job (client to supply). Outdoors at a Buda-area home if possible.",
+                 ratio="ratio-square", page="/") +
+        img_slot("photo", "🚚", "Excel Pest service truck", "photos/service-truck.webp",
+                 "Excel Pest & Lawn Control service truck",
+                 "Real photo of a branded service truck (client to supply).",
+                 ratio="ratio-square", page="/") +
+        img_slot("photo", "🏡", "A finished, pest-free Central Texas home", "photos/finished-home.webp",
+                 "A Central Texas home Excel Pest protects",
+                 "Real photo of a completed job / protected home (client to supply).",
+                 ratio="ratio-square", page="/")
+    ))
     body = """
   <section class="hero">
     <div class="hero__bg" aria-hidden="true"></div>
@@ -901,6 +1188,7 @@ def home():
     </div>
   </section>
 {flow}
+{gallery}
 
   <section class="section">
     <div class="container">
@@ -934,6 +1222,7 @@ def home():
         reviews=BIZ["reviews"], license=BIZ["license"], svc_cards=svc_cards, owner=BIZ["owner"],
         city_links=city_links, cross=crosslink_block(), statband=stat_band(),
         identifier=pest_identifier(), spotlight=spotlight, flow=flow, checker=area_checker(),
+        gallery=gallery,
     )
     desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. 5.0-star, BBB A+, licensed. Free estimates — call (737) 201-3059."
     schema = [business_schema(with_rating=True), {
@@ -982,7 +1271,9 @@ def about():
         </div>
       </div>
       <div>
-        <div class="card">
+        {owner_photo}
+        <p style="text-align:center;font-size:.85rem;color:var(--muted);margin:8px 0 0;">{owner}, owner since {founded}</p>
+        <div class="card" style="margin-top:18px;">
           <h3 class="mt-0">At a glance</h3>
           <ul class="info-list mt-0">
             <li><span class="label">Founded</span><span class="value">{founded}, South Austin</span></li>
@@ -994,12 +1285,23 @@ def about():
           </ul>
           <a class="btn btn--primary" href="/contact.html">Contact us</a>
         </div>
+        <div style="margin-top:18px;">{mgr_photo}
+          <p style="text-align:center;font-size:.85rem;color:var(--muted);margin:8px 0 0;">{mgr}, Director of Office Operations</p>
+        </div>
       </div>
     </div>
   </section>""".format(
         owner=BIZ["owner"], founded=BIZ["founded"], sister_url=BIZ["sister_url"], street=BIZ["street"],
         city=BIZ["city"], mgr=BIZ["office_mgr"], reviews=BIZ["reviews"], license=BIZ["license"],
         rating=BIZ["rating"],
+        owner_photo=img_slot("photo", "🧑‍🔧", "Owner Gye Hutson", "photos/gye-hutson.webp",
+                             "Gye Hutson, owner of Excel Pest & Lawn Control",
+                             "Real portrait photo of owner Gye Hutson (client to supply).",
+                             ratio="ratio-square", page="/about.html"),
+        mgr_photo=img_slot("photo", "👩‍💼", "Megan Avery", "photos/megan-avery.webp",
+                           "Megan Avery, Director of Office Operations",
+                           "Real photo of Megan Avery, Director of Office Operations (client to supply).",
+                           ratio="ratio-square", page="/about.html"),
     )
     body += cta_band()
     desc = "Family-owned in Buda since 1998, still run by owner Gye Hutson. 5.0-star, BBB A+, licensed Texas pest control (TPCL 0786979). Read the Excel Pest story."
@@ -1194,6 +1496,12 @@ def contact():
     canonical = BIZ["domain"] + "/contact.html"
     crumbs = [("Home", "/"), ("Contact", None)]
     options = "".join("<option>%s</option>" % html.escape(s["nav"]) for s in SERVICES)
+    city_opts = "".join('<option value="%s"></option>' % html.escape(c) for c in ALL_CITIES)
+    pest_choices = "".join(
+        '<label><input type="radio" name="pest" value="{v}"><span>{e} {v}</span></label>'.format(v=v, e=e)
+        for e, v in [("🦂","Scorpions"),("🐜","Ants"),("🪳","Roaches"),("🐀","Rodents"),
+                     ("🪵","Termites"),("🦝","Wildlife"),("🦟","Mosquitoes"),("🌱","Lawn pests")]
+    )
     body = page_hero("Get a Free Estimate", "Call, text, or send a message — we'll get right back to you.", crumbs) + """
   <section class="section">
     <div class="container contact-grid">
@@ -1219,18 +1527,40 @@ def contact():
       <div>
         <div class="card">
           <h3 class="mt-0">Request an estimate</h3>
-          <form action="mailto:{email}" method="post" data-estimate novalidate>
-            <div class="field"><label for="name">Name</label>
-              <input id="name" name="name" type="text" autocomplete="name" required></div>
-            <div class="field"><label for="phone">Phone</label>
-              <input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
-            <div class="field"><label for="email">Email</label>
-              <input id="email" name="email" type="email" autocomplete="email"></div>
-            <div class="field"><label for="service">What do you need help with?</label>
-              <select id="service" name="service">{options}<option>Not sure / other</option></select></div>
-            <div class="field"><label for="message">Tell us what you're seeing</label>
-              <textarea id="message" name="message" rows="4"></textarea></div>
-            <button class="btn btn--primary" type="submit" style="width:100%;">Send Request</button>
+          <form action="mailto:{email}" method="post" class="wizard" data-estimate data-wizard novalidate>
+            <div class="wiz-prog"><span data-wiz-fill></span></div>
+            <div class="wiz-count" data-wiz-count>Step 1 of 3</div>
+
+            <fieldset class="wiz-step active" data-step="0">
+              <div class="field"><label for="service">What do you need help with?</label>
+                <select id="service" name="service">{options}<option>Not sure / other</option></select></div>
+              <div class="field"><label>Seeing something specific? <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+                <div class="pest-choice">{pest_choices}</div></div>
+              <div class="wiz-nav"><span></span><button type="button" class="btn btn--primary" data-wiz-next>Next →</button></div>
+            </fieldset>
+
+            <fieldset class="wiz-step" data-step="1">
+              <div class="field"><label for="name">Name</label>
+                <input id="name" name="name" type="text" autocomplete="name" required></div>
+              <div class="field"><label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+              <div class="field"><label for="email">Email <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+                <input id="email" name="email" type="email" autocomplete="email"></div>
+              <div class="wiz-nav"><button type="button" class="btn btn--outline" data-wiz-back>← Back</button>
+                <button type="button" class="btn btn--primary" data-wiz-next>Next →</button></div>
+            </fieldset>
+
+            <fieldset class="wiz-step" data-step="2">
+              <div class="field"><label for="city">Your city</label>
+                <input id="city" name="city" type="text" list="city-list" autocomplete="address-level2" placeholder="e.g. Kyle">
+                <datalist id="city-list">{city_opts}</datalist></div>
+              <div class="field"><label for="message">Anything else we should know?</label>
+                <textarea id="message" name="message" rows="3"></textarea></div>
+              <div class="wiz-review" data-wiz-review></div>
+              <div class="wiz-nav"><button type="button" class="btn btn--outline" data-wiz-back>← Back</button>
+                <button class="btn btn--primary" type="submit">Send Request</button></div>
+            </fieldset>
+
             <p class="hero__note" style="color:var(--muted);" data-form-note>By submitting, you agree to be contacted about your request.</p>
           </form>
         </div>
@@ -1240,6 +1570,7 @@ def contact():
         ptel=BIZ["phone_tel"], phone=BIZ["phone"], ttel=BIZ["text_tel"], text=BIZ["text"], email=BIZ["email"],
         street=BIZ["street"], city=BIZ["city"], state=BIZ["state"], zip=BIZ["zip"], license=BIZ["license"],
         sister_url=BIZ["sister_url"], sister=BIZ["sister_name"], sister_phone=BIZ["sister_phone"], options=options,
+        pest_choices=pest_choices, city_opts=city_opts,
     )
     desc = "Request a free pest control estimate in Buda and Central Texas. Call (737) 201-3059, text (737) 350-8553, or send a message. Family-owned since 1998."
     schema = [business_schema(), breadcrumb_schema(crumbs), {
@@ -1371,9 +1702,59 @@ def main():
     write("sitemap.xml", build_sitemap(sitemap_urls)); written.append("sitemap.xml")
     write("robots.txt", build_robots()); written.append("robots.txt")
 
+    # Image brief (outside ./site — it's documentation, not a served page)
+    write_image_brief()
+
     print("Generated %d files:" % len(written))
     for p in written:
         print("  " + p)
+    print("Image slots registered: %d (see docs/IMAGE-BRIEF.md)" % len(IMG_REGISTRY))
+
+
+def write_image_brief():
+    ai = [i for i in IMG_REGISTRY if i["kind"] == "ai"]
+    photo = [i for i in IMG_REGISTRY if i["kind"] == "photo"]
+    lines = [
+        "# Image Brief — Austin Excel Pest & Lawn Control",
+        "",
+        "Auto-generated by `tools/build.py`. Every image slot on the site is listed here with its",
+        "filename, alt text, and either a ChatGPT generation prompt (AI) or a real-photo requirement.",
+        "",
+        "**Workflow (from the brief):** generate or shoot → save with the exact filename → convert to",
+        "WebP and compress → drop into `site/` at the path shown → the styled placeholder is replaced.",
+        "Every image must keep its alt text. Never AI-generate real people, trucks, or completed jobs.",
+        "",
+        "## Real photos to request from the client (%d)" % len(photo),
+        "",
+        "These must be genuine photographs — do not generate them.",
+        "",
+    ]
+    for i in photo:
+        lines += [
+            "### %s" % i["label"],
+            "- **File:** `site/%s`" % i["filename"],
+            "- **Alt text:** %s" % i["alt"],
+            "- **Used on:** %s" % (i["page"] or "—"),
+            "- **Requirement:** %s" % i["spec"],
+            "",
+        ]
+    lines += ["## AI images to generate in ChatGPT (%d)" % len(ai), "",
+              "Paste each prompt as-is. Regenerate if the result shows text, a logo, a watermark, or a",
+              "place that does not look like Central Texas.", ""]
+    for i in ai:
+        lines += [
+            "### %s" % i["label"],
+            "- **File:** `site/%s`" % i["filename"],
+            "- **Alt text:** %s" % i["alt"],
+            "- **Used on:** %s" % (i["page"] or "—"),
+            "- **Prompt:**",
+            "  > %s" % i["spec"],
+            "",
+        ]
+    path = os.path.join(ROOT, "docs", "IMAGE-BRIEF.md")
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        f.write("\n".join(lines))
 
 
 if __name__ == "__main__":
