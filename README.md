@@ -102,6 +102,16 @@ python3 -m http.server 8000
 # open http://localhost:8000
 ```
 
+### One-file clickable preview (no server needed)
+
+Bundle the whole site into a single self-contained HTML file you can open in any
+browser and click through — every page + all motion, no server, AWS, or GitHub:
+
+```bash
+python3 tools/build.py && python3 tools/bundle_preview.py
+# open preview/excel-pest-site-preview.html
+```
+
 ## Deploying
 
 **Active path: AWS Amplify.** Connect this repo in the AWS Amplify console and it
