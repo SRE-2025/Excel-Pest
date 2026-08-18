@@ -1029,10 +1029,10 @@ PESTS = [
 def stat_band():
     return """
   <section class="statband"><div class="container">
-    <div><div class="stat__num" data-count="28">0</div><div class="stat__lbl">Years serving Central Texas</div></div>
-    <div><div class="stat__num" data-count="5.0" data-decimals="1">0</div><div class="stat__lbl">Google rating</div></div>
-    <div><div class="stat__num" data-count="41" data-suffix="+">0</div><div class="stat__lbl">5-star reviews</div></div>
-    <div><div class="stat__num" data-count="27">0</div><div class="stat__lbl">Cities covered</div></div>
+    <div><div class="stat__num" data-count="28">28</div><div class="stat__lbl">Years serving Central Texas</div></div>
+    <div><div class="stat__num" data-count="5.0" data-decimals="1">5.0</div><div class="stat__lbl">Google rating</div></div>
+    <div><div class="stat__num" data-count="41" data-suffix="+">41+</div><div class="stat__lbl">5-star reviews</div></div>
+    <div><div class="stat__num" data-count="27">27</div><div class="stat__lbl">Cities covered</div></div>
     <div><div class="stat__num">A+</div><div class="stat__lbl">BBB accredited</div></div>
   </div></section>"""
 
