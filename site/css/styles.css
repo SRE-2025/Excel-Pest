@@ -589,6 +589,7 @@ img { max-width: 100%; height: auto; display: block; }
 .img-slot.ratio-square { aspect-ratio: 1 / 1; }
 .img-slot .slot-art { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
 .img-slot img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+.img-slot:has(img) .slot-art { display: none; }
 .slot-badge { position: absolute; left: 14px; bottom: 14px; width: 46px; height: 46px; border-radius: 12px;
   background: #fff; display: grid; place-items: center; font-size: 1.5rem; box-shadow: var(--shadow); z-index: 2; }
 .slot-cap { position: absolute; right: 12px; bottom: 12px; background: rgba(10,31,60,.72); color: #fff;
