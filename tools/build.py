@@ -1169,7 +1169,7 @@ def render_location(l):
   <section class="section section--soft">
     <div class="container">
       <h2>Pest services we provide in {city}</h2>
-      <div class="grid grid--4">
+      <div class="grid grid--3 home-services">
 {svc_cards}
       </div>
     </div>
