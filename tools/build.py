@@ -768,6 +768,11 @@ def crosslink_block():
 
 IMG_REGISTRY = []
 
+# Existing business-owned photography used while the full custom photo library is completed.
+REMOTE_IMAGES = {
+    "services/pest-control-exterior-treatment.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg",
+}
+
 
 def scene_svg(alt):
     """A polished, on-brand Central Texas dusk scene used until a real image is dropped in."""
@@ -878,8 +883,11 @@ def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="",
         art_svg = scene_svg(alt)
     badge = '' if art == "portrait" else '<span class="slot-badge" aria-hidden="true">%s</span>' % emo
     cap = '<figcaption class="slot-cap">%s</figcaption>' % html.escape(caption) if caption else ''
-    return ('<figure class="img-slot {ratio}" data-filename="{fn}">{comment}{art}{badge}{cap}</figure>'
-            ).format(ratio=ratio, fn=html.escape(filename), comment=comment, art=art_svg, badge=badge, cap=cap)
+    real_img = ''
+    if filename in REMOTE_IMAGES:
+        real_img = '<img src="%s" alt="%s">' % (html.escape(REMOTE_IMAGES[filename], quote=True), html.escape(alt, quote=True))
+    return ('<figure class="img-slot {ratio}" data-filename="{fn}">{comment}{real_img}{art}{badge}{cap}</figure>'
+            ).format(ratio=ratio, fn=html.escape(filename), comment=comment, real_img=real_img, art=art_svg, badge=badge, cap=cap)
 
 
 # ---------- Schema builders ----------
