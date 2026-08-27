@@ -695,6 +695,7 @@ function initMain() {
 function initInteractive() {
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var B = (typeof window !== "undefined" && window.__BASE__) ? window.__BASE__ : "";  // sub-path host prefix
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
@@ -819,11 +820,11 @@ function initInteractive() {
       if (match && match.slug) {
         result.className = "checker__result hit";
         result.innerHTML = '✓ Yes — we\'ve served <span class="chip">' + match.name +
-          '</span> since 1998. <a href="/locations/' + match.slug + '.html">See your local page →</a>';
+          '</span> since 1998. <a href="' + B + '/locations/' + match.slug + '.html">See your local page →</a>';
       } else if (match) {
         result.className = "checker__result hit";
         result.innerHTML = '✓ Yes — <span class="chip">' + match.name +
-          '</span> is in our service area. <a href="/contact.html">Get a free estimate →</a>';
+          '</span> is in our service area. <a href="' + B + '/contact.html">Get a free estimate →</a>';
       } else if (zipHint.test(raw)) {
         result.className = "checker__result miss";
         result.innerHTML = 'We serve much of Central Texas around Buda, Kyle &amp; San Marcos. ' +
@@ -831,7 +832,7 @@ function initInteractive() {
       } else {
         result.className = "checker__result miss";
         result.innerHTML = 'We may reach you — we cover 27 Central Texas cities. ' +
-          '<a href="/service-area.html">See the full area</a> or <a href="/contact.html">ask us</a>.';
+          '<a href="' + B + '/service-area.html">See the full area</a> or <a href="' + B + '/contact.html">ask us</a>.';
       }
     }
     checker.addEventListener("submit", check);

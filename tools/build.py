@@ -14,9 +14,14 @@ awards, or claims.
 import html
 import json
 import os
+import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
+
+# Optional base path for hosting under a sub-directory (e.g. GitHub Pages
+# project site at /Excel-Pest/). Empty for root hosting (Amplify, S3/CloudFront).
+BASE = os.environ.get("BASE_PATH", "").rstrip("/")
 
 # --------------------------------------------------------------------------
 # Business facts (single source of truth — from the discovery brief)
@@ -717,7 +722,21 @@ def service_schema(s):
 # Page renderers
 # --------------------------------------------------------------------------
 
+def apply_base(htmltext):
+    """Rewrite root-relative URLs and inject window.__BASE__ for a sub-path host.
+    A single regex (data-href listed first so it wins over the href substring)
+    prefixes each URL exactly once."""
+    if not BASE:
+        return htmltext
+    htmltext = re.sub(r'(data-href|href|src)="/',
+                      lambda m: m.group(1) + '="' + BASE + "/", htmltext)
+    inject = '<script>window.__BASE__=%s;</script></head>' % json.dumps(BASE)
+    return htmltext.replace("</head>", inject, 1)
+
+
 def write(path, content):
+    if path.endswith(".html"):
+        content = apply_base(content)
     full = os.path.join(SITE, path)
     os.makedirs(os.path.dirname(full), exist_ok=True)
     with open(full, "w", encoding="utf-8") as f:
