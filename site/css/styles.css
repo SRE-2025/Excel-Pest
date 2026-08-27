@@ -910,3 +910,11 @@ body { background: var(--bg); color: var(--body); }
 .hero .hero-photo { display: none; }
 .hero .hero-video { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(1.04) brightness(.72); }
 @media (prefers-reduced-motion: reduce) { .hero .hero-video { display: none; } }
+
+
+/* Motion-first homepage: let the real service video lead the entire first screen. */
+@media (min-width: 701px) {
+  .hero { min-height: 92vh; }
+  .hero .hero-scrim { background: linear-gradient(90deg, rgba(16,16,16,.76), rgba(16,16,16,.34) 56%, rgba(16,16,16,.06)); }
+}
+.hero .hero-video { filter: saturate(.82) contrast(1.06) brightness(.86); transform: scale(1.01); }
