@@ -729,6 +729,14 @@ body { background: var(--bg); color: var(--body); }
 .grid .card:hover { transform: none; box-shadow: none; border-color: var(--ink); }
 .card__link { color: var(--ink); }
 
+
+/* Homepage service photography: three real service scenes, not decorative placeholders. */
+.photo-strip { background: var(--ink); padding: 0; }
+.photo-strip__grid { display: grid; grid-template-columns: repeat(3, 1fr); padding: 0; max-width: none; }
+.photo-strip figure { margin: 0; aspect-ratio: 4 / 3; overflow: hidden; }
+.photo-strip img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.82) contrast(1.04); }
+@media (max-width: 700px) { .photo-strip__grid { grid-template-columns: 1fr; } .photo-strip figure { aspect-ratio: 16 / 10; } }
+
 /* Section tones */
 .section--soft { background: var(--soft); }
 .section--navy { background: var(--ink); }
