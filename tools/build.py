@@ -887,6 +887,7 @@ def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="",
     real_img = ''
     if filename in REMOTE_IMAGES:
         real_img = '<img src="%s" alt="%s">' % (html.escape(REMOTE_IMAGES[filename], quote=True), html.escape(alt, quote=True))
+        art_svg = ''
     return ('<figure class="img-slot {ratio}" data-filename="{fn}">{comment}{real_img}{art}{badge}{cap}</figure>'
             ).format(ratio=ratio, fn=html.escape(filename), comment=comment, real_img=real_img, art=art_svg, badge=badge, cap=cap)
 
