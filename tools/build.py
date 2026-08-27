@@ -92,7 +92,7 @@ SERVICES = [
             ("Built for Central Texas pests", "<p>Franchise crews run the same program in Ohio as they do in Hays County. We do not. Our recurring treatments are timed to the local calendar — the spring ant push, the summer scorpion and cricket surge, the fall migration indoors — so pests are handled before they become an infestation, not after.</p>"),
             ("How our treatments work", "<p>Every visit covers the interior trouble spots and a full exterior barrier: foundation, eaves, window frames, garage, and the cracks in limestone and slab where Central Texas pests get in. We seal and treat entry points rather than just spraying baseboards. Most homes are on a recurring plan; one-time and emergency service are available too.</p>"),
         ],
-        "related": ["scorpion-control", "rodent-control", "lawn-pest-control"],
+        "related": ["scorpion-control", "rodent-removal", "lawn-pest-control"],
     },
     {
         "slug": "scorpion-control", "nav": "Scorpion Control", "icon": "🦂",
@@ -105,7 +105,7 @@ SERVICES = [
             ("Why scorpions get inside here", "<p>Scorpions follow moisture and prey. During a Hill Country drought they move toward homes for water; after rain they move to escape it. Limestone foundations, weep holes, and gaps under thresholds give them an easy path indoors, often into bathrooms and closets.</p>"),
             ("Our scorpion approach", "<p>Treating the inside alone never solves a scorpion problem. We treat the perimeter and harborage — rock walls, wood piles, landscaping — reduce the insects scorpions feed on, and seal the entry points that let them in. It is the same exclusion-first method that keeps them out for the long term.</p>"),
         ],
-        "related": ["pest-control", "rodent-control", "termite-control"],
+        "related": ["pest-control", "rodent-removal", "termite-control"],
     },
     {
         "slug": "termite-control", "nav": "Termite Control", "icon": "🪵",
@@ -131,33 +131,46 @@ SERVICES = [
             ("What the report covers", "<p>A Wood Destroying Insect (WDI) inspection documents any evidence of termites and other wood-destroying insects on the standard state form your lender needs. You get clear results and, if anything is found, straightforward options — including <a href=\"/services/termite-control.html\">termite treatment</a> before the deadline.</p>"),
             ("Booked around your closing date", "<p>Closings do not wait, so we do not make you wait. Tell us your date and property, and we schedule the inspection and turn the paperwork around promptly. Serving Buda, Kyle, San Marcos, Dripping Springs and the surrounding corridor.</p>"),
         ],
-        "related": ["termite-control", "pest-control", "rodent-control"],
+        "related": ["termite-control", "pest-control", "rodent-removal"],
     },
     {
-        "slug": "rodent-control", "nav": "Rodent Control", "icon": "🐀",
-        "h1": "Rodent Control & Exclusion in Central Texas",
-        "title": "Rodent Control & Exclusion in Buda, TX | Rats & Mice | Excel Pest",
-        "desc": "Rats and mice removed and sealed out of Central Texas homes — attics, garages and walls. Exclusion so they don't return. Call (737) 201-3059 for a free estimate.",
-        "lead": "Rats and mice do not just leave droppings — they chew wiring, foul insulation, and spread through an attic fast. Getting rid of them for good takes two things: removing the ones inside, and sealing the gaps that let them in. We do both.",
-        "treats": ["Roof rats & house mice", "Attic & wall-void activity", "Droppings & gnaw marks", "Entry-point sealing (exclusion)"],
+        "slug": "rodent-removal", "nav": "Rodent Removal", "icon": "🐀",
+        "h1": "Rodent Removal in Central Texas",
+        "title": "Rodent Removal in Buda, TX | Rats & Mice | Excel Pest",
+        "desc": "Fast rat and mouse removal from Central Texas attics, garages and walls — then we seal them out. Water-based, pet-safe. Call (737) 201-3059.",
+        "lead": "Scratching in the attic at night, droppings in the pantry, chewed wiring — rats and mice do real damage fast, and they breed even faster. We remove the rodents inside now, then seal the gaps so it doesn't repeat.",
+        "treats": ["Roof rats & house mice", "Attic & wall-void activity", "Droppings & gnaw marks", "Chewed wiring (a fire risk)"],
         "sections": [
-            ("Removal and exclusion together", "<p>Trapping alone is a treadmill — new rodents simply follow the same trails inside. Our rodent work pairs removal with <strong>exclusion</strong>: we find and seal the entry points around rooflines, pipes, weep holes and the garage, so the problem ends instead of repeating.</p>"),
-            ("Protecting the rest of the house", "<p>Rodents rarely travel alone, and they bring other pests with them. Where it helps, we pair rodent work with a <a href=\"/services/pest-control.html\">general pest treatment</a> and check for the wildlife that uses the same gaps — see <a href=\"/services/wildlife-removal.html\">wildlife removal</a>.</p>"),
+            ("Removal done right", "<p>We locate the activity, remove the rodents, and clean up the trails they leave. But removal alone is only half the job — new rodents follow the same paths back in. That's why we pair it with <a href=\"/services/rodent-exclusion.html\">rodent exclusion</a> to seal them out for good.</p>"),
+            ("Why speed matters", "<p>Rodents breed quickly and gnaw constantly — including on electrical wiring, a genuine fire risk. The sooner we're in, the less damage and the smaller the population to clear. We also check for the wildlife that uses the same gaps — see <a href=\"/services/wildlife-live-trapping.html\">wildlife live trapping</a>.</p>"),
         ],
-        "related": ["wildlife-removal", "pest-control", "scorpion-control"],
+        "related": ["rodent-exclusion", "wildlife-live-trapping", "pest-control"],
     },
     {
-        "slug": "wildlife-removal", "nav": "Wildlife Removal", "icon": "🦝",
-        "h1": "Humane Wildlife Removal in Central Texas",
-        "title": "Wildlife Removal in Buda & Central Texas | Raccoons, Squirrels",
-        "desc": "Humane live trapping and removal of raccoons, squirrels and opossums from attics and yards, with entry points sealed. Serving Buda & Central Texas since 1998.",
+        "slug": "rodent-exclusion", "nav": "Rodent Exclusion", "icon": "🧰",
+        "h1": "Rodent Exclusion — Seal Them Out for Good",
+        "title": "Rodent Exclusion in Buda, TX | Seal Out Rats & Mice | Excel Pest",
+        "desc": "Rodent exclusion that finds and seals every entry point so rats and mice can't get back into your Central Texas home. Call (737) 201-3059.",
+        "lead": "Trapping without sealing is a treadmill — new rodents follow the same trails right back inside. Exclusion is the permanent fix: we find every gap and close it with materials rodents can't chew through.",
+        "treats": ["Roofline & eave gaps", "Weep holes & pipe penetrations", "Garage & foundation gaps", "Vent & soffit openings"],
+        "sections": [
+            ("The permanent half of rodent control", "<p>A mouse fits through a gap the size of a dime; a rat, a quarter. We inspect the whole exterior — roofline, weep holes, pipe and cable penetrations, the garage — and seal each entry with steel mesh and sealants rodents can't gnaw.</p>"),
+            ("Pairs with removal", "<p>Exclusion works hand-in-hand with <a href=\"/services/rodent-removal.html\">rodent removal</a>: clear the ones inside, then seal so no more get in. Together they end the problem instead of managing it month after month.</p>"),
+        ],
+        "related": ["rodent-removal", "wildlife-live-trapping", "pest-control"],
+    },
+    {
+        "slug": "wildlife-live-trapping", "nav": "Wildlife Live Trapping", "icon": "🦝",
+        "h1": "Wildlife Live Trapping & Removal in Central Texas",
+        "title": "Wildlife Live Trapping in Buda, TX | Raccoons, Squirrels, Opossums",
+        "desc": "Humane live trapping and removal of raccoons, squirrels and opossums from Central Texas homes, with entry points sealed. Call (737) 201-3059.",
         "lead": "Raccoons in the attic, squirrels in the soffit, opossums under the deck — Central Texas wildlife treats homes like the hollow trees they replaced. We remove them humanely with live trapping and close off the damage so they cannot move back in.",
         "treats": ["Raccoons", "Squirrels", "Opossums", "Attic, soffit & deck intrusions"],
         "sections": [
-            ("Live trapping, done right", "<p>We use humane live-trapping and hands-on removal, then repair and seal the entry points — the vent, gable, or roofline gap that let the animal in. Without that last step, the next animal simply finds the same open door.</p>"),
-            ("Acreage and Hill Country lots", "<p>On the larger lots around Driftwood, Dripping Springs and Wimberley, wildlife pressure is constant. We know the local species and the ways they get into a home out here, and we treat the property, not just the symptom.</p>"),
+            ("Humane, and it lasts", "<p>We use humane live-trapping and hands-on removal, then repair and seal the entry points — the vent, gable, or roofline gap that let the animal in. Without that last step, the next animal simply finds the same open door.</p>"),
+            ("Acreage and Hill Country lots", "<p>On the larger lots around Driftwood, Dripping Springs and Wimberley, wildlife pressure is constant. We know the local species and the ways they get into a home out here — and we pair trapping with <a href=\"/services/rodent-exclusion.html\">exclusion</a> so it holds.</p>"),
         ],
-        "related": ["rodent-control", "pest-control", "mosquito-misting"],
+        "related": ["rodent-removal", "rodent-exclusion", "pest-control"],
     },
     {
         "slug": "mosquito-misting", "nav": "Mosquito Misting Systems", "icon": "🦟",
@@ -170,7 +183,7 @@ SERVICES = [
             ("Treat the source, not just the swarm", "<p>Lasting mosquito control starts with the breeding sites — the low spots, drains, and containers that hold water after our heavy Hill Country rains. We treat harborage and, where you want hands-off protection, install a misting system tuned to your landscaping.</p>"),
             ("Made for how Texans live outside", "<p>Patios, pools and outdoor kitchens are the whole point of a Central Texas yard. A misting system runs on a schedule you control, so the space is ready when you are — without you thinking about it.</p>"),
         ],
-        "related": ["pest-control", "lawn-pest-control", "wildlife-removal"],
+        "related": ["pest-control", "lawn-pest-control", "wildlife-live-trapping"],
     },
     {
         "slug": "lawn-pest-control", "nav": "Lawn Pest Control", "icon": "🌱",
@@ -185,8 +198,94 @@ SERVICES = [
         ],
         "related": ["pest-control", "mosquito-misting", "scorpion-control"],
     },
+    {
+        "slug": "ant-control", "nav": "Ant Control", "icon": "🐜",
+        "h1": "Ant Control in Buda & Central Texas",
+        "title": "Ant Control in Buda, TX | Fire Ants & Household Ants | Excel Pest",
+        "desc": "Fire ants, sugar ants and carpenter ants treated at the colony across Buda and Central Texas. Water-based, pet-safe. Call (737) 201-3059.",
+        "lead": "From fire-ant mounds in the yard to sugar ants marching across the kitchen counter, ants are the most common call we get in Central Texas. Killing the trail you can see does nothing — the colony just sends more. We treat the source.",
+        "treats": ["Fire ants", "Sugar / odorous ants", "Carpenter ants", "Acrobat & pharaoh ants", "Mounds in the yard"],
+        "sections": [
+            ("Why the ants keep coming back", "<p>Spraying a visible trail kills a few foragers while the colony — often thousands strong and hidden in a wall, slab or yard mound — keeps producing more. We use baits and non-repellent products the ants carry back to the nest, so the colony collapses instead of just relocating.</p>"),
+            ("Fire ants and Central Texas yards", "<p>Fire ants are their own problem here — painful, fast-spreading, and a hazard for kids and pets. We treat mounds directly and set up a yard program that keeps them from re-establishing through the warm months.</p>"),
+        ],
+        "related": ["cockroach-control", "cricket-control", "pest-control"],
+    },
+    {
+        "slug": "cockroach-control", "nav": "Cockroach Control", "icon": "🪳",
+        "h1": "Cockroach Control in Central Texas",
+        "title": "Cockroach Control in Buda, TX | Roach Extermination | Excel Pest",
+        "desc": "German and American cockroaches eliminated from Central Texas homes and kept out. Water-based, pet-safe treatment. Call (737) 201-3059.",
+        "lead": "Roaches are more than a gross surprise at 2 a.m. — they contaminate food, trigger allergies, and multiply fast in our warm, humid climate. We find where they breed and shut it down.",
+        "treats": ["German cockroaches", "American (palmetto) roaches", "Oriental roaches", "Egg cases & harborage"],
+        "sections": [
+            ("Treat where they breed, not where you see them", "<p>By the time you spot one roach, dozens are hidden behind appliances, in drains and inside wall voids. We target those harborage points and breeding sites so the population crashes, then set up prevention so it stays gone.</p>"),
+            ("Built for Central Texas roaches", "<p>Our heat and humidity let American 'palmetto' roaches thrive outdoors and wander in, while German roaches ride in on boxes and groceries and breed in kitchens. We treat for both, inside and out.</p>"),
+        ],
+        "related": ["ant-control", "pest-control", "rodent-removal"],
+    },
+    {
+        "slug": "cricket-control", "nav": "Cricket Control", "icon": "🦗",
+        "h1": "Cricket Control in Central Texas",
+        "title": "Cricket Control in Buda, TX | Fall Field Crickets | Excel Pest",
+        "desc": "Central Texas field-cricket swarms controlled at the source for homes and businesses. Water-based, pet-safe. Call (737) 201-3059.",
+        "lead": "Every late summer, field crickets swarm Central Texas by the thousands — piling at doorways, under lights and inside garages. They stain surfaces, smell, and draw the scorpions and spiders that feed on them. We break the cycle.",
+        "treats": ["Field crickets", "Camel / spider crickets", "Exterior-lighting swarms", "Entry points & harborage"],
+        "sections": [
+            ("Why crickets matter more than you think", "<p>Beyond the noise and mess, crickets are a food source that pulls <a href=\"/services/scorpion-control.html\">scorpions</a> and <a href=\"/services/spider-control.html\">spiders</a> toward your home. Controlling crickets is one of the most effective ways to reduce those pests too.</p>"),
+            ("Timing the treatment to cricket season", "<p>The big swarms hit when the weather turns in late summer and fall. We treat the perimeter and harborage ahead of and through the season, and address the exterior lighting and gaps that concentrate them at your doors.</p>"),
+        ],
+        "related": ["scorpion-control", "spider-control", "pest-control"],
+    },
+    {
+        "slug": "flea-control", "nav": "Flea Control", "icon": "🐾",
+        "h1": "Flea Control for Central Texas Homes & Yards",
+        "title": "Flea Control in Buda, TX | Home & Yard Flea Treatment | Excel Pest",
+        "desc": "Fleas eliminated from the home and yard with treatment that breaks the life cycle — safe for the pets they bite. Call (737) 201-3059.",
+        "lead": "Fleas don't just bite pets — they infest carpet, bedding and yards, and a few can become thousands in weeks. Our mild winters let them thrive nearly year-round here. We treat the whole life cycle, indoors and out.",
+        "treats": ["Adult fleas", "Eggs & larvae in carpet / bedding", "Shaded yard harborage", "Re-infestation prevention"],
+        "sections": [
+            ("Break the life cycle, not just the adults", "<p>Most of a flea problem isn't the adults you see — it's eggs and larvae hidden in carpet, pet bedding and shaded yard soil. We treat all stages so the infestation actually ends instead of bouncing back in two weeks.</p>"),
+            ("Coordinated with your vet plan", "<p>Yard and home treatment works best alongside the flea prevention your vet provides. We'll tell you exactly what to do before and after service to protect your four-legged family members.</p>"),
+        ],
+        "related": ["tick-control", "pest-control", "rodent-removal"],
+    },
+    {
+        "slug": "spider-control", "nav": "Spider Control", "icon": "🕷️",
+        "h1": "Spider Control in Central Texas",
+        "title": "Spider Control in Buda, TX | Black Widows & Recluse | Excel Pest",
+        "desc": "Spider control for Central Texas homes — including black widow and brown recluse hotspots. Web removal + prevention. Call (737) 201-3059.",
+        "lead": "A few spiders keep other bugs down; a lot of spiders — or a black widow by the garage — is a different story. We reduce spiders by cutting off their food supply and clearing the corners, eaves and garages they nest in.",
+        "treats": ["Common house spiders", "Black widows", "Brown recluse", "Webs in eaves & garages"],
+        "sections": [
+            ("Fewer bugs means fewer spiders", "<p>Spiders follow prey. Our exterior barrier reduces the insects spiders feed on — the most effective long-term way to bring their numbers down — along with knocking down webs and treating the eaves, garages and crawlspaces they favor.</p>"),
+            ("The two to watch for in Central Texas", "<p>Black widows like garages, meter boxes and woodpiles; brown recluse hide in undisturbed storage. We treat those hotspots specifically and advise you on reducing the clutter and harborage they need.</p>"),
+        ],
+        "related": ["cricket-control", "scorpion-control", "pest-control"],
+    },
+    {
+        "slug": "tick-control", "nav": "Tick Control", "icon": "🕸️",
+        "h1": "Tick Control for Central Texas Yards",
+        "title": "Tick Control in Buda, TX | Yard Tick Treatment | Excel Pest",
+        "desc": "Tick control for Central Texas yards and properties — protecting family and pets from bites. Focused on shaded harborage. Call (737) 201-3059.",
+        "lead": "Ticks turn a backyard, greenbelt edge or wooded lot into a health risk for your family and pets. In Central Texas they hide in tall grass, leaf litter and shaded borders. We treat where they wait.",
+        "treats": ["Yard & perimeter ticks", "Shaded / leaf-litter harborage", "Pet runs & trails", "Greenbelt & wood-line borders"],
+        "sections": [
+            ("Treat the edges where ticks wait", "<p>Ticks don't live in the open, mowed lawn — they wait in the shaded, humid borders: leaf litter, tall grass, fence lines and the wood line. We focus treatment there, which is exactly where your family and pets pick them up.</p>"),
+            ("Especially important on acreage and greenbelt lots", "<p>Homes backing to greenbelt or on Hill Country acreage see the most tick pressure. A perimeter program keeps the yard usable through the warm months — and pairs well with <a href=\"/services/flea-control.html\">flea control</a>.</p>"),
+        ],
+        "related": ["flea-control", "lawn-pest-control", "pest-control"],
+    },
 ]
 SERVICE_BY_SLUG = {s["slug"]: s for s in SERVICES}
+
+# Grouped services for the header mega-menu and the services hub
+MENU_GROUPS = [
+    ("Insect Control", ["ant-control", "cockroach-control", "cricket-control", "flea-control",
+                        "scorpion-control", "spider-control", "termite-control", "tick-control"]),
+    ("Rodent & Wildlife", ["rodent-removal", "rodent-exclusion", "wildlife-live-trapping"]),
+    ("More Services", ["pest-control", "mosquito-misting", "termite-letters", "lawn-pest-control"]),
+]
 
 # Per-service mini-FAQ (adds FAQPage schema + an accordion to each service page)
 SERVICE_FAQS = {
@@ -210,12 +309,12 @@ SERVICE_FAQS = {
         ("How fast can you get it done?", "Tell us your closing date and property and we schedule promptly and turn the paperwork around quickly."),
         ("What if the inspection finds termites?", "You'll get clear options, including <a href=\"/services/termite-control.html\">treatment</a> before your deadline."),
     ],
-    "rodent-control": [
+    "rodent-removal": [
         ("What's the difference between removal and exclusion?", "Removal gets rid of the rodents inside; exclusion seals the gaps that let them in. We do both — trapping alone just repeats."),
         ("Where do rodents usually get in?", "Rooflines, weep holes, pipe penetrations and the garage are common entry points in Central Texas homes. We find and seal them."),
         ("Are the treatments safe around pets?", "We choose methods with your family and pets in mind and place them where pets can't reach."),
     ],
-    "wildlife-removal": [
+    "wildlife-live-trapping": [
         ("Do you remove wildlife humanely?", "Yes — we use humane live-trapping and hands-on removal, then seal the entry points so animals can't return."),
         ("What animals do you handle?", "Common Central Texas intruders like raccoons, squirrels and opossums in attics, soffits and under decks."),
         ("Will they come back?", "Not through the same opening — we repair and seal the entry points as part of the job."),
@@ -230,6 +329,41 @@ SERVICE_FAQS = {
         ("Do you handle weeds and disease too?", "Yes — along with lawn pests we treat weeds and turf disease like brown patch."),
         ("Do you do landscaping and sod installation?", "That's our sister company, <a href=\"" + BIZ["sister_url"] + "\" rel=\"noopener\">Research Turf Management</a>. We handle the pests, weeds and disease."),
     ],
+    "rodent-exclusion": [
+        ("What do you use to seal the gaps?", "Steel mesh, hardware cloth and sealants rodents can't gnaw through — placed at rooflines, weep holes, pipe penetrations, vents and the garage."),
+        ("Do you guarantee the work?", "We back our exclusion work with a warranty. Ask for the details when we inspect."),
+        ("Do I need removal too?", "Usually yes — clear the rodents inside first with <a href=\"/services/rodent-removal.html\">rodent removal</a>, then seal so no more get in."),
+    ],
+    "ant-control": [
+        ("Do you treat fire ants in the yard?", "Yes — direct mound treatment plus a broadcast yard program to stop them re-establishing through the warm months."),
+        ("Why not just use store-bought ant spray?", "Store sprays kill the foragers you see but rarely reach the colony, so the ants return. We use colony-level baits and non-repellents that collapse the nest."),
+        ("Are ant treatments safe for pets?", "Yes — water-based and placed where pets can't reach. We'll walk you through anything to know at the visit."),
+    ],
+    "cockroach-control": [
+        ("How long does it take to get rid of roaches?", "Most homes see a sharp drop within the first couple of weeks as the breeding sites are knocked out; heavy infestations may need a follow-up. We set up prevention so they stay gone."),
+        ("Do you treat kitchens and drains?", "Yes — those are prime roach harborage. We target the voids, drains and appliance gaps where they hide and breed."),
+        ("Is the treatment safe for kids and pets?", "Yes, water-based and applied where it's needed, not blanketed across living areas."),
+    ],
+    "cricket-control": [
+        ("When is cricket season in Central Texas?", "The big field-cricket swarms hit in late summer and fall when the weather turns. We treat ahead of and through the season."),
+        ("Do crickets really attract scorpions?", "Yes — crickets are a favorite food, so cutting cricket numbers is one of the best ways to reduce scorpions and spiders around your home."),
+        ("Are the treatments pet-safe?", "Yes — water-based and focused on the exterior perimeter and harborage."),
+    ],
+    "flea-control": [
+        ("Is flea treatment safe for my pets?", "Yes — it's water-based, and we coordinate with the vet-provided prevention your pets are on. We'll tell you how to prep and when it's safe to return."),
+        ("Do you treat the yard as well as the house?", "Both — fleas breed in shaded yard soil as well as carpet and bedding, so treating only indoors leaves a source outside."),
+        ("How should I prep my home?", "Vacuum thoroughly, wash pet bedding, and clear floors. We'll give you the full short checklist when you book."),
+    ],
+    "spider-control": [
+        ("Do you handle black widows and brown recluse?", "Yes — we treat their hotspots (garages, meter boxes, woodpiles, undisturbed storage) specifically and advise on reducing harborage."),
+        ("Are the treatments safe for pets?", "Yes — water-based and applied to eaves, corners and the exterior barrier rather than living surfaces."),
+        ("Will the webs just come back?", "Far less, because we reduce the insects spiders feed on. Ongoing service keeps eaves and corners clear."),
+    ],
+    "tick-control": [
+        ("Are ticks dangerous in Central Texas?", "Ticks can transmit disease to people and pets, so keeping them out of the yard matters — especially on greenbelt and acreage lots."),
+        ("Is tick treatment safe for pets?", "Yes — water-based and focused on the shaded borders where ticks wait, not the open lawn where pets play."),
+        ("How often should the yard be treated?", "Through the warm months a recurring perimeter program keeps pressure down; we'll recommend a cadence for your property."),
+    ],
 }
 
 # Per-service inline image (ChatGPT generation prompt)
@@ -242,14 +376,28 @@ SERVICE_IMAGES = {
         "A macro photo of subterranean termite mud tubes running up the concrete foundation of a Central Texas home, weathered slab and soil visible, natural daylight, photorealistic, no text, no logos, no watermark."),
     "termite-letters": ("📄", "termite-letter-inspection.webp", "Inspector performing a WDI termite inspection on a home",
         "A pest control inspector with a clipboard and flashlight examining the foundation and eaves of a suburban Central Texas home during a real-estate inspection, warm daylight, photorealistic, no text, no logos, no watermark."),
-    "rodent-control": ("🐀", "rodent-exclusion-sealing.webp", "Technician sealing a rodent entry point on a home",
-        "A technician sealing a rodent entry gap along the roofline of a Central Texas home with exclusion mesh, ladder and tools visible, live oaks nearby, clear daylight, photorealistic, no text, no logos, no watermark."),
-    "wildlife-removal": ("🦝", "wildlife-attic-raccoon.webp", "Raccoon at an attic vent of a Central Texas home",
+    "rodent-removal": ("🐀", "rodent-removal-attic.webp", "Roof rat at the edge of a home attic",
+        "A roof rat peering from the edge of a home attic with insulation visible, dim natural light, photorealistic, no text, no logos, no watermark."),
+    "rodent-exclusion": ("🧰", "rodent-exclusion-sealing.webp", "Sealing a rodent entry point along a roofline",
+        "A technician's hands sealing a gap along a Central Texas home's roofline with steel mesh and sealant, ladder visible, daylight, photorealistic, no text, no logos, no watermark."),
+    "wildlife-live-trapping": ("🦝", "wildlife-attic-raccoon.webp", "Raccoon at an attic vent of a Central Texas home",
         "A raccoon peeking out of an attic gable vent on a suburban Central Texas home at dusk, cedar and oak around the roof, natural light, photorealistic, no text, no logos, no watermark."),
     "mosquito-misting": ("🦟", "mosquito-misting-pergola.webp", "Mosquito misting nozzle on a backyard pergola",
         "A backyard mosquito misting system nozzle mounted on a wooden pergola in a lush Central Texas backyard at golden hour, patio and native plants around, a fine mist visible, photorealistic, no text, no logos, no watermark."),
     "lawn-pest-control": ("🌱", "lawn-chinch-bug-damage.webp", "Chinch bug damage in a St. Augustine lawn",
         "A close view of a St. Augustine lawn in Central Texas with a spreading brown chinch-bug patch, healthy green grass beside damaged turf, bright daylight, photorealistic, no text, no logos, no watermark."),
+    "ant-control": ("🐜", "ant-control-fire-ant-mound.webp", "Fire ant mound in a Central Texas lawn",
+        "A close photo of a fire ant mound in a Central Texas St. Augustine lawn, a suburban home softly blurred behind, bright daylight, photorealistic, no text, no logos, no watermark."),
+    "cockroach-control": ("🪳", "cockroach-control.webp", "American cockroach on a kitchen floor",
+        "A single American cockroach on a tiled kitchen floor at night, shallow depth of field, photorealistic, no text, no logos, no watermark."),
+    "cricket-control": ("🦗", "cricket-control-doorway.webp", "Field crickets gathered by a doorway at night",
+        "Field crickets clustered on limestone and concrete near a doorway at night under a porch light in Central Texas, photorealistic, no text, no logos, no watermark."),
+    "flea-control": ("🐾", "flea-control-backyard-dog.webp", "A dog resting in a treated Central Texas backyard",
+        "A dog resting on a healthy lawn in a Central Texas backyard at golden hour, photorealistic, no text, no logos, no watermark."),
+    "spider-control": ("🕷️", "spider-control-web-eave.webp", "Spider web in the eave of a Central Texas home",
+        "A spider web glistening with morning dew in the corner of a limestone home's eave in Central Texas, soft backlight, photorealistic, no text, no logos, no watermark."),
+    "tick-control": ("🕸️", "tick-control-property-edge.webp", "Shaded property edge where ticks harbor",
+        "A wooded, leaf-littered property edge meeting a mowed Central Texas lawn, dappled shade, photorealistic, no text, no logos, no watermark."),
 }
 
 # --------------------------------------------------------------------------
@@ -457,11 +605,30 @@ def head(title, desc, canonical, schema_blocks, noindex=False, og_type="website"
     return "\n".join(parts)
 
 
+def mega_menu():
+    cols = ""
+    for gname, slugs in MENU_GROUPS:
+        items = "".join(
+            '<li><a href="/services/%s.html"><span class="mega-emo" aria-hidden="true">%s</span>%s</a></li>'
+            % (s, SERVICE_BY_SLUG[s]["icon"], html.escape(SERVICE_BY_SLUG[s]["nav"]))
+            for s in slugs
+        )
+        cols += ('<div class="mega-col"><a class="mega-head" href="/services.html">%s</a><ul>%s</ul></div>'
+                 % (html.escape(gname), items))
+    return ('<li class="has-mega">'
+            '<a href="/services.html" class="mega-toggle" aria-haspopup="true" aria-expanded="false">'
+            'Services <span class="caret" aria-hidden="true">▾</span></a>'
+            '<div class="mega"><div class="mega-inner">' + cols + '</div></div></li>')
+
+
 def header():
-    links = "\n".join(
-        '        <li><a href="%s">%s</a></li>' % (url, html.escape(label))
-        for label, url in NAV
-    )
+    parts = []
+    for label, url in NAV:
+        if label == "Services":
+            parts.append("        " + mega_menu())
+        else:
+            parts.append('        <li><a href="%s">%s</a></li>' % (url, html.escape(label)))
+    links = "\n".join(parts)
     return """<body>
   <div class="scroll-progress" aria-hidden="true"></div>
   <header class="site-header">
@@ -505,10 +672,14 @@ def cta_band(heading="Seeing something you shouldn't?", sub="Get a free estimate
 
 
 def footer():
+    # A curated subset of services in the footer (the full list lives on /services.html)
+    footer_service_slugs = ["pest-control", "scorpion-control", "termite-control", "ant-control",
+                            "rodent-removal", "wildlife-live-trapping", "mosquito-misting", "lawn-pest-control"]
     svc_links = "\n".join(
-        '            <li><a href="/services/%s.html">%s</a></li>' % (s["slug"], html.escape(s["nav"]))
-        for s in SERVICES
-    )
+        '            <li><a href="/services/%s.html">%s</a></li>'
+        % (sl, html.escape(SERVICE_BY_SLUG[sl]["nav"]))
+        for sl in footer_service_slugs
+    ) + '\n            <li><a href="/services.html"><strong>All services →</strong></a></li>'
     return """
   <footer class="site-footer">
     <div class="container">
@@ -928,23 +1099,28 @@ def render_location(l):
 def services_hub():
     canonical = BIZ["domain"] + "/services.html"
     crumbs = [("Home", "/"), ("Services", None)]
-    cards = "".join("""        <article class="card card--link">
+    def card(s):
+        return """        <article class="card card--link">
           <div class="card__icon">{icon}</div>
           <h3>{name}</h3>
           <p>{blurb}</p>
           <a class="card__link" href="/services/{slug}.html">Learn more →</a>
         </article>""".format(icon=s["icon"], name=html.escape(s["nav"]), slug=s["slug"],
                              blurb=html.escape(s["lead"].split(". ")[0] + "."))
-        for s in SERVICES)
+    groups_html = ""
+    for gname, slugs in MENU_GROUPS:
+        cards = "\n".join(card(SERVICE_BY_SLUG[sl]) for sl in slugs)
+        groups_html += """
+      <div class="section-head" style="margin:36px 0 18px;"><h2>{g}</h2></div>
+      <div class="grid grid--4">
+{cards}
+      </div>""".format(g=html.escape(gname), cards=cards)
     body = page_hero("Our Services", "One local crew for pests, rodents, wildlife and lawn insects across Central Texas.", crumbs) + """
   <section class="section">
-    <div class="container">
-      <div class="grid grid--3">
-{cards}
-      </div>
-      <div style="margin-top:28px;">{cross}</div>
+    <div class="container">{groups}
+      <div style="margin-top:32px;">{cross}</div>
     </div>
-  </section>""".format(cards=cards, cross=crosslink_block())
+  </section>""".format(groups=groups_html, cross=crosslink_block())
     body += cta_band()
     schema = [business_schema(), breadcrumb_schema(crumbs)]
     desc = "Pest control, scorpion, termite, rodent, wildlife, mosquito and lawn-pest control across Buda and Central Texas. Family-owned since 1998. Call (737) 201-3059."
@@ -1018,25 +1194,25 @@ PESTS = [
     {"emo": "🦂", "name": "Scorpions", "href": "/services/scorpion-control.html", "cta": "See scorpion control",
      "signs": "Sightings in bathtubs, closets and along baseboards, especially after rain or drought.",
      "desc": "The striped bark scorpion thrives in Hill Country limestone and slips inside through tiny gaps. We treat harborage and seal them out."},
-    {"emo": "🐜", "name": "Ants", "href": "/services/pest-control.html", "cta": "See pest control",
+    {"emo": "🐜", "name": "Ants", "href": "/services/ant-control.html", "cta": "See ant control",
      "signs": "Trails along counters and foundations, mounds in the yard, or ants around pet bowls.",
      "desc": "Central Texas ants range from nuisance trails to fire ants. We treat the colony at the source, inside and out."},
-    {"emo": "🪳", "name": "Cockroaches", "href": "/services/pest-control.html", "cta": "See pest control",
+    {"emo": "🪳", "name": "Cockroaches", "href": "/services/cockroach-control.html", "cta": "See cockroach control",
      "signs": "Roaches at night in the kitchen or bath, egg cases, or a musty odor.",
      "desc": "Roaches love our warm, humid stretches. Our treatments target where they hide and breed, not just where you see them."},
-    {"emo": "🐀", "name": "Rodents", "href": "/services/rodent-control.html", "cta": "See rodent control",
+    {"emo": "🐀", "name": "Rodents", "href": "/services/rodent-removal.html", "cta": "See rodent control",
      "signs": "Droppings, gnaw marks, scratching in the attic or walls at night.",
      "desc": "Rats and mice chew wiring and foul insulation. We remove them and seal the entry points so they don't return."},
     {"emo": "🪵", "name": "Termites", "href": "/services/termite-control.html", "cta": "See termite control",
      "signs": "Mud tubes on the foundation, hollow-sounding wood, or a swarm after spring rain.",
      "desc": "Subterranean termites work out of sight for years. A licensed inspection tells you where you stand — and we treat and warranty it."},
-    {"emo": "🕷️", "name": "Spiders", "href": "/services/pest-control.html", "cta": "See pest control",
+    {"emo": "🕷️", "name": "Spiders", "href": "/services/spider-control.html", "cta": "See spider control",
      "signs": "Webs in corners, garages and eaves; egg sacs; more sightings in fall.",
      "desc": "Spiders follow other insects indoors. Our exterior barrier reduces the prey that draws them in."},
     {"emo": "🦟", "name": "Mosquitoes", "href": "/services/mosquito-misting.html", "cta": "See mosquito control",
      "signs": "Bites at dusk, swarms near standing water, a backyard you can't use.",
      "desc": "We treat breeding sites and install misting systems that keep the yard usable all season."},
-    {"emo": "🦝", "name": "Wildlife", "href": "/services/wildlife-removal.html", "cta": "See wildlife removal",
+    {"emo": "🦝", "name": "Wildlife", "href": "/services/wildlife-live-trapping.html", "cta": "See wildlife removal",
      "signs": "Noises in the attic, torn soffits or vents, animals under the deck.",
      "desc": "Raccoons, squirrels and opossums treat homes like hollow trees. We remove them humanely and close the entry points."},
     {"emo": "🌱", "name": "Lawn pests", "href": "/services/lawn-pest-control.html", "cta": "See lawn pest control",

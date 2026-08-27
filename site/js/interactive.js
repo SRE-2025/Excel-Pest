@@ -231,6 +231,19 @@
     render();
   }
 
+  /* ---------- Services mega-menu (mobile tap to expand) ---------- */
+  var megaToggle = $(".mega-toggle");
+  if (megaToggle) {
+    megaToggle.addEventListener("click", function (e) {
+      if (window.matchMedia("(max-width: 640px)").matches) {
+        e.preventDefault();
+        var li = megaToggle.closest(".has-mega");
+        var open = li.classList.toggle("open");
+        megaToggle.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+    });
+  }
+
   /* ---------- FAQ accordion ---------- */
   $$(".acc-item").forEach(function (item) {
     var head = $(".acc-head", item);

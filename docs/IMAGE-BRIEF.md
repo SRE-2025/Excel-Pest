@@ -47,7 +47,7 @@ These must be genuine photographs — do not generate them.
 - **Used on:** future gallery
 - **Requirement:** Real photo of a named technician at work (reviews mention Tim).
 
-## AI images to generate in ChatGPT (8)
+## AI images to generate in ChatGPT (15)
 
 Paste each prompt as-is. Regenerate if the result shows text, a logo, a watermark, or a
 place that does not look like Central Texas.
@@ -80,17 +80,24 @@ place that does not look like Central Texas.
 - **Prompt:**
   > A pest control inspector with a clipboard and flashlight examining the foundation and eaves of a suburban Central Texas home during a real-estate inspection, warm daylight, photorealistic, no text, no logos, no watermark.
 
-### Technician sealing a rodent entry point on a home
-- **File:** `site/services/rodent-exclusion-sealing.webp`
-- **Alt text:** Technician sealing a rodent entry point on a home
-- **Used on:** /services/rodent-control.html
+### Roof rat at the edge of a home attic
+- **File:** `site/services/rodent-removal-attic.webp`
+- **Alt text:** Roof rat at the edge of a home attic
+- **Used on:** /services/rodent-removal.html
 - **Prompt:**
-  > A technician sealing a rodent entry gap along the roofline of a Central Texas home with exclusion mesh, ladder and tools visible, live oaks nearby, clear daylight, photorealistic, no text, no logos, no watermark.
+  > A roof rat peering from the edge of a home attic with insulation visible, dim natural light, photorealistic, no text, no logos, no watermark.
+
+### Sealing a rodent entry point along a roofline
+- **File:** `site/services/rodent-exclusion-sealing.webp`
+- **Alt text:** Sealing a rodent entry point along a roofline
+- **Used on:** /services/rodent-exclusion.html
+- **Prompt:**
+  > A technician's hands sealing a gap along a Central Texas home's roofline with steel mesh and sealant, ladder visible, daylight, photorealistic, no text, no logos, no watermark.
 
 ### Raccoon at an attic vent of a Central Texas home
 - **File:** `site/services/wildlife-attic-raccoon.webp`
 - **Alt text:** Raccoon at an attic vent of a Central Texas home
-- **Used on:** /services/wildlife-removal.html
+- **Used on:** /services/wildlife-live-trapping.html
 - **Prompt:**
   > A raccoon peeking out of an attic gable vent on a suburban Central Texas home at dusk, cedar and oak around the roof, natural light, photorealistic, no text, no logos, no watermark.
 
@@ -107,3 +114,45 @@ place that does not look like Central Texas.
 - **Used on:** /services/lawn-pest-control.html
 - **Prompt:**
   > A close view of a St. Augustine lawn in Central Texas with a spreading brown chinch-bug patch, healthy green grass beside damaged turf, bright daylight, photorealistic, no text, no logos, no watermark.
+
+### Fire ant mound in a Central Texas lawn
+- **File:** `site/services/ant-control-fire-ant-mound.webp`
+- **Alt text:** Fire ant mound in a Central Texas lawn
+- **Used on:** /services/ant-control.html
+- **Prompt:**
+  > A close photo of a fire ant mound in a Central Texas St. Augustine lawn, a suburban home softly blurred behind, bright daylight, photorealistic, no text, no logos, no watermark.
+
+### American cockroach on a kitchen floor
+- **File:** `site/services/cockroach-control.webp`
+- **Alt text:** American cockroach on a kitchen floor
+- **Used on:** /services/cockroach-control.html
+- **Prompt:**
+  > A single American cockroach on a tiled kitchen floor at night, shallow depth of field, photorealistic, no text, no logos, no watermark.
+
+### Field crickets gathered by a doorway at night
+- **File:** `site/services/cricket-control-doorway.webp`
+- **Alt text:** Field crickets gathered by a doorway at night
+- **Used on:** /services/cricket-control.html
+- **Prompt:**
+  > Field crickets clustered on limestone and concrete near a doorway at night under a porch light in Central Texas, photorealistic, no text, no logos, no watermark.
+
+### A dog resting in a treated Central Texas backyard
+- **File:** `site/services/flea-control-backyard-dog.webp`
+- **Alt text:** A dog resting in a treated Central Texas backyard
+- **Used on:** /services/flea-control.html
+- **Prompt:**
+  > A dog resting on a healthy lawn in a Central Texas backyard at golden hour, photorealistic, no text, no logos, no watermark.
+
+### Spider web in the eave of a Central Texas home
+- **File:** `site/services/spider-control-web-eave.webp`
+- **Alt text:** Spider web in the eave of a Central Texas home
+- **Used on:** /services/spider-control.html
+- **Prompt:**
+  > A spider web glistening with morning dew in the corner of a limestone home's eave in Central Texas, soft backlight, photorealistic, no text, no logos, no watermark.
+
+### Shaded property edge where ticks harbor
+- **File:** `site/services/tick-control-property-edge.webp`
+- **Alt text:** Shaded property edge where ticks harbor
+- **Used on:** /services/tick-control.html
+- **Prompt:**
+  > A wooded, leaf-littered property edge meeting a mowed Central Texas lawn, dappled shade, photorealistic, no text, no logos, no watermark.
