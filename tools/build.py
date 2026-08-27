@@ -633,31 +633,34 @@ def header():
             parts.append('        <li><a href="%s">%s</a></li>' % (url, html.escape(label)))
     links = "\n".join(parts)
     return """<body>
-  <div class="scroll-progress" aria-hidden="true"></div>
+  <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header">
     <div class="topbar"><div class="container">
       <span>Family-owned in Buda since {founded} · Licensed &amp; insured · {license}</span>
       <span>Call <a href="tel:{ptel}">{phone}</a> · Text <a href="sms:{ttel}">{text}</a></span>
     </div></div>
     <nav class="navbar" aria-label="Primary"><div class="container">
-      <a class="brand" href="/">
-        <span class="brand__name">{name}</span>
-        <span class="brand__tag">Pest · Rodent · Wildlife · Lawn · Since {founded}</span>
+      <a class="brand" href="/" aria-label="Excel Pest Control — home">
+        <span class="brand__mark">EXCEL</span>
+        <span class="brand__desc">Pest Control</span>
       </a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <ul class="nav-links">
 {links}
         <li class="nav-cta">
           <a class="nav-invoice" href="/pay-invoice.html">Pay Invoice</a>
-          <a class="nav-call" href="tel:{ptel}">📞 {phone}</a>
-          <a class="btn btn--primary" href="/contact.html">Free Estimate</a>
+          <a class="btn btn--primary" href="/contact.html">Free estimate</a>
         </li>
       </ul>
     </div></nav>
-  </header>""".format(
+  </header>
+  <div class="mobile-actionbar" aria-label="Quick actions">
+    <a class="mab mab--call" href="tel:{ptel}">Call now</a>
+    <a class="mab mab--est" href="/contact.html">Free estimate</a>
+  </div>""".format(
         founded=BIZ["founded"], license=BIZ["license"], ptel=BIZ["phone_tel"],
         phone=BIZ["phone"], ttel=BIZ["text_tel"], text=BIZ["text"],
-        name=html.escape(BIZ["name"]), links=links,
+        links=links,
     )
 
 
@@ -1304,13 +1307,13 @@ PESTS = [
 
 
 def stat_band():
+    # Static proof strip — no count-up animation, no clipping. Figures verified against BIZ.
     return """
   <section class="statband"><div class="container">
-    <div><div class="stat__num" data-count="28">28</div><div class="stat__lbl">Years serving Central Texas</div></div>
-    <div><div class="stat__num" data-count="5.0" data-decimals="1">5.0</div><div class="stat__lbl">Google rating</div></div>
-    <div><div class="stat__num" data-count="41" data-suffix="+">41+</div><div class="stat__lbl">5-star reviews</div></div>
-    <div><div class="stat__num" data-count="27">27</div><div class="stat__lbl">Cities covered</div></div>
-    <div><div class="stat__num">A+</div><div class="stat__lbl">BBB accredited</div></div>
+    <div><div class="stat__num">Since 1998</div><div class="stat__lbl">Family-owned in Buda</div></div>
+    <div><div class="stat__num">5.0<span class="stat__u">&#9733;</span></div><div class="stat__lbl">Google rating, 41 reviews</div></div>
+    <div><div class="stat__num">27</div><div class="stat__lbl">Central Texas cities served</div></div>
+    <div><div class="stat__num">A+</div><div class="stat__lbl">BBB accredited &middot; insured</div></div>
   </div></section>"""
 
 
@@ -1361,16 +1364,50 @@ def area_checker():
   </section>""".format(cities=cities_json)
 
 
+# Restrained monoline icons (no emoji) for the home service cards.
+_IC = ('<svg class="svc-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor" '
+       'stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">%s</svg>')
+CORE_ICONS = {
+    # General pest — house under a shield
+    "pest-control": _IC % '<path d="M16 3l10 4v7c0 6-4 10-10 12C10 24 6 20 6 14V7z"/><path d="M12 15l3 3 5-6"/>',
+    # Termites — timber beam with grain
+    "termite-control": _IC % '<rect x="5" y="10" width="22" height="12" rx="1.5"/><path d="M9 14h9M9 18h6M22 13v6"/>',
+    # Rodents & exclusion — home with a sealed gap
+    "rodent-exclusion": _IC % '<path d="M5 15l11-8 11 8"/><path d="M8 14v11h16V14"/><path d="M13 25v-6h6v6"/><circle cx="16" cy="16.5" r="1"/>',
+    # Wildlife — humane leaf/paw
+    "wildlife-live-trapping": _IC % '<path d="M25 7C15 7 8 13 8 22c0 2 1 3 3 3 9 0 15-7 15-16 0-1-.4-2-1-2z"/><path d="M8 25c3-6 8-10 14-12"/>',
+    # Scorpions — pincers/tail motif
+    "scorpion-control": _IC % '<path d="M6 10c3 0 4 2 6 4s5 2 8 0 5-6 6-4"/><path d="M26 10l-3-1M26 10l-1 3"/><path d="M9 9L6 10l1 3M17 14l-2 3M20 14l1 4"/>',
+    # Mosquitoes — droplet + wings
+    "mosquito-misting": _IC % '<path d="M16 6c4 5 6 8 6 11a6 6 0 01-12 0c0-3 2-6 6-11z"/><path d="M13 17c-3-2-6-2-8 0M19 17c3-2 6-2 8 0"/>',
+}
+CORE_HOME = ["pest-control", "termite-control", "rodent-exclusion",
+             "wildlife-live-trapping", "scorpion-control", "mosquito-misting"]
+CORE_BLURB = {
+    "pest-control": "Recurring, water-based treatment for ants, roaches, spiders and the everyday pests that get inside.",
+    "termite-control": "Licensed inspections, targeted treatment and a warranty for the termites working out of sight.",
+    "rodent-exclusion": "Trap the rats and mice, then seal the entry points so they can't come back.",
+    "wildlife-live-trapping": "Humane removal of raccoons, squirrels and possums — then we close the way in.",
+    "scorpion-control": "Harborage treatment and exclusion for the striped bark scorpions that thrive in Hill Country limestone.",
+    "mosquito-misting": "Treat the breeding sites and install misting systems that keep the backyard usable all season.",
+}
+
+
 def home():
     canonical = BIZ["domain"] + "/"
-    svc_cards = "".join("""        <article class="card card--link">
-          <div class="card__icon">{icon}</div>
+    core_names = {
+        "pest-control": "General Pest Control", "termite-control": "Termite Control",
+        "rodent-exclusion": "Rodents &amp; Exclusion", "wildlife-live-trapping": "Wildlife Removal",
+        "scorpion-control": "Scorpion Control", "mosquito-misting": "Mosquito Control",
+    }
+    svc_cards = "".join("""        <article class="card card--link svc-card">
+          <div class="svc-card__ic">{icon}</div>
           <h3>{name}</h3>
           <p>{blurb}</p>
-          <a class="card__link" href="/services/{slug}.html">Learn more →</a>
-        </article>""".format(icon=s["icon"], name=html.escape(s["nav"]), slug=s["slug"],
-                             blurb=html.escape(s["lead"].split(". ")[0] + "."))
-        for s in SERVICES)
+          <a class="card__link" href="/services/{slug}.html">Learn more &rarr;</a>
+        </article>""".format(icon=CORE_ICONS[slug], name=core_names[slug], slug=slug,
+                             blurb=html.escape(CORE_BLURB[slug]))
+        for slug in CORE_HOME)
     city_links = " · ".join('<a href="/locations/%s.html">%s</a>' % (LOCATION_BY_SLUG[s]["slug"], html.escape(LOCATION_BY_SLUG[s]["city"])) for s in PRIORITY_CITIES)
     spotlight = """
         <div class="spotlight" data-spotlight>
@@ -1424,108 +1461,98 @@ def home():
   </section>""".format(license=BIZ["license"], founded=BIZ["founded"], reviews=BIZ["reviews"])
     body = """
   <section class="hero">
-    <div class="hero__bg" aria-hidden="true"></div>
-    <span class="hero__orb o1" aria-hidden="true"></span>
-    <span class="hero__orb o2" aria-hidden="true"></span>
-    <span class="hero__orb o3" aria-hidden="true"></span>
+    <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container">
-      <span class="eyebrow anim-up s1">The crew Buda has trusted since {founded}</span>
-      <h1 class="anim-up s2">Family-owned pest control for Central Texas.</h1>
-      <p class="anim-up s3">Pest, rodent, wildlife and lawn-pest control done by the same local crew since {founded} —
-         with water-based products chosen for your family and your four-legged family members.</p>
-      <div class="hero__actions anim-up s4">
-        <a class="btn btn--primary" href="/contact.html">Get My Free Estimate</a>
-        <a class="btn btn--ghost" href="tel:{ptel}">Call {phone}</a>
+      <span class="eyebrow">The crew Buda has trusted since {founded}</span>
+      <h1>Family-owned pest control for Central Texas.</h1>
+      <p>Pest, rodent, wildlife and mosquito control by the same local crew since {founded} —
+         water-based products chosen for your family and your four-legged family members.</p>
+      <div class="hero__actions">
+        <a class="btn btn--primary" href="/contact.html">Request a free estimate</a>
+        <span class="hero__call">or call <a href="tel:{ptel}">{phone}</a></span>
       </div>
-      <div class="badges anim-up s5">
-        <span class="badge">★ {rating} rating · {reviews} Google reviews</span>
-        <span class="badge">BBB A+ · accredited 2007</span>
+      <div class="badges">
+        <span class="badge">5.0&#9733; · {reviews} Google reviews</span>
+        <span class="badge">BBB A+ accredited</span>
         <span class="badge">Licensed &amp; insured · {license}</span>
       </div>
-      <div class="hero__cue anim-up s5"><span class="chev" aria-hidden="true">↓</span> Scroll to explore</div>
     </div>
   </section>
-
-  <section class="trust-bar"><div class="container">
-    <span><span class="star">★★★★★</span> <b>{rating}</b> from {reviews} reviews</span>
-    <span><b>Since {founded}</b> · family-owned in Buda</span>
-    <span><b>BBB A+</b> accredited</span>
-    <span><b>{license}</b> · licensed &amp; insured</span>
-  </div></section>
 {statband}
 
+  <main id="main">
   <section class="section">
     <div class="container">
-      <div class="section-head text-center" style="max-width:680px;margin:0 auto 40px;">
+      <div class="section-head" style="max-width:640px;margin:0 auto 40px;text-align:center;">
         <span class="eyebrow">What we do</span>
-        <h2>Everything crawling, gnawing, or buzzing — handled</h2>
-        <p class="lead">One local company for the pests inside your walls, the rodents in your attic, the
-           wildlife under your deck, and the insects tearing up your lawn.</p>
+        <h2>Core services for Central Texas homes</h2>
+        <p class="lead">The problems we get called for most — handled by a licensed local technician, inside and out.</p>
       </div>
-      <div class="grid grid--4">
+      <div class="grid grid--3">
 {svc_cards}
+      </div>
+      <div class="text-center" style="margin-top:34px;">
+        <a class="btn btn--outline" href="/services.html">View all services &rarr;</a>
       </div>
     </div>
   </section>
-{identifier}
 
   <section class="section section--soft">
     <div class="container split">
       <div>
-        <span class="eyebrow">28 years, one owner, named technicians</span>
-        <h2>Not a franchise. The crew that actually knows Central Texas.</h2>
-        <p>{owner} started Excel Pest in South Austin in {founded} and has run it ever since. We know the local
+        <span class="eyebrow">28 years, one owner</span>
+        <h2>Not a franchise — the crew that knows Central Texas.</h2>
+        <p>{owner} started Excel Pest in {founded} and has run it ever since. We know the local
            pest calendar — when scorpions move indoors, when chinch bugs cook a lawn, when rodents look for a warm
            attic — because we have worked this ground for more than 25 years. Nobody in this market beats our
-           5.0 rating; we just do it quietly, one neighbor at a time.</p>
-        <ul class="info-list">
-          <li><span class="value">✓ &nbsp;Family-owned &amp; locally operated since {founded}</span></li>
-          <li><span class="value">✓ &nbsp;Water-based products, safe for family &amp; pets</span></li>
-          <li><span class="value">✓ &nbsp;Free estimates · warranties · emergency service</span></li>
-        </ul>
+           5.0 rating; we just earn it quietly, one neighbor at a time.</p>
         <a class="btn btn--outline" href="/about.html">Read our story</a>
       </div>
       <div>
-{spotlight}
+        <div class="why-panel">
+          <h3>Why homeowners choose us</h3>
+          <ul class="why-list">
+            <li><strong>Licensed &amp; insured.</strong> Texas {license}, with the same trained techs on every visit — not a rotating call center.</li>
+            <li><strong>Safe for family &amp; pets.</strong> Water-based products applied only where needed. See our <a href="/pet-family-safety.html">safety approach</a>.</li>
+            <li><strong>Local since {founded}.</strong> Family-owned in Buda, 5.0&#9733; across {reviews} reviews. We live the Central Texas pest calendar.</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 {flow}
-{gallery}
 
   <section class="section">
     <div class="container">
-      <div class="offer-strip">
-        <div>
-          <span class="pct">10% off</span>
-          <h3>Military, veterans, first responders, nurses &amp; teachers</h3>
-          <p class="mb-0" style="color:#cdd6e6;">Our thanks to the people who serve Central Texas. Mention it when you schedule.</p>
-        </div>
-        <a class="btn btn--primary" href="/offers.html">See details</a>
+      <div class="section-head" style="max-width:560px;margin:0 auto 30px;text-align:center;">
+        <span class="eyebrow">In their words</span>
+        <h2>Reviewed 5.0 by Central Texas neighbors</h2>
       </div>
-    </div>
-  </section>
-{checker}
-
-  <section class="section">
-    <div class="container text-center">
-      <span class="eyebrow">Local coverage</span>
-      <h2>Dedicated local pages across the corridor</h2>
-      <p class="lead" style="max-width:720px;margin:0 auto 18px;">From South Austin through Hays County and into
-         the Hill Country:</p>
-      <p style="font-size:1.05rem;">{city_links}</p>
-      <a class="btn btn--outline" href="/service-area.html">See all 27 cities →</a>
+      <div style="max-width:680px;margin:0 auto;">
+{spotlight}
+      </div>
     </div>
   </section>
 
   <section class="section section--soft">
+    <div class="container text-center">
+      <span class="eyebrow">Local coverage</span>
+      <h2>Serving 27 cities across the corridor</h2>
+      <p class="lead" style="max-width:720px;margin:0 auto 18px;">From South Austin through Hays County and into
+         the Hill Country:</p>
+      <p style="font-size:1.02rem;line-height:2;">{city_links}</p>
+      <a class="btn btn--outline" href="/service-area.html">See all 27 cities &rarr;</a>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container">{cross}</div>
-  </section>""".format(
-        founded=BIZ["founded"], ptel=BIZ["phone_tel"], phone=BIZ["phone"], rating=BIZ["rating"],
+  </section>
+  </main>""".format(
+        founded=BIZ["founded"], ptel=BIZ["phone_tel"], phone=BIZ["phone"],
         reviews=BIZ["reviews"], license=BIZ["license"], svc_cards=svc_cards, owner=BIZ["owner"],
         city_links=city_links, cross=crosslink_block(), statband=stat_band(),
-        identifier=pest_identifier(), spotlight=spotlight, flow=flow, checker=area_checker(),
-        gallery=gallery,
+        spotlight=spotlight, flow=flow,
     )
     desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. 5.0-star, BBB A+, licensed. Free estimates — call (737) 201-3059."
     schema = [business_schema(with_rating=True), {
