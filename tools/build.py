@@ -893,10 +893,25 @@ def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="",
     badge = '' if art == "portrait" else '<span class="slot-badge" aria-hidden="true">%s</span>' % emo
     cap = '<figcaption class="slot-cap">%s</figcaption>' % html.escape(caption) if caption else ''
     real_img = ''
-    if filename in REMOTE_IMAGES:
-        real_img = '<img src="%s" alt="%s">' % (html.escape(REMOTE_IMAGES[filename], quote=True), html.escape(alt, quote=True))
+    image_url = REMOTE_IMAGES.get(filename)
+    if not image_url and filename.startswith("services/"):
+        low = filename.lower()
+        if "termite" in low:
+            image_url = REMOTE_IMAGES["services/termite-mud-tubes.webp"]
+        elif "rodent" in low or "wildlife" in low:
+            image_url = REMOTE_IMAGES["services/rodent-removal-attic.webp"]
+        elif "scorpion" in low:
+            image_url = REMOTE_IMAGES["services/scorpion-hill-country.webp"]
+        elif "mosquito" in low or "lawn" in low:
+            image_url = REMOTE_IMAGES["services/lawn-chinch-bug-damage.webp"]
+        else:
+            image_url = REMOTE_IMAGES["services/pest-control-exterior-treatment.webp"]
+    if image_url:
+        real_img = '<img src="%s" alt="%s">' % (html.escape(image_url, quote=True), html.escape(alt, quote=True))
         art_svg = ''
         badge = ''
+    elif filename.startswith("services/"):
+        return ''
     return ('<figure class="img-slot {ratio}" data-filename="{fn}">{comment}{real_img}{art}{badge}{cap}</figure>'
             ).format(ratio=ratio, fn=html.escape(filename), comment=comment, real_img=real_img, art=art_svg, badge=badge, cap=cap)
 
