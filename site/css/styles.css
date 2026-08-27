@@ -698,39 +698,47 @@ body { background: var(--bg); color: var(--body); }
 .scroll-progress { display: none !important; }
 .hero__bg, .hero__orb, .hero__cue { display: none !important; }
 
-/* -------- Refined scroll-reveal (elegant fade + rise, staggered) -------- */
-.reveal { opacity: 0; transform: translateY(26px); will-change: opacity, transform;
-  transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); }
-.reveal.in { opacity: 1; transform: none; }
-.reveal.d1 { transition-delay: .06s; }
-.reveal.d2 { transition-delay: .14s; }
-.reveal.d3 { transition-delay: .22s; }
-.reveal.d4 { transition-delay: .30s; }
+/* -------- Cinematic scroll-reveal (focus-pull: rise + scale + de-blur) -------- */
+.reveal { opacity: 0; transform: translateY(42px) scale(.96); filter: blur(9px); will-change: opacity, transform, filter;
+  transition: opacity .9s cubic-bezier(.16,.84,.28,1), transform .95s cubic-bezier(.16,.84,.28,1), filter .8s ease; }
+.reveal.in { opacity: 1; transform: none; filter: none; }
+.reveal.d1 { transition-delay: .08s; }
+.reveal.d2 { transition-delay: .18s; }
+.reveal.d3 { transition-delay: .28s; }
+.reveal.d4 { transition-delay: .38s; }
 
 /* Hero: solid ink, photo-ready, generous negative space for the headline */
 .hero { background: var(--ink); color: #fff; padding: 0; position: relative; overflow: hidden;
   min-height: 76vh; display: flex; align-items: center; }
-.hero .hero-photo { position: absolute; inset: -3%; z-index: 0; background-position: center; background-size: cover;
-  animation: heroKen 22s ease-in-out infinite alternate; transform-origin: 60% 45%; }
-@keyframes heroKen { from { transform: scale(1.06); } to { transform: scale(1.15) translateX(-1.5%); } }
+.hero .hero-photo { position: absolute; inset: -4%; z-index: 0; background-position: center; background-size: cover;
+  animation: heroKen 26s ease-in-out infinite alternate; transform-origin: 55% 50%; }
+@keyframes heroKen { from { transform: scale(1.08); } to { transform: scale(1.22) translate(-2%, -1.5%); } }
 .hero .hero-scrim { position: absolute; inset: 0; z-index: 1;
-  background: linear-gradient(90deg, rgba(16,16,16,.88), rgba(16,16,16,.5) 58%, rgba(16,16,16,.14)); }
+  background: linear-gradient(90deg, rgba(16,16,16,.9), rgba(16,16,16,.52) 58%, rgba(16,16,16,.14)); }
+/* slow light sheen sweeping across the hero */
+.hero::after { content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(72deg, transparent 42%, rgba(255,255,255,.045) 50%, transparent 58%);
+  background-size: 300% 100%; animation: heroSheen 10s ease-in-out 1.4s infinite; }
+@keyframes heroSheen { 0% { background-position: 130% 0; } 55%, 100% { background-position: -50% 0; } }
 .hero .container { position: relative; z-index: 2; padding-top: 92px; padding-bottom: 92px; }
 
-/* Hero entrance stagger (above the fold, on load) */
-.hero .eyebrow, .hero h1, .hero p, .hero__actions, .hero .badges {
-  opacity: 0; transform: translateY(20px); animation: heroRise .85s cubic-bezier(.2,.7,.2,1) forwards; }
-.hero .eyebrow { animation-delay: .08s; }
-.hero h1 { animation-delay: .20s; }
-.hero p { animation-delay: .34s; }
-.hero__actions { animation-delay: .48s; }
-.hero .badges { animation-delay: .60s; }
+/* Hero entrance — cinematic stagger + title wipe */
+.hero .eyebrow, .hero p, .hero__actions, .hero .badges {
+  opacity: 0; transform: translateY(30px); animation: heroRise 1s cubic-bezier(.16,.84,.28,1) forwards; }
+.hero h1 { opacity: 0; transform: translateY(26px); clip-path: inset(0 0 102% 0);
+  animation: heroTitle 1.15s cubic-bezier(.16,.84,.28,1) .18s forwards; }
+@keyframes heroTitle { to { opacity: 1; transform: none; clip-path: inset(0 0 -12% 0); } }
+.hero .eyebrow { animation-delay: .06s; }
+.hero p { animation-delay: .5s; }
+.hero__actions { animation-delay: .66s; }
+.hero .badges { animation-delay: .82s; }
 @keyframes heroRise { to { opacity: 1; transform: none; } }
 
 @media (prefers-reduced-motion: reduce) {
   .hero .hero-photo { animation: none; inset: 0; transform: none; }
-  .hero .eyebrow, .hero h1, .hero p, .hero__actions, .hero .badges { opacity: 1; transform: none; animation: none; }
-  .reveal { opacity: 1; transform: none; transition: none; }
+  .hero::after { display: none; }
+  .hero .eyebrow, .hero h1, .hero p, .hero__actions, .hero .badges { opacity: 1; transform: none; clip-path: none; animation: none; }
+  .reveal { opacity: 1; transform: none; filter: none; transition: none; }
 }
 .hero h1 { color: #fff; font-size: clamp(2.6rem, 5.6vw, 4.3rem); max-width: 15ch; letter-spacing: -.015em; }
 .hero p { color: #EDEBE6; max-width: 46ch; }
@@ -767,10 +775,18 @@ body { background: var(--bg); color: var(--body); }
   background: currentColor; transition: width .28s cubic-bezier(.2,.7,.2,1); }
 .nav-links > li > a:not(.btn):hover::after { width: 100%; }
 
-/* Buttons: lift + settle micro-interaction */
-.btn { transition: background .18s ease, color .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease; }
-.btn--primary:hover, .btn--outline:hover, .btn--ghost:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
-.btn:active { transform: translateY(0); }
+/* Buttons: lift + settle + shine sweep on hover */
+.btn { position: relative; overflow: hidden; transition: background .18s ease, color .18s ease, border-color .18s ease, transform .2s ease, box-shadow .2s ease; }
+.btn--primary:hover, .btn--outline:hover, .btn--ghost:hover, .pay-btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+.btn:active { transform: translateY(-1px); }
+.btn::after { content: ""; position: absolute; top: 0; bottom: 0; left: 0; width: 45%; pointer-events: none;
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.28), transparent);
+  transform: translateX(-200%) skewX(-18deg); }
+.btn:hover::after { transform: translateX(360%) skewX(-18deg); transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+@media (prefers-reduced-motion: reduce) {
+  .btn::after { display: none; }
+  .btn--primary:hover, .btn--outline:hover, .btn--ghost:hover, .pay-btn:hover { transform: none; }
+}
 
 /* Header: shrink + shadow on scroll (JS toggles .is-stuck) */
 .site-header { transition: box-shadow .3s ease; }
@@ -882,8 +898,20 @@ body { background: var(--bg); color: var(--body); }
   transition: transform .7s cubic-bezier(.2,.7,.2,1); }
 .home-services .svc-card::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
-  background: linear-gradient(180deg, rgba(16,16,16,.10) 16%, rgba(16,16,16,.90) 100%); }
-.home-services .svc-card:hover::before { transform: scale(1.07); }
+  background: linear-gradient(180deg, rgba(16,16,16,.06) 12%, rgba(16,16,16,.9) 100%);
+  transition: background .45s ease; }
+.home-services .svc-card:hover::before { transform: scale(1.12); }
+.home-services .svc-card:hover::after { background: linear-gradient(180deg, rgba(16,16,16,0) 8%, rgba(16,16,16,.82) 100%); }
+/* content lifts on hover; a warm accent bar wipes in above the title */
+.home-services .svc-card__ic, .home-services .svc-card h3, .home-services .svc-card p, .home-services .svc-card .card__link {
+  transition: transform .45s cubic-bezier(.2,.7,.2,1); }
+.home-services .svc-card:hover h3, .home-services .svc-card:hover p, .home-services .svc-card:hover .card__link {
+  transform: translateY(-6px); }
+.home-services .svc-card h3 { position: relative; }
+.home-services .svc-card h3::before {
+  content: ""; position: absolute; left: 0; top: -14px; height: 3px; width: 0; background: var(--accent);
+  transition: width .5s cubic-bezier(.2,.7,.2,1); }
+.home-services .svc-card:hover h3::before { width: 46px; }
 .home-services .svc-card--pest-control::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg"); }
 .home-services .svc-card--termite-control::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-termite-control-1920w.jpg"); }
 .home-services .svc-card--rodent-exclusion::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg"); }
@@ -904,3 +932,8 @@ body { background: var(--bg); color: var(--body); }
   .home-services { gap: 12px; }
   .home-services .svc-card { min-height: 300px; padding: 22px; }
 }
+
+/* Count-up finish pop */
+.statband .stat__num.count-done { animation: countPop .55s cubic-bezier(.2,.8,.2,1); }
+@keyframes countPop { 0% { transform: scale(1); } 42% { transform: scale(1.16); } 100% { transform: scale(1); } }
+@media (prefers-reduced-motion: reduce) { .statband .stat__num.count-done { animation: none; } }

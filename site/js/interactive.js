@@ -77,7 +77,7 @@
       var eased = 1 - Math.pow(1 - p, 3);
       el.textContent = (target * eased).toFixed(decimals) + suffix;
       if (p < 1) requestAnimationFrame(tick);
-      else el.textContent = target.toFixed(decimals) + suffix;
+      else { el.textContent = target.toFixed(decimals) + suffix; el.classList.add("count-done"); }
     }
     requestAnimationFrame(tick);
   }
@@ -261,6 +261,24 @@
         var open = li.classList.toggle("open");
         megaToggle.setAttribute("aria-expanded", open ? "true" : "false");
       }
+    });
+  }
+
+  /* ---------- 3D cursor tilt on the home service photo cards ---------- */
+  if (!reduce && window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+    $$(".home-services .svc-card").forEach(function (card) {
+      card.addEventListener("mousemove", function (e) {
+        var r = card.getBoundingClientRect();
+        var px = (e.clientX - r.left) / r.width - 0.5;
+        var py = (e.clientY - r.top) / r.height - 0.5;
+        card.style.transition = "transform .08s linear";
+        card.style.transform = "perspective(950px) rotateX(" + (-py * 4.5).toFixed(2) +
+          "deg) rotateY(" + (px * 4.5).toFixed(2) + "deg) translateY(-6px) scale(1.012)";
+      });
+      card.addEventListener("mouseleave", function () {
+        card.style.transition = "transform .5s cubic-bezier(.2,.7,.2,1)";
+        card.style.transform = "";
+      });
     });
   }
 

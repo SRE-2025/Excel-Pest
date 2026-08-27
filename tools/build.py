@@ -1947,49 +1947,46 @@ def pay_invoice():
     body = """
   <main class="pay-wrap">
     <div class="pay-card">
-      <div class="gate">
-        <strong>Not live yet.</strong> This payment page is disabled until the PayPal button is confirmed in
-        writing by the business owner and tested. See the code comment in this file.
-      </div>
       <span class="pay-company">{name}</span>
       <h1>Pay Your Invoice</h1>
-      <p>Settle your bill securely online, or call us and we'll take payment over the phone.</p>
+      <p>Settle your bill securely online through PayPal, or call us and we'll take payment over the phone.</p>
       <div class="pay-checklist">
         <strong>Have this ready</strong>
         <ul><li>Your invoice number</li><li>The amount due on your invoice</li><li>Your billing name and ZIP code</li></ul>
       </div>
-      <div class="paypal-placeholder">Secure PayPal checkout will appear here once the account is confirmed.</div>
-      <p class="pay-secure">🔒 Processed by PayPal. We never see or store your card details.</p>
+      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="paypal-form">
+        <input type="hidden" name="cmd" value="_s-xclick">
+        <input type="hidden" name="hosted_button_id" value="{button}">
+        <button type="submit" class="btn btn--primary pay-btn">Pay securely with PayPal</button>
+      </form>
+      <p class="pay-secure">&#128274; You'll finish on PayPal's secure checkout. We never see or store your card details. No PayPal account required &mdash; pay with any major card.</p>
       <div class="pay-phone">Prefer to pay by phone? Call <a href="tel:{ptel}">{phone}</a>.</div>
     </div>
-  </main>""".format(name=html.escape(BIZ["name"]), ptel=BIZ["phone_tel"], phone=BIZ["phone"])
-    # Special head with page-specific styles + gated warning comment
-    gate_comment = """
+  </main>""".format(name=html.escape(BIZ["name"]), ptel=BIZ["phone_tel"], phone=BIZ["phone"],
+                    button="PBRKNRY4BQUJG")
+    # Live PayPal hosted button. Owner confirmed button ID in writing (2026-08-27).
+    launch_comment = """
   <!--
-    DO NOT PUBLISH THIS PAGE UNTIL THE PAYPAL BUTTON IS CONFIRMED IN WRITING.
-    Payments go to whichever PayPal account owns button ID PBRKNRY4BQUJG.
-    Confirm in writing that the button belongs to the business account, then make
-    and refund a $1.00 test payment. The complete ready-to-use page is in the
-    brief's CODE-copy-paste-these/00_pay-invoice-page-COMPLETE.html. Until then this
-    page is noindex with NO live PayPal button. On launch: robots index,follow;
-    keep in sitemap; no contact form; no login; WebPage schema only.
+    LIVE. PayPal hosted button ID PBRKNRY4BQUJG, activated on written owner confirmation.
+    Payments route to the PayPal business account that owns this button.
+    Recommended post-launch check: make and refund a $1.00 test payment to verify routing.
   -->"""
     pay_styles = """
   <style>
-    .pay-wrap { background: var(--bg-soft); min-height: 70vh; display: grid; place-items: center; padding: 56px 20px; }
-    .pay-card { background:#fff; max-width:520px; width:100%; border-radius:14px; box-shadow:var(--shadow-lg); padding:40px; text-align:center; }
-    .pay-company { text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:800; color:var(--navy); }
-    .pay-card h1 { font-size:1.9rem; margin:6px 0 8px; }
-    .pay-checklist { text-align:left; background:var(--bg-navy-tint); border-radius:10px; padding:18px 22px; margin:22px 0; }
-    .pay-secure { color:var(--muted); font-size:.9rem; margin-top:18px; }
-    .pay-phone { margin-top:20px; font-size:1.05rem; } .pay-phone a { font-weight:800; }
-    .paypal-placeholder { border:2px dashed var(--line); border-radius:10px; padding:28px; color:var(--muted); background:#fff; margin:8px 0; }
-    .gate { background:#fff4e8; border:1px solid var(--orange); color:var(--orange-dark); border-radius:10px; padding:14px 18px; font-size:.9rem; margin-bottom:20px; text-align:left; }
+    .pay-wrap { background: var(--soft); min-height: 70vh; display: grid; place-items: center; padding: 56px 20px; }
+    .pay-card { background:#fff; max-width:520px; width:100%; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-lg); padding:40px; text-align:center; }
+    .pay-company { text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:700; color:var(--muted); }
+    .pay-card h1 { font-size:1.9rem; margin:6px 0 10px; }
+    .pay-checklist { text-align:left; background:var(--soft); border:1px solid var(--line); border-radius:var(--radius); padding:18px 22px; margin:22px 0; }
+    .paypal-form { margin:24px 0 6px; }
+    .pay-btn { width:100%; font-size:1.05rem; padding:15px 22px; }
+    .pay-secure { color:var(--muted); font-size:.86rem; margin-top:16px; line-height:1.5; }
+    .pay-phone { margin-top:20px; font-size:1.05rem; } .pay-phone a { font-weight:700; }
   </style>"""
     h = head("Pay Your Invoice | Austin Excel Pest & Lawn Control",
-             "Pay your Excel Pest invoice securely online, or call (737) 201-3059 to pay by phone.",
-             canonical, [], noindex=True)
-    h = h.replace("</head>", gate_comment + pay_styles + "\n</head>")
+             "Pay your Excel Pest invoice securely online through PayPal, or call (737) 201-3059 to pay by phone.",
+             canonical, [], noindex=False)
+    h = h.replace("</head>", launch_comment + pay_styles + "\n</head>")
     return h + "\n" + header() + "\n" + body + footer() + "\n"
 
 
