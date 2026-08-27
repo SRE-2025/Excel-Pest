@@ -594,6 +594,9 @@ def head(title, desc, canonical, schema_blocks, noindex=False, og_type="website"
         '  <meta property="og:description" content="' + html.escape(desc) + '">',
         '  <meta property="og:url" content="' + canonical + '">',
         '  <meta name="twitter:card" content="summary">',
+        '  <link rel="preconnect" href="https://fonts.googleapis.com">',
+        '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
+        '  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Source+Sans+3:wght@400;600;700&display=swap">',
         '  <link rel="stylesheet" href="/css/styles.css">',
         '  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">',
     ]
@@ -664,7 +667,7 @@ def cta_band(heading="Seeing something you shouldn't?", sub="Get a free estimate
     <div class="container">
       <div><h2 class="mb-0">{h}</h2><p class="mb-0">{s}</p></div>
       <div class="hero__actions" style="margin:0;">
-        <a class="btn btn--ghost" href="tel:{ptel}">Call {phone}</a>
+        <a class="btn btn--primary" href="tel:{ptel}">Call {phone}</a>
         <a class="btn btn--ghost" href="/contact.html">Request Online</a>
       </div>
     </div>
