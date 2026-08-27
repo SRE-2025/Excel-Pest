@@ -1433,7 +1433,7 @@ def home():
   </section>""".format(license=BIZ["license"], founded=BIZ["founded"], reviews=BIZ["reviews"])
     body = """
   <section class="hero">
-    <div class="hero-photo" aria-hidden="true" style="background-image:url('https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-home-1920w.jpg')"></div>
+    <div class="hero-photo" aria-hidden="true" style="background-image:url('https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-home-1920w.jpg')"></div>\n    <div class="hero-scrim" aria-hidden="true"></div>
     <span class="hero__orb o1" aria-hidden="true"></span>
     <span class="hero__orb o2" aria-hidden="true"></span>
     <span class="hero__orb o3" aria-hidden="true"></span>
