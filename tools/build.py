@@ -1413,11 +1413,11 @@ def home():
         "rodent-exclusion": "Rodents &amp; Exclusion", "wildlife-live-trapping": "Wildlife Removal",
         "scorpion-control": "Scorpion Control", "mosquito-misting": "Mosquito Control",
     }
-    svc_cards = "".join("""        <article class="card card--link svc-card">
+    svc_cards = "".join("""        <article class="card card--link svc-card svc-card--{slug}">
           <div class="svc-card__ic">{icon}</div>
           <h3>{name}</h3>
           <p>{blurb}</p>
-          <a class="card__link" href="/services/{slug}.html">Learn more &rarr;</a>
+          <a class="card__link" href="/services/{slug}.html">Explore service <span aria-hidden="true">&rarr;</span></a>
         </article>""".format(icon=CORE_ICONS[slug], name=core_names[slug], slug=slug,
                              blurb=html.escape(CORE_BLURB[slug]))
         for slug in CORE_HOME)
@@ -1502,7 +1502,7 @@ def home():
         <h2>Core services for Central Texas homes</h2>
         <p class="lead">The problems we get called for most — handled by a licensed local technician, inside and out.</p>
       </div>
-      <div class="grid grid--3">
+      <div class="grid grid--3 home-services">
 {svc_cards}
       </div>
       <div class="text-center" style="margin-top:34px;">
