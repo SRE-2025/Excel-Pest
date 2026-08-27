@@ -771,6 +771,7 @@ IMG_REGISTRY = []
 # Existing business-owned photography used while the full custom photo library is completed.
 REMOTE_IMAGES = {
     "services/pest-control-exterior-treatment.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg",
+    "services/rodent-removal-attic.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg",
 }
 
 
