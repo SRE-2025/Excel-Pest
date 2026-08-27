@@ -1475,7 +1475,7 @@ def home():
   </section>""".format(license=BIZ["license"], founded=BIZ["founded"], reviews=BIZ["reviews"])
     body = """
   <section class="hero">
-    <div class="hero-photo" aria-hidden="true" style="background-image:url('{hero_img}')"></div>
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="https://videos.hibustudio.com/2025/austin-excel-pest-and-lawn-control-7018654238.mp4" type="video/mp4"></video>
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container">
       <span class="eyebrow">The crew Buda has trusted since {founded}</span>
