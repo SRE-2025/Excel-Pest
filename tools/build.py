@@ -691,7 +691,7 @@ def footer():
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h4>{name}</h4>
+          <h4 class="footer-brand">Excel <span>Pest Control</span></h4>
           <p>Family-owned pest, rodent, wildlife and lawn-pest control for Central Texas since {founded}.</p>
           <p class="mb-0">{street}<br>{city}, {state} {zip}<br>Licensed &amp; insured · {license}</p>
           <p style="margin-top:12px;">
@@ -789,17 +789,17 @@ def scene_svg(alt):
         '<svg class="slot-art" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" '
         'role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
         '<defs><linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">'
-        '<stop offset="0" stop-color="#0a1f44"/><stop offset="1" stop-color="#1c3a6e"/></linearGradient></defs>'
+        '<stop offset="0" stop-color="#201E17"/><stop offset="1" stop-color="#12110C"/></linearGradient></defs>'
         '<rect width="400" height="225" fill="url(#sky)"/>'
-        '<circle cx="315" cy="66" r="30" fill="#f26419" opacity="0.92"/>'
-        '<path d="M0 165 Q100 128 200 160 T400 150 V225 H0 Z" fill="#12305f"/>'
-        '<path d="M0 190 Q120 160 240 185 T400 180 V225 H0 Z" fill="#0c2249"/>'
-        '<g fill="#071633"><rect x="72" y="140" width="7" height="42"/>'
+        '<circle cx="315" cy="66" r="30" fill="#8a6d3f" opacity="0.34"/>'
+        '<path d="M0 165 Q100 128 200 160 T400 150 V225 H0 Z" fill="rgba(255,255,255,0.05)"/>'
+        '<path d="M0 190 Q120 160 240 185 T400 180 V225 H0 Z" fill="rgba(0,0,0,0.28)"/>'
+        '<g fill="rgba(255,255,255,0.10)"><rect x="72" y="140" width="7" height="42"/>'
         '<circle cx="75" cy="132" r="24"/><circle cx="54" cy="142" r="16"/><circle cx="97" cy="142" r="16"/></g>'
-        '<g><rect x="250" y="142" width="66" height="46" fill="#eaf0fa"/>'
-        '<path d="M244 144 L283 116 L322 144 Z" fill="#f26419"/>'
-        '<rect x="268" y="160" width="15" height="28" fill="#0a1f44"/>'
-        '<rect x="293" y="156" width="13" height="13" fill="#0a1f44"/></g>'
+        '<g><rect x="250" y="142" width="66" height="46" fill="rgba(246,245,241,0.9)"/>'
+        '<path d="M244 144 L283 116 L322 144 Z" fill="#9A5A2B"/>'
+        '<rect x="268" y="160" width="15" height="28" fill="#201E17"/>'
+        '<rect x="293" y="156" width="13" height="13" fill="#201E17"/></g>'
         '</svg>'
     ).format(alt=html.escape(alt))
 
@@ -807,10 +807,10 @@ def scene_svg(alt):
 def portrait_svg(alt):
     return (
         '<svg class="slot-art" viewBox="0 0 200 200" role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
-        '<rect width="200" height="200" fill="#eef2f9"/>'
-        '<circle cx="100" cy="150" r="66" fill="#0a1f44"/>'
-        '<circle cx="100" cy="76" r="38" fill="#0a1f44"/>'
-        '<circle cx="100" cy="100" r="92" fill="none" stroke="#f26419" stroke-width="6" opacity="0.5"/>'
+        '<rect width="200" height="200" fill="#E9E7E1"/>'
+        '<circle cx="100" cy="150" r="66" fill="#2B2A26"/>'
+        '<circle cx="100" cy="76" r="38" fill="#2B2A26"/>'
+        '<circle cx="100" cy="100" r="92" fill="none" stroke="#C9C4BA" stroke-width="4"/>'
         '</svg>'
     ).format(alt=html.escape(alt))
 
@@ -867,9 +867,9 @@ def pest_scene(alt, motif="bug", sunx=316, suny=58):
         '<svg class="slot-art" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" '
         'role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
         '<defs><linearGradient id="ps" x1="0" y1="0" x2="0.35" y2="1">'
-        '<stop offset="0" stop-color="#0a1f44"/><stop offset="1" stop-color="#1c3a6e"/></linearGradient></defs>'
+        '<stop offset="0" stop-color="#201E17"/><stop offset="1" stop-color="#12110C"/></linearGradient></defs>'
         '<rect width="400" height="225" fill="url(#ps)"/>'
-        '<circle cx="{sx}" cy="{sy}" r="30" fill="#f26419" opacity="0.9"/>'
+        '<circle cx="{sx}" cy="{sy}" r="30" fill="#8a6d3f" opacity="0.34"/>'
         '<g fill="rgba(255,255,255,0.16)">{motif}</g>'
         '<path d="M0 176 Q100 140 200 168 T400 158 V225 H0 Z" fill="rgba(255,255,255,0.05)"/>'
         '<path d="M0 196 Q120 168 240 190 T400 184 V225 H0 Z" fill="rgba(0,0,0,0.14)"/>'
@@ -1013,11 +1013,10 @@ def related_services_grid(slugs, heading="Related services"):
     cards = []
     for slug in slugs:
         s = SERVICE_BY_SLUG[slug]
-        cards.append("""        <article class="card card--link">
-          <div class="card__icon">{icon}</div>
+        cards.append("""        <article class="card card--link dir-card">
           <h3>{name}</h3>
-          <a class="card__link" href="/services/{slug}.html">Learn more →</a>
-        </article>""".format(icon=s["icon"], name=html.escape(s["nav"]), slug=slug))
+          <a class="card__link" href="/services/{slug}.html">Learn more &rarr;</a>
+        </article>""".format(name=html.escape(s["nav"]), slug=slug))
     return """
   <section class="section section--soft">
     <div class="container">
@@ -1116,11 +1115,10 @@ def render_location(l):
     loc_service_slugs = ["pest-control", "scorpion-control", "termite-control", "ant-control",
                          "rodent-removal", "wildlife-live-trapping", "mosquito-misting", "lawn-pest-control"]
     svc_cards = "".join(
-        """        <article class="card card--link">
-          <div class="card__icon">{icon}</div>
+        """        <article class="card card--link dir-card">
           <h3>{name}</h3>
-          <a class="card__link" href="/services/{slug}.html">Learn more →</a>
-        </article>""".format(icon=SERVICE_BY_SLUG[sl]["icon"], name=html.escape(SERVICE_BY_SLUG[sl]["nav"]), slug=sl)
+          <a class="card__link" href="/services/{slug}.html">Learn more &rarr;</a>
+        </article>""".format(name=html.escape(SERVICE_BY_SLUG[sl]["nav"]), slug=sl)
         for sl in loc_service_slugs
     )
     loc_alt = "A residential street in " + l["city"] + ", Central Texas"
@@ -1201,12 +1199,11 @@ def services_hub():
     canonical = BIZ["domain"] + "/services.html"
     crumbs = [("Home", "/"), ("Services", None)]
     def card(s):
-        return """        <article class="card card--link">
-          <div class="card__icon">{icon}</div>
+        return """        <article class="card card--link dir-card">
           <h3>{name}</h3>
           <p>{blurb}</p>
-          <a class="card__link" href="/services/{slug}.html">Learn more →</a>
-        </article>""".format(icon=s["icon"], name=html.escape(s["nav"]), slug=s["slug"],
+          <a class="card__link" href="/services/{slug}.html">Learn more &rarr;</a>
+        </article>""".format(name=html.escape(s["nav"]), slug=s["slug"],
                              blurb=html.escape(s["lead"].split(". ")[0] + "."))
     groups_html = ""
     for gname, slugs in MENU_GROUPS:
