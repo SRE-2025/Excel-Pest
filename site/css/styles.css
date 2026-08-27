@@ -383,7 +383,7 @@ img { max-width: 100%; height: auto; display: block; }
   display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap;
 }
 .offer-strip h3 { color: #fff; margin: 0; }
-.offer-strip .pct { font-size: 2.4rem; font-weight: 800; color: var(--orange); }
+.offer-strip .pct { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 600; color: #D8A76B; display: block; }
 
 /* ---------- Hours table ---------- */
 .hours { list-style: none; margin: 0; padding: 0; }
@@ -734,8 +734,9 @@ body { background: var(--bg); color: var(--body); }
 .section--navy { background: var(--ink); }
 .cta-band { border-top: 3px solid var(--accent); }
 
-/* Mega-menu: hide emoji marks (no emoji in the system) */
+/* Mega-menu + image-slot badges: hide emoji marks (no emoji in the system) */
 .mega-emo { display: none; }
+.slot-badge { display: none !important; }
 .mega-col li a { gap: 0; }
 
 /* Coverage pins / misc accents that were orange now resolve to ink; soften pin pulse */
