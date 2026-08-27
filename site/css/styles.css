@@ -906,7 +906,7 @@ body { background: var(--bg); color: var(--body); }
 }
 
 
-/* Original motion asset from Excel's existing business site; custom imagery below replaces its old photo library. */
+/* Generic residential exterior motion supports the service story without looking like an advertisement. */
 .hero .hero-photo { display: none; }
 .hero .hero-video { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(1.04) brightness(.72); }
 @media (prefers-reduced-motion: reduce) { .hero .hero-video { display: none; } }
