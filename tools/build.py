@@ -772,6 +772,9 @@ IMG_REGISTRY = []
 REMOTE_IMAGES = {
     "services/pest-control-exterior-treatment.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg",
     "services/rodent-removal-attic.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg",
+    "services/scorpion-hill-country.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-scorpion-control-1920w.jpg",
+    "services/termite-mud-tubes.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-termite-control-1920w.jpg",
+    "services/lawn-chinch-bug-damage.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-lawn-care-services-1920w.jpg",
 }
 
 
