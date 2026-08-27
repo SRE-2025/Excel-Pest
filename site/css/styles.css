@@ -863,3 +863,37 @@ body { background: var(--bg); color: var(--body); }
   .hero { min-height: 0; }
   .hero .container { padding-top: 56px; padding-bottom: 56px; }
 }
+
+/* =========================================================================
+   Image-led homepage services — real local work under a dark editorial scrim
+   (collaborator's photography approach, integrated with the motion system)
+   ========================================================================= */
+.hero { min-height: 84vh; }
+.home-services { gap: 16px; }
+.home-services .svc-card {
+  min-height: 360px; padding: 26px; position: relative; justify-content: flex-end;
+  overflow: hidden; border: 0; border-radius: var(--radius); color: #fff;
+  background-color: var(--ink); background-size: cover; background-position: center; isolation: isolate;
+}
+.home-services .svc-card::after {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: linear-gradient(180deg, rgba(16,16,16,.10) 16%, rgba(16,16,16,.90) 100%); }
+.home-services .svc-card--pest-control { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg"); }
+.home-services .svc-card--termite-control { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-termite-control-1920w.jpg"); }
+.home-services .svc-card--rodent-exclusion { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg"); }
+.home-services .svc-card--wildlife-live-trapping { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-lawn-care-services-1920w.jpg"); }
+.home-services .svc-card--scorpion-control { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-scorpion-control-1920w.jpg"); }
+.home-services .svc-card--mosquito-misting { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-home-1920w.jpg"); }
+.home-services .svc-card__ic { color: #fff; margin-bottom: auto; opacity: .94; }
+.home-services .svc-card h3 { color: #fff; font-size: 1.42rem; margin-top: 28px; }
+.home-services .svc-card p { color: rgba(255,255,255,.9); }
+.home-services .svc-card .card__link { color: #fff; font-weight: 700; letter-spacing: .02em; }
+.home-services .svc-card .card__link span { display: inline-block; margin-left: 4px; transition: transform .2s ease; }
+.home-services .svc-card:hover .card__link { color: #fff; transform: none; }
+.home-services .svc-card:hover .card__link span { transform: translateX(5px); }
+.home-services .svc-card:hover .svc-card__ic { transform: none; }
+@media (max-width: 700px) {
+  .hero { min-height: 72vh; }
+  .home-services { gap: 12px; }
+  .home-services .svc-card { min-height: 300px; padding: 22px; }
+}
