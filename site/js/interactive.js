@@ -36,7 +36,8 @@
 
   /* ---------- Scroll reveal ---------- */
   var revealSel = ".section > .container > .grid > *, .card, .review-card, .stat, .offer-strip, " +
-                  ".crosslink, .spotlight, .flow .step, .pest-panel, .checker, .section-head, .prose";
+                  ".crosslink, .spotlight, .flow .step, .pest-panel, .checker, .section-head, .prose, " +
+                  ".statband .container > div, .why-panel, .split > div";
   if (!reduce && "IntersectionObserver" in window) {
     var targets = $$(revealSel).filter(function (el) { return !el.closest(".site-footer"); });
     targets.forEach(function (el, i) {
@@ -51,8 +52,16 @@
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -8% 0px" });
     targets.forEach(function (el) { io.observe(el); });
-    // Safety: reveal everything after 4s in case something is missed
-    setTimeout(function () { targets.forEach(function (el) { el.classList.add("in"); }); }, 4000);
+    // Reveal anything already at/above the fold immediately (no wait for first scroll)
+    requestAnimationFrame(function () {
+      var vh = window.innerHeight;
+      targets.forEach(function (el) {
+        var r = el.getBoundingClientRect();
+        if (r.top < vh * 0.92) { el.classList.add("in"); io.unobserve(el); }
+      });
+    });
+    // Safety net: if a fast scroll outruns the observer, reveal everything shortly after.
+    setTimeout(function () { targets.forEach(function (el) { el.classList.add("in"); }); }, 1600);
   }
 
   /* ---------- Count-up stats ---------- */
@@ -176,17 +185,28 @@
     go(0); rearm();
   }
 
-  /* ---------- Hero parallax ---------- */
-  var heroBg = $(".hero__bg");
-  var orbs = $$(".hero__orb");
-  if (!reduce && (heroBg || orbs.length)) {
+  /* ---------- Hero content parallax (drifts up gently as you scroll) ---------- */
+  var heroInner = $(".hero .container");
+  if (!reduce && heroInner) {
     window.addEventListener("scroll", function () {
       var y = window.pageYOffset || 0;
-      if (y > 800) return;
-      if (heroBg) heroBg.style.transform = "translateY(" + (y * 0.18) + "px)";
-      orbs.forEach(function (o, i) { o.style.transform = "translateY(" + (y * (0.08 + i * 0.05)) + "px)"; });
+      if (y > 760) return;
+      heroInner.style.transform = "translateY(" + (y * 0.12) + "px)";
+      heroInner.style.opacity = String(Math.max(0, 1 - y / 620));
     }, { passive: true });
   }
+
+  /* ---------- Smooth in-page anchor scrolling ---------- */
+  $$('a[href^="#"]').forEach(function (a) {
+    var id = a.getAttribute("href");
+    if (id.length < 2) return;
+    a.addEventListener("click", function (e) {
+      var target = document.getElementById(id.slice(1));
+      if (!target) return;
+      e.preventDefault();
+      target.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    });
+  });
 
   /* ---------- Multi-step estimate wizard ---------- */
   var wiz = $("[data-wizard]");

@@ -1320,12 +1320,13 @@ PESTS = [
 
 
 def stat_band():
-    # Static proof strip — no count-up animation, no clipping. Figures verified against BIZ.
+    # Proof strip. Figures are SEEDED with their correct final values, so they are right
+    # even with JS disabled; JS animates them up from 0 on scroll-in (no clipping).
     return """
   <section class="statband"><div class="container">
-    <div><div class="stat__num">Since 1998</div><div class="stat__lbl">Family-owned in Buda</div></div>
-    <div><div class="stat__num">5.0<span class="stat__u">&#9733;</span></div><div class="stat__lbl">Google rating, 41 reviews</div></div>
-    <div><div class="stat__num">27</div><div class="stat__lbl">Central Texas cities served</div></div>
+    <div><div class="stat__num" data-count="28">28</div><div class="stat__lbl">Years serving Central Texas</div></div>
+    <div><div class="stat__num" data-count="5.0" data-decimals="1">5.0</div><div class="stat__lbl">&#9733; Google rating &middot; 41 reviews</div></div>
+    <div><div class="stat__num" data-count="27">27</div><div class="stat__lbl">Central Texas cities served</div></div>
     <div><div class="stat__num">A+</div><div class="stat__lbl">BBB accredited &middot; insured</div></div>
   </div></section>"""
 
