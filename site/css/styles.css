@@ -924,3 +924,6 @@ body { background: var(--bg); color: var(--body); }
 .home-services .svc-card::after { background: linear-gradient(180deg, rgba(16,16,16,.04) 20%, rgba(16,16,16,.78) 100%); }
 .home-services .svc-card { cursor: pointer; }
 .home-services .svc-card .card__link::after { content: ""; position: absolute; inset: 0; z-index: 2; cursor: pointer; }
+
+/* Hill Country-style flyover keeps the horizon and neighborhoods in view. */
+.hero .hero-video { object-position: center 46%; }
