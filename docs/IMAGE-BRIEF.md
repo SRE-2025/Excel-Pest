@@ -7,7 +7,7 @@ filename, alt text, and either a ChatGPT generation prompt (AI) or a real-photo 
 WebP and compress → drop into `site/` at the path shown → the styled placeholder is replaced.
 Every image must keep its alt text. Never AI-generate real people, trucks, or completed jobs.
 
-## Real photos to request from the client (6)
+## Real photos to request from the client (33)
 
 These must be genuine photographs — do not generate them.
 
@@ -22,6 +22,168 @@ These must be genuine photographs — do not generate them.
 - **Alt text:** Megan Avery, Director of Office Operations
 - **Used on:** /about.html
 - **Requirement:** Real photo of Megan Avery, Director of Office Operations (client to supply).
+
+### A residential street in Buda, Central Texas
+- **File:** `site/photos/buda-local.webp`
+- **Alt text:** A residential street in Buda, Central Texas
+- **Used on:** /locations/buda.html
+- **Requirement:** Real local photo of a home or street in Buda (client to supply).
+
+### A residential street in Kyle, Central Texas
+- **File:** `site/photos/kyle-local.webp`
+- **Alt text:** A residential street in Kyle, Central Texas
+- **Used on:** /locations/kyle.html
+- **Requirement:** Real local photo of a home or street in Kyle (client to supply).
+
+### A residential street in San Marcos, Central Texas
+- **File:** `site/photos/san-marcos-local.webp`
+- **Alt text:** A residential street in San Marcos, Central Texas
+- **Used on:** /locations/san-marcos.html
+- **Requirement:** Real local photo of a home or street in San Marcos (client to supply).
+
+### A residential street in Dripping Springs, Central Texas
+- **File:** `site/photos/dripping-springs-local.webp`
+- **Alt text:** A residential street in Dripping Springs, Central Texas
+- **Used on:** /locations/dripping-springs.html
+- **Requirement:** Real local photo of a home or street in Dripping Springs (client to supply).
+
+### A residential street in Wimberley, Central Texas
+- **File:** `site/photos/wimberley-local.webp`
+- **Alt text:** A residential street in Wimberley, Central Texas
+- **Used on:** /locations/wimberley.html
+- **Requirement:** Real local photo of a home or street in Wimberley (client to supply).
+
+### A residential street in Driftwood, Central Texas
+- **File:** `site/photos/driftwood-local.webp`
+- **Alt text:** A residential street in Driftwood, Central Texas
+- **Used on:** /locations/driftwood.html
+- **Requirement:** Real local photo of a home or street in Driftwood (client to supply).
+
+### A residential street in Manchaca, Central Texas
+- **File:** `site/photos/manchaca-local.webp`
+- **Alt text:** A residential street in Manchaca, Central Texas
+- **Used on:** /locations/manchaca.html
+- **Requirement:** Real local photo of a home or street in Manchaca (client to supply).
+
+### A residential street in Del Valle, Central Texas
+- **File:** `site/photos/del-valle-local.webp`
+- **Alt text:** A residential street in Del Valle, Central Texas
+- **Used on:** /locations/del-valle.html
+- **Requirement:** Real local photo of a home or street in Del Valle (client to supply).
+
+### A residential street in Austin, Central Texas
+- **File:** `site/photos/austin-local.webp`
+- **Alt text:** A residential street in Austin, Central Texas
+- **Used on:** /locations/austin.html
+- **Requirement:** Real local photo of a home or street in Austin (client to supply).
+
+### A residential street in Barton Creek, Central Texas
+- **File:** `site/photos/barton-creek-local.webp`
+- **Alt text:** A residential street in Barton Creek, Central Texas
+- **Used on:** /locations/barton-creek.html
+- **Requirement:** Real local photo of a home or street in Barton Creek (client to supply).
+
+### A residential street in Bear Creek, Central Texas
+- **File:** `site/photos/bear-creek-local.webp`
+- **Alt text:** A residential street in Bear Creek, Central Texas
+- **Used on:** /locations/bear-creek.html
+- **Requirement:** Real local photo of a home or street in Bear Creek (client to supply).
+
+### A residential street in Bee Cave, Central Texas
+- **File:** `site/photos/bee-cave-local.webp`
+- **Alt text:** A residential street in Bee Cave, Central Texas
+- **Used on:** /locations/bee-cave.html
+- **Requirement:** Real local photo of a home or street in Bee Cave (client to supply).
+
+### A residential street in Blanco, Central Texas
+- **File:** `site/photos/blanco-local.webp`
+- **Alt text:** A residential street in Blanco, Central Texas
+- **Used on:** /locations/blanco.html
+- **Requirement:** Real local photo of a home or street in Blanco (client to supply).
+
+### A residential street in Briarcliff, Central Texas
+- **File:** `site/photos/briarcliff-local.webp`
+- **Alt text:** A residential street in Briarcliff, Central Texas
+- **Used on:** /locations/briarcliff.html
+- **Requirement:** Real local photo of a home or street in Briarcliff (client to supply).
+
+### A residential street in Canyon Lake, Central Texas
+- **File:** `site/photos/canyon-lake-local.webp`
+- **Alt text:** A residential street in Canyon Lake, Central Texas
+- **Used on:** /locations/canyon-lake.html
+- **Requirement:** Real local photo of a home or street in Canyon Lake (client to supply).
+
+### A residential street in Creedmoor, Central Texas
+- **File:** `site/photos/creedmoor-local.webp`
+- **Alt text:** A residential street in Creedmoor, Central Texas
+- **Used on:** /locations/creedmoor.html
+- **Requirement:** Real local photo of a home or street in Creedmoor (client to supply).
+
+### A residential street in Hudson Bend, Central Texas
+- **File:** `site/photos/hudson-bend-local.webp`
+- **Alt text:** A residential street in Hudson Bend, Central Texas
+- **Used on:** /locations/hudson-bend.html
+- **Requirement:** Real local photo of a home or street in Hudson Bend (client to supply).
+
+### A residential street in Johnson City, Central Texas
+- **File:** `site/photos/johnson-city-local.webp`
+- **Alt text:** A residential street in Johnson City, Central Texas
+- **Used on:** /locations/johnson-city.html
+- **Requirement:** Real local photo of a home or street in Johnson City (client to supply).
+
+### A residential street in Lakeway, Central Texas
+- **File:** `site/photos/lakeway-local.webp`
+- **Alt text:** A residential street in Lakeway, Central Texas
+- **Used on:** /locations/lakeway.html
+- **Requirement:** Real local photo of a home or street in Lakeway (client to supply).
+
+### A residential street in Lost Creek, Central Texas
+- **File:** `site/photos/lost-creek-local.webp`
+- **Alt text:** A residential street in Lost Creek, Central Texas
+- **Used on:** /locations/lost-creek.html
+- **Requirement:** Real local photo of a home or street in Lost Creek (client to supply).
+
+### A residential street in Mustang Ridge, Central Texas
+- **File:** `site/photos/mustang-ridge-local.webp`
+- **Alt text:** A residential street in Mustang Ridge, Central Texas
+- **Used on:** /locations/mustang-ridge.html
+- **Requirement:** Real local photo of a home or street in Mustang Ridge (client to supply).
+
+### A residential street in Niederwald, Central Texas
+- **File:** `site/photos/niederwald-local.webp`
+- **Alt text:** A residential street in Niederwald, Central Texas
+- **Used on:** /locations/niederwald.html
+- **Requirement:** Real local photo of a home or street in Niederwald (client to supply).
+
+### A residential street in Point Venture, Central Texas
+- **File:** `site/photos/point-venture-local.webp`
+- **Alt text:** A residential street in Point Venture, Central Texas
+- **Used on:** /locations/point-venture.html
+- **Requirement:** Real local photo of a home or street in Point Venture (client to supply).
+
+### A residential street in Redwood, Central Texas
+- **File:** `site/photos/redwood-local.webp`
+- **Alt text:** A residential street in Redwood, Central Texas
+- **Used on:** /locations/redwood.html
+- **Requirement:** Real local photo of a home or street in Redwood (client to supply).
+
+### A residential street in Sunset Valley, Central Texas
+- **File:** `site/photos/sunset-valley-local.webp`
+- **Alt text:** A residential street in Sunset Valley, Central Texas
+- **Used on:** /locations/sunset-valley.html
+- **Requirement:** Real local photo of a home or street in Sunset Valley (client to supply).
+
+### A residential street in Uhland, Central Texas
+- **File:** `site/photos/uhland-local.webp`
+- **Alt text:** A residential street in Uhland, Central Texas
+- **Used on:** /locations/uhland.html
+- **Requirement:** Real local photo of a home or street in Uhland (client to supply).
+
+### A residential street in West Lake Hills, Central Texas
+- **File:** `site/photos/west-lake-hills-local.webp`
+- **Alt text:** A residential street in West Lake Hills, Central Texas
+- **Used on:** /locations/west-lake-hills.html
+- **Requirement:** Real local photo of a home or street in West Lake Hills (client to supply).
 
 ### Crew on the job
 - **File:** `site/photos/crew-on-site.webp`

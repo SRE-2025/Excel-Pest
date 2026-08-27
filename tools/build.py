@@ -798,13 +798,81 @@ def portrait_svg(alt):
     ).format(alt=html.escape(alt))
 
 
-def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="", art="scene", caption=""):
+# ---------- Hand-built pest silhouette motifs (elegant watermark illustrations) ----------
+MOTIFS = {
+    "bug": '<g transform="translate(120,66)"><ellipse cx="72" cy="46" rx="48" ry="27"/>'
+           '<ellipse cx="26" cy="46" rx="16" ry="13"/><circle cx="5" cy="46" r="10"/>'
+           '<g stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round">'
+           '<path d="M-2 40 q-16 -18 -28 -20"/><path d="M-2 52 q-16 18 -28 20"/>'
+           '<path d="M24 32 l-18 -22"/><path d="M42 30 l-8 -28"/><path d="M60 30 l6 -28"/>'
+           '<path d="M24 60 l-18 22"/><path d="M42 62 l-8 28"/><path d="M60 62 l6 28"/></g></g>',
+    "scorpion": '<g transform="translate(120,52)"><ellipse cx="70" cy="66" rx="40" ry="22"/>'
+           '<ellipse cx="26" cy="66" rx="15" ry="11"/>'
+           '<path d="M12 60 q-26 -10 -36 2 q12 8 26 6 z"/><path d="M12 72 q-26 10 -36 -2 q12 -8 26 -6 z"/>'
+           '<g stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round">'
+           '<path d="M46 48 l-12 -20"/><path d="M62 46 l-4 -22"/><path d="M78 46 l6 -22"/>'
+           '<path d="M46 84 l-12 20"/><path d="M62 86 l-4 22"/><path d="M78 86 l6 22"/>'
+           '<path d="M108 62 q34 -2 46 -28 q6 -18 -8 -30" stroke-width="9"/></g>'
+           '<circle cx="146" cy="0" r="8"/></g>',
+    "spider": '<g transform="translate(150,52)"><ellipse cx="60" cy="74" rx="30" ry="36"/>'
+           '<ellipse cx="60" cy="36" rx="18" ry="16"/>'
+           '<g stroke="currentColor" stroke-width="5" fill="none" stroke-linecap="round">'
+           '<path d="M46 30 q-40 -16 -62 -36"/><path d="M46 42 q-48 -2 -70 -8"/>'
+           '<path d="M46 54 q-48 12 -66 26"/><path d="M46 66 q-42 24 -56 48"/>'
+           '<path d="M74 30 q40 -16 62 -36"/><path d="M74 42 q48 -2 70 -8"/>'
+           '<path d="M74 54 q48 12 66 26"/><path d="M74 66 q42 24 56 48"/></g></g>',
+    "mosquito": '<g transform="translate(110,60)"><ellipse cx="96" cy="72" rx="42" ry="12" transform="rotate(12 96 72)"/>'
+           '<circle cx="48" cy="64" r="11"/><path d="M42 64 q-30 -8 -48 -2" stroke="currentColor" stroke-width="3" fill="none"/>'
+           '<ellipse cx="100" cy="44" rx="30" ry="11" opacity="0.55" transform="rotate(-18 100 44)"/>'
+           '<ellipse cx="112" cy="52" rx="26" ry="9" opacity="0.55" transform="rotate(-6 112 52)"/>'
+           '<g stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round">'
+           '<path d="M74 80 q-6 28 -26 38"/><path d="M92 82 q0 32 -12 46"/><path d="M110 82 q8 30 28 40"/></g></g>',
+    "mouse": '<g transform="translate(120,72)"><ellipse cx="86" cy="58" rx="54" ry="34"/>'
+           '<circle cx="30" cy="52" r="21"/><circle cx="16" cy="30" r="15"/>'
+           '<path d="M138 60 q42 8 62 -18" stroke="currentColor" stroke-width="6" fill="none" stroke-linecap="round"/></g>',
+    "raccoon": '<g transform="translate(150,44)"><circle cx="80" cy="82" r="56"/>'
+           '<path d="M40 34 q-8 -30 18 -32 q10 12 4 36 z"/><path d="M120 34 q8 -30 -18 -32 q-10 12 -4 36 z"/>'
+           '<ellipse cx="80" cy="98" rx="20" ry="15" fill="rgba(0,0,0,.18)"/></g>',
+    "leaf": '<g transform="translate(150,44)"><path d="M100 16 C42 38 42 142 100 164 C158 142 158 38 100 16 Z"/>'
+           '<path d="M100 28 L100 152" stroke="rgba(0,0,0,.18)" stroke-width="4" fill="none"/>'
+           '<path d="M100 60 L74 44 M100 84 L72 70 M100 108 L74 98" stroke="rgba(0,0,0,.14)" stroke-width="3" fill="none"/></g>',
+}
+SERVICE_MOTIF = {
+    "scorpion-control": "scorpion", "spider-control": "spider", "tick-control": "spider",
+    "mosquito-misting": "mosquito", "rodent-removal": "mouse", "rodent-exclusion": "mouse",
+    "wildlife-live-trapping": "raccoon", "lawn-pest-control": "leaf",
+}
+
+
+def pest_scene(alt, motif="bug", sunx=316, suny=58):
+    """A Central Texas dusk scene with a large translucent pest silhouette — one per service."""
+    return (
+        '<svg class="slot-art" viewBox="0 0 400 225" preserveAspectRatio="xMidYMid slice" '
+        'role="img" aria-label="{alt}" xmlns="http://www.w3.org/2000/svg">'
+        '<defs><linearGradient id="ps" x1="0" y1="0" x2="0.35" y2="1">'
+        '<stop offset="0" stop-color="#0a1f44"/><stop offset="1" stop-color="#1c3a6e"/></linearGradient></defs>'
+        '<rect width="400" height="225" fill="url(#ps)"/>'
+        '<circle cx="{sx}" cy="{sy}" r="30" fill="#f26419" opacity="0.9"/>'
+        '<g fill="rgba(255,255,255,0.16)">{motif}</g>'
+        '<path d="M0 176 Q100 140 200 168 T400 158 V225 H0 Z" fill="rgba(255,255,255,0.05)"/>'
+        '<path d="M0 196 Q120 168 240 190 T400 184 V225 H0 Z" fill="rgba(0,0,0,0.14)"/>'
+        '</svg>'
+    ).format(alt=html.escape(alt), sx=sunx, sy=suny, motif=MOTIFS.get(motif, MOTIFS["bug"]))
+
+
+def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="", art="scene", caption="", svg=None):
     """Render polished placeholder ARTWORK (so pages look finished) and register the slot for the
-    image brief. The real filename + spec live in an HTML comment for the dev; kind: 'ai' | 'photo'."""
+    image brief. The real filename + spec live in an HTML comment for the dev; kind: 'ai' | 'photo'.
+    Pass `svg` to supply custom artwork (e.g. a per-pest illustration)."""
     IMG_REGISTRY.append({"kind": kind, "label": label, "filename": filename, "alt": alt, "spec": spec, "page": page})
     comment = "<!-- IMAGE SLOT ({k}): {fn} — {spec} -->".format(
         k=kind.upper(), fn=filename, spec=spec.replace("--", "—"))
-    art_svg = portrait_svg(alt) if art == "portrait" else scene_svg(alt)
+    if svg is not None:
+        art_svg = svg
+    elif art == "portrait":
+        art_svg = portrait_svg(alt)
+    else:
+        art_svg = scene_svg(alt)
     badge = '' if art == "portrait" else '<span class="slot-badge" aria-hidden="true">%s</span>' % emo
     cap = '<figcaption class="slot-cap">%s</figcaption>' % html.escape(caption) if caption else ''
     return ('<figure class="img-slot {ratio}" data-filename="{fn}">{comment}{art}{badge}{cap}</figure>'
@@ -948,7 +1016,8 @@ def render_service(s):
     )
     emo, fn, alt, prompt = SERVICE_IMAGES[s["slug"]]
     hero_img = img_slot("ai", emo, alt, "services/" + fn, alt, prompt, ratio="ratio-wide",
-                        page="/services/" + s["slug"] + ".html")
+                        page="/services/" + s["slug"] + ".html",
+                        svg=pest_scene(alt, SERVICE_MOTIF.get(s["slug"], "bug")))
     faqs = SERVICE_FAQS.get(s["slug"], [])
     faq_items = "".join(
         ('<div class="acc-item"><button class="acc-head">{q}<span class="ic" aria-hidden="true">+</span></button>'
@@ -1022,19 +1091,29 @@ def render_location(l):
     title = "Pest Control in %s, TX | Excel Pest since %s" % (l["city"], BIZ["founded"])
     desc = "Family-owned pest, rodent, scorpion and lawn-pest control in %s, %s. Trusted across Central Texas since %s. Free estimates — call %s." % (
         l["city"], l["county"], BIZ["founded"], BIZ["phone"])
+    loc_service_slugs = ["pest-control", "scorpion-control", "termite-control", "ant-control",
+                         "rodent-removal", "wildlife-live-trapping", "mosquito-misting", "lawn-pest-control"]
     svc_cards = "".join(
         """        <article class="card card--link">
           <div class="card__icon">{icon}</div>
           <h3>{name}</h3>
           <a class="card__link" href="/services/{slug}.html">Learn more →</a>
-        </article>""".format(icon=s["icon"], name=html.escape(s["nav"]), slug=s["slug"])
-        for s in SERVICES
+        </article>""".format(icon=SERVICE_BY_SLUG[sl]["icon"], name=html.escape(SERVICE_BY_SLUG[sl]["nav"]), slug=sl)
+        for sl in loc_service_slugs
     )
+    loc_alt = "A residential street in " + l["city"] + ", Central Texas"
+    loc_img = img_slot("photo", "🏠", loc_alt, "photos/" + l["slug"] + "-local.webp", loc_alt,
+                       "Real local photo of a home or street in " + l["city"] + " (client to supply).",
+                       ratio="ratio-wide", page="/locations/" + l["slug"] + ".html",
+                       svg=scene_svg(loc_alt))
     nearby = "".join(
         '<li><a href="/locations/%s.html">Pest control in %s</a></li>' % (n, html.escape(LOCATION_BY_SLUG[n]["city"]))
         for n in l["nearby"]
     )
     body = page_hero("Pest Control in " + l["city"] + ", Texas", l["county"] + " · Family-owned since " + BIZ["founded"], crumbs) + """
+  <section class="section" style="padding-bottom:0;">
+    <div class="container">{loc_img}</div>
+  </section>
   <section class="section">
     <div class="container split">
       <div class="prose">
@@ -1077,7 +1156,7 @@ def render_location(l):
   </section>""".format(
         lead=l["lead"], angle=l["angle"], city=l["city"], founded=BIZ["founded"], mgr=BIZ["office_mgr"],
         license=BIZ["license"], ptel=BIZ["phone_tel"], phone=BIZ["phone"], nearby=nearby,
-        sister_url=BIZ["sister_url"], sister=BIZ["sister_name"], svc_cards=svc_cards,
+        sister_url=BIZ["sister_url"], sister=BIZ["sister_name"], svc_cards=svc_cards, loc_img=loc_img,
     )
     body += cta_band(heading="Pest problem in " + l["city"] + "?", sub="Talk to the crew that has served the area since " + BIZ["founded"] + ".")
     # Location "Service" schema scoped to the city
