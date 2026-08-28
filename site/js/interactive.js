@@ -160,7 +160,7 @@
       } else if (zipHint.test(raw)) {
         result.className = "checker__result miss";
         result.innerHTML = 'We serve much of Central Texas around Buda, Kyle &amp; San Marcos. ' +
-          'Give us your ZIP by phone: <a href="tel:+17372013059">(737) 201-3059</a>.';
+          'Give us your ZIP by phone: <a href="tel:+15122915900">(512) 291-5900</a>.';
       } else {
         result.className = "checker__result miss";
         result.innerHTML = 'We may reach you — we cover 27 Central Texas cities. ' +

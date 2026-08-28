@@ -35,13 +35,13 @@
       var body = lines.join('\n') + '\n\n' + get('message');
       var subject = 'Free estimate request' + (get('name') ? ' — ' + get('name') : '');
       window.location.href = 'mailto:' + OFFICE + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
-      setNote('Opening your email app… if nothing happens, call (737) 201-3059.');
+      setNote('Opening your email app… if nothing happens, call (512) 291-5900.');
     }
 
     function showSuccess() {
       form.innerHTML = '<div class="form-success"><strong>Thank you — your request is on its way.</strong>' +
         '<p>A member of our team will get back to you shortly. Need us sooner? Call ' +
-        '<a href="tel:+17372013059">(737) 201-3059</a>.</p></div>';
+        '<a href="tel:+15122915900">(512) 291-5900</a>.</p></div>';
     }
 
     form.addEventListener('submit', function (e) {

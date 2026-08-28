@@ -27,12 +27,12 @@ BASE = os.environ.get("BASE_PATH", "").rstrip("/")
 # Business facts (single source of truth — from the discovery brief)
 # --------------------------------------------------------------------------
 BIZ = {
-    "name": "Austin Excel Pest & Lawn Control",
+    "name": "Austin Excel Pest & Lawn Control Inc.",
     "legal": "Austin Excel Pest & Lawn Control Inc.",
     "short": "Excel Pest",
     "domain": "https://excelpest-lawncontrol.com",
-    "phone": "(737) 201-3059",
-    "phone_tel": "+17372013059",
+    "phone": "(512) 291-5900",
+    "phone_tel": "+15122915900",
     "text": "(737) 350-8553",
     "text_tel": "+17373508553",
     "email": "office@excelpest-lawncontrol.com",
@@ -106,7 +106,7 @@ SERVICES = [
         "slug": "pest-control", "nav": "General Pest Control", "icon": "🐜",
         "h1": "General Pest Control in Buda & Central Texas",
         "title": "Pest Control in Buda & Central Texas | Excel Pest since 1998",
-        "desc": "Water-based, pet-safe pest control for ants, roaches, crickets, spiders, fleas and ticks across Buda, Kyle and Central Texas. Free estimates — call (737) 201-3059.",
+        "desc": "Water-based, pet-safe pest control for ants, roaches, crickets, spiders, fleas and ticks across Buda, Kyle and Central Texas. Free estimates — call (512) 291-5900.",
         "lead": "Central Texas homes face a year-round rotation of pests — ants in spring, crickets and scorpions in the late-summer heat, spiders and roaches as it cools. We have treated them here since 1998, with water-based products chosen so your family and four-legged family members stay comfortable.",
         "treats": ["Ants", "Cockroaches", "Crickets", "Fleas", "Spiders", "Ticks", "Silverfish", "Wasps & hornets"],
         "sections": [
@@ -119,7 +119,7 @@ SERVICES = [
         "slug": "scorpion-control", "nav": "Scorpion Control", "icon": "🦂",
         "h1": "Scorpion Control in the Central Texas Hill Country",
         "title": "Scorpion Control Buda, Dripping Springs & Wimberley | Excel Pest",
-        "desc": "Striped bark scorpions love Hill Country limestone. Excel Pest treats and seals them out across Buda, Dripping Springs and Wimberley. Call (737) 201-3059.",
+        "desc": "Striped bark scorpions love Hill Country limestone. Excel Pest treats and seals them out across Buda, Dripping Springs and Wimberley. Call (512) 291-5900.",
         "lead": "If you live west of I-35, you know the striped bark scorpion. They thrive in the limestone, cedar and rock that define the Hill Country, and they slip into homes through the smallest gaps. Scorpions are one of the clearest signs you are dealing with Central Texas — and one of the reasons homeowners call us.",
         "treats": ["Striped bark scorpions", "Nesting sites in rock & wood piles", "Entry points around slab & pier-and-beam", "Attic & garage harborage"],
         "sections": [
@@ -132,7 +132,7 @@ SERVICES = [
         "slug": "termite-control", "nav": "Termite Control", "icon": "🪵",
         "h1": "Termite Control & Inspections in Central Texas",
         "title": "Termite Control & Inspection in Buda, TX | Excel Pest since 1998",
-        "desc": "Subterranean termite inspections and treatment for Central Texas homes, backed by our workmanship warranty. Licensed TPCL 0786979. Call (737) 201-3059.",
+        "desc": "Subterranean termite inspections and treatment for Central Texas homes, backed by our workmanship warranty. Licensed TPCL 0786979. Call (512) 291-5900.",
         "lead": "Subterranean termites are the quiet, expensive threat to a Central Texas home. They work out of sight for years, and clay soils that swell and crack in our droughts give them constant access to a foundation. A licensed inspection is the only way to know where you stand.",
         "treats": ["Subterranean termites", "Mud tubes on the foundation", "Hollow or blistered wood", "Swarms after spring rain"],
         "sections": [
@@ -158,7 +158,7 @@ SERVICES = [
         "slug": "rodent-removal", "nav": "Rodent Removal", "icon": "🐀",
         "h1": "Rodent Removal in Central Texas",
         "title": "Rodent Removal in Buda, TX | Rats & Mice | Excel Pest",
-        "desc": "Fast rat and mouse removal from Central Texas attics, garages and walls — then we seal them out. Water-based, pet-safe. Call (737) 201-3059.",
+        "desc": "Fast rat and mouse removal from Central Texas attics, garages and walls — then we seal them out. Water-based, pet-safe. Call (512) 291-5900.",
         "lead": "Scratching in the attic at night, droppings in the pantry, chewed wiring — rats and mice do real damage fast, and they breed even faster. We remove the rodents inside now, then seal the gaps so it doesn't repeat.",
         "treats": ["Roof rats & house mice", "Attic & wall-void activity", "Droppings & gnaw marks", "Chewed wiring (a fire risk)"],
         "sections": [
@@ -171,7 +171,7 @@ SERVICES = [
         "slug": "rodent-exclusion", "nav": "Rodent Exclusion", "icon": "🧰",
         "h1": "Rodent Exclusion — Seal Them Out for Good",
         "title": "Rodent Exclusion in Buda, TX | Seal Out Rats & Mice | Excel Pest",
-        "desc": "Rodent exclusion that finds and seals every entry point so rats and mice can't get back into your Central Texas home. Call (737) 201-3059.",
+        "desc": "Rodent exclusion that finds and seals every entry point so rats and mice can't get back into your Central Texas home. Call (512) 291-5900.",
         "lead": "Trapping without sealing is a treadmill — new rodents follow the same trails right back inside. Exclusion is the permanent fix: we find every gap and close it with materials rodents can't chew through.",
         "treats": ["Roofline & eave gaps", "Weep holes & pipe penetrations", "Garage & foundation gaps", "Vent & soffit openings"],
         "sections": [
@@ -184,7 +184,7 @@ SERVICES = [
         "slug": "wildlife-live-trapping", "nav": "Wildlife Live Trapping", "icon": "🦝",
         "h1": "Wildlife Live Trapping & Removal in Central Texas",
         "title": "Wildlife Live Trapping in Buda, TX | Raccoons, Squirrels, Opossums",
-        "desc": "Humane live trapping and removal of raccoons, squirrels and opossums from Central Texas homes, with entry points sealed. Call (737) 201-3059.",
+        "desc": "Humane live trapping and removal of raccoons, squirrels and opossums from Central Texas homes, with entry points sealed. Call (512) 291-5900.",
         "lead": "Raccoons in the attic, squirrels in the soffit, opossums under the deck — Central Texas wildlife treats homes like the hollow trees they replaced. We remove them humanely with live trapping and close off the damage so they cannot move back in.",
         "treats": ["Raccoons", "Squirrels", "Opossums", "Attic, soffit & deck intrusions"],
         "sections": [
@@ -197,7 +197,7 @@ SERVICES = [
         "slug": "mosquito-misting", "nav": "Mosquito Misting Systems", "icon": "🦟",
         "h1": "Mosquito Control & Misting Systems",
         "title": "Mosquito Control & Misting Systems in Central Texas | Excel Pest",
-        "desc": "Take back the backyard — mosquito control and automated misting systems for Central Texas homes. Water-based, family-focused. Call (737) 201-3059.",
+        "desc": "Take back the backyard — mosquito control and automated misting systems for Central Texas homes. Water-based, family-focused. Call (512) 291-5900.",
         "lead": "Central Texas humidity and standing water turn a backyard into a mosquito nursery from spring through the first cold snap. We control the mosquitoes you have and install misting systems that keep the yard usable all season.",
         "treats": ["Backyard & patio mosquitoes", "Standing-water breeding sites", "Automated misting systems", "Seasonal recurring control"],
         "sections": [
@@ -210,7 +210,7 @@ SERVICES = [
         "slug": "lawn-pest-control", "nav": "Lawn Pest Control", "icon": "🌱",
         "h1": "Lawn Pest, Weed & Disease Control",
         "title": "Lawn Pest Control in Buda & Central Texas | Grubs, Chinch Bugs",
-        "desc": "Grubs, chinch bugs and armyworms plus weed and disease control for Central Texas lawns — St. Augustine and Bermuda. Call (737) 201-3059 for a free estimate.",
+        "desc": "Grubs, chinch bugs and armyworms plus weed and disease control for Central Texas lawns — St. Augustine and Bermuda. Call (512) 291-5900 for a free estimate.",
         "lead": "A brown patch that spreads in the July heat usually is not just the drought — it is chinch bugs, grubs, or armyworms working under the surface. We treat the pests and the weeds and disease that damage Central Texas turf, so the lawn recovers and holds.",
         "treats": ["Chinch bugs", "White grubs", "Armyworms", "Weeds & turf disease (brown patch)"],
         "sections": [
@@ -223,7 +223,7 @@ SERVICES = [
         "slug": "ant-control", "nav": "Ant Control", "icon": "🐜",
         "h1": "Ant Control in Buda & Central Texas",
         "title": "Ant Control in Buda, TX | Fire Ants & Household Ants | Excel Pest",
-        "desc": "Fire ants, sugar ants and carpenter ants treated at the colony across Buda and Central Texas. Water-based, pet-safe. Call (737) 201-3059.",
+        "desc": "Fire ants, sugar ants and carpenter ants treated at the colony across Buda and Central Texas. Water-based, pet-safe. Call (512) 291-5900.",
         "lead": "From fire-ant mounds in the yard to sugar ants marching across the kitchen counter, ants are the most common call we get in Central Texas. Killing the trail you can see does nothing — the colony just sends more. We treat the source.",
         "treats": ["Fire ants", "Sugar / odorous ants", "Carpenter ants", "Acrobat & pharaoh ants", "Mounds in the yard"],
         "sections": [
@@ -236,7 +236,7 @@ SERVICES = [
         "slug": "cockroach-control", "nav": "Cockroach Control", "icon": "🪳",
         "h1": "Cockroach Control in Central Texas",
         "title": "Cockroach Control in Buda, TX | Roach Extermination | Excel Pest",
-        "desc": "German and American cockroaches eliminated from Central Texas homes and kept out. Water-based, pet-safe treatment. Call (737) 201-3059.",
+        "desc": "German and American cockroaches eliminated from Central Texas homes and kept out. Water-based, pet-safe treatment. Call (512) 291-5900.",
         "lead": "Roaches are more than a gross surprise at 2 a.m. — they contaminate food, trigger allergies, and multiply fast in our warm, humid climate. We find where they breed and shut it down.",
         "treats": ["German cockroaches", "American (palmetto) roaches", "Oriental roaches", "Egg cases & harborage"],
         "sections": [
@@ -249,7 +249,7 @@ SERVICES = [
         "slug": "cricket-control", "nav": "Cricket Control", "icon": "🦗",
         "h1": "Cricket Control in Central Texas",
         "title": "Cricket Control in Buda, TX | Fall Field Crickets | Excel Pest",
-        "desc": "Central Texas field-cricket swarms controlled at the source for homes and businesses. Water-based, pet-safe. Call (737) 201-3059.",
+        "desc": "Central Texas field-cricket swarms controlled at the source for homes and businesses. Water-based, pet-safe. Call (512) 291-5900.",
         "lead": "Every late summer, field crickets swarm Central Texas by the thousands — piling at doorways, under lights and inside garages. They stain surfaces, smell, and draw the scorpions and spiders that feed on them. We break the cycle.",
         "treats": ["Field crickets", "Camel / spider crickets", "Exterior-lighting swarms", "Entry points & harborage"],
         "sections": [
@@ -262,7 +262,7 @@ SERVICES = [
         "slug": "flea-control", "nav": "Flea Control", "icon": "🐾",
         "h1": "Flea Control for Central Texas Homes & Yards",
         "title": "Flea Control in Buda, TX | Home & Yard Flea Treatment | Excel Pest",
-        "desc": "Fleas eliminated from the home and yard with treatment that breaks the life cycle — safe for the pets they bite. Call (737) 201-3059.",
+        "desc": "Fleas eliminated from the home and yard with treatment that breaks the life cycle — safe for the pets they bite. Call (512) 291-5900.",
         "lead": "Fleas don't just bite pets — they infest carpet, bedding and yards, and a few can become thousands in weeks. Our mild winters let them thrive nearly year-round here. We treat the whole life cycle, indoors and out.",
         "treats": ["Adult fleas", "Eggs & larvae in carpet / bedding", "Shaded yard harborage", "Re-infestation prevention"],
         "sections": [
@@ -275,7 +275,7 @@ SERVICES = [
         "slug": "spider-control", "nav": "Spider Control", "icon": "🕷️",
         "h1": "Spider Control in Central Texas",
         "title": "Spider Control in Buda, TX | Black Widows & Recluse | Excel Pest",
-        "desc": "Spider control for Central Texas homes — including black widow and brown recluse hotspots. Web removal + prevention. Call (737) 201-3059.",
+        "desc": "Spider control for Central Texas homes — including black widow and brown recluse hotspots. Web removal + prevention. Call (512) 291-5900.",
         "lead": "A few spiders keep other bugs down; a lot of spiders — or a black widow by the garage — is a different story. We reduce spiders by cutting off their food supply and clearing the corners, eaves and garages they nest in.",
         "treats": ["Common house spiders", "Black widows", "Brown recluse", "Webs in eaves & garages"],
         "sections": [
@@ -288,7 +288,7 @@ SERVICES = [
         "slug": "tick-control", "nav": "Tick Control", "icon": "🕸️",
         "h1": "Tick Control for Central Texas Yards",
         "title": "Tick Control in Buda, TX | Yard Tick Treatment | Excel Pest",
-        "desc": "Tick control for Central Texas yards and properties — protecting family and pets from bites. Focused on shaded harborage. Call (737) 201-3059.",
+        "desc": "Tick control for Central Texas yards and properties — protecting family and pets from bites. Focused on shaded harborage. Call (512) 291-5900.",
         "lead": "Ticks turn a backyard, greenbelt edge or wooded lot into a health risk for your family and pets. In Central Texas they hide in tall grass, leaf litter and shaded borders. We treat where they wait.",
         "treats": ["Yard & perimeter ticks", "Shaded / leaf-litter harborage", "Pet runs & trails", "Greenbelt & wood-line borders"],
         "sections": [
@@ -1271,7 +1271,7 @@ def services_hub():
   </section>""".format(groups=groups_html, cross=crosslink_block())
     body += cta_band()
     schema = [business_schema(), breadcrumb_schema(crumbs)]
-    desc = "Pest control, scorpion, termite, rodent, wildlife, mosquito and lawn-pest control across Buda and Central Texas. Family-owned since 1998. Call (737) 201-3059."
+    desc = "Pest control, scorpion, termite, rodent, wildlife, mosquito and lawn-pest control across Buda and Central Texas. Family-owned since 1998. Call (512) 291-5900."
     return assemble("Pest Control Services in Buda & Central Texas | Excel Pest", desc, canonical, body, schema)
 
 
@@ -1334,7 +1334,7 @@ def service_area_hub():
                        cities=json.dumps([{"name": c, "slug": CITY_SLUG.get(c, "")} for c in ALL_CITIES]))
     body += cta_band()
     schema = [business_schema(), breadcrumb_schema(crumbs)]
-    desc = "Excel Pest serves 27 Central Texas cities — Buda, Kyle, San Marcos, Dripping Springs, Wimberley and more. Family-owned since 1998. Call (737) 201-3059."
+    desc = "Excel Pest serves 27 Central Texas cities — Buda, Kyle, San Marcos, Dripping Springs, Wimberley and more. Family-owned since 1998. Call (512) 291-5900."
     return assemble("Service Area — Pest Control Across Central Texas | Excel Pest", desc, canonical, body, schema)
 
 
@@ -1632,7 +1632,7 @@ def home():
         city_links=city_links, cross=crosslink_block(), statband=stat_band(),
         spotlight=spotlight, flow=flow, hero_img=HOME_HERO_IMG, marquee=marquee,
     )
-    desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. 5.0-star, BBB A+, licensed. Free estimates — call (737) 201-3059."
+    desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. 5.0-star, BBB A+, licensed. Free estimates — call (512) 291-5900."
     schema = [business_schema(with_rating=True), {
         "@context": "https://schema.org", "@type": "WebSite", "name": BIZ["name"],
         "url": BIZ["domain"] + "/",
@@ -1817,7 +1817,7 @@ def offers():
     </div>
   </section>""".format(license=BIZ["license"])
     body += cta_band()
-    desc = "10% off pest control for military, veterans, first responders, nurses and teachers. Free estimates, warranties and emergency service from Excel Pest. Call (737) 201-3059."
+    desc = "10% off pest control for military, veterans, first responders, nurses and teachers. Free estimates, warranties and emergency service from Excel Pest. Call (512) 291-5900."
     schema = [business_schema(), breadcrumb_schema(crumbs)]
     return assemble("Offers & Discounts — 10% for Heroes & Educators | Excel Pest", desc, canonical, body, schema)
 
@@ -2004,7 +2004,7 @@ def contact():
         pest_choices=pest_choices, city_opts=city_opts,
         form_action=form_action, form_hidden=form_hidden,
     )
-    desc = "Request a free pest control estimate in Buda and Central Texas. Call (737) 201-3059, text (737) 350-8553, or send a message. Family-owned since 1998."
+    desc = "Request a free pest control estimate in Buda and Central Texas. Call (512) 291-5900, text (737) 350-8553, or send a message. Family-owned since 1998."
     schema = [business_schema(), breadcrumb_schema(crumbs), {
         "@context": "https://schema.org", "@type": "ContactPage", "url": canonical,
     }]
@@ -2089,7 +2089,7 @@ def pay_invoice():
     .pay-phone { margin-top:20px; font-size:1.05rem; } .pay-phone a { font-weight:700; }
   </style>"""
     h = head("Pay Your Invoice | Austin Excel Pest & Lawn Control",
-             "Pay your Excel Pest invoice securely online through PayPal, or call (737) 201-3059 to pay by phone.",
+             "Pay your Excel Pest invoice securely online through PayPal, or call (512) 291-5900 to pay by phone.",
              canonical, [], noindex=False)
     h = h.replace("</head>", launch_comment + pay_styles + "\n</head>")
     return h + "\n" + header() + "\n" + body + footer() + "\n"
