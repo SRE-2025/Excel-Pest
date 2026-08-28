@@ -1004,3 +1004,20 @@ body { background: var(--bg); color: var(--body); }
 .form-success { text-align: center; padding: 10px 0; }
 .form-success strong { display: block; font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 8px; }
 .form-success p { color: var(--body); margin: 0; }
+
+/* =========================================================================
+   Prominent header Call button
+   ========================================================================= */
+.btn--call {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--accent); color: #fff; border-color: var(--accent);
+  font-size: 1.05rem; font-weight: 700; padding: 13px 22px; letter-spacing: .01em;
+}
+.btn--call:hover { background: #83491f; border-color: #83491f; color: #fff; }
+.btn--call .btn__ph { flex: 0 0 auto; }
+/* Header "Free estimate" reads as an outline on the dark bar (its ink fill is invisible there) */
+.nav-cta .btn--primary { background: transparent; color: #fff; border-color: rgba(255,255,255,.55); }
+.nav-cta .btn--primary:hover { background: #fff; color: var(--ink); border-color: #fff; }
+@media (max-width: 1080px) and (min-width: 821px) {
+  .btn--call { font-size: .98rem; padding: 12px 16px; }
+}
