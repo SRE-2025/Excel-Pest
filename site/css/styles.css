@@ -8,7 +8,7 @@
   /* Black-led editorial identity */
   --ink:      #101010;   /* primary ink — headers, footers, primary buttons */
   --bg:       #F6F5F1;   /* warm off-white — page background */
-  --soft:     #E9E7E1;   /* soft section background */
+  --soft:     #E5E0D5;   /* soft section background (deepened for clearer section breaks) */
   --line:     #D6D3CA;   /* borders */
   --white:    #FFFFFF;
   --body:     #2B2A26;   /* body copy on warm white */
@@ -81,9 +81,10 @@ img { max-width: 100%; height: auto; display: block; }
   padding: 0 20px;
 }
 
-.section { padding: 72px 0; }
-.section--soft { background: var(--bg-soft); }
-.section--navy { background: var(--navy); color: #D9D5CB; }
+.section { padding: 80px 0; border-top: 1px solid var(--line); }
+.section--soft { background: var(--bg-soft); border-top: 1px solid var(--line); }
+/* Dark sections use a light hairline instead of the ink one */
+.section--navy { background: var(--navy); color: #D9D5CB; border-top-color: rgba(255,255,255,.14); }
 .section--navy h2,
 .section--navy h3 { color: #fff; }
 

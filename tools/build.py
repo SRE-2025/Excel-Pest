@@ -58,12 +58,9 @@ BIZ = {
 }
 
 NAV = [
-    ("Home", "/"),
+    ("About", "/about.html"),
     ("Services", "/services.html"),
     ("Service Area", "/service-area.html"),
-    ("Reviews", "/reviews.html"),
-    ("Offers", "/offers.html"),
-    ("About", "/about.html"),
     ("Contact", "/contact.html"),
 ]
 
@@ -706,8 +703,6 @@ def footer():
         </ul></div>
         <div><h4>Company</h4><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
-          <li><a href="/reviews.html">Reviews</a></li>
-          <li><a href="/offers.html">Offers &amp; Discounts</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>
@@ -1100,7 +1095,7 @@ def render_service(s):
         </div>
         <div class="offer-strip" style="margin-top:18px;">
           <div><h3>Heroes save 10%</h3><p class="mb-0" style="color:#cdd6e6;">Military, veterans, first responders, nurses &amp; teachers.</p></div>
-          <a class="btn btn--primary" href="/offers.html">See offer</a>
+          <a class="btn btn--primary" href="/about.html#military">See details</a>
         </div>
       </div>
     </div>
@@ -1451,7 +1446,7 @@ def home():
             <cite>— Judy Buck</cite><div class="meta">Google review · 2026</div>
           </div>
           <div class="spotlight__dots" aria-label="Choose a review"></div>
-          <a class="card__link" href="/reviews.html" style="display:inline-block;margin-top:16px;">Read more reviews →</a>
+          <a class="card__link" href="https://www.google.com/search?q=Austin+Excel+Pest+%26+Lawn+Control+Buda+reviews" rel="noopener" style="display:inline-block;margin-top:16px;">Read more reviews on Google &rarr;</a>
         </div>"""
     flow = """
   <section class="section">
@@ -1627,7 +1622,7 @@ def about():
            trust one visit at a time than act like a franchise that just moved to town.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="/contact.html">Get a free estimate</a>
-          <a class="btn btn--outline" href="/reviews.html">Read our reviews</a>
+          <a class="btn btn--outline" href="tel:{ptel}">Call {phone}</a>
         </div>
       </div>
       <div>
@@ -1653,7 +1648,7 @@ def about():
   </section>""".format(
         owner=BIZ["owner"], founded=BIZ["founded"], sister_url=BIZ["sister_url"], street=BIZ["street"],
         city=BIZ["city"], mgr=BIZ["office_mgr"], reviews=BIZ["reviews"], license=BIZ["license"],
-        rating=BIZ["rating"],
+        rating=BIZ["rating"], ptel=BIZ["phone_tel"], phone=BIZ["phone"],
         owner_photo=img_slot("photo", "🧑‍🔧", "Owner Gye Hutson", "photos/gye-hutson.webp",
                              "Gye Hutson, owner of Excel Pest & Lawn Control",
                              "Real portrait photo of owner Gye Hutson (client to supply).",
@@ -1663,6 +1658,27 @@ def about():
                            "Real photo of Megan Avery, Director of Office Operations (client to supply).",
                            ratio="ratio-square", page="/about.html", art="portrait"),
     )
+    body += """
+  <section class="section section--soft" id="military">
+    <div class="container">
+      <div class="section-head" style="max-width:640px;margin:0 auto 28px;text-align:center;">
+        <span class="eyebrow">Our thanks</span>
+        <h2>10% off for those who serve</h2>
+        <p class="lead">Military, veterans, first responders, nurses and teachers save 10% on Excel Pest service &mdash; our small way of thanking the people who serve Central Texas.</p>
+      </div>
+      <div class="why-panel" style="max-width:660px;margin:0 auto;">
+        <ul class="why-list">
+          <li><strong>Who qualifies.</strong> Active-duty and retired military and veterans, first responders (police, fire, EMS), nurses, and teachers.</li>
+          <li><strong>How to use it.</strong> Just mention it when you schedule &mdash; no coupon code needed, and we apply the 10% to your service.</li>
+          <li><strong>Always a free estimate.</strong> We assess the problem and give you a clear quote before any work begins &mdash; no obligation, no surprise pricing.</li>
+        </ul>
+        <div class="hero__actions" style="margin-top:24px;">
+          <a class="btn btn--primary" href="tel:{ptel}">Call {phone}</a>
+          <a class="btn btn--outline" href="/contact.html">Request an estimate</a>
+        </div>
+      </div>
+    </div>
+  </section>""".format(ptel=BIZ["phone_tel"], phone=BIZ["phone"])
     body += cta_band()
     desc = "Family-owned in Buda since 1998, still run by owner Gye Hutson. 5.0-star, BBB A+, licensed Texas pest control (TPCL 0786979). Read the Excel Pest story."
     schema = [business_schema(), breadcrumb_schema(crumbs), {
@@ -1812,7 +1828,7 @@ FAQS = [
     ("Can you provide a termite letter for a home closing?",
      "Yes. We schedule WDI reports (termite letters) quickly for lenders and title companies. See <a href=\"/services/termite-letters.html\">termite letters &amp; WDI reports</a>."),
     ("Do you offer any discounts?",
-     "We offer 10% off for military, veterans, first responders, nurses and teachers — just mention it when you schedule. See <a href=\"/offers.html\">offers</a>."),
+     "We offer 10% off for military, veterans, first responders, nurses and teachers — just mention it when you schedule. See the <a href=\"/about.html#military\">details on our About page</a>."),
     ("Do you handle landscaping and lawn installation?",
      "Excel Pest handles lawn pests, weeds and disease. For landscape design, sod and hardscape, our sister company <a href=\"" + BIZ["sister_url"] + "\" rel=\"noopener\">Research Turf Management</a> handles the build side."),
 ]
@@ -1957,35 +1973,53 @@ def not_found():
     return assemble("Page Not Found | Excel Pest", "Page not found.", BIZ["domain"] + "/404.html", body, [], noindex=True)
 
 
+# PayPal Hosted Button (the modern "enter an amount" widget with PayPal + Venmo + card).
+# The button id is known; the SDK needs the account's client-id from the button's "Copy code".
+# Fill PAYPAL_CLIENT_ID and the page goes live automatically; until then it shows a pay-by-phone card.
+PAYPAL_HOSTED_BUTTON_ID = "PBRKNRY4BQUJG"
+PAYPAL_CLIENT_ID = ""  # <-- paste the client-id from the PayPal button's embed code here
+
+
 def pay_invoice():
     canonical = BIZ["domain"] + "/pay-invoice.html"
+    if PAYPAL_CLIENT_ID:
+        pay_widget = """
+      <div class="paypal-live">
+        <div id="paypal-container-{btn}"></div>
+        <p class="pay-secure">&#128274; Secure checkout by PayPal &mdash; pay with PayPal, Venmo, or any major card. We never see or store your card details.</p>
+      </div>
+      <script src="https://www.paypal.com/sdk/js?client-id={cid}&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+      <script>
+        paypal.HostedButtons({{ hostedButtonId: "{btn}" }}).render("#paypal-container-{btn}");
+      </script>""".format(btn=PAYPAL_HOSTED_BUTTON_ID, cid=html.escape(PAYPAL_CLIENT_ID, quote=True))
+    else:
+        pay_widget = """
+      <div class="pay-fallback">
+        <p style="margin:0 0 16px;">Online card &amp; PayPal payments are being reconnected. To pay right now, call and we'll take your card over the phone, or we'll text you a secure payment link.</p>
+        <a class="btn btn--primary pay-btn" href="tel:{ptel}">Call {phone} to pay</a>
+      </div>""".format(ptel=BIZ["phone_tel"], phone=BIZ["phone"])
     body = """
   <main class="pay-wrap">
     <div class="pay-card">
       <span class="pay-company">{name}</span>
       <h1>Pay Your Invoice</h1>
-      <p>Settle your bill securely online through PayPal, or call us and we'll take payment over the phone.</p>
+      <p>Settle your bill securely online, or call us and we'll take payment over the phone.</p>
       <div class="pay-checklist">
         <strong>Have this ready</strong>
         <ul><li>Your invoice number</li><li>The amount due on your invoice</li><li>Your billing name and ZIP code</li></ul>
       </div>
-      <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" class="paypal-form">
-        <input type="hidden" name="cmd" value="_s-xclick">
-        <input type="hidden" name="hosted_button_id" value="{button}">
-        <button type="submit" class="btn btn--primary pay-btn">Pay securely with PayPal</button>
-      </form>
-      <p class="pay-secure">&#128274; You'll finish on PayPal's secure checkout. We never see or store your card details. No PayPal account required &mdash; pay with any major card.</p>
+      {pay_widget}
       <div class="pay-phone">Prefer to pay by phone? Call <a href="tel:{ptel}">{phone}</a>.</div>
     </div>
   </main>""".format(name=html.escape(BIZ["name"]), ptel=BIZ["phone_tel"], phone=BIZ["phone"],
-                    button="PBRKNRY4BQUJG")
-    # Live PayPal hosted button. Owner confirmed button ID in writing (2026-08-27).
+                    pay_widget=pay_widget)
     launch_comment = """
   <!--
-    LIVE. PayPal hosted button ID PBRKNRY4BQUJG, activated on written owner confirmation.
-    Payments route to the PayPal business account that owns this button.
-    Recommended post-launch check: make and refund a $1.00 test payment to verify routing.
-  -->"""
+    PayPal Hosted Button id %s. This is a modern hosted button and MUST render via the
+    PayPal JS SDK (components=hosted-buttons) — the classic cgi-bin form returns GENERIC_ERROR.
+    Set PAYPAL_CLIENT_ID (from the button's "Copy code") to go live. Until then a pay-by-phone
+    card is shown. Post-launch: make and refund a $1.00 test payment to verify routing.
+  -->""" % PAYPAL_HOSTED_BUTTON_ID
     pay_styles = """
   <style>
     .pay-wrap { background: var(--soft); min-height: 70vh; display: grid; place-items: center; padding: 56px 20px; }
@@ -1993,7 +2027,7 @@ def pay_invoice():
     .pay-company { text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:700; color:var(--muted); }
     .pay-card h1 { font-size:1.9rem; margin:6px 0 10px; }
     .pay-checklist { text-align:left; background:var(--soft); border:1px solid var(--line); border-radius:var(--radius); padding:18px 22px; margin:22px 0; }
-    .paypal-form { margin:24px 0 6px; }
+    .paypal-form, .paypal-live, .pay-fallback { margin:24px 0 6px; }
     .pay-btn { width:100%; font-size:1.05rem; padding:15px 22px; }
     .pay-secure { color:var(--muted); font-size:.86rem; margin-top:16px; line-height:1.5; }
     .pay-phone { margin-top:20px; font-size:1.05rem; } .pay-phone a { font-weight:700; }
@@ -2039,8 +2073,6 @@ def main():
     emit("services.html", services_hub(), cf="monthly", pr="0.9")
     emit("service-area.html", service_area_hub(), cf="monthly", pr="0.8")
     emit("about.html", about(), pr="0.7")
-    emit("reviews.html", reviews(), pr="0.7")
-    emit("offers.html", offers(), pr="0.7")
     emit("pet-family-safety.html", pet_safety(), pr="0.6")
     emit("faq.html", faq(), pr="0.6")
     emit("contact.html", contact(), cf="monthly", pr="0.8")
