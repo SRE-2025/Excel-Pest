@@ -1005,3 +1005,9 @@ body { background: var(--bg); color: var(--body); }
 .marquee__dot { color: var(--accent); }
 @keyframes marqueeMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 @media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
+
+/* Web3Forms honeypot (hidden anti-spam field) + inline success */
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; }
+.form-success { text-align: center; padding: 10px 0; }
+.form-success strong { display: block; font-family: var(--font-heading); font-size: 1.25rem; margin-bottom: 8px; }
+.form-success p { color: var(--body); margin: 0; }

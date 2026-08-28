@@ -58,6 +58,29 @@ BIZ = {
     "youtube": "https://www.youtube.com/@excelpestlawncontrol",
 }
 
+# Automatic form delivery via Web3Forms (free, no backend; emails submissions to office@...).
+# Get the key at https://web3forms.com using office@excelpest-lawncontrol.com, then paste it here.
+# Empty = graceful fallback to a mailto (opens the visitor's email app).
+FORM_ACCESS_KEY = ""
+
+
+def estimate_form_backend():
+    """(action_attrs, hidden_fields) for the estimate form. Web3Forms when a key is set;
+    otherwise a mailto action so the form is never a dead end."""
+    if FORM_ACCESS_KEY:
+        action = 'action="https://api.web3forms.com/submit" method="post"'
+        hidden = (
+            '<input type="hidden" name="access_key" value="%s">'
+            '<input type="hidden" name="subject" value="New estimate request from the Excel Pest website">'
+            '<input type="hidden" name="from_name" value="Excel Pest website">'
+            '<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">'
+        ) % html.escape(FORM_ACCESS_KEY, quote=True)
+    else:
+        action = 'action="mailto:%s" method="post"' % BIZ["email"]
+        hidden = ''
+    return action, hidden
+
+
 NAV = [
     ("About", "/about.html"),
     ("Services", "/services.html"),
@@ -1908,6 +1931,7 @@ def contact():
         for e, v in [("🦂","Scorpions"),("🐜","Ants"),("🪳","Roaches"),("🐀","Rodents"),
                      ("🪵","Termites"),("🦝","Wildlife"),("🦟","Mosquitoes"),("🌱","Lawn pests")]
     )
+    form_action, form_hidden = estimate_form_backend()
     body = page_hero("Get a Free Estimate", "Call, text, or send a message — we'll get right back to you.", crumbs) + """
   <section class="section">
     <div class="container contact-grid">
@@ -1933,7 +1957,8 @@ def contact():
       <div>
         <div class="card">
           <h3 class="mt-0">Request an estimate</h3>
-          <form action="mailto:{email}" method="post" class="wizard" data-estimate data-wizard novalidate>
+          <form {form_action} class="wizard" data-estimate data-wizard novalidate>
+            {form_hidden}
             <div class="wiz-prog"><span data-wiz-fill></span></div>
             <div class="wiz-count" data-wiz-count>Step 1 of 3</div>
 
@@ -1977,6 +2002,7 @@ def contact():
         street=BIZ["street"], city=BIZ["city"], state=BIZ["state"], zip=BIZ["zip"], license=BIZ["license"],
         sister_url=BIZ["sister_url"], sister=BIZ["sister_name"], sister_phone=BIZ["sister_phone"], options=options,
         pest_choices=pest_choices, city_opts=city_opts,
+        form_action=form_action, form_hidden=form_hidden,
     )
     desc = "Request a free pest control estimate in Buda and Central Texas. Call (737) 201-3059, text (737) 350-8553, or send a message. Family-owned since 1998."
     schema = [business_schema(), breadcrumb_schema(crumbs), {
