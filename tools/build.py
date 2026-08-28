@@ -1973,11 +1973,11 @@ def not_found():
     return assemble("Page Not Found | Excel Pest", "Page not found.", BIZ["domain"] + "/404.html", body, [], noindex=True)
 
 
-# PayPal Hosted Button (the modern "enter an amount" widget with PayPal + Venmo + card).
-# The button id is known; the SDK needs the account's client-id from the button's "Copy code".
-# Fill PAYPAL_CLIENT_ID and the page goes live automatically; until then it shows a pay-by-phone card.
+# PayPal Hosted Button — the "enter an amount" widget with PayPal + Venmo + card, matching the
+# main site. client-id is a PUBLIC value (rendered in page HTML by design), supplied by the owners.
+# If PAYPAL_CLIENT_ID is ever blanked, the page falls back to a pay-by-phone card.
 PAYPAL_HOSTED_BUTTON_ID = "PBRKNRY4BQUJG"
-PAYPAL_CLIENT_ID = ""  # <-- paste the client-id from the PayPal button's embed code here
+PAYPAL_CLIENT_ID = "BAArXy7ujNCaXUieuDOjWUf67dYCS_WdWPNnf5mm6HuiUuj3uK4uBi51kyZ9Dp9I_7x9OrCw_lkb_5VCS8"
 
 
 def pay_invoice():

@@ -76,10 +76,14 @@
         <ul><li>Your invoice number</li><li>The amount due on your invoice</li><li>Your billing name and ZIP code</li></ul>
       </div>
       
-      <div class="pay-fallback">
-        <p style="margin:0 0 16px;">Online card &amp; PayPal payments are being reconnected. To pay right now, call and we'll take your card over the phone, or we'll text you a secure payment link.</p>
-        <a class="btn btn--primary pay-btn" href="tel:+17372013059">Call (737) 201-3059 to pay</a>
+      <div class="paypal-live">
+        <div id="paypal-container-PBRKNRY4BQUJG"></div>
+        <p class="pay-secure">&#128274; Secure checkout by PayPal &mdash; pay with PayPal, Venmo, or any major card. We never see or store your card details.</p>
       </div>
+      <script src="https://www.paypal.com/sdk/js?client-id=BAArXy7ujNCaXUieuDOjWUf67dYCS_WdWPNnf5mm6HuiUuj3uK4uBi51kyZ9Dp9I_7x9OrCw_lkb_5VCS8&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+      <script>
+        paypal.HostedButtons({ hostedButtonId: "PBRKNRY4BQUJG" }).render("#paypal-container-PBRKNRY4BQUJG");
+      </script>
       <div class="pay-phone">Prefer to pay by phone? Call <a href="tel:+17372013059">(737) 201-3059</a>.</div>
     </div>
   </main>
