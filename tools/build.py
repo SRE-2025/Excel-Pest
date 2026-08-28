@@ -53,7 +53,8 @@ BIZ = {
     "sister_phone": "(512) 233-6300",
     "bbb": "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "yelp": "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
-    "facebook": "https://www.facebook.com/ExcelPestandLawnControl/",
+    "facebook": "https://www.facebook.com/profile.php?id=100069621902603",
+    "facebook_reviews": "https://www.facebook.com/profile.php?id=100069621902603&sk=reviews",
     "youtube": "https://www.youtube.com/@excelpestlawncontrol",
 }
 
@@ -640,9 +641,16 @@ def header():
     <nav class="navbar" aria-label="Primary"><div class="container">
       <a class="brand" href="/" aria-label="Excel Pest Control — home">
         <span class="brand__logo" aria-hidden="true">
-          <svg viewBox="0 0 40 40" width="38" height="38" xmlns="http://www.w3.org/2000/svg">
-            <rect x="1" y="1" width="38" height="38" rx="8" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.85"/>
-            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="600" fill="#ffffff">E</text>
+          <svg viewBox="0 0 64 64" width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+            <rect width="64" height="64" rx="13" fill="#FFFFFF"/>
+            <g stroke="#17181A" stroke-width="2.4" stroke-linecap="round" fill="#17181A">
+              <path d="M29 21 L24 14" fill="none"/><path d="M35 21 L40 14" fill="none"/>
+              <path d="M25 29 L15 25" fill="none"/><path d="M25 34 L14 34" fill="none"/><path d="M25 39 L15 44" fill="none"/>
+              <path d="M39 29 L49 25" fill="none"/><path d="M39 34 L50 34" fill="none"/><path d="M39 39 L49 44" fill="none"/>
+              <circle cx="32" cy="21" r="4.5"/><ellipse cx="32" cy="32" rx="6.5" ry="5.5"/><ellipse cx="32" cy="44" rx="6" ry="6.5"/>
+            </g>
+            <circle cx="32" cy="32" r="25" fill="none" stroke="#D6392B" stroke-width="4.5"/>
+            <line x1="15" y1="15" x2="49" y2="49" stroke="#D6392B" stroke-width="4.5" stroke-linecap="round"/>
           </svg>
         </span>
         <span class="brand__text">
@@ -1452,15 +1460,15 @@ def home():
           <div class="stars">★★★★★</div>
           <div class="spotlight__slide on">
             <blockquote class="spotlight__q">"Been with this company for 30+ years."</blockquote>
-            <cite>— Karla Mathews</cite><div class="meta">Google review · 2026</div>
+            <cite>— Karla Mathews</cite><div class="meta">Facebook review · 2026</div>
           </div>
           <div class="spotlight__slide">
             <blockquote class="spotlight__q">"We have used Excel Pest / Research Turf for 13+ years — pergola,
                patio, masonry, tree trimming, plus regular lawn care."</blockquote>
-            <cite>— Judy Buck</cite><div class="meta">Google review · 2026</div>
+            <cite>— Judy Buck</cite><div class="meta">Facebook review · 2026</div>
           </div>
           <div class="spotlight__dots" aria-label="Choose a review"></div>
-          <a class="card__link" href="https://www.google.com/search?q=Austin+Excel+Pest+%26+Lawn+Control+Buda+reviews" rel="noopener" style="display:inline-block;margin-top:16px;">Read more reviews on Google &rarr;</a>
+          <a class="card__link" href="%s" rel="noopener" style="display:inline-block;margin-top:16px;">Read more reviews on Facebook &rarr;</a>""" % BIZ["facebook_reviews"] + """
         </div>"""
     flow = """
   <section class="section">
@@ -1727,14 +1735,14 @@ def reviews():
           <div class="stars">★★★★★</div>
           <blockquote>"Been with this company for 30+ years."</blockquote>
           <cite>Karla Mathews</cite>
-          <div class="meta">Google review · 2026 · names Megan in the office, Tim the technician, and Gye by name</div>
+          <div class="meta">Facebook review · 2026 · names Megan in the office, Tim the technician, and Gye by name</div>
         </div>
         <div class="review-card">
           <div class="stars">★★★★★</div>
           <blockquote>"We have used Excel Pest / Research Turf Mgmt for the past 13+ years… pergola, extending
              patio, masonry work on front porch and flower beds, tree trimming, plus regular lawn care."</blockquote>
           <cite>Judy Buck</cite>
-          <div class="meta">Google review · 2026</div>
+          <div class="meta">Facebook review · 2026</div>
         </div>
       </div>
       <div class="callout" style="margin-top:26px;">
