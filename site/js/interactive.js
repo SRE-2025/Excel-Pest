@@ -9,6 +9,19 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  /* ---------- Branded page-load intro (home, once per session) ---------- */
+  var intro = $("[data-intro]");
+  if (intro) {
+    var seenIntro = false;
+    try { seenIntro = sessionStorage.getItem("xpIntro") === "1"; } catch (e) {}
+    if (seenIntro || reduce) {
+      intro.classList.add("is-hidden");
+    } else {
+      try { sessionStorage.setItem("xpIntro", "1"); } catch (e) {}
+      setTimeout(function () { intro.classList.add("is-hidden"); }, 2300);
+    }
+  }
+
   /* ---------- Scroll progress bar ---------- */
   var bar = $(".scroll-progress");
   /* ---------- Header shrink ---------- */
@@ -279,6 +292,19 @@
         card.style.transition = "transform .5s cubic-bezier(.2,.7,.2,1)";
         card.style.transform = "";
       });
+    });
+  }
+
+  /* ---------- Magnetic primary buttons (subtle pull toward cursor) ---------- */
+  if (!reduce && window.matchMedia && window.matchMedia("(pointer: fine)").matches) {
+    $$(".btn--primary").forEach(function (btn) {
+      btn.addEventListener("mousemove", function (e) {
+        var r = btn.getBoundingClientRect();
+        var x = e.clientX - r.left - r.width / 2;
+        var y = e.clientY - r.top - r.height / 2;
+        btn.style.transform = "translate(" + (x * 0.18).toFixed(1) + "px," + (y * 0.3).toFixed(1) + "px)";
+      });
+      btn.addEventListener("mouseleave", function () { btn.style.transform = ""; });
     });
   }
 

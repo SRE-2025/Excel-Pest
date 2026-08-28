@@ -631,6 +631,7 @@ def header():
     links = "\n".join(parts)
     return """<body>
   <a class="skip-link" href="#main">Skip to content</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
   <header class="site-header">
     <div class="topbar"><div class="container">
       <span>Family-owned in Buda since {founded} · Licensed &amp; insured · {license}</span>
@@ -638,8 +639,16 @@ def header():
     </div></div>
     <nav class="navbar" aria-label="Primary"><div class="container">
       <a class="brand" href="/" aria-label="Excel Pest Control — home">
-        <span class="brand__mark">EXCEL</span>
-        <span class="brand__desc">Pest Control</span>
+        <span class="brand__logo" aria-hidden="true">
+          <svg viewBox="0 0 40 40" width="38" height="38" xmlns="http://www.w3.org/2000/svg">
+            <rect x="1" y="1" width="38" height="38" rx="8" fill="none" stroke="#ffffff" stroke-width="1.5" opacity="0.85"/>
+            <text x="50%" y="55%" dominant-baseline="middle" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-size="24" font-weight="600" fill="#ffffff">E</text>
+          </svg>
+        </span>
+        <span class="brand__text">
+          <span class="brand__mark">EXCEL</span>
+          <span class="brand__desc">Pest Control</span>
+        </span>
       </a>
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
       <ul class="nav-links">
@@ -1419,6 +1428,11 @@ CORE_BLURB = {
 
 def home():
     canonical = BIZ["domain"] + "/"
+    marquee_items = ["General Pest Control", "Termite Control", "Rodents &amp; Exclusion",
+                     "Wildlife Removal", "Scorpion Control", "Mosquito Control",
+                     "Licensed &amp; Insured", "Family-Owned Since 1998", "5.0&#9733; Google Rating"]
+    marquee = "".join('<span class="marquee__item">%s</span><span class="marquee__dot" aria-hidden="true">&bull;</span>' % m
+                      for m in marquee_items)
     core_names = {
         "pest-control": "General Pest Control", "termite-control": "Termite Control",
         "rodent-exclusion": "Rodents &amp; Exclusion", "wildlife-live-trapping": "Wildlife Removal",
@@ -1484,6 +1498,12 @@ def home():
     </div>
   </section>""".format(license=BIZ["license"], founded=BIZ["founded"], reviews=BIZ["reviews"])
     body = """
+  <div class="intro" data-intro aria-hidden="true">
+    <div class="intro__mark">
+      <span class="intro__excel">EXCEL</span>
+      <span class="intro__desc">Pest Control &middot; Central Texas since 1998</span>
+    </div>
+  </div>
   <section class="hero">
     <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="https://videos.pexels.com/video-files/38774248/16480441_640_360_24fps.mp4" type="video/mp4"></video>
     <div class="hero-scrim" aria-hidden="true"></div>
@@ -1504,6 +1524,8 @@ def home():
     </div>
   </section>
 {statband}
+
+  <div class="marquee" aria-hidden="true"><div class="marquee__track">{marquee}{marquee}</div></div>
 
   <main id="main">
   <section class="section">
@@ -1577,7 +1599,7 @@ def home():
         founded=BIZ["founded"], ptel=BIZ["phone_tel"], phone=BIZ["phone"],
         reviews=BIZ["reviews"], license=BIZ["license"], svc_cards=svc_cards, owner=BIZ["owner"],
         city_links=city_links, cross=crosslink_block(), statband=stat_band(),
-        spotlight=spotlight, flow=flow, hero_img=HOME_HERO_IMG,
+        spotlight=spotlight, flow=flow, hero_img=HOME_HERO_IMG, marquee=marquee,
     )
     desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. 5.0-star, BBB A+, licensed. Free estimates — call (737) 201-3059."
     schema = [business_schema(with_rating=True), {

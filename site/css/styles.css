@@ -157,11 +157,16 @@ img { max-width: 100%; height: auto; display: block; }
 }
 .brand {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
   color: #fff;
   line-height: 1;
-  gap: 3px;
+  gap: 12px;
 }
+.brand__logo { display: inline-flex; flex: 0 0 auto; transition: transform .4s cubic-bezier(.2,.7,.2,1); }
+.brand__logo svg { display: block; }
+.brand:hover .brand__logo { transform: rotate(-4deg) scale(1.05); }
+.brand__text { display: flex; flex-direction: column; gap: 3px; }
 .brand:hover { text-decoration: none; }
 .brand__mark {
   font-family: var(--font-heading);
@@ -695,9 +700,14 @@ img { max-width: 100%; height: auto; display: block; }
    ========================================================================= */
 body { background: var(--bg); color: var(--body); }
 
-/* Retire only the legacy decorative elements (old hero orbs / scroll bar) */
-.scroll-progress { display: none !important; }
+/* Retire only the legacy decorative orbs */
 .hero__bg, .hero__orb, .hero__cue { display: none !important; }
+
+/* Thin scroll-progress bar (refined, accent) */
+.scroll-progress { position: fixed; top: 0; left: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--ink), var(--accent)); z-index: 120;
+  transition: width .1s linear; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { .scroll-progress { display: none; } }
 
 /* -------- Cinematic scroll-reveal (focus-pull: rise + scale + de-blur) -------- */
 .reveal { opacity: 0; transform: translateY(42px) scale(.96); filter: blur(9px); will-change: opacity, transform, filter;
@@ -968,3 +978,30 @@ body { background: var(--bg); color: var(--body); }
 .service-side-media .img-slot { display: block; width: 100%; max-width: 430px; margin: 0 0 4px auto; aspect-ratio: 4 / 3; border-radius: 10px; }
 .service-side-media .img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (max-width: 820px) { .service-side-media .img-slot { max-width: none; margin: 0; } }
+
+/* =========================================================================
+   Wow-factor motion: branded intro + marquee ticker
+   ========================================================================= */
+/* Branded page-load intro (home only, once per session) */
+.intro { position: fixed; inset: 0; z-index: 999; background: var(--ink); display: grid; place-items: center;
+  animation: introOut 1.4s cubic-bezier(.7,0,.3,1) .85s forwards; }
+.intro__mark { text-align: center; animation: introMark 1s cubic-bezier(.2,.7,.2,1) both; }
+.intro__excel { display: block; font-family: var(--font-heading); font-weight: 600; color: #fff;
+  font-size: clamp(2.6rem, 8vw, 4.4rem); letter-spacing: .2em; text-indent: .2em; }
+.intro__desc { display: block; margin-top: 12px; color: #C9C4BA; text-transform: uppercase;
+  letter-spacing: .3em; font-size: .68rem; font-weight: 600; }
+@keyframes introMark { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+@keyframes introOut { to { transform: translateY(-100%); opacity: 0; visibility: hidden; } }
+.intro.is-hidden { display: none !important; }
+@media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }
+
+/* Marquee ticker band */
+.marquee { background: var(--ink); color: #fff; overflow: hidden;
+  border-top: 1px solid rgba(255,255,255,.08); border-bottom: 1px solid rgba(255,255,255,.08); }
+.marquee__track { display: inline-flex; align-items: center; white-space: nowrap; padding: 14px 0;
+  animation: marqueeMove 36s linear infinite; will-change: transform; }
+.marquee:hover .marquee__track { animation-play-state: paused; }
+.marquee__item { font-family: var(--font-heading); font-size: 1rem; letter-spacing: .02em; padding: 0 22px; color: #EDEBE6; }
+.marquee__dot { color: var(--accent); }
+@keyframes marqueeMove { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@media (prefers-reduced-motion: reduce) { .marquee__track { animation: none; } }
