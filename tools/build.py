@@ -33,8 +33,8 @@ BIZ = {
     "domain": "https://excelpest-lawncontrol.com",
     "phone": "(512) 291-5900",
     "phone_tel": "+15122915900",
-    "text": "(737) 350-8553",
-    "text_tel": "+17373508553",
+    "text": "(512) 291-5900",
+    "text_tel": "+15122915900",
     "email": "office@excelpest-lawncontrol.com",
     "street": "175 Warehouse Drive, Ste A",
     "city": "Buda",
@@ -2004,7 +2004,7 @@ def contact():
         pest_choices=pest_choices, city_opts=city_opts,
         form_action=form_action, form_hidden=form_hidden,
     )
-    desc = "Request a free pest control estimate in Buda and Central Texas. Call (512) 291-5900, text (737) 350-8553, or send a message. Family-owned since 1998."
+    desc = "Request a free pest control estimate in Buda and Central Texas. Call (512) 291-5900, text (512) 291-5900, or send a message. Family-owned since 1998."
     schema = [business_schema(), breadcrumb_schema(crumbs), {
         "@context": "https://schema.org", "@type": "ContactPage", "url": canonical,
     }]
