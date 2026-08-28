@@ -442,13 +442,9 @@ img { max-width: 100%; height: auto; display: block; }
   z-index: 100; transition: width .1s linear;
 }
 
-/* Header shrink on scroll */
+/* Header on scroll: shadow only — constant height (no resize = no scroll shake) */
 .site-header { transition: box-shadow .3s ease; }
 .site-header.is-stuck { box-shadow: 0 10px 30px rgba(16,16,16,.35); }
-.site-header.is-stuck .topbar { max-height: 0; padding: 0; overflow: hidden; opacity: 0; }
-.topbar { transition: max-height .3s ease, padding .3s ease, opacity .3s ease; max-height: 60px; }
-.site-header.is-stuck .navbar .container { padding-top: 9px; padding-bottom: 9px; }
-.navbar .container { transition: padding .3s ease; }
 
 /* Scroll reveal */
 .reveal { opacity: 0; transform: translateY(28px); transition: opacity .7s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1); will-change: opacity, transform; }
@@ -799,12 +795,9 @@ body { background: var(--bg); color: var(--body); }
   .btn--primary:hover, .btn--outline:hover, .btn--ghost:hover, .pay-btn:hover { transform: none; }
 }
 
-/* Header: shrink + shadow on scroll (JS toggles .is-stuck) */
+/* Header on scroll: shadow only, constant height (prevents scroll-boundary shake) */
 .site-header { transition: box-shadow .3s ease; }
 .site-header.is-stuck { box-shadow: 0 8px 30px rgba(16,16,16,.28); }
-.site-header.is-stuck .navbar .container { padding-top: 9px; padding-bottom: 9px; transition: padding .3s ease; }
-.site-header.is-stuck .brand__mark { font-size: 1.35rem; transition: font-size .3s ease; }
-.navbar .container, .brand__mark { transition: padding .3s ease, font-size .3s ease; }
 
 /* Section tones */
 .section--soft { background: var(--soft); }
