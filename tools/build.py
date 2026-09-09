@@ -746,6 +746,7 @@ def footer():
         </ul></div>
         <div><h4>Company</h4><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
+          <li><a href="/insights.html">Pest Guides</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>
@@ -1058,8 +1059,8 @@ def write(path, content):
     return path
 
 
-def assemble(title, desc, canonical, body, schema_blocks, noindex=False):
-    return head(title, desc, canonical, schema_blocks, noindex) + "\n" + header() + "\n" + body + footer() + "\n"
+def assemble(title, desc, canonical, body, schema_blocks, noindex=False, og_type="website"):
+    return head(title, desc, canonical, schema_blocks, noindex, og_type) + "\n" + header() + "\n" + body + footer() + "\n"
 
 
 def related_services_grid(slugs, heading="Related services"):
@@ -2099,6 +2100,151 @@ def pay_invoice():
 
 
 # --------------------------------------------------------------------------
+# Insights / Guides — automated SEO + AEO article engine
+# Articles live as JSON in content/articles/*.json (one file per post) so a
+# scheduled Claude session can add a post by writing one file, then rebuilding.
+# See docs/CONTENT-AUTOMATION.md for the exact schema and process.
+# --------------------------------------------------------------------------
+
+ARTICLES_DIR = os.path.join(ROOT, "content", "articles")
+
+
+def load_articles():
+    """Read every content/articles/*.json, newest first. Skips malformed files
+    so one bad post can never break the whole build/deploy."""
+    items = []
+    if not os.path.isdir(ARTICLES_DIR):
+        return items
+    for fn in os.listdir(ARTICLES_DIR):
+        if not fn.endswith(".json"):
+            continue
+        try:
+            with open(os.path.join(ARTICLES_DIR, fn), encoding="utf-8") as f:
+                a = json.load(f)
+            a.setdefault("slug", os.path.splitext(fn)[0])
+            if a.get("title") and a.get("date") and a.get("body_html"):
+                items.append(a)
+            else:
+                print("  [articles] skipped (missing title/date/body_html): " + fn)
+        except Exception as e:  # noqa
+            print("  [articles] skipped (invalid JSON): %s (%s)" % (fn, e))
+    items.sort(key=lambda a: a.get("date", ""), reverse=True)
+    return items
+
+
+def _fmt_date(iso):
+    months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    try:
+        y, m, d = iso.split("-")[:3]
+        return "%s %d, %s" % (months[int(m) - 1], int(d), y)
+    except Exception:
+        return iso
+
+
+def render_article(a):
+    slug = a["slug"]
+    kind = a.get("kind", "seo").lower()
+    canonical = BIZ["domain"] + "/insights/" + slug + ".html"
+    crumbs = [("Home", "/"), ("Pest Guides", "/insights.html"), (a["title"], None)]
+    summary = a.get("summary", "")
+    body = page_hero(a["title"], summary or (a["title"]), crumbs)
+
+    meta_bits = '<span class="art-meta">%s &middot; %s</span>' % (
+        "Answer Guide" if kind == "aeo" else "Pest Guide", _fmt_date(a["date"]))
+    # AEO posts lead with a concise, citable "quick answer" box.
+    quick = ""
+    if a.get("quick_answer"):
+        quick = '<div class="art-answer"><strong>Quick answer:</strong> %s</div>' % a["quick_answer"]
+
+    faqs = a.get("faqs") or []
+    faq_html = ""
+    if faqs:
+        items = "".join(
+            ('<div class="acc-item"><button class="acc-head">%s<span class="ic" aria-hidden="true">+</span></button>'
+             '<div class="acc-body"><div class="acc-body__inner">%s</div></div></div>')
+            % (html.escape(q.get("q", "")), q.get("a", ""))
+            for q in faqs
+        )
+        faq_html = ("""
+  <section class="section section--soft">
+    <div class="container" style="max-width:820px;">
+      <div class="section-head" style="margin-bottom:22px;"><span class="eyebrow">Good questions</span><h2>Frequently asked</h2></div>
+      <div class="accordion">%s</div>
+    </div>
+  </section>""" % items)
+
+    related = ""
+    rel_slugs = [s for s in (a.get("related_services") or []) if s in SERVICE_BY_SLUG]
+    if rel_slugs:
+        related = related_services_grid(rel_slugs, heading="Related services")
+
+    body += """
+  <section class="section">
+    <div class="container" style="max-width:760px;">
+      <p class="art-meta-row">{meta}</p>
+      {quick}
+      <div class="prose article-body">
+        {content}
+      </div>
+      <div class="hero__actions" style="margin-top:30px;">
+        <a class="btn btn--primary" href="/contact.html">Get a free estimate</a>
+        <a class="btn btn--outline" href="tel:{ptel}">Call {phone}</a>
+      </div>
+    </div>
+  </section>{faq}{related}""".format(
+        meta=meta_bits, quick=quick, content=a["body_html"],
+        ptel=BIZ["phone_tel"], phone=BIZ["phone"], faq=faq_html, related=related)
+    body += cta_band()
+
+    article_schema = {
+        "@context": "https://schema.org", "@type": "Article",
+        "headline": a["title"][:110],
+        "description": a.get("description", summary)[:300],
+        "datePublished": a["date"], "dateModified": a.get("date"),
+        "author": {"@type": "Organization", "name": BIZ["name"]},
+        "publisher": {"@type": "Organization", "name": BIZ["name"],
+                      "logo": {"@type": "ImageObject", "url": BIZ["domain"] + "/assets/favicon.svg"}},
+        "mainEntityOfPage": {"@type": "WebPage", "@id": canonical},
+    }
+    schema = [business_schema(), breadcrumb_schema(crumbs), article_schema]
+    if faqs:
+        schema.append({"@context": "https://schema.org", "@type": "FAQPage",
+                       "mainEntity": [{"@type": "Question", "name": q.get("q", ""),
+                                       "acceptedAnswer": {"@type": "Answer",
+                                                          "text": re.sub("<[^>]+>", "", q.get("a", ""))}}
+                                      for q in faqs]})
+    desc = a.get("description", summary) or a["title"]
+    return assemble(a["title"] + " | Excel Pest", desc[:158], canonical, body, schema, og_type="article")
+
+
+def insights_index(articles):
+    canonical = BIZ["domain"] + "/insights.html"
+    crumbs = [("Home", "/"), ("Pest Guides", None)]
+    if articles:
+        cards = "".join("""        <article class="card card--link dir-card">
+          <span class="art-tag">{tag}</span>
+          <h3>{title}</h3>
+          <p>{summary}</p>
+          <a class="card__link" href="/insights/{slug}.html">Read the guide &rarr;</a>
+        </article>""".format(
+            tag=("Answer Guide" if a.get("kind", "seo").lower() == "aeo" else "Pest Guide"),
+            title=html.escape(a["title"]), slug=a["slug"],
+            summary=html.escape((a.get("summary") or a.get("description") or "")[:150]))
+            for a in articles)
+        grid = '<div class="grid grid--3">%s</div>' % cards
+    else:
+        grid = '<p class="lead">New Central Texas pest guides are published every week — check back soon.</p>'
+    body = page_hero("Pest Guides & Answers",
+                     "Practical, local advice on the pests Central Texas homeowners actually deal with.", crumbs) + """
+  <section class="section"><div class="container">{grid}</div></section>""".format(grid=grid)
+    body += cta_band()
+    schema = [business_schema(), breadcrumb_schema(crumbs)]
+    return assemble("Pest Guides & Answers | Excel Pest",
+                    "Local pest-control guides and quick answers for Central Texas homeowners from Excel Pest, family-owned in Buda since 1998.",
+                    canonical, body, schema)
+
+
+# --------------------------------------------------------------------------
 # Sitemap / robots
 # --------------------------------------------------------------------------
 
@@ -2140,6 +2286,14 @@ def main():
         emit("services/%s.html" % s["slug"], render_service(s), cf="monthly", pr="0.8")
     for l in LOCATIONS:
         emit("locations/%s.html" % l["slug"], render_location(l), cf="monthly", pr="0.7")
+
+    # Insights / Guides — automated SEO + AEO articles
+    articles = load_articles()
+    emit("insights.html", insights_index(articles), cf="weekly", pr="0.7")
+    for a in articles:
+        emit("insights/%s.html" % a["slug"], render_article(a), cf="monthly", pr="0.6")
+    if articles:
+        print("  [articles] published %d guide(s)" % len(articles))
 
     # Non-sitemap pages
     write("404.html", not_found())

@@ -49,4 +49,7 @@
   <url><loc>https://excelpest-lawncontrol.com/locations/sunset-valley.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://excelpest-lawncontrol.com/locations/uhland.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://excelpest-lawncontrol.com/locations/west-lake-hills.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://excelpest-lawncontrol.com/insights.html</loc><changefreq>weekly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://excelpest-lawncontrol.com/insights/when-are-scorpions-most-active-central-texas.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://excelpest-lawncontrol.com/insights/keep-scorpions-out-central-texas-home.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>
