@@ -1,12 +1,11 @@
 name: Deploy to GitHub Pages
 
-# Builds the site at the site root and publishes it to GitHub Pages on the
-# custom domain excelpest-lawncontrol.com (see site/CNAME).
+# Preview deploy only. Production hosting is AWS Amplify (see docs/AMPLIFY.md),
+# which owns the custom domain. This builds a free PREVIEW at the project sub-path
+# https://sre-2025.github.io/Excel-Pest/ — no custom domain here (avoids conflict).
 #
 # One-time setup if the first run errors on permissions:
 #   Repo Settings -> Pages -> Build and deployment -> Source: "GitHub Actions".
-# Custom domain: set in Repo Settings -> Pages -> Custom domain (the CNAME file
-# does this automatically), then enable "Enforce HTTPS" once the cert provisions.
 
 on:
   push:
@@ -31,12 +30,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - name: Build site at the root path (served on the custom domain)
-        run: python3 tools/build.py
+      - name: Build site with base path for the project sub-directory
+        run: BASE_PATH=/Excel-Pest python3 tools/build.py
       - name: Disable Jekyll processing
         run: touch site/.nojekyll
-      - name: Ensure custom domain (CNAME) is present in the published output
-        run: echo 'excelpest-lawncontrol.com' > site/CNAME
       - uses: actions/configure-pages@v5
         with:
           enablement: true

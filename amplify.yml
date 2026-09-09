@@ -3,12 +3,13 @@ frontend:
   phases:
     preBuild:
       commands:
-        - echo "Static site — no dependencies to install."
+        - echo "Static generator — Python standard library only, nothing to install."
     build:
       commands:
-        - echo "No build step. Publishing pre-built static files from ./site"
+        # Build at the site root (no BASE_PATH) — Amplify serves the custom domain at /.
+        - python3 tools/build.py
   artifacts:
-    # Everything Amplify serves comes from ./site
+    # Everything Amplify serves is the generated ./site folder.
     baseDirectory: site
     files:
       - '**/*'
