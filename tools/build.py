@@ -75,7 +75,7 @@ FORM_ENDPOINT = "https://formsubmit.co/ajax/" + BIZ["email"]
 # even if email delivery errors. Paste the deploy URL here (see docs/LEAD-CAPTURE.md).
 # Empty = disabled (email-only). When set, the form logs to the Sheet in parallel
 # with the FormSubmit email.
-LEAD_SHEET_ENDPOINT = ""
+LEAD_SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwoAUHYcDGOTYtt6XwAUmSv5IsdWTTkuSSGRdTxwCrBwOkdL5Qk8HKrloKQDZRuFsUD/exec"
 
 
 def estimate_form_backend():
