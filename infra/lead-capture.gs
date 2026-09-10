@@ -29,15 +29,15 @@ function doPost(e) {
     var ss = SpreadsheetApp.getActiveSpreadsheet();
     var sheet = ss.getSheetByName("Leads") || ss.insertSheet("Leads");
     if (sheet.getLastRow() === 0) {
-      sheet.appendRow(["Timestamp", "Name", "Phone", "Email", "Service",
-                       "Seeing", "City", "Message", "Page"]);
+      sheet.appendRow(["Timestamp", "Name", "Email", "Phone", "Zip",
+                       "Help with", "Message", "Page"]);
       sheet.setFrozenRows(1);
     }
     var p = (e && e.parameter) ? e.parameter : {};
     var row = [
       p._ts || new Date().toISOString(),
-      p.name || "", p.phone || "", p.email || "",
-      p.service || "", p.pest || "", p.city || "", p.message || "", p._page || ""
+      p.name || "", p.email || "", p.phone || "",
+      p.zip || p.city || "", p.service || "", p.message || "", p._page || ""
     ];
     sheet.appendRow(row);
 
@@ -46,11 +46,10 @@ function doPost(e) {
         "New estimate lead — " + (p.name || "website"),
         "A new request came in from the website:\n\n" +
         "Name: " + (p.name || "") + "\n" +
-        "Phone: " + (p.phone || "") + "\n" +
         "Email: " + (p.email || "") + "\n" +
-        "Service: " + (p.service || "") + "\n" +
-        "Seeing: " + (p.pest || "") + "\n" +
-        "City: " + (p.city || "") + "\n" +
+        "Phone: " + (p.phone || "") + "\n" +
+        "Zip: " + (p.zip || p.city || "") + "\n" +
+        "Help with: " + (p.service || "") + "\n" +
         "Message: " + (p.message || "") + "\n\n" +
         "Logged: " + row[0]);
     }

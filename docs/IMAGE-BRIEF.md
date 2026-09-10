@@ -209,7 +209,7 @@ These must be genuine photographs — do not generate them.
 - **Used on:** future gallery
 - **Requirement:** Real photo of a named technician at work (reviews mention Tim).
 
-## AI images to generate in ChatGPT (15)
+## AI images to generate in ChatGPT (12)
 
 Paste each prompt as-is. Regenerate if the result shows text, a logo, a watermark, or a
 place that does not look like Central Texas.
@@ -227,20 +227,6 @@ place that does not look like Central Texas.
 - **Used on:** /services/scorpion-control.html
 - **Prompt:**
   > A close, detailed photo of a striped bark scorpion on pale limestone rock at dusk in the Texas Hill Country, cedar and dry grass softly blurred behind, natural light, photorealistic, no text, no logos, no watermark.
-
-### Termite mud tubes on a home foundation
-- **File:** `site/services/termite-mud-tubes.webp`
-- **Alt text:** Termite mud tubes on a home foundation
-- **Used on:** /services/termite-control.html
-- **Prompt:**
-  > A macro photo of subterranean termite mud tubes running up the concrete foundation of a Central Texas home, weathered slab and soil visible, natural daylight, photorealistic, no text, no logos, no watermark.
-
-### Inspector performing a WDI termite inspection on a home
-- **File:** `site/services/termite-letter-inspection.webp`
-- **Alt text:** Inspector performing a WDI termite inspection on a home
-- **Used on:** /services/termite-letters.html
-- **Prompt:**
-  > A pest control inspector with a clipboard and flashlight examining the foundation and eaves of a suburban Central Texas home during a real-estate inspection, warm daylight, photorealistic, no text, no logos, no watermark.
 
 ### Roof rat at the edge of a home attic
 - **File:** `site/services/rodent-removal-attic.webp`
@@ -299,9 +285,9 @@ place that does not look like Central Texas.
   > Field crickets clustered on limestone and concrete near a doorway at night under a porch light in Central Texas, photorealistic, no text, no logos, no watermark.
 
 ### A dog resting in a treated Central Texas backyard
-- **File:** `site/services/flea-control-backyard-dog.webp`
+- **File:** `site/services/flea-tick-control-backyard-dog.webp`
 - **Alt text:** A dog resting in a treated Central Texas backyard
-- **Used on:** /services/flea-control.html
+- **Used on:** /services/flea-tick-control.html
 - **Prompt:**
   > A dog resting on a healthy lawn in a Central Texas backyard at golden hour, photorealistic, no text, no logos, no watermark.
 
@@ -311,10 +297,3 @@ place that does not look like Central Texas.
 - **Used on:** /services/spider-control.html
 - **Prompt:**
   > A spider web glistening with morning dew in the corner of a limestone home's eave in Central Texas, soft backlight, photorealistic, no text, no logos, no watermark.
-
-### Shaded property edge where ticks harbor
-- **File:** `site/services/tick-control-property-edge.webp`
-- **Alt text:** Shaded property edge where ticks harbor
-- **Used on:** /services/tick-control.html
-- **Prompt:**
-  > A wooded, leaf-littered property edge meeting a mowed Central Texas lawn, dappled shade, photorealistic, no text, no logos, no watermark.

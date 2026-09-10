@@ -135,33 +135,7 @@ SERVICES = [
             ("Why scorpions get inside here", "<p>Scorpions follow moisture and prey. During a Hill Country drought they move toward homes for water; after rain they move to escape it. Limestone foundations, weep holes, and gaps under thresholds give them an easy path indoors, often into bathrooms and closets.</p>"),
             ("Our scorpion approach", "<p>Treating the inside alone never solves a scorpion problem. We treat the perimeter and harborage — rock walls, wood piles, landscaping — reduce the insects scorpions feed on, and seal the entry points that let them in. It is the same exclusion-first method that keeps them out for the long term.</p>"),
         ],
-        "related": ["pest-control", "rodent-removal", "termite-control"],
-    },
-    {
-        "slug": "termite-control", "nav": "Termite Control", "icon": "🪵",
-        "h1": "Termite Control & Inspections in Central Texas",
-        "title": "Termite Control & Inspection in Buda, TX | Excel Pest",
-        "desc": "Subterranean termite inspections and treatment for Central Texas homes, backed by our workmanship warranty. Licensed TPCL 0786979. Call (512) 291-5900.",
-        "lead": "Subterranean termites are the quiet, expensive threat to a Central Texas home. They work out of sight for years, and clay soils that swell and crack in our droughts give them constant access to a foundation. A licensed inspection is the only way to know where you stand.",
-        "treats": ["Subterranean termites", "Mud tubes on the foundation", "Hollow or blistered wood", "Swarms after spring rain"],
-        "sections": [
-            ("Inspection first, then a plan", "<p>We start with a thorough inspection — interior, exterior, and the crawl or slab line — and show you what we find. If there is active termite pressure, we treat it and set up a barrier to keep the colony from coming back. Our work is backed by a warranty.</p>"),
-            ("Buying or selling a home?", "<p>If you need the official paperwork for a real-estate closing, see our <a href=\"/services/termite-letters.html\">termite letters &amp; WDI reports</a> page — we schedule those quickly for lenders and title companies across Hays and Travis County.</p>"),
-        ],
-        "related": ["termite-letters", "pest-control", "scorpion-control"],
-    },
-    {
-        "slug": "termite-letters", "nav": "Termite Letters (WDI)", "icon": "📄",
-        "h1": "Termite Letters & WDI Reports for Home Closings",
-        "title": "Termite Letters & WDI Reports | Buda & Central Texas",
-        "desc": "Official termite letters (WDI reports) for real-estate closings across Hays and Travis County. Fast scheduling for lenders and title. Licensed TPCL 0786979.",
-        "lead": "A home sale in Texas often needs a WDI report — the official \"termite letter\" a lender or title company requires before closing. We are a licensed Texas pest control operator (TPCL 0786979) and we schedule these inspections quickly so your closing stays on track.",
-        "treats": ["WDI reports for closings", "Lender & title requirements", "Re-inspections", "Buyer & seller inspections"],
-        "sections": [
-            ("What the report covers", "<p>A Wood Destroying Insect (WDI) inspection documents any evidence of termites and other wood-destroying insects on the standard state form your lender needs. You get clear results and, if anything is found, straightforward options — including <a href=\"/services/termite-control.html\">termite treatment</a> before the deadline.</p>"),
-            ("Booked around your closing date", "<p>Closings do not wait, so we do not make you wait. Tell us your date and property, and we schedule the inspection and turn the paperwork around promptly. Serving Buda, Kyle, San Marcos, Dripping Springs and the surrounding corridor.</p>"),
-        ],
-        "related": ["termite-control", "pest-control", "rodent-removal"],
+        "related": ["pest-control", "rodent-removal", "spider-control"],
     },
     {
         "slug": "rodent-removal", "nav": "Rodent Removal", "icon": "🐀",
@@ -268,17 +242,18 @@ SERVICES = [
         "related": ["scorpion-control", "spider-control", "pest-control"],
     },
     {
-        "slug": "flea-control", "nav": "Flea Control", "icon": "🐾",
-        "h1": "Flea Control for Central Texas Homes & Yards",
-        "title": "Flea Control in Buda, TX | Home & Yard | Excel Pest",
-        "desc": "Fleas eliminated from the home and yard with treatment that breaks the life cycle. Water-based products, applied by licensed technicians. Call (512) 291-5900.",
-        "lead": "Fleas don't just bite pets — they infest carpet, bedding and yards, and a few can become thousands in weeks. Our mild winters let them thrive nearly year-round here. We treat the whole life cycle, indoors and out.",
-        "treats": ["Adult fleas", "Eggs & larvae in carpet / bedding", "Shaded yard harborage", "Re-infestation prevention"],
+        "slug": "flea-tick-control", "nav": "Flea & Tick Control", "icon": "🐾",
+        "h1": "Flea & Tick Control for Central Texas Homes & Yards",
+        "title": "Flea & Tick Control in Buda, TX | Excel Pest",
+        "desc": "Fleas and ticks controlled in the home and yard — breaking the flea life cycle and treating the shaded borders where ticks wait. Call (512) 291-5900.",
+        "lead": "Fleas and ticks go together — both bite your family and pets, both thrive in Central Texas's mild winters and shaded yards, and both take a whole-property approach. We treat the home and the yard, indoors and out.",
+        "treats": ["Adult fleas + eggs & larvae", "Yard & perimeter ticks", "Carpet, bedding & shaded harborage", "Pet runs, greenbelt & wood-line borders"],
         "sections": [
-            ("Break the life cycle, not just the adults", "<p>Most of a flea problem isn't the adults you see — it's eggs and larvae hidden in carpet, pet bedding and shaded yard soil. We treat all stages so the infestation actually ends instead of bouncing back in two weeks.</p>"),
-            ("Coordinated with your vet plan", "<p>Yard and home treatment works best alongside the flea prevention your vet provides. We'll tell you exactly what to do before and after service to protect your four-legged family members.</p>"),
+            ("Break the flea life cycle", "<p>Most of a flea problem isn't the adults you see — it's eggs and larvae in carpet, pet bedding and shaded yard soil. We treat all stages so it actually ends instead of bouncing back in two weeks.</p>"),
+            ("Treat the edges where ticks wait", "<p>Ticks wait in the shaded, humid borders — leaf litter, tall grass, fence lines and the wood line — which is exactly where your family and pets pick them up. A perimeter program keeps the yard usable through the warm months.</p>"),
+            ("Coordinated with your vet plan", "<p>Home and yard treatment works best alongside the flea-and-tick prevention your vet provides. We'll tell you what to do before and after service to protect your four-legged family members.</p>"),
         ],
-        "related": ["tick-control", "pest-control", "rodent-removal"],
+        "related": ["pest-control", "lawn-pest-control", "rodent-removal"],
     },
     {
         "slug": "spider-control", "nav": "Spider Control", "icon": "🕷️",
@@ -293,28 +268,15 @@ SERVICES = [
         ],
         "related": ["cricket-control", "scorpion-control", "pest-control"],
     },
-    {
-        "slug": "tick-control", "nav": "Tick Control", "icon": "🕸️",
-        "h1": "Tick Control for Central Texas Yards",
-        "title": "Tick Control in Buda, TX | Yard Tick Treatment | Excel Pest",
-        "desc": "Tick control for Central Texas yards and properties — protecting family and pets from bites. Focused on shaded harborage. Call (512) 291-5900.",
-        "lead": "Ticks turn a backyard, greenbelt edge or wooded lot into a health risk for your family and pets. In Central Texas they hide in tall grass, leaf litter and shaded borders. We treat where they wait.",
-        "treats": ["Yard & perimeter ticks", "Shaded / leaf-litter harborage", "Pet runs & trails", "Greenbelt & wood-line borders"],
-        "sections": [
-            ("Treat the edges where ticks wait", "<p>Ticks don't live in the open, mowed lawn — they wait in the shaded, humid borders: leaf litter, tall grass, fence lines and the wood line. We focus treatment there, which is exactly where your family and pets pick them up.</p>"),
-            ("Especially important on acreage and greenbelt lots", "<p>Homes backing to greenbelt or on Hill Country acreage see the most tick pressure. A perimeter program keeps the yard usable through the warm months — and pairs well with <a href=\"/services/flea-control.html\">flea control</a>.</p>"),
-        ],
-        "related": ["flea-control", "lawn-pest-control", "pest-control"],
-    },
 ]
 SERVICE_BY_SLUG = {s["slug"]: s for s in SERVICES}
 
 # Grouped services for the header mega-menu and the services hub
 MENU_GROUPS = [
-    ("Insect Control", ["ant-control", "cockroach-control", "cricket-control", "flea-control",
-                        "scorpion-control", "spider-control", "termite-control", "tick-control"]),
+    ("Insect Control", ["ant-control", "cockroach-control", "cricket-control", "flea-tick-control",
+                        "scorpion-control", "spider-control"]),
     ("Rodent & Wildlife", ["rodent-removal", "rodent-exclusion", "wildlife-live-trapping"]),
-    ("More Services", ["pest-control", "mosquito-misting", "termite-letters", "lawn-pest-control"]),
+    ("More Services", ["pest-control", "mosquito-misting", "lawn-pest-control"]),
 ]
 
 # Per-service mini-FAQ (adds FAQPage schema + an accordion to each service page)
@@ -328,16 +290,6 @@ SERVICE_FAQS = {
         ("Why do I still see scorpions after treating inside?", "Because scorpions live outside — in rock, cedar and wood piles — and wander in. Lasting control treats the perimeter and seals entry points, not just the interior."),
         ("When is scorpion season in Central Texas?", "They're most active in the warm months and move toward homes during drought (for water) and after heavy rain (to escape it). Year-round exclusion keeps them out."),
         ("Are Central Texas scorpions dangerous?", "The striped bark scorpion's sting is painful but rarely medically serious for most people — still not something you want indoors, which is why we focus on keeping them out."),
-    ],
-    "termite-control": [
-        ("How do I know if I have termites?", "Common signs are mud tubes on the foundation, hollow-sounding or blistered wood, and swarms after spring rain. A licensed inspection confirms it."),
-        ("Do you offer a warranty?", "Yes — we back our termite work with a warranty. Ask for details during your inspection."),
-        ("How often should I have a termite inspection?", "An annual inspection is smart in Central Texas, where soil movement gives termites constant access to foundations."),
-    ],
-    "termite-letters": [
-        ("What is a termite letter / WDI report?", "It's the official Wood Destroying Insect inspection report, on the state form that lenders and title companies require for many closings."),
-        ("How fast can you get it done?", "Tell us your closing date and property and we schedule promptly and turn the paperwork around quickly."),
-        ("What if the inspection finds termites?", "You'll get clear options, including <a href=\"/services/termite-control.html\">treatment</a> before your deadline."),
     ],
     "rodent-removal": [
         ("What's the difference between removal and exclusion?", "Removal gets rid of the rodents inside; exclusion seals the gaps that let them in. We do both — trapping alone just repeats."),
@@ -379,20 +331,15 @@ SERVICE_FAQS = {
         ("Do crickets really attract scorpions?", "Yes — crickets are a favorite food, so cutting cricket numbers is one of the best ways to reduce scorpions and spiders around your home."),
         ("What about my pets with cricket treatment?", "Water-based products, focused on the exterior perimeter and harborage."),
     ],
-    "flea-control": [
-        ("How does flea treatment work around my pets?", "It's water-based, and we coordinate with the vet-provided prevention your pets are on. We'll tell you how to prep and when a treated area is dry and ready."),
-        ("Do you treat the yard as well as the house?", "Both — fleas breed in shaded yard soil as well as carpet and bedding, so treating only indoors leaves a source outside."),
+    "flea-tick-control": [
+        ("How does treatment work around my pets?", "It's water-based, and we coordinate with the vet-provided flea-and-tick prevention your pets are on. We'll tell you how to prep and when a treated area is dry and ready."),
+        ("Do you treat the yard as well as the house?", "Both — fleas breed in carpet, bedding and shaded yard soil, and ticks wait in the yard's shaded borders, so we treat indoors and out."),
         ("How should I prep my home?", "Vacuum thoroughly, wash pet bedding, and clear floors. We'll give you the full short checklist when you book."),
     ],
     "spider-control": [
         ("Do you handle black widows and brown recluse?", "Yes — we treat their hotspots (garages, meter boxes, woodpiles, undisturbed storage) specifically and advise on reducing harborage."),
         ("What about my pets with spider treatment?", "Water-based products, applied to eaves, corners and the exterior barrier rather than living surfaces."),
         ("Will the webs just come back?", "Far less, because we reduce the insects spiders feed on. Ongoing service keeps eaves and corners clear."),
-    ],
-    "tick-control": [
-        ("Are ticks dangerous in Central Texas?", "Ticks can transmit disease to people and pets, so keeping them out of the yard matters — especially on greenbelt and acreage lots."),
-        ("What about my pets with tick treatment?", "Water-based products, focused on the shaded borders where ticks wait rather than the open lawn where pets play."),
-        ("How often should the yard be treated?", "Through the warm months a recurring perimeter program keeps pressure down; we'll recommend a cadence for your property."),
     ],
 }
 
@@ -402,10 +349,6 @@ SERVICE_IMAGES = {
         "A licensed pest control technician in a clean plain uniform spraying a water-based treatment along the exterior foundation of a limestone Central Texas home, live oak trees and Hill Country landscaping behind, warm morning light, photorealistic, no text, no logos, no watermark, no visible brand names."),
     "scorpion-control": ("🦂", "scorpion-hill-country.webp", "Striped bark scorpion on Hill Country limestone",
         "A close, detailed photo of a striped bark scorpion on pale limestone rock at dusk in the Texas Hill Country, cedar and dry grass softly blurred behind, natural light, photorealistic, no text, no logos, no watermark."),
-    "termite-control": ("🪵", "termite-mud-tubes.webp", "Termite mud tubes on a home foundation",
-        "A macro photo of subterranean termite mud tubes running up the concrete foundation of a Central Texas home, weathered slab and soil visible, natural daylight, photorealistic, no text, no logos, no watermark."),
-    "termite-letters": ("📄", "termite-letter-inspection.webp", "Inspector performing a WDI termite inspection on a home",
-        "A pest control inspector with a clipboard and flashlight examining the foundation and eaves of a suburban Central Texas home during a real-estate inspection, warm daylight, photorealistic, no text, no logos, no watermark."),
     "rodent-removal": ("🐀", "rodent-removal-attic.webp", "Roof rat at the edge of a home attic",
         "A roof rat peering from the edge of a home attic with insulation visible, dim natural light, photorealistic, no text, no logos, no watermark."),
     "rodent-exclusion": ("🧰", "rodent-exclusion-sealing.webp", "Sealing a rodent entry point along a roofline",
@@ -422,12 +365,10 @@ SERVICE_IMAGES = {
         "A single American cockroach on a tiled kitchen floor at night, shallow depth of field, photorealistic, no text, no logos, no watermark."),
     "cricket-control": ("🦗", "cricket-control-doorway.webp", "Field crickets gathered by a doorway at night",
         "Field crickets clustered on limestone and concrete near a doorway at night under a porch light in Central Texas, photorealistic, no text, no logos, no watermark."),
-    "flea-control": ("🐾", "flea-control-backyard-dog.webp", "A dog resting in a treated Central Texas backyard",
+    "flea-tick-control": ("🐾", "flea-tick-control-backyard-dog.webp", "A dog resting in a treated Central Texas backyard",
         "A dog resting on a healthy lawn in a Central Texas backyard at golden hour, photorealistic, no text, no logos, no watermark."),
     "spider-control": ("🕷️", "spider-control-web-eave.webp", "Spider web in the eave of a Central Texas home",
         "A spider web glistening with morning dew in the corner of a limestone home's eave in Central Texas, soft backlight, photorealistic, no text, no logos, no watermark."),
-    "tick-control": ("🕸️", "tick-control-property-edge.webp", "Shaded property edge where ticks harbor",
-        "A wooded, leaf-littered property edge meeting a mowed Central Texas lawn, dappled shade, photorealistic, no text, no logos, no watermark."),
 }
 
 # --------------------------------------------------------------------------
@@ -736,8 +677,8 @@ def cta_band(heading="Seeing something you shouldn't?", sub="Get a free estimate
 
 def footer():
     # A curated subset of services in the footer (the full list lives on /services.html)
-    footer_service_slugs = ["pest-control", "scorpion-control", "termite-control", "ant-control",
-                            "rodent-removal", "wildlife-live-trapping", "mosquito-misting", "lawn-pest-control"]
+    footer_service_slugs = ["pest-control", "scorpion-control", "ant-control", "rodent-removal",
+                            "wildlife-live-trapping", "mosquito-misting", "flea-tick-control", "lawn-pest-control"]
     svc_links = "\n".join(
         '            <li><a href="/services/%s.html">%s</a></li>'
         % (sl, html.escape(SERVICE_BY_SLUG[sl]["nav"]))
@@ -911,7 +852,7 @@ MOTIFS = {
            '<path d="M100 60 L74 44 M100 84 L72 70 M100 108 L74 98" stroke="rgba(0,0,0,.14)" stroke-width="3" fill="none"/></g>',
 }
 SERVICE_MOTIF = {
-    "scorpion-control": "scorpion", "spider-control": "spider", "tick-control": "spider",
+    "scorpion-control": "scorpion", "spider-control": "spider", "flea-tick-control": "spider",
     "mosquito-misting": "mosquito", "rodent-removal": "mouse", "rodent-exclusion": "mouse",
     "wildlife-live-trapping": "raccoon", "lawn-pest-control": "leaf",
 }
@@ -1222,8 +1163,8 @@ def render_location(l):
     title = "Pest Control in %s, TX | Excel Pest since %s" % (l["city"], BIZ["founded"])
     desc = "Family-owned pest, rodent and scorpion control in %s, %s since %s. Free estimates — call %s." % (
         l["city"], l["county"], BIZ["founded"], BIZ["phone"])
-    loc_service_slugs = ["pest-control", "scorpion-control", "termite-control", "ant-control",
-                         "rodent-removal", "wildlife-live-trapping", "mosquito-misting", "lawn-pest-control"]
+    loc_service_slugs = ["pest-control", "scorpion-control", "ant-control", "rodent-removal",
+                         "wildlife-live-trapping", "mosquito-misting", "flea-tick-control", "lawn-pest-control"]
     svc_cards = "".join(
         """        <article class="card card--link dir-card">
           <h3>{name}</h3>
@@ -1331,7 +1272,7 @@ def services_hub():
   </section>""".format(groups=groups_html, cross=crosslink_block())
     body += cta_band()
     schema = [business_schema(), breadcrumb_schema(crumbs)]
-    desc = "Pest control, scorpion, termite, rodent, wildlife, mosquito and lawn-pest control across Buda and Central Texas. Family-owned since 1998. Call (512) 291-5900."
+    desc = "Pest control, scorpion, rodent, wildlife, mosquito, flea & tick and lawn-pest control across Buda and Central Texas. Family-owned since 1998. Call (512) 291-5900."
     return assemble("Pest Control Services in Buda & Central Texas | Excel Pest", desc, canonical, body, schema)
 
 
@@ -1413,9 +1354,9 @@ PESTS = [
     {"emo": "🐀", "name": "Rodents", "href": "/services/rodent-removal.html", "cta": "See rodent control",
      "signs": "Droppings, gnaw marks, scratching in the attic or walls at night.",
      "desc": "Rats and mice chew wiring and foul insulation. We remove them and seal the entry points so they don't return."},
-    {"emo": "🪵", "name": "Termites", "href": "/services/termite-control.html", "cta": "See termite control",
-     "signs": "Mud tubes on the foundation, hollow-sounding wood, or a swarm after spring rain.",
-     "desc": "Subterranean termites work out of sight for years. A licensed inspection tells you where you stand — and we treat and warranty it."},
+    {"emo": "🐾", "name": "Fleas & Ticks", "href": "/services/flea-tick-control.html", "cta": "See flea & tick control",
+     "signs": "Pets scratching, bites around ankles, or ticks after time in the yard or greenbelt.",
+     "desc": "Fleas breed in carpet and shaded soil; ticks wait in the yard's edges. We treat the home and yard, indoors and out."},
     {"emo": "🕷️", "name": "Spiders", "href": "/services/spider-control.html", "cta": "See spider control",
      "signs": "Webs in corners, garages and eaves; egg sacs; more sightings in fall.",
      "desc": "Spiders follow other insects indoors. Our exterior barrier reduces the prey that draws them in."},
@@ -1497,8 +1438,8 @@ _IC = ('<svg class="svc-ic" viewBox="0 0 32 32" fill="none" stroke="currentColor
 CORE_ICONS = {
     # General pest — house under a shield
     "pest-control": _IC % '<path d="M16 3l10 4v7c0 6-4 10-10 12C10 24 6 20 6 14V7z"/><path d="M12 15l3 3 5-6"/>',
-    # Termites — timber beam with grain
-    "termite-control": _IC % '<rect x="5" y="10" width="22" height="12" rx="1.5"/><path d="M9 14h9M9 18h6M22 13v6"/>',
+    # Ants — three body segments with legs
+    "ant-control": _IC % '<circle cx="16" cy="8" r="2.6"/><ellipse cx="16" cy="15" rx="3.4" ry="3"/><ellipse cx="16" cy="23" rx="4" ry="4.4"/><path d="M13 14l-6-3M13 16l-7 1M13 18l-6 4M19 14l6-3M19 16l7 1M19 18l6 4M15 6l-2-3M17 6l2-3"/>',
     # Rodents & exclusion — home with a sealed gap
     "rodent-exclusion": _IC % '<path d="M5 15l11-8 11 8"/><path d="M8 14v11h16V14"/><path d="M13 25v-6h6v6"/><circle cx="16" cy="16.5" r="1"/>',
     # Wildlife — humane leaf/paw
@@ -1508,11 +1449,11 @@ CORE_ICONS = {
     # Mosquitoes — droplet + wings
     "mosquito-misting": _IC % '<path d="M16 6c4 5 6 8 6 11a6 6 0 01-12 0c0-3 2-6 6-11z"/><path d="M13 17c-3-2-6-2-8 0M19 17c3-2 6-2 8 0"/>',
 }
-CORE_HOME = ["pest-control", "termite-control", "rodent-exclusion",
+CORE_HOME = ["pest-control", "ant-control", "rodent-exclusion",
              "wildlife-live-trapping", "scorpion-control", "mosquito-misting"]
 CORE_BLURB = {
     "pest-control": "Recurring, water-based treatment for ants, roaches, spiders and the everyday pests that get inside.",
-    "termite-control": "Licensed inspections, targeted treatment and a warranty for the termites working out of sight.",
+    "ant-control": "Fire ants, sugar ants and carpenter ants treated at the colony so they stop coming back.",
     "rodent-exclusion": "Trap the rats and mice, then seal the entry points so they can't come back.",
     "wildlife-live-trapping": "Humane removal of raccoons, squirrels and possums — then we close the way in.",
     "scorpion-control": "Harborage treatment and exclusion for the striped bark scorpions that thrive in Hill Country limestone.",
@@ -1522,13 +1463,13 @@ CORE_BLURB = {
 
 def home():
     canonical = BIZ["domain"] + "/"
-    marquee_items = ["General Pest Control", "Termite Control", "Rodents &amp; Exclusion",
+    marquee_items = ["General Pest Control", "Flea &amp; Tick Control", "Rodents &amp; Exclusion",
                      "Wildlife Removal", "Scorpion Control", "Mosquito Control",
                      "Licensed &amp; Insured", "Family-Owned Since 1998", "5.0&#9733; Google Rating"]
     marquee = "".join('<span class="marquee__item">%s</span><span class="marquee__dot" aria-hidden="true">&bull;</span>' % m
                       for m in marquee_items)
     core_names = {
-        "pest-control": "General Pest Control", "termite-control": "Termite Control",
+        "pest-control": "General Pest Control", "ant-control": "Ant Control",
         "rodent-exclusion": "Rodents &amp; Exclusion", "wildlife-live-trapping": "Wildlife Removal",
         "scorpion-control": "Scorpion Control", "mosquito-misting": "Mosquito Control",
     }
@@ -1933,8 +1874,6 @@ FAQS = [
      "We back our work with a warranty and offer emergency service when a pest problem cannot wait."),
     ("What areas do you serve?",
      "27 Central Texas cities from South Austin through Hays County into the Hill Country — Buda, Kyle, San Marcos, Dripping Springs, Wimberley and more. See our <a href=\"/service-area.html\">service area</a>."),
-    ("Can you provide a termite letter for a home closing?",
-     "Yes. We schedule WDI reports (termite letters) quickly for lenders and title companies. See <a href=\"/services/termite-letters.html\">termite letters &amp; WDI reports</a>."),
     ("Do you offer any discounts?",
      "We offer 10% off for military, veterans, first responders, nurses and teachers — just mention it when you schedule. See the <a href=\"/about.html#military\">details on our About page</a>."),
     ("Do you handle landscaping and lawn installation?",
@@ -1971,7 +1910,7 @@ def faq():
             "acceptedAnswer": {"@type": "Answer", "text": _re.sub("<[^>]+>", "", a)},
         } for q, a in FAQS],
     }
-    desc = "Answers about Excel Pest — product safety for pets and kids, free estimates, licensing, service area, termite letters and discounts. Central Texas pest control since 1998."
+    desc = "Answers about Excel Pest — product safety for pets and kids, free estimates, licensing, service area and discounts. Central Texas pest control since 1998."
     schema = [faq_schema, business_schema(), breadcrumb_schema(crumbs)]
     return assemble("FAQ — Excel Pest & Lawn Control | Central Texas", desc, canonical, body, schema)
 
@@ -1979,13 +1918,11 @@ def faq():
 def contact():
     canonical = BIZ["domain"] + "/contact.html"
     crumbs = [("Home", "/"), ("Contact", None)]
-    options = "".join("<option>%s</option>" % html.escape(s["nav"]) for s in SERVICES)
-    city_opts = "".join('<option value="%s"></option>' % html.escape(c) for c in ALL_CITIES)
-    pest_choices = "".join(
-        '<label><input type="radio" name="pest" value="{v}"><span>{e} {v}</span></label>'.format(v=v, e=e)
-        for e, v in [("🦂","Scorpions"),("🐜","Ants"),("🪳","Roaches"),("🐀","Rodents"),
-                     ("🪵","Termites"),("🦝","Wildlife"),("🦟","Mosquitoes"),("🌱","Lawn pests")]
-    )
+    help_opts = ["General Pest Control (ants, roaches, spiders, scorpions, crickets)",
+                 "Rodents & Wildlife", "Mosquitoes", "Flea & Tick", "Lawn Pest Control",
+                 "Not sure / other"]
+    help_options = '<option value="" disabled selected>Choose one…</option>' + "".join(
+        "<option>%s</option>" % html.escape(o) for o in help_opts)
     form_action, form_hidden = estimate_form_backend()
     body = page_hero("Get a Free Estimate", "Call, text, or send a message — we'll get right back to you.", crumbs) + """
   <section class="section">
@@ -2011,43 +1948,23 @@ def contact():
       </div>
       <div>
         <div class="card">
-          <h2 class="mt-0" style="font-size:1.4rem;">Request an estimate</h2>
-          <form {form_action} class="wizard" data-estimate data-wizard novalidate data-lead-sheet="{lead_sheet}">
+          <h2 class="mt-0" style="font-size:1.4rem;">Request a free estimate</h2>
+          <form {form_action} class="lead-form" data-estimate novalidate data-lead-sheet="{lead_sheet}">
             {form_hidden}
             <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-            <div class="wiz-prog"><span data-wiz-fill></span></div>
-            <div class="wiz-count" data-wiz-count>Step 1 of 3</div>
-
-            <fieldset class="wiz-step active" data-step="0">
-              <div class="field"><label for="service">What do you need help with?</label>
-                <select id="service" name="service">{options}<option>Not sure / other</option></select></div>
-              <div class="field"><label>Seeing something specific? <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
-                <div class="pest-choice">{pest_choices}</div></div>
-              <div class="wiz-nav"><span></span><button type="button" class="btn btn--primary" data-wiz-next>Next →</button></div>
-            </fieldset>
-
-            <fieldset class="wiz-step" data-step="1">
-              <div class="field"><label for="name">Name</label>
-                <input id="name" name="name" type="text" autocomplete="name" required></div>
-              <div class="field"><label for="phone">Phone</label>
-                <input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
-              <div class="field"><label for="email">Email</label>
-                <input id="email" name="email" type="email" autocomplete="email" required></div>
-              <div class="wiz-nav"><button type="button" class="btn btn--outline" data-wiz-back>← Back</button>
-                <button type="button" class="btn btn--primary" data-wiz-next>Next →</button></div>
-            </fieldset>
-
-            <fieldset class="wiz-step" data-step="2">
-              <div class="field"><label for="city">Your city</label>
-                <input id="city" name="city" type="text" list="city-list" autocomplete="address-level2" placeholder="e.g. Kyle">
-                <datalist id="city-list">{city_opts}</datalist></div>
-              <div class="field"><label for="message">Anything else we should know?</label>
-                <textarea id="message" name="message" rows="3"></textarea></div>
-              <div class="wiz-review" data-wiz-review></div>
-              <div class="wiz-nav"><button type="button" class="btn btn--outline" data-wiz-back>← Back</button>
-                <button class="btn btn--primary" type="submit">Send Request</button></div>
-            </fieldset>
-
+            <div class="field"><label for="name">Name</label>
+              <input id="name" name="name" type="text" autocomplete="name" required></div>
+            <div class="field"><label for="email">Email</label>
+              <input id="email" name="email" type="email" autocomplete="email" required></div>
+            <div class="field"><label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+            <div class="field"><label for="zip">Zip code</label>
+              <input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="10" required></div>
+            <div class="field"><label for="service">What do you want help with?</label>
+              <select id="service" name="service" required>{help_options}</select></div>
+            <div class="field"><label for="message">Anything else? <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+              <textarea id="message" name="message" rows="3"></textarea></div>
+            <button class="btn btn--primary" type="submit" style="width:100%;">Request my free estimate</button>
             <p class="hero__note" style="color:var(--muted);" data-form-note>By submitting, you agree to be contacted about your request.</p>
           </form>
         </div>
@@ -2056,8 +1973,8 @@ def contact():
   </section>""".format(
         ptel=BIZ["phone_tel"], phone=BIZ["phone"], ttel=BIZ["text_tel"], text=BIZ["text"], email=BIZ["email"],
         street=BIZ["street"], city=BIZ["city"], state=BIZ["state"], zip=BIZ["zip"], license=BIZ["license"],
-        sister_url=BIZ["sister_url"], sister=BIZ["sister_name"], sister_phone=BIZ["sister_phone"], options=options,
-        pest_choices=pest_choices, city_opts=city_opts,
+        sister_url=BIZ["sister_url"], sister=BIZ["sister_name"], sister_phone=BIZ["sister_phone"],
+        help_options=help_options,
         form_action=form_action, form_hidden=form_hidden,
         lead_sheet=html.escape(LEAD_SHEET_ENDPOINT, quote=True),
     )
@@ -2365,7 +2282,10 @@ def build_manifest():
 REDIRECTS = {
     "ant-control": "/services/ant-control.html",
     "scorpion-control": "/services/scorpion-control.html",
-    "termite-control": "/services/termite-control.html",
+    "termite-control": "/services/pest-control.html",
+    "termite-letters": "/services/pest-control.html",
+    "flea-control": "/services/flea-tick-control.html",
+    "tick-control": "/services/flea-tick-control.html",
     "rodent-control": "/services/rodent-removal.html",
     "wildlife-live-trapping": "/services/wildlife-live-trapping.html",
     "general-pest-control": "/services/pest-control.html",

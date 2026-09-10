@@ -39,14 +39,16 @@
         var fd = new FormData(form);
         fd.append('_page', location.pathname);
         fd.append('_ts', new Date().toISOString());
+        // Mirror zip into 'city' too, so the currently-deployed sheet script
+        // (which logs a City column) captures it without needing a redeploy.
+        if (get('zip')) fd.append('city', get('zip'));
         fetch(SHEET, { method: 'POST', mode: 'no-cors', body: fd }).catch(function () {});
       } catch (e) {}
     }
 
     function fallbackMailto() {
-      var lines = ['Name: ' + get('name'), 'Phone: ' + get('phone'), 'Email: ' + get('email'), 'Service: ' + get('service')];
-      if (get('pest')) lines.push('Seeing: ' + get('pest'));
-      if (get('city')) lines.push('City: ' + get('city'));
+      var lines = ['Name: ' + get('name'), 'Email: ' + get('email'), 'Phone: ' + get('phone'),
+                   'Zip: ' + get('zip'), 'Help with: ' + get('service')];
       var body = lines.join('\n') + '\n\n' + get('message');
       var subject = 'Free estimate request' + (get('name') ? ' — ' + get('name') : '');
       window.location.href = 'mailto:' + OFFICE + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
@@ -63,9 +65,9 @@
       // Honeypot: if a bot filled the hidden field, pretend success and stop.
       var hp = form.querySelector('.hp');
       if (hp && hp.value) { showSuccess(); return; }
-      if (!get('name') || !get('phone') || !get('email')) {
-        setNote('Please add your name, phone and email so we can reach you.');
-        var miss = form.elements[!get('name') ? 'name' : (!get('phone') ? 'phone' : 'email')];
+      if (!get('name') || !get('email') || !get('phone') || !get('zip')) {
+        setNote('Please add your name, email, phone and zip code so we can reach you.');
+        var miss = form.elements[!get('name') ? 'name' : (!get('email') ? 'email' : (!get('phone') ? 'phone' : 'zip'))];
         if (miss && miss.focus) miss.focus();
         return;
       }

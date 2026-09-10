@@ -68,10 +68,10 @@ Only `slug`, `title`, `date`, and `body_html` are strictly required; a malformed
 file is skipped so it can never break the build.
 
 ### Valid `related_services` slugs
-`pest-control`, `scorpion-control`, `termite-control`, `termite-letters`,
-`rodent-removal`, `rodent-exclusion`, `wildlife-live-trapping`,
-`mosquito-misting`, `ant-control`, `cockroach-control`, `cricket-control`,
-`flea-control`, `tick-control`, `spider-control`, `lawn-pest-control`.
+`pest-control`, `scorpion-control`, `rodent-removal`, `rodent-exclusion`,
+`wildlife-live-trapping`, `mosquito-misting`, `ant-control`, `cockroach-control`,
+`cricket-control`, `flea-tick-control`, `spider-control`, `lawn-pest-control`.
+(Termite control/letters were removed; flea & tick are now one combined service.)
 
 ---
 
