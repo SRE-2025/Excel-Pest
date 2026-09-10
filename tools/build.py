@@ -70,6 +70,13 @@ BIZ = {
 # and never claim success on a failure.
 FORM_ENDPOINT = "https://formsubmit.co/ajax/" + BIZ["email"]
 
+# Durable lead capture (safety net): a Google Apps Script Web App URL that appends
+# every submission to a Google Sheet the business owns — so a lead is never lost
+# even if email delivery errors. Paste the deploy URL here (see docs/LEAD-CAPTURE.md).
+# Empty = disabled (email-only). When set, the form logs to the Sheet in parallel
+# with the FormSubmit email.
+LEAD_SHEET_ENDPOINT = ""
+
 
 def estimate_form_backend():
     """(action_attrs, hidden_fields) for the estimate form — delivers to office@ via FormSubmit."""
@@ -2005,7 +2012,7 @@ def contact():
       <div>
         <div class="card">
           <h2 class="mt-0" style="font-size:1.4rem;">Request an estimate</h2>
-          <form {form_action} class="wizard" data-estimate data-wizard novalidate>
+          <form {form_action} class="wizard" data-estimate data-wizard novalidate data-lead-sheet="{lead_sheet}">
             {form_hidden}
             <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="wiz-prog"><span data-wiz-fill></span></div>
@@ -2052,6 +2059,7 @@ def contact():
         sister_url=BIZ["sister_url"], sister=BIZ["sister_name"], sister_phone=BIZ["sister_phone"], options=options,
         pest_choices=pest_choices, city_opts=city_opts,
         form_action=form_action, form_hidden=form_hidden,
+        lead_sheet=html.escape(LEAD_SHEET_ENDPOINT, quote=True),
     )
     body += map_embed("Visit or reach our Buda office")
     desc = "Request a free pest control estimate in Buda and Central Texas. Call (512) 291-5900, text (512) 291-5900, or send a message. Family-owned since 1998."

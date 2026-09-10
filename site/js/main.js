@@ -25,9 +25,23 @@
     var OFFICE = 'office@excelpest-lawncontrol.com';
     // A real endpoint = any http(s) action (FormSubmit). mailto: is the fallback only.
     var hasBackend = /^https?:/i.test(form.getAttribute('action') || '');
+    var SHEET = form.getAttribute('data-lead-sheet') || '';   // durable backup store
     var get = function (n) { var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
 
     function setNote(msg) { if (note) note.textContent = msg; }
+
+    // Durable safety net: log every valid submission to the owner's Google Sheet
+    // in parallel with the email, so no lead is lost if email delivery errors.
+    // Fire-and-forget (no-cors) — never blocks or breaks the visitor's flow.
+    function captureToSheet() {
+      if (!SHEET || !window.fetch) return;
+      try {
+        var fd = new FormData(form);
+        fd.append('_page', location.pathname);
+        fd.append('_ts', new Date().toISOString());
+        fetch(SHEET, { method: 'POST', mode: 'no-cors', body: fd }).catch(function () {});
+      } catch (e) {}
+    }
 
     function fallbackMailto() {
       var lines = ['Name: ' + get('name'), 'Phone: ' + get('phone'), 'Email: ' + get('email'), 'Service: ' + get('service')];
@@ -55,6 +69,8 @@
         if (miss && miss.focus) miss.focus();
         return;
       }
+      // Durable capture first — this is the safety net that survives an email error.
+      captureToSheet();
       if (hasBackend && window.fetch) {
         setNote('Sending…');
         fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
