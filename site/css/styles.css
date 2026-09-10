@@ -12,7 +12,7 @@
   --line:     #D6D3CA;   /* borders */
   --white:    #FFFFFF;
   --body:     #2B2A26;   /* body copy on warm white */
-  --muted:    #6A665E;   /* secondary text */
+  --muted:    #5A5750;   /* secondary text (darkened to clear WCAG AA) */
   --accent:   #9A5A2B;   /* functional accent ONLY (focus rings, tiny marks) */
 
   /* Legacy aliases — old component classes resolve to the new system.
@@ -295,7 +295,7 @@ img { max-width: 100%; height: auto; display: block; }
 
 /* ---------- Footer ---------- */
 .site-footer { background: var(--navy-dark); color: #aab6cf; padding: 56px 0 28px; }
-.site-footer h4 { color: #fff; font-size: .95rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 14px; }
+.site-footer h3 { color: #fff; font-size: .95rem; text-transform: uppercase; letter-spacing: .1em; margin-bottom: 14px; }
 .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 32px; }
 .site-footer a { color: #D9D5CB; }
 .site-footer a:hover { color: var(--orange); text-decoration: none; }
@@ -364,7 +364,7 @@ img { max-width: 100%; height: auto; display: block; }
 .card--link .card__link { margin-top: auto; padding-top: 10px; }
 
 /* ---------- Reviews ---------- */
-.stars { color: #ffb400; font-size: 1.1rem; letter-spacing: 2px; }
+.stars { color: var(--accent); font-size: 1.1rem; letter-spacing: 2px; }
 .review-card { background: #fff; border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
 .review-card blockquote { margin: 10px 0 14px; padding: 0; border: 0; font-size: 1.08rem; color: var(--ink); font-style: normal; background: none; }
 .review-card cite { font-style: normal; font-weight: 700; color: var(--navy); }
@@ -633,7 +633,7 @@ img { max-width: 100%; height: auto; display: block; }
 .wiz-review b { color: var(--ink); }
 .pest-choice { display: flex; flex-wrap: wrap; gap: 8px; }
 .pest-choice label { border: 1px solid var(--line); border-radius: 999px; padding: 8px 14px; cursor: pointer; font-size: .9rem; font-weight: 600; }
-.pest-choice input { position: absolute; opacity: 0; }
+.pest-choice input { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); border: 0; opacity: 0; }
 .pest-choice input:checked + span { color: var(--orange-dark); }
 .pest-choice label:has(input:checked) { border-color: var(--orange); background: #fff4e8; }
 
@@ -1014,6 +1014,11 @@ body { background: var(--bg); color: var(--body); }
   background: #fff; color: var(--ink); border-color: #fff;
   font-size: 1.05rem; font-weight: 700; padding: 13px 22px; letter-spacing: .01em;
 }
+/* Win the cascade over `.nav-links a` (which sets near-white) so the header
+   phone number is readable — ink text on the white pill, brand-red glyph. */
+.nav-links a.btn--call,
+.nav-links a.btn--call:hover,
+.nav-cta a.btn--call { color: var(--ink); }
 .btn--call:hover { background: var(--soft); border-color: var(--soft); color: var(--ink); }
 .btn--call .btn__ph { flex: 0 0 auto; color: #D6392B; }
 /* Header "Free estimate" is the red CTA */
@@ -1038,3 +1043,33 @@ body { background: var(--bg); color: var(--body); }
 .article-body p { margin: 0 0 1.1rem; }
 .art-tag { display: inline-block; font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: .12em;
   color: var(--accent); margin-bottom: 8px; }
+
+/* =========================================================================
+   Audit fixes — utilities, overflow guards, tap targets, map, honeypot
+   ========================================================================= */
+.visually-hidden {
+  position: absolute !important; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+/* Honeypot field — hidden from people, visible to bots */
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; overflow: hidden; opacity: 0; }
+/* Never let a form step scroll the page sideways */
+.wizard, .contact-grid, .checker { overflow-x: hidden; }
+/* Embedded map */
+.map-embed { border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; line-height: 0; }
+.map-embed iframe { display: block; width: 100%; }
+/* Form success message */
+.form-success { background: #E5EDE6; border-left: 3px solid #3F6B4A; padding: 20px 22px; border-radius: 0 4px 4px 0; }
+.form-success strong { display: block; margin-bottom: 6px; }
+
+/* D2 — comfortable mobile tap targets + A3 mobile-menu hardening */
+@media (max-width: 640px) {
+  .field input, .field select, .field textarea, .checker input, .checker button,
+  .pest-choice label, .acc-head { min-height: 44px; }
+  .field input, .field select { padding-top: 11px; padding-bottom: 11px; }
+  .pest-choice label { display: inline-flex; align-items: center; padding: 11px 16px; }
+  .nav-links a { display: inline-flex; align-items: center; min-height: 44px; }
+  .nav-links.open { z-index: 60; }
+  /* mega-head was ink-on-dark (invisible) inside the open mobile menu */
+  .mega-col .mega-head { color: #e7ecf6; }
+}

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://excelpest-lawncontrol.com/sitemap.xml
+Sitemap: https://www.excelpest-lawncontrol.com/sitemap.xml

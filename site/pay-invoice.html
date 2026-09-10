@@ -5,18 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Pay Your Invoice | Austin Excel Pest &amp; Lawn Control</title>
   <meta name="description" content="Pay your Excel Pest invoice securely online through PayPal, or call (512) 291-5900 to pay by phone.">
-  <link rel="canonical" href="https://excelpest-lawncontrol.com/pay-invoice.html">
+  <link rel="canonical" href="https://www.excelpest-lawncontrol.com/pay-invoice.html">
+  <meta name="robots" content="noindex, nofollow">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Austin Excel Pest &amp; Lawn Control Inc.">
   <meta property="og:title" content="Pay Your Invoice | Austin Excel Pest &amp; Lawn Control">
   <meta property="og:description" content="Pay your Excel Pest invoice securely online through PayPal, or call (512) 291-5900 to pay by phone.">
-  <meta property="og:url" content="https://excelpest-lawncontrol.com/pay-invoice.html">
-  <meta name="twitter:card" content="summary">
+  <meta property="og:url" content="https://www.excelpest-lawncontrol.com/pay-invoice.html">
+  <meta property="og:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Austin Excel Pest &amp; Lawn Control Inc.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
+  <meta name="theme-color" content="#101010">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">
   <link rel="stylesheet" href="/css/styles.css">
   <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+  <link rel="manifest" href="/site.webmanifest">
 
   <!--
     PayPal Hosted Button id PBRKNRY4BQUJG. This is a modern hosted button and MUST render via the
@@ -30,6 +39,11 @@
     .pay-company { text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:700; color:var(--muted); }
     .pay-card h1 { font-size:1.9rem; margin:6px 0 10px; }
     .pay-checklist { text-align:left; background:var(--soft); border:1px solid var(--line); border-radius:var(--radius); padding:18px 22px; margin:22px 0; }
+    .pay-fields { text-align:left; margin:22px 0 6px; }
+    .pay-fields label { display:block; font-weight:600; font-size:.9rem; margin:12px 0 5px; }
+    .pay-fields input { width:100%; min-height:46px; padding:11px 14px; border:1px solid var(--line); border-radius:var(--radius); font-size:1rem; }
+    .pay-fields input:focus { outline:2px solid var(--accent); border-color:var(--accent); }
+    .pay-note { font-size:.86rem; color:var(--muted); margin:12px 0 0; line-height:1.5; }
     .paypal-form, .paypal-live, .pay-fallback { margin:24px 0 6px; }
     .pay-btn { width:100%; font-size:1.05rem; padding:15px 22px; }
     .pay-secure { color:var(--muted); font-size:.86rem; margin-top:16px; line-height:1.5; }
@@ -63,11 +77,12 @@
           <span class="brand__desc">Pest Control</span>
         </span>
       </a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-      <ul class="nav-links">
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <ul class="nav-links" id="primary-nav">
         <li><a href="/about.html">About</a></li>
         <li class="has-mega"><a href="/services.html" class="mega-toggle" aria-haspopup="true" aria-expanded="false">Services <span class="caret" aria-hidden="true">▾</span></a><div class="mega"><div class="mega-inner"><div class="mega-col"><a class="mega-head" href="/services.html">Insect Control</a><ul><li><a href="/services/ant-control.html"><span class="mega-emo" aria-hidden="true">🐜</span>Ant Control</a></li><li><a href="/services/cockroach-control.html"><span class="mega-emo" aria-hidden="true">🪳</span>Cockroach Control</a></li><li><a href="/services/cricket-control.html"><span class="mega-emo" aria-hidden="true">🦗</span>Cricket Control</a></li><li><a href="/services/flea-control.html"><span class="mega-emo" aria-hidden="true">🐾</span>Flea Control</a></li><li><a href="/services/scorpion-control.html"><span class="mega-emo" aria-hidden="true">🦂</span>Scorpion Control</a></li><li><a href="/services/spider-control.html"><span class="mega-emo" aria-hidden="true">🕷️</span>Spider Control</a></li><li><a href="/services/termite-control.html"><span class="mega-emo" aria-hidden="true">🪵</span>Termite Control</a></li><li><a href="/services/tick-control.html"><span class="mega-emo" aria-hidden="true">🕸️</span>Tick Control</a></li></ul></div><div class="mega-col"><a class="mega-head" href="/services.html">Rodent &amp; Wildlife</a><ul><li><a href="/services/rodent-removal.html"><span class="mega-emo" aria-hidden="true">🐀</span>Rodent Removal</a></li><li><a href="/services/rodent-exclusion.html"><span class="mega-emo" aria-hidden="true">🧰</span>Rodent Exclusion</a></li><li><a href="/services/wildlife-live-trapping.html"><span class="mega-emo" aria-hidden="true">🦝</span>Wildlife Live Trapping</a></li></ul></div><div class="mega-col"><a class="mega-head" href="/services.html">More Services</a><ul><li><a href="/services/pest-control.html"><span class="mega-emo" aria-hidden="true">🐜</span>General Pest Control</a></li><li><a href="/services/mosquito-misting.html"><span class="mega-emo" aria-hidden="true">🦟</span>Mosquito Misting Systems</a></li><li><a href="/services/termite-letters.html"><span class="mega-emo" aria-hidden="true">📄</span>Termite Letters (WDI)</a></li><li><a href="/services/lawn-pest-control.html"><span class="mega-emo" aria-hidden="true">🌱</span>Lawn Pest Control</a></li></ul></div></div></div></li>
         <li><a href="/service-area.html">Service Area</a></li>
+        <li><a href="/insights.html">Pest Guides</a></li>
         <li><a href="/contact.html">Contact</a></li>
         <li class="nav-cta">
           <a class="nav-invoice" href="/pay-invoice.html">Pay Invoice</a>
@@ -85,14 +100,17 @@
     <a class="mab mab--est" href="/contact.html">Free estimate</a>
   </div>
 
-  <main class="pay-wrap">
+  <main id="main" class="pay-wrap">
     <div class="pay-card">
       <span class="pay-company">Austin Excel Pest &amp; Lawn Control Inc.</span>
       <h1>Pay Your Invoice</h1>
       <p>Settle your bill securely online, or call us and we'll take payment over the phone.</p>
-      <div class="pay-checklist">
-        <strong>Have this ready</strong>
-        <ul><li>Your invoice number</li><li>The amount due on your invoice</li><li>Your billing name and ZIP code</li></ul>
+      <div class="pay-fields">
+        <label for="pay-invoice-no">Invoice number</label>
+        <input id="pay-invoice-no" name="invoice_no" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 10432" required>
+        <label for="pay-billing-name">Billing name</label>
+        <input id="pay-billing-name" name="billing_name" type="text" autocomplete="name" placeholder="Name on the invoice" required>
+        <p class="pay-note">Please enter your <strong>invoice number in the PayPal note</strong> at checkout so we can match your payment quickly.</p>
       </div>
       
       <div class="paypal-live">
@@ -110,7 +128,7 @@
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h4 class="footer-brand">Excel <span>Pest Control</span></h4>
+          <h3 class="footer-brand">Excel <span>Pest Control</span></h3>
           <p>Family-owned pest, rodent, wildlife and lawn-pest control for Central Texas since 1998.</p>
           <p class="mb-0">175 Warehouse Drive, Ste A<br>Buda, TX 78610<br>Licensed &amp; insured · TPCL 0786979</p>
           <p style="margin-top:12px;">
@@ -120,7 +138,7 @@
             <a href="https://www.youtube.com/@excelpestlawncontrol" rel="noopener">YouTube</a>
           </p>
         </div>
-        <div><h4>Services</h4><ul class="footer-links">
+        <div><h3>Services</h3><ul class="footer-links">
             <li><a href="/services/pest-control.html">General Pest Control</a></li>
             <li><a href="/services/scorpion-control.html">Scorpion Control</a></li>
             <li><a href="/services/termite-control.html">Termite Control</a></li>
@@ -131,7 +149,7 @@
             <li><a href="/services/lawn-pest-control.html">Lawn Pest Control</a></li>
             <li><a href="/services.html"><strong>All services →</strong></a></li>
         </ul></div>
-        <div><h4>Company</h4><ul class="footer-links">
+        <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
@@ -139,7 +157,7 @@
           <li><a href="/service-area.html">Service Area</a></li>
           <li><a href="/pay-invoice.html">Pay Invoice</a></li>
         </ul></div>
-        <div><h4>Get in touch</h4><ul class="footer-links">
+        <div><h3>Get in touch</h3><ul class="footer-links">
           <li>Call: <a href="tel:+15122915900">(512) 291-5900</a></li>
           <li>Text: <a href="sms:+15122915900">(512) 291-5900</a></li>
           <li>Email: <a href="mailto:office@excelpest-lawncontrol.com">office@excelpest-lawncontrol.com</a></li>
@@ -148,7 +166,7 @@
         </ul></div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Austin Excel Pest &amp; Lawn Control Inc.. All rights reserved.</span>
+        <span>© <span data-year>2026</span> Austin Excel Pest &amp; Lawn Control Inc. All rights reserved.</span>
         <span>excelpest-lawncontrol.com</span>
       </div>
     </div>
@@ -158,7 +176,7 @@
     <a class="mb-call" href="tel:+15122915900">📞 Call Now</a>
     <a class="mb-quote" href="/contact.html">Free Estimate</a>
   </div>
-  <script src="/js/main.js"></script>
-  <script src="/js/interactive.js"></script>
+  <script src="/js/main.js" defer></script>
+  <script src="/js/interactive.js" defer></script>
 </body>
 </html>

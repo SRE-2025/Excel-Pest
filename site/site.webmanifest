@@ -1,0 +1,21 @@
+{
+  "name": "Austin Excel Pest & Lawn Control Inc.",
+  "short_name": "Excel Pest",
+  "description": "Family-owned pest, rodent, wildlife and lawn-pest control for Central Texas since 1998.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F6F5F1",
+  "theme_color": "#101010",
+  "icons": [
+    {
+      "src": "/assets/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

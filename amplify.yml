@@ -15,3 +15,25 @@ frontend:
       - '**/*'
   cache:
     paths: []
+
+# Security response headers (G2 from the site audit). CSP is intentionally left
+# off here — a wrong policy would break the PayPal SDK, the Google Maps embed and
+# Google Fonts; it should be added deliberately and tested. Amplify serves the
+# whole site over HTTPS and re-invalidates its CDN on every deploy.
+customHeaders:
+  - pattern: '**'
+    headers:
+      - key: 'Strict-Transport-Security'
+        value: 'max-age=31536000; includeSubDomains'
+      - key: 'X-Content-Type-Options'
+        value: 'nosniff'
+      - key: 'X-Frame-Options'
+        value: 'SAMEORIGIN'
+      - key: 'Referrer-Policy'
+        value: 'strict-origin-when-cross-origin'
+      - key: 'Permissions-Policy'
+        value: 'geolocation=(), camera=(), microphone=(), payment=(self "https://www.paypal.com")'
+  - pattern: '**/*.html'
+    headers:
+      - key: 'Cache-Control'
+        value: 'public, max-age=0, must-revalidate'

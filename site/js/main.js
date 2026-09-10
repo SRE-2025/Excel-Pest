@@ -39,16 +39,18 @@
     }
 
     function showSuccess() {
-      form.innerHTML = '<div class="form-success"><strong>Thank you — your request is on its way.</strong>' +
-        '<p>A member of our team will get back to you shortly. Need us sooner? Call ' +
-        '<a href="tel:+15122915900">(512) 291-5900</a>.</p></div>';
+      // Redirect to a real thank-you page (conversion goal for analytics).
+      window.location.href = '/thank-you.html';
     }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!get('name') || !get('phone')) {
-        setNote('Please add your name and phone number so we can reach you.');
-        var miss = form.elements[get('name') ? 'phone' : 'name'];
+      // Honeypot: if a bot filled the hidden field, pretend success and stop.
+      var hp = form.querySelector('.hp');
+      if (hp && hp.value) { showSuccess(); return; }
+      if (!get('name') || !get('phone') || !get('email')) {
+        setNote('Please add your name, phone and email so we can reach you.');
+        var miss = form.elements[!get('name') ? 'name' : (!get('phone') ? 'phone' : 'email')];
         if (miss && miss.focus) miss.focus();
         return;
       }

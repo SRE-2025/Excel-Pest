@@ -11,6 +11,7 @@ Output is written into ./site (served as-is by AWS Amplify). Everything is
 grounded in the Stoneridge Digital discovery brief — no invented prices,
 awards, or claims.
 """
+import datetime
 import html
 import json
 import os
@@ -18,6 +19,9 @@ import re
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
+
+# Build date — used for sitemap <lastmod> (Google uses this to decide recrawls).
+BUILD_DATE = datetime.date.today().isoformat()
 
 # Optional base path for hosting under a sub-directory (e.g. GitHub Pages
 # project site at /Excel-Pest/). Empty for root hosting (Amplify, S3/CloudFront).
@@ -30,7 +34,7 @@ BIZ = {
     "name": "Austin Excel Pest & Lawn Control Inc.",
     "legal": "Austin Excel Pest & Lawn Control Inc.",
     "short": "Excel Pest",
-    "domain": "https://excelpest-lawncontrol.com",
+    "domain": "https://www.excelpest-lawncontrol.com",
     "phone": "(512) 291-5900",
     "phone_tel": "+15122915900",
     "text": "(512) 291-5900",
@@ -85,6 +89,7 @@ NAV = [
     ("About", "/about.html"),
     ("Services", "/services.html"),
     ("Service Area", "/service-area.html"),
+    ("Pest Guides", "/insights.html"),
     ("Contact", "/contact.html"),
 ]
 
@@ -106,7 +111,7 @@ SERVICES = [
         "slug": "pest-control", "nav": "General Pest Control", "icon": "🐜",
         "h1": "General Pest Control in Buda & Central Texas",
         "title": "Pest Control in Buda & Central Texas | Excel Pest since 1998",
-        "desc": "Water-based, pet-safe pest control for ants, roaches, crickets, spiders, fleas and ticks across Buda, Kyle and Central Texas. Free estimates — call (512) 291-5900.",
+        "desc": "Water-based pest control for ants, roaches, crickets, spiders, fleas and ticks across Buda, Kyle and Central Texas. Free estimates — call (512) 291-5900.",
         "lead": "Central Texas homes face a year-round rotation of pests — ants in spring, crickets and scorpions in the late-summer heat, spiders and roaches as it cools. We have treated them here since 1998, with water-based products chosen so your family and four-legged family members stay comfortable.",
         "treats": ["Ants", "Cockroaches", "Crickets", "Fleas", "Spiders", "Ticks", "Silverfish", "Wasps & hornets"],
         "sections": [
@@ -158,7 +163,7 @@ SERVICES = [
         "slug": "rodent-removal", "nav": "Rodent Removal", "icon": "🐀",
         "h1": "Rodent Removal in Central Texas",
         "title": "Rodent Removal in Buda, TX | Rats & Mice | Excel Pest",
-        "desc": "Fast rat and mouse removal from Central Texas attics, garages and walls — then we seal them out. Water-based, pet-safe. Call (512) 291-5900.",
+        "desc": "Fast rat and mouse removal from Central Texas attics, garages and walls — then we seal them out. Water-based products, applied by licensed technicians only where needed. Call (512) 291-5900.",
         "lead": "Scratching in the attic at night, droppings in the pantry, chewed wiring — rats and mice do real damage fast, and they breed even faster. We remove the rodents inside now, then seal the gaps so it doesn't repeat.",
         "treats": ["Roof rats & house mice", "Attic & wall-void activity", "Droppings & gnaw marks", "Chewed wiring (a fire risk)"],
         "sections": [
@@ -223,7 +228,7 @@ SERVICES = [
         "slug": "ant-control", "nav": "Ant Control", "icon": "🐜",
         "h1": "Ant Control in Buda & Central Texas",
         "title": "Ant Control in Buda, TX | Fire Ants & Household Ants | Excel Pest",
-        "desc": "Fire ants, sugar ants and carpenter ants treated at the colony across Buda and Central Texas. Water-based, pet-safe. Call (512) 291-5900.",
+        "desc": "Fire ants, sugar ants and carpenter ants treated at the colony across Buda and Central Texas. Water-based products, applied by licensed technicians only where needed. Call (512) 291-5900.",
         "lead": "From fire-ant mounds in the yard to sugar ants marching across the kitchen counter, ants are the most common call we get in Central Texas. Killing the trail you can see does nothing — the colony just sends more. We treat the source.",
         "treats": ["Fire ants", "Sugar / odorous ants", "Carpenter ants", "Acrobat & pharaoh ants", "Mounds in the yard"],
         "sections": [
@@ -236,7 +241,7 @@ SERVICES = [
         "slug": "cockroach-control", "nav": "Cockroach Control", "icon": "🪳",
         "h1": "Cockroach Control in Central Texas",
         "title": "Cockroach Control in Buda, TX | Roach Extermination | Excel Pest",
-        "desc": "German and American cockroaches eliminated from Central Texas homes and kept out. Water-based, pet-safe treatment. Call (512) 291-5900.",
+        "desc": "German and American cockroaches eliminated from Central Texas homes and kept out. Water-based treatment by licensed technicians. Call (512) 291-5900.",
         "lead": "Roaches are more than a gross surprise at 2 a.m. — they contaminate food, trigger allergies, and multiply fast in our warm, humid climate. We find where they breed and shut it down.",
         "treats": ["German cockroaches", "American (palmetto) roaches", "Oriental roaches", "Egg cases & harborage"],
         "sections": [
@@ -249,7 +254,7 @@ SERVICES = [
         "slug": "cricket-control", "nav": "Cricket Control", "icon": "🦗",
         "h1": "Cricket Control in Central Texas",
         "title": "Cricket Control in Buda, TX | Fall Field Crickets | Excel Pest",
-        "desc": "Central Texas field-cricket swarms controlled at the source for homes and businesses. Water-based, pet-safe. Call (512) 291-5900.",
+        "desc": "Central Texas field-cricket swarms controlled at the source for homes and businesses. Water-based products, applied by licensed technicians only where needed. Call (512) 291-5900.",
         "lead": "Every late summer, field crickets swarm Central Texas by the thousands — piling at doorways, under lights and inside garages. They stain surfaces, smell, and draw the scorpions and spiders that feed on them. We break the cycle.",
         "treats": ["Field crickets", "Camel / spider crickets", "Exterior-lighting swarms", "Entry points & harborage"],
         "sections": [
@@ -262,7 +267,7 @@ SERVICES = [
         "slug": "flea-control", "nav": "Flea Control", "icon": "🐾",
         "h1": "Flea Control for Central Texas Homes & Yards",
         "title": "Flea Control in Buda, TX | Home & Yard Flea Treatment | Excel Pest",
-        "desc": "Fleas eliminated from the home and yard with treatment that breaks the life cycle — safe for the pets they bite. Call (512) 291-5900.",
+        "desc": "Fleas eliminated from the home and yard with treatment that breaks the life cycle. Water-based products, applied by licensed technicians. Call (512) 291-5900.",
         "lead": "Fleas don't just bite pets — they infest carpet, bedding and yards, and a few can become thousands in weeks. Our mild winters let them thrive nearly year-round here. We treat the whole life cycle, indoors and out.",
         "treats": ["Adult fleas", "Eggs & larvae in carpet / bedding", "Shaded yard harborage", "Re-infestation prevention"],
         "sections": [
@@ -312,7 +317,7 @@ MENU_GROUPS = [
 SERVICE_FAQS = {
     "pest-control": [
         ("How often should I have pest control done?", "Most Central Texas homes do best on a recurring quarterly plan that stays ahead of the seasonal surges. We'll recommend a schedule for your property — and one-time and emergency visits are available too."),
-        ("Are the products safe for my kids and pets?", "Yes. Our products are water-based and applied by licensed technicians. See our <a href=\"/pet-family-safety.html\">pet &amp; family safety</a> page."),
+        ("What about my kids and pets?", "Our products are water-based and applied by licensed technicians only where they're needed. We'll tell you when a treated area is dry and everyone can come back in. See our <a href=\"/pet-family-safety.html\">approach for families &amp; pets</a>."),
         ("Do you treat inside and outside?", "Both. Every visit covers interior trouble spots and a full exterior barrier around the foundation, eaves and entry points."),
     ],
     "scorpion-control": [
@@ -333,7 +338,7 @@ SERVICE_FAQS = {
     "rodent-removal": [
         ("What's the difference between removal and exclusion?", "Removal gets rid of the rodents inside; exclusion seals the gaps that let them in. We do both — trapping alone just repeats."),
         ("Where do rodents usually get in?", "Rooflines, weep holes, pipe penetrations and the garage are common entry points in Central Texas homes. We find and seal them."),
-        ("Are the treatments safe around pets?", "We choose methods with your family and pets in mind and place them where pets can't reach."),
+        ("What about my pets during rodent work?", "We place traps and products where pets can't reach them, and we'll point out anything to keep an eye on."),
     ],
     "wildlife-live-trapping": [
         ("Do you remove wildlife humanely?", "Yes — we use humane live-trapping and hands-on removal, then seal the entry points so animals can't return."),
@@ -343,7 +348,7 @@ SERVICE_FAQS = {
     "mosquito-misting": [
         ("How does a misting system work?", "It runs on a schedule you control, releasing a fine treatment around your landscaping to knock down mosquitoes before they gather."),
         ("Do I still need to deal with standing water?", "Reducing standing water helps, and we treat breeding sites as part of control — the misting system handles the rest."),
-        ("Is misting safe for my yard and pets?", "We use water-based products and tune the system to your landscaping, and we'll walk you through anything to know for pets."),
+        ("What about my yard and pets with a misting system?", "We use water-based products and tune the system to your landscaping, and we'll walk you through anything to know for pets."),
     ],
     "lawn-pest-control": [
         ("How do I know if it's bugs or drought killing my lawn?", "Spreading brown patches, spongy turf, or moths lifting off at dusk usually mean chinch bugs, grubs or armyworms — we diagnose the real cause before treating."),
@@ -358,31 +363,31 @@ SERVICE_FAQS = {
     "ant-control": [
         ("Do you treat fire ants in the yard?", "Yes — direct mound treatment plus a broadcast yard program to stop them re-establishing through the warm months."),
         ("Why not just use store-bought ant spray?", "Store sprays kill the foragers you see but rarely reach the colony, so the ants return. We use colony-level baits and non-repellents that collapse the nest."),
-        ("Are ant treatments safe for pets?", "Yes — water-based and placed where pets can't reach. We'll walk you through anything to know at the visit."),
+        ("What about my pets with ant treatment?", "Water-based products, placed where pets can't reach. We'll walk you through anything to know at the visit."),
     ],
     "cockroach-control": [
         ("How long does it take to get rid of roaches?", "Most homes see a sharp drop within the first couple of weeks as the breeding sites are knocked out; heavy infestations may need a follow-up. We set up prevention so they stay gone."),
         ("Do you treat kitchens and drains?", "Yes — those are prime roach harborage. We target the voids, drains and appliance gaps where they hide and breed."),
-        ("Is the treatment safe for kids and pets?", "Yes, water-based and applied where it's needed, not blanketed across living areas."),
+        ("What about kids and pets?", "Water-based products, applied where they're needed rather than blanketed across living areas."),
     ],
     "cricket-control": [
         ("When is cricket season in Central Texas?", "The big field-cricket swarms hit in late summer and fall when the weather turns. We treat ahead of and through the season."),
         ("Do crickets really attract scorpions?", "Yes — crickets are a favorite food, so cutting cricket numbers is one of the best ways to reduce scorpions and spiders around your home."),
-        ("Are the treatments pet-safe?", "Yes — water-based and focused on the exterior perimeter and harborage."),
+        ("What about my pets with cricket treatment?", "Water-based products, focused on the exterior perimeter and harborage."),
     ],
     "flea-control": [
-        ("Is flea treatment safe for my pets?", "Yes — it's water-based, and we coordinate with the vet-provided prevention your pets are on. We'll tell you how to prep and when it's safe to return."),
+        ("How does flea treatment work around my pets?", "It's water-based, and we coordinate with the vet-provided prevention your pets are on. We'll tell you how to prep and when a treated area is dry and ready."),
         ("Do you treat the yard as well as the house?", "Both — fleas breed in shaded yard soil as well as carpet and bedding, so treating only indoors leaves a source outside."),
         ("How should I prep my home?", "Vacuum thoroughly, wash pet bedding, and clear floors. We'll give you the full short checklist when you book."),
     ],
     "spider-control": [
         ("Do you handle black widows and brown recluse?", "Yes — we treat their hotspots (garages, meter boxes, woodpiles, undisturbed storage) specifically and advise on reducing harborage."),
-        ("Are the treatments safe for pets?", "Yes — water-based and applied to eaves, corners and the exterior barrier rather than living surfaces."),
+        ("What about my pets with spider treatment?", "Water-based products, applied to eaves, corners and the exterior barrier rather than living surfaces."),
         ("Will the webs just come back?", "Far less, because we reduce the insects spiders feed on. Ongoing service keeps eaves and corners clear."),
     ],
     "tick-control": [
         ("Are ticks dangerous in Central Texas?", "Ticks can transmit disease to people and pets, so keeping them out of the yard matters — especially on greenbelt and acreage lots."),
-        ("Is tick treatment safe for pets?", "Yes — water-based and focused on the shaded borders where ticks wait, not the open lawn where pets play."),
+        ("What about my pets with tick treatment?", "Water-based products, focused on the shaded borders where ticks wait rather than the open lawn where pets play."),
         ("How often should the yard be treated?", "Through the warm months a recurring perimeter program keeps pressure down; we'll recommend a cadence for your property."),
     ],
 }
@@ -614,12 +619,20 @@ def head(title, desc, canonical, schema_blocks, noindex=False, og_type="website"
         '  <meta property="og:title" content="' + html.escape(title) + '">',
         '  <meta property="og:description" content="' + html.escape(desc) + '">',
         '  <meta property="og:url" content="' + canonical + '">',
-        '  <meta name="twitter:card" content="summary">',
+        '  <meta property="og:image" content="' + BIZ["domain"] + '/assets/og-default.png">',
+        '  <meta property="og:image:width" content="1200">',
+        '  <meta property="og:image:height" content="630">',
+        '  <meta property="og:image:alt" content="' + html.escape(BIZ["name"]) + '">',
+        '  <meta name="twitter:card" content="summary_large_image">',
+        '  <meta name="twitter:image" content="' + BIZ["domain"] + '/assets/og-default.png">',
+        '  <meta name="theme-color" content="#101010">',
         '  <link rel="preconnect" href="https://fonts.googleapis.com">',
         '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
         '  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">',
         '  <link rel="stylesheet" href="/css/styles.css">',
         '  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">',
+        '  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">',
+        '  <link rel="manifest" href="/site.webmanifest">',
     ]
     for block in schema_blocks:
         parts.append('  <script type="application/ld+json">')
@@ -680,8 +693,8 @@ def header():
           <span class="brand__desc">Pest Control</span>
         </span>
       </a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">☰</button>
-      <ul class="nav-links">
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">☰</button>
+      <ul class="nav-links" id="primary-nav">
 {links}
         <li class="nav-cta">
           <a class="nav-invoice" href="/pay-invoice.html">Pay Invoice</a>
@@ -731,7 +744,7 @@ def footer():
     <div class="container">
       <div class="footer-grid">
         <div>
-          <h4 class="footer-brand">Excel <span>Pest Control</span></h4>
+          <h3 class="footer-brand">Excel <span>Pest Control</span></h3>
           <p>Family-owned pest, rodent, wildlife and lawn-pest control for Central Texas since {founded}.</p>
           <p class="mb-0">{street}<br>{city}, {state} {zip}<br>Licensed &amp; insured · {license}</p>
           <p style="margin-top:12px;">
@@ -741,10 +754,10 @@ def footer():
             <a href="{youtube}" rel="noopener">YouTube</a>
           </p>
         </div>
-        <div><h4>Services</h4><ul class="footer-links">
+        <div><h3>Services</h3><ul class="footer-links">
 {svc_links}
         </ul></div>
-        <div><h4>Company</h4><ul class="footer-links">
+        <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
@@ -752,7 +765,7 @@ def footer():
           <li><a href="/service-area.html">Service Area</a></li>
           <li><a href="/pay-invoice.html">Pay Invoice</a></li>
         </ul></div>
-        <div><h4>Get in touch</h4><ul class="footer-links">
+        <div><h3>Get in touch</h3><ul class="footer-links">
           <li>Call: <a href="tel:{ptel}">{phone}</a></li>
           <li>Text: <a href="sms:{ttel}">{text}</a></li>
           <li>Email: <a href="mailto:{email}">{email}</a></li>
@@ -761,7 +774,7 @@ def footer():
         </ul></div>
       </div>
       <div class="footer-bottom">
-        <span>© <span data-year>2026</span> {name}. All rights reserved.</span>
+        <span>© <span data-year>2026</span> {name} All rights reserved.</span>
         <span>excelpest-lawncontrol.com</span>
       </div>
     </div>
@@ -771,8 +784,8 @@ def footer():
     <a class="mb-call" href="tel:{ptel}">📞 Call Now</a>
     <a class="mb-quote" href="/contact.html">Free Estimate</a>
   </div>
-  <script src="/js/main.js"></script>
-  <script src="/js/interactive.js"></script>
+  <script src="/js/main.js" defer></script>
+  <script src="/js/interactive.js" defer></script>
 </body>
 </html>""".format(
         name=html.escape(BIZ["name"]), founded=BIZ["founded"], street=html.escape(BIZ["street"]),
@@ -957,7 +970,7 @@ def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="",
 
 # ---------- Schema builders ----------
 
-def business_schema(with_rating=True, with_reviews=False):
+def business_schema(with_rating=False, with_reviews=False):
     node = {
         "@context": "https://schema.org",
         "@type": "PestControlService",
@@ -1060,7 +1073,40 @@ def write(path, content):
 
 
 def assemble(title, desc, canonical, body, schema_blocks, noindex=False, og_type="website"):
-    return head(title, desc, canonical, schema_blocks, noindex, og_type) + "\n" + header() + "\n" + body + footer() + "\n"
+    return (head(title, desc, canonical, schema_blocks, noindex, og_type) + "\n" + header()
+            + '\n  <main id="main">\n' + body + '\n  </main>\n' + footer() + "\n")
+
+
+def map_embed(heading="Find us in Buda"):
+    """Keyless Google Maps embed (no API key needed) centered on the Buda HQ."""
+    q = "175+Warehouse+Drive+Ste+A,+Buda,+TX+78610"
+    return """
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section-head text-center" style="margin-bottom:22px;">
+        <span class="eyebrow">Our office</span>
+        <h2>{heading}</h2>
+      </div>
+      <div class="map-embed">
+        <iframe title="Map to Austin Excel Pest &amp; Lawn Control, 175 Warehouse Drive, Buda, TX"
+          src="https://www.google.com/maps?q={q}&amp;output=embed" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade" width="100%" height="380" style="border:0;"></iframe>
+      </div>
+    </div>
+  </section>""".format(heading=html.escape(heading), q=q)
+
+
+def first_sentence(text):
+    """First sentence of `text`, without breaking on abbreviations like 'St.'
+    (e.g. 'St. Augustine' stays intact instead of truncating at '— St.')."""
+    guards = ["St.", "Ste.", "Dr.", "Mr.", "Mrs.", "Ms.", "vs.", "Ave.", "Rd.", "Jr.", "Sr.", "No."]
+    tmp = text
+    for i, g in enumerate(guards):
+        tmp = tmp.replace(g, "%d" % i)
+    first = tmp.split(". ")[0]
+    for i, g in enumerate(guards):
+        first = first.replace("%d" % i, g)
+    return first.rstrip(". ") + "."
 
 
 def related_services_grid(slugs, heading="Related services"):
@@ -1110,7 +1156,7 @@ def render_service(s):
     </div>
   </section>""".format(name=html.escape(s["nav"]), items=faq_items)) if faqs else ""
 
-    body = page_hero(s["h1"], s["desc"].split(". ")[0] + ".", crumbs) + """
+    body = page_hero(s["h1"], first_sentence(s["desc"]), crumbs) + """
   <section class="section" style="padding-bottom:0;">
     <div class="container">{hero_img}</div>
   </section>
@@ -1120,8 +1166,9 @@ def render_service(s):
         <p class="lead">{lead}</p>
         {sections}
         <div class="callout">
-          <strong>Safe for your family and pets.</strong> Our products are water-based and chosen with
-          family and four-legged family members in mind — see <a href="/pet-family-safety.html">pet &amp; family safety</a>.
+          <strong>Water-based products, applied where they're needed.</strong> Our licensed technicians apply
+          water-based products only where the problem is, and tell you when a treated area is dry and ready — see
+          our <a href="/pet-family-safety.html">approach for families &amp; pets</a>.
         </div>
         <div class="hero__actions">
           <a class="btn btn--primary" href="/contact.html">Get My Free Estimate</a>
@@ -1164,7 +1211,7 @@ def render_location(l):
     canonical = BIZ["domain"] + "/locations/" + l["slug"] + ".html"
     crumbs = [("Home", "/"), ("Service Area", "/service-area.html"), (l["city"], None)]
     title = "Pest Control in %s, TX | Excel Pest since %s" % (l["city"], BIZ["founded"])
-    desc = "Family-owned pest, rodent, scorpion and lawn-pest control in %s, %s. Trusted across Central Texas since %s. Free estimates — call %s." % (
+    desc = "Family-owned pest, rodent and scorpion control in %s, %s since %s. Free estimates — call %s." % (
         l["city"], l["county"], BIZ["founded"], BIZ["phone"])
     loc_service_slugs = ["pest-control", "scorpion-control", "termite-control", "ant-control",
                          "rodent-removal", "wildlife-live-trapping", "mosquito-misting", "lawn-pest-control"]
@@ -1200,7 +1247,7 @@ def render_location(l):
            {mgr} and our technicians are the same familiar faces on every visit.</p>
         <div class="callout">
           <strong>The crew {city} can call by name.</strong> Licensed &amp; insured ({license}), water-based
-          products that are safe for family and pets, free estimates, and a workmanship warranty on our work.
+          products applied by licensed technicians only where needed, free estimates, and a workmanship warranty on our work.
         </div>
         <div class="hero__actions">
           <a class="btn btn--primary" href="/contact.html">Get My Free Estimate</a>
@@ -1258,7 +1305,7 @@ def services_hub():
           <p>{blurb}</p>
           <a class="card__link" href="/services/{slug}.html">Learn more &rarr;</a>
         </article>""".format(name=html.escape(s["nav"]), slug=s["slug"],
-                             blurb=html.escape(s["lead"].split(". ")[0] + "."))
+                             blurb=html.escape(first_sentence(s["lead"])))
     groups_html = ""
     for gname, slugs in MENU_GROUPS:
         cards = "\n".join(card(SERVICE_BY_SLUG[sl]) for sl in slugs)
@@ -1318,8 +1365,9 @@ def service_area_hub():
           <p>We have covered this ground since {founded} — a core corridor of Buda–Kyle–Plum Creek–Dripping
              Springs–Wimberley–South Austin, reaching west into the Hill Country and south to San Marcos.</p>
           <form class="checker" data-checker data-cities='{cities}' style="max-width:none;">
+            <label for="area-check-hub" class="visually-hidden">Your city or ZIP code</label>
             <div class="checker__row">
-              <input type="text" placeholder="e.g. Kyle, Dripping Springs, 78610" aria-label="Your city or ZIP code">
+              <input id="area-check-hub" name="city" type="search" placeholder="e.g. Kyle, Dripping Springs, 78610" aria-label="Your city or ZIP code" autocomplete="address-level2">
               <button type="submit" class="btn btn--primary" data-checker-go>Check</button>
             </div>
             <div class="checker__result" role="status" aria-live="polite"></div>
@@ -1338,6 +1386,7 @@ def service_area_hub():
                        cities=json.dumps([{"name": c, "slug": CITY_SLUG.get(c, "")} for c in ALL_CITIES]))
     body += cta_band()
     schema = [business_schema(), breadcrumb_schema(crumbs)]
+    body += map_embed()
     desc = "Excel Pest serves 27 Central Texas cities — Buda, Kyle, San Marcos, Dripping Springs, Wimberley and more. Family-owned since 1998. Call (512) 291-5900."
     return assemble("Service Area — Pest Control Across Central Texas | Excel Pest", desc, canonical, body, schema)
 
@@ -1422,8 +1471,9 @@ def area_checker():
       <p class="lead" style="max-width:640px;margin:0 auto 22px;">Type your city or ZIP for an instant answer —
          we cover 27 Central Texas cities.</p>
       <form class="checker" data-checker data-cities='{cities}'>
+        <label for="area-check" class="visually-hidden">Your city or ZIP code</label>
         <div class="checker__row">
-          <input type="text" placeholder="e.g. Kyle, Dripping Springs, 78610" aria-label="Your city or ZIP code">
+          <input id="area-check" name="city" type="search" placeholder="e.g. Kyle, Dripping Springs, 78610" aria-label="Your city or ZIP code" autocomplete="address-level2">
           <button type="submit" class="btn btn--primary" data-checker-go>Check coverage</button>
         </div>
         <div class="checker__result" role="status" aria-live="polite"></div>
@@ -1483,20 +1533,14 @@ def home():
         for slug in CORE_HOME)
     city_links = " · ".join('<a href="/locations/%s.html">%s</a>' % (LOCATION_BY_SLUG[s]["slug"], html.escape(LOCATION_BY_SLUG[s]["city"])) for s in PRIORITY_CITIES)
     spotlight = """
-        <div class="spotlight" data-spotlight>
-          <div class="stars">★★★★★</div>
-          <div class="spotlight__slide on">
-            <blockquote class="spotlight__q">"Been with this company for 30+ years."</blockquote>
-            <cite>— Karla Mathews</cite><div class="meta">Facebook review · 2026</div>
+        <div class="spotlight">
+          <div class="stars" aria-hidden="true">★★★★★</div>
+          <p class="spotlight__q">Central Texas homeowners rate Excel Pest <strong>5.0 stars</strong> — the same
+             local crew, one home at a time, since 1998.</p>
+          <div class="hero__actions" style="justify-content:center;margin-top:20px;">
+            <a class="btn btn--outline" href="%s" rel="noopener">Read reviews on Facebook &rarr;</a>
           </div>
-          <div class="spotlight__slide">
-            <blockquote class="spotlight__q">"We have used Excel Pest / Research Turf for 13+ years — pergola,
-               patio, masonry, tree trimming, plus regular lawn care."</blockquote>
-            <cite>— Judy Buck</cite><div class="meta">Facebook review · 2026</div>
-          </div>
-          <div class="spotlight__dots" aria-label="Choose a review"></div>
-          <a class="card__link" href="%s" rel="noopener" style="display:inline-block;margin-top:16px;">Read more reviews on Facebook &rarr;</a>""" % BIZ["facebook_reviews"] + """
-        </div>"""
+        </div>""" % BIZ["facebook_reviews"]
     flow = """
   <section class="section">
     <div class="container">
@@ -1508,7 +1552,7 @@ def home():
         <div class="step"><div class="step__num">1</div><h3>Free estimate</h3>
           <p class="mb-0">Call or text and we assess the problem and give you a clear quote — no pressure, no surprise pricing.</p></div>
         <div class="step"><div class="step__num">2</div><h3>Targeted treatment</h3>
-          <p class="mb-0">A local technician treats the source inside and out with water-based products, safe for family and pets.</p></div>
+          <p class="mb-0">A local technician treats the source inside and out with water-based products, applied only where they're needed.</p></div>
         <div class="step"><div class="step__num">3</div><h3>Keep them out</h3>
           <p class="mb-0">We seal entry points and set a schedule that fits your home, backed by our warranty.</p></div>
       </div>
@@ -1525,8 +1569,8 @@ def home():
       <div class="grid grid--3">
         <div class="card"><div class="card__icon">🛡️</div><h3>Licensed &amp; insured</h3>
           <p class="mb-0">Texas {license}, with continuous annual technician education — the same trained techs on every visit, not a rotating call center.</p></div>
-        <div class="card"><div class="card__icon">🐾</div><h3>Safe for family &amp; pets</h3>
-          <p class="mb-0">Water-based products applied only where needed. See our <a href="/pet-family-safety.html">pet &amp; family safety</a> approach.</p></div>
+        <div class="card"><div class="card__icon">🐾</div><h3>Water-based products</h3>
+          <p class="mb-0">Water-based products applied by licensed technicians, only where needed. See our <a href="/pet-family-safety.html">approach for families &amp; pets</a>.</p></div>
         <div class="card"><div class="card__icon">📍</div><h3>Local since {founded}</h3>
           <p class="mb-0">Family-owned in Buda, 5.0★ across {reviews} reviews. We know the Central Texas pest calendar because we live it.</p></div>
       </div>
@@ -1562,7 +1606,6 @@ def home():
 
   <div class="marquee" aria-hidden="true"><div class="marquee__track">{marquee}{marquee}</div></div>
 
-  <main id="main">
   <section class="section">
     <div class="container">
       <div class="section-head" style="max-width:640px;margin:0 auto 40px;text-align:center;">
@@ -1595,7 +1638,7 @@ def home():
           <h3>Why homeowners choose us</h3>
           <ul class="why-list">
             <li><strong>Licensed &amp; insured.</strong> Texas {license}, with the same trained techs on every visit — not a rotating call center.</li>
-            <li><strong>Safe for family &amp; pets.</strong> Water-based products applied only where needed. See our <a href="/pet-family-safety.html">safety approach</a>.</li>
+            <li><strong>Water-based products.</strong> Applied by licensed technicians, only where they're needed. See our <a href="/pet-family-safety.html">approach for families &amp; pets</a>.</li>
             <li><strong>Local since {founded}.</strong> Family-owned in Buda, 5.0&#9733; across {reviews} reviews. We live the Central Texas pest calendar.</li>
           </ul>
         </div>
@@ -1629,19 +1672,18 @@ def home():
 
   <section class="section">
     <div class="container">{cross}</div>
-  </section>
-  </main>""".format(
+  </section>""".format(
         founded=BIZ["founded"], ptel=BIZ["phone_tel"], phone=BIZ["phone"],
         reviews=BIZ["reviews"], license=BIZ["license"], svc_cards=svc_cards, owner=BIZ["owner"],
         city_links=city_links, cross=crosslink_block(), statband=stat_band(),
         spotlight=spotlight, flow=flow, hero_img=HOME_HERO_IMG, marquee=marquee,
     )
     desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. 5.0-star, BBB A+, licensed. Free estimates — call (512) 291-5900."
-    schema = [business_schema(with_rating=True), {
+    schema = [business_schema(), {
         "@context": "https://schema.org", "@type": "WebSite", "name": BIZ["name"],
         "url": BIZ["domain"] + "/",
     }]
-    return assemble("Austin Excel Pest & Lawn Control — Central Texas Pest Control Since 1998",
+    return assemble("Excel Pest & Lawn Control | Central Texas Since 1998",
                     desc, canonical, body, schema)
 
 
@@ -1683,9 +1725,7 @@ def about():
         </div>
       </div>
       <div>
-        {owner_photo}
-        <p style="text-align:center;font-size:.85rem;color:var(--muted);margin:8px 0 0;">{owner}, owner since {founded}</p>
-        <div class="card" style="margin-top:18px;">
+        <div class="card">
           <h3 class="mt-0">At a glance</h3>
           <ul class="info-list mt-0">
             <li><span class="label">Founded</span><span class="value">{founded}, South Austin</span></li>
@@ -1697,8 +1737,9 @@ def about():
           </ul>
           <a class="btn btn--primary" href="/contact.html">Contact us</a>
         </div>
-        <div style="margin-top:18px;">{mgr_photo}
-          <p style="text-align:center;font-size:.85rem;color:var(--muted);margin:8px 0 0;">{mgr}, Director of Office Operations</p>
+        <div class="card" style="margin-top:18px;">
+          <h3 class="mt-0">Who runs the office</h3>
+          <p class="mb-0">{mgr}, our Director of Office Operations, runs the office for both brands — customers name-check her in their reviews. When you call, you're talking to the people who actually do the work.</p>
         </div>
       </div>
     </div>
@@ -1841,12 +1882,13 @@ def pet_safety():
            were his own and every customer — and their four-legged family members — like neighbors. That is not a
            slogan on this page; it is why we use what we use.</p>
         <h2>Applied by licensed technicians</h2>
-        <p>Products are only as safe as the person applying them. Our technicians are licensed, insured, and
-           kept current through continuous annual education, so treatments are applied correctly and exactly
+        <p>A treatment is only as good as the technician applying it. Our technicians are licensed, insured, and
+           kept current through continuous annual education, so products are applied correctly and exactly
            where they are needed — not blanketed where they are not.</p>
         <div class="callout">
-          <strong>Safe when applied as directed.</strong> We will walk you through anything you should know for
-          your family and pets at the time of service. Have a question before we come out?
+          <strong>Applied as directed, only where needed.</strong> We use products according to their label, and we'll
+          walk you through anything you should know for your family and pets — including when a treated area is dry
+          and everyone can come back in. Have a question before we come out?
           <a href="/contact.html">Just ask</a> — or call <a href="tel:{ptel}">{phone}</a>.
         </div>
       </div>
@@ -1872,8 +1914,8 @@ def pet_safety():
 
 
 FAQS = [
-    ("Are your products safe for children and pets?",
-     "Yes — our products are water-based and applied by licensed technicians exactly where they are needed. Safety for your family and four-legged family members is the throughline of how we work. See our <a href=\"/pet-family-safety.html\">pet &amp; family safety</a> page."),
+    ("What about children and pets?",
+     "Our products are water-based and applied by licensed technicians exactly where they are needed, according to the product label. We'll tell you when a treated area is dry and everyone can come back in. See our <a href=\"/pet-family-safety.html\">approach for families &amp; pets</a>."),
     ("Do you offer free estimates?",
      "Always. We assess the problem and give you a clear quote before any work begins."),
     ("Are you licensed and insured?",
@@ -1963,6 +2005,7 @@ def contact():
           <h3 class="mt-0">Request an estimate</h3>
           <form {form_action} class="wizard" data-estimate data-wizard novalidate>
             {form_hidden}
+            <input type="text" name="company_website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="wiz-prog"><span data-wiz-fill></span></div>
             <div class="wiz-count" data-wiz-count>Step 1 of 3</div>
 
@@ -1979,8 +2022,8 @@ def contact():
                 <input id="name" name="name" type="text" autocomplete="name" required></div>
               <div class="field"><label for="phone">Phone</label>
                 <input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
-              <div class="field"><label for="email">Email <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
-                <input id="email" name="email" type="email" autocomplete="email"></div>
+              <div class="field"><label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required></div>
               <div class="wiz-nav"><button type="button" class="btn btn--outline" data-wiz-back>← Back</button>
                 <button type="button" class="btn btn--primary" data-wiz-next>Next →</button></div>
             </fieldset>
@@ -2008,6 +2051,7 @@ def contact():
         pest_choices=pest_choices, city_opts=city_opts,
         form_action=form_action, form_hidden=form_hidden,
     )
+    body += map_embed("Visit or reach our Buda office")
     desc = "Request a free pest control estimate in Buda and Central Texas. Call (512) 291-5900, text (512) 291-5900, or send a message. Family-owned since 1998."
     schema = [business_schema(), breadcrumb_schema(crumbs), {
         "@context": "https://schema.org", "@type": "ContactPage", "url": canonical,
@@ -2031,6 +2075,23 @@ def not_found():
     </div>
   </section>"""
     return assemble("Page Not Found | Excel Pest", "Page not found.", BIZ["domain"] + "/404.html", body, [], noindex=True)
+
+
+def thank_you():
+    body = """
+  <section class="page-hero" style="min-height:56vh;display:grid;align-items:center;">
+    <div class="container text-center">
+      <span class="eyebrow">Request received</span>
+      <h1>Thank you — your request is on its way.</h1>
+      <p style="margin:0 auto 24px;max-width:52ch;">A member of our team will get back to you shortly during business hours (Mon–Fri, 8–5). Need us sooner? Give us a call.</p>
+      <div class="hero__actions" style="justify-content:center;">
+        <a class="btn btn--primary" href="tel:{ptel}">Call {phone}</a>
+        <a class="btn btn--ghost" href="/">Back to home</a>
+      </div>
+    </div>
+  </section>""".format(ptel=BIZ["phone_tel"], phone=BIZ["phone"])
+    return assemble("Thank You | Excel Pest", "Thanks — your free estimate request has been received.",
+                    BIZ["domain"] + "/thank-you.html", body, [], noindex=True)
 
 
 # PayPal Hosted Button — the "enter an amount" widget with PayPal + Venmo + card, matching the
@@ -2059,14 +2120,17 @@ def pay_invoice():
         <a class="btn btn--primary pay-btn" href="tel:{ptel}">Call {phone} to pay</a>
       </div>""".format(ptel=BIZ["phone_tel"], phone=BIZ["phone"])
     body = """
-  <main class="pay-wrap">
+  <main id="main" class="pay-wrap">
     <div class="pay-card">
       <span class="pay-company">{name}</span>
       <h1>Pay Your Invoice</h1>
       <p>Settle your bill securely online, or call us and we'll take payment over the phone.</p>
-      <div class="pay-checklist">
-        <strong>Have this ready</strong>
-        <ul><li>Your invoice number</li><li>The amount due on your invoice</li><li>Your billing name and ZIP code</li></ul>
+      <div class="pay-fields">
+        <label for="pay-invoice-no">Invoice number</label>
+        <input id="pay-invoice-no" name="invoice_no" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 10432" required>
+        <label for="pay-billing-name">Billing name</label>
+        <input id="pay-billing-name" name="billing_name" type="text" autocomplete="name" placeholder="Name on the invoice" required>
+        <p class="pay-note">Please enter your <strong>invoice number in the PayPal note</strong> at checkout so we can match your payment quickly.</p>
       </div>
       {pay_widget}
       <div class="pay-phone">Prefer to pay by phone? Call <a href="tel:{ptel}">{phone}</a>.</div>
@@ -2087,6 +2151,11 @@ def pay_invoice():
     .pay-company { text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:700; color:var(--muted); }
     .pay-card h1 { font-size:1.9rem; margin:6px 0 10px; }
     .pay-checklist { text-align:left; background:var(--soft); border:1px solid var(--line); border-radius:var(--radius); padding:18px 22px; margin:22px 0; }
+    .pay-fields { text-align:left; margin:22px 0 6px; }
+    .pay-fields label { display:block; font-weight:600; font-size:.9rem; margin:12px 0 5px; }
+    .pay-fields input { width:100%; min-height:46px; padding:11px 14px; border:1px solid var(--line); border-radius:var(--radius); font-size:1rem; }
+    .pay-fields input:focus { outline:2px solid var(--accent); border-color:var(--accent); }
+    .pay-note { font-size:.86rem; color:var(--muted); margin:12px 0 0; line-height:1.5; }
     .paypal-form, .paypal-live, .pay-fallback { margin:24px 0 6px; }
     .pay-btn { width:100%; font-size:1.05rem; padding:15px 22px; }
     .pay-secure { color:var(--muted); font-size:.86rem; margin-top:16px; line-height:1.5; }
@@ -2094,7 +2163,7 @@ def pay_invoice():
   </style>"""
     h = head("Pay Your Invoice | Austin Excel Pest & Lawn Control",
              "Pay your Excel Pest invoice securely online through PayPal, or call (512) 291-5900 to pay by phone.",
-             canonical, [], noindex=False)
+             canonical, [], noindex=True)
     h = h.replace("</head>", launch_comment + pay_styles + "\n</head>")
     return h + "\n" + header() + "\n" + body + footer() + "\n"
 
@@ -2149,8 +2218,8 @@ def render_article(a):
     summary = a.get("summary", "")
     body = page_hero(a["title"], summary or (a["title"]), crumbs)
 
-    meta_bits = '<span class="art-meta">%s &middot; %s</span>' % (
-        "Answer Guide" if kind == "aeo" else "Pest Guide", _fmt_date(a["date"]))
+    meta_bits = '<span class="art-meta">%s &middot; Published <time datetime="%s">%s</time></span>' % (
+        "Answer Guide" if kind == "aeo" else "Pest Guide", html.escape(a["date"], quote=True), _fmt_date(a["date"]))
     # AEO posts lead with a concise, citable "quick answer" box.
     quick = ""
     if a.get("quick_answer"):
@@ -2250,7 +2319,7 @@ def insights_index(articles):
 
 def build_sitemap(urls):
     rows = "\n".join(
-        "  <url><loc>%s</loc><changefreq>%s</changefreq><priority>%s</priority></url>" % (u, cf, pr)
+        "  <url><loc>%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq></url>" % (u, BUILD_DATE, cf)
         for u, cf, pr in urls
     )
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + rows + '\n</urlset>\n'
@@ -2258,6 +2327,65 @@ def build_sitemap(urls):
 
 def build_robots():
     return "User-agent: *\nAllow: /\n\nSitemap: %s/sitemap.xml\n" % BIZ["domain"]
+
+
+def build_manifest():
+    return json.dumps({
+        "name": BIZ["name"],
+        "short_name": BIZ["short"],
+        "description": "Family-owned pest, rodent, wildlife and lawn-pest control for Central Texas since 1998.",
+        "start_url": "/",
+        "display": "standalone",
+        "background_color": "#F6F5F1",
+        "theme_color": "#101010",
+        "icons": [
+            {"src": "/assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"},
+            {"src": "/assets/favicon.svg", "sizes": "any", "type": "image/svg+xml"},
+        ],
+    }, indent=2)
+
+
+# Old Hibu URLs → closest current page. Client-side redirect stubs preserve the
+# link equity of the previous site's indexed pages (28 years of it) instead of
+# 404-ing. NOTE: these are meta-refresh/JS redirects; for true 301s, mirror this
+# map as CloudFront/Amplify redirect rules (see REDIRECTS_FOR_CONSOLE in docs).
+REDIRECTS = {
+    "ant-control": "/services/ant-control.html",
+    "scorpion-control": "/services/scorpion-control.html",
+    "termite-control": "/services/termite-control.html",
+    "rodent-control": "/services/rodent-removal.html",
+    "wildlife-live-trapping": "/services/wildlife-live-trapping.html",
+    "general-pest-control": "/services/pest-control.html",
+    "pest-control": "/services/pest-control.html",
+    "mosquito-misting-systems": "/services/mosquito-misting.html",
+    "mosquito-control": "/services/mosquito-misting.html",
+    "lawn-care-and-landscaping-services": "/services/lawn-pest-control.html",
+    "lawn-care": "/services/lawn-pest-control.html",
+    "outdoor-living": "/services.html",
+    "landscaping": "/services/lawn-pest-control.html",
+    "blog": "/insights.html",
+    "gye-hutsons-landscaping-and-pest-control-blog": "/insights.html",
+    "reviews": "/#reviews",
+    "services": "/services.html",
+    "contact-us": "/contact.html",
+    "about-us": "/about.html",
+}
+
+
+def redirect_stub(target):
+    return (
+        '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
+        '  <meta charset="utf-8">\n'
+        '  <title>Page moved</title>\n'
+        '  <link rel="canonical" href="%s%s">\n'
+        '  <meta name="robots" content="noindex, follow">\n'
+        '  <meta http-equiv="refresh" content="0; url=%s">\n'
+        '  <script>location.replace(%s);</script>\n'
+        '</head>\n<body>\n'
+        '  <p>This page has moved. If you are not redirected, '
+        '<a href="%s">continue here</a>.</p>\n'
+        '</body>\n</html>\n'
+    ) % (BIZ["domain"], target, target, json.dumps(target), target)
 
 
 # --------------------------------------------------------------------------
@@ -2300,9 +2428,17 @@ def main():
     written.append("404.html")
     write("pay-invoice.html", pay_invoice())  # intentionally excluded from sitemap until launch
     written.append("pay-invoice.html")
+    write("thank-you.html", thank_you())  # form success page (noindex, conversion goal)
+    written.append("thank-you.html")
+
+    # Legacy-URL redirect stubs (old Hibu paths → closest current page)
+    for old, target in REDIRECTS.items():
+        write("%s.html" % old, redirect_stub(target))
+        written.append("%s.html" % old)
 
     write("sitemap.xml", build_sitemap(sitemap_urls)); written.append("sitemap.xml")
     write("robots.txt", build_robots()); written.append("robots.txt")
+    write("site.webmanifest", build_manifest()); written.append("site.webmanifest")
 
     # Image brief (outside ./site — it's documentation, not a served page)
     write_image_brief()
