@@ -1065,10 +1065,16 @@ body { background: var(--bg); color: var(--body); }
 /* D2 — comfortable mobile tap targets + A3 mobile-menu hardening */
 @media (max-width: 640px) {
   .field input, .field select, .field textarea, .checker input, .checker button,
-  .pest-choice label, .acc-head { min-height: 44px; }
+  .acc-head, .btn, button.btn, [data-wiz-next], [data-wiz-back],
+  .info-list a, .footer-links a, .hours a, .mega-col li a { min-height: 44px; }
   .field input, .field select { padding-top: 11px; padding-bottom: 11px; }
-  .pest-choice label { display: inline-flex; align-items: center; padding: 11px 16px; }
-  .nav-links a { display: inline-flex; align-items: center; min-height: 44px; }
+  /* Make links/chips actually 44px tall to tap, not just nominally */
+  .pest-choice label, .nav-links a, .info-list a, .footer-links a,
+  .card__link, .nav-invoice, .mega-col li a, .crumbs a {
+    display: inline-flex; align-items: center; min-height: 44px;
+  }
+  .pest-choice label { padding: 11px 16px; }
+  .footer-links li { margin-bottom: 2px; }
   .nav-links.open { z-index: 60; }
   /* mega-head was ink-on-dark (invisible) inside the open mobile menu */
   .mega-col .mega-head { color: #e7ecf6; }
