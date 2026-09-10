@@ -23,7 +23,8 @@
   if (form) {
     var note = form.querySelector('[data-form-note]');
     var OFFICE = 'office@excelpest-lawncontrol.com';
-    var hasBackend = !!form.querySelector('input[name="access_key"]');
+    // A real endpoint = any http(s) action (FormSubmit). mailto: is the fallback only.
+    var hasBackend = /^https?:/i.test(form.getAttribute('action') || '');
     var get = function (n) { var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
 
     function setNote(msg) { if (note) note.textContent = msg; }

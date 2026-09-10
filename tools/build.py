@@ -62,26 +62,23 @@ BIZ = {
     "youtube": "https://www.youtube.com/@excelpestlawncontrol",
 }
 
-# Automatic form delivery via Web3Forms (free, no backend; emails submissions to office@...).
-# Get the key at https://web3forms.com using office@excelpest-lawncontrol.com, then paste it here.
-# Empty = graceful fallback to a mailto (opens the visitor's email app).
-FORM_ACCESS_KEY = ""
+# Automatic form delivery via FormSubmit (free, no API key, no backend). The office
+# email goes straight in the form action; FormSubmit emails every submission there.
+# One-time step: the first submission triggers a confirmation email to office@ —
+# click its activation link once and all future submissions are delivered.
+# The AJAX endpoint returns JSON so the JS can show the /thank-you page on success
+# and never claim success on a failure.
+FORM_ENDPOINT = "https://formsubmit.co/ajax/" + BIZ["email"]
 
 
 def estimate_form_backend():
-    """(action_attrs, hidden_fields) for the estimate form. Web3Forms when a key is set;
-    otherwise a mailto action so the form is never a dead end."""
-    if FORM_ACCESS_KEY:
-        action = 'action="https://api.web3forms.com/submit" method="post"'
-        hidden = (
-            '<input type="hidden" name="access_key" value="%s">'
-            '<input type="hidden" name="subject" value="New estimate request from the Excel Pest website">'
-            '<input type="hidden" name="from_name" value="Excel Pest website">'
-            '<input type="checkbox" name="botcheck" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">'
-        ) % html.escape(FORM_ACCESS_KEY, quote=True)
-    else:
-        action = 'action="mailto:%s" method="post"' % BIZ["email"]
-        hidden = ''
+    """(action_attrs, hidden_fields) for the estimate form — delivers to office@ via FormSubmit."""
+    action = 'action="%s" method="post"' % html.escape(FORM_ENDPOINT, quote=True)
+    hidden = (
+        '<input type="hidden" name="_subject" value="New estimate request from the Excel Pest website">'
+        '<input type="hidden" name="_template" value="table">'
+        '<input type="hidden" name="_captcha" value="false">'
+    )
     return action, hidden
 
 
@@ -2010,7 +2007,7 @@ def contact():
           <h2 class="mt-0" style="font-size:1.4rem;">Request an estimate</h2>
           <form {form_action} class="wizard" data-estimate data-wizard novalidate>
             {form_hidden}
-            <input type="text" name="company_website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+            <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
             <div class="wiz-prog"><span data-wiz-fill></span></div>
             <div class="wiz-count" data-wiz-count>Step 1 of 3</div>
 
