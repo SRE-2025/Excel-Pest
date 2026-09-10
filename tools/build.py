@@ -163,7 +163,7 @@ SERVICES = [
         "slug": "rodent-removal", "nav": "Rodent Removal", "icon": "🐀",
         "h1": "Rodent Removal in Central Texas",
         "title": "Rodent Removal in Buda, TX | Rats & Mice | Excel Pest",
-        "desc": "Fast rat and mouse removal from Central Texas attics, garages and walls — then we seal them out. Water-based products, applied by licensed technicians only where needed. Call (512) 291-5900.",
+        "desc": "Fast rat and mouse removal from Central Texas attics and walls — then we seal them out. Water-based, by licensed technicians. Call (512) 291-5900.",
         "lead": "Scratching in the attic at night, droppings in the pantry, chewed wiring — rats and mice do real damage fast, and they breed even faster. We remove the rodents inside now, then seal the gaps so it doesn't repeat.",
         "treats": ["Roof rats & house mice", "Attic & wall-void activity", "Droppings & gnaw marks", "Chewed wiring (a fire risk)"],
         "sections": [
@@ -228,7 +228,7 @@ SERVICES = [
         "slug": "ant-control", "nav": "Ant Control", "icon": "🐜",
         "h1": "Ant Control in Buda & Central Texas",
         "title": "Ant Control in Buda & Central Texas | Excel Pest",
-        "desc": "Fire ants, sugar ants and carpenter ants treated at the colony across Buda and Central Texas. Water-based products, applied by licensed technicians only where needed. Call (512) 291-5900.",
+        "desc": "Fire ants, sugar ants and carpenter ants treated at the colony across Buda and Central Texas. Water-based, by licensed technicians. Call (512) 291-5900.",
         "lead": "From fire-ant mounds in the yard to sugar ants marching across the kitchen counter, ants are the most common call we get in Central Texas. Killing the trail you can see does nothing — the colony just sends more. We treat the source.",
         "treats": ["Fire ants", "Sugar / odorous ants", "Carpenter ants", "Acrobat & pharaoh ants", "Mounds in the yard"],
         "sections": [
@@ -254,7 +254,7 @@ SERVICES = [
         "slug": "cricket-control", "nav": "Cricket Control", "icon": "🦗",
         "h1": "Cricket Control in Central Texas",
         "title": "Cricket Control in Buda, TX | Excel Pest",
-        "desc": "Central Texas field-cricket swarms controlled at the source for homes and businesses. Water-based products, applied by licensed technicians only where needed. Call (512) 291-5900.",
+        "desc": "Central Texas field-cricket swarms controlled at the source for homes and businesses. Water-based, by licensed technicians. Call (512) 291-5900.",
         "lead": "Every late summer, field crickets swarm Central Texas by the thousands — piling at doorways, under lights and inside garages. They stain surfaces, smell, and draw the scorpions and spiders that feed on them. We break the cycle.",
         "treats": ["Field crickets", "Camel / spider crickets", "Exterior-lighting swarms", "Entry points & harborage"],
         "sections": [
@@ -959,7 +959,12 @@ def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="",
         else:
             image_url = REMOTE_IMAGES["services/pest-control-exterior-treatment.webp"]
     if image_url:
-        real_img = '<img src="%s" alt="%s">' % (html.escape(image_url, quote=True), html.escape(alt, quote=True))
+        # Explicit intrinsic dimensions reserve the box and kill layout shift
+        # (the business photos are 1920-wide; the figure's aspect-ratio + object-fit
+        # still control the rendered crop). decoding async keeps them off the
+        # main thread.
+        real_img = ('<img src="%s" alt="%s" width="1920" height="1324" decoding="async">'
+                    % (html.escape(image_url, quote=True), html.escape(alt, quote=True)))
         art_svg = ''
         badge = ''
     elif filename.startswith("services/"):
@@ -1990,7 +1995,7 @@ def contact():
           <li><span class="label">Office</span><span class="value">{street}, {city}, {state} {zip}</span></li>
           <li><span class="label">License</span><span class="value">{license}</span></li>
         </ul>
-        <h3>Hours</h3>
+        <h2 style="font-size:1.4rem;">Hours</h2>
         <ul class="hours">
           <li><span class="day">Monday – Friday</span><span class="time">8:00 – 5:00</span></li>
           <li><span class="day">Saturday – Sunday</span><span class="time">Closed</span></li>
@@ -2002,7 +2007,7 @@ def contact():
       </div>
       <div>
         <div class="card">
-          <h3 class="mt-0">Request an estimate</h3>
+          <h2 class="mt-0" style="font-size:1.4rem;">Request an estimate</h2>
           <form {form_action} class="wizard" data-estimate data-wizard novalidate>
             {form_hidden}
             <input type="text" name="company_website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
@@ -2305,7 +2310,10 @@ def insights_index(articles):
         grid = '<p class="lead">New Central Texas pest guides are published every week — check back soon.</p>'
     body = page_hero("Pest Guides & Answers",
                      "Practical, local advice on the pests Central Texas homeowners actually deal with.", crumbs) + """
-  <section class="section"><div class="container">{grid}</div></section>""".format(grid=grid)
+  <section class="section"><div class="container">
+    <h2 class="visually-hidden">Latest pest guides</h2>
+    {grid}
+  </div></section>""".format(grid=grid)
     body += cta_band()
     schema = [business_schema(), breadcrumb_schema(crumbs)]
     return assemble("Pest Guides & Answers | Excel Pest",
@@ -2372,12 +2380,16 @@ REDIRECTS = {
 
 
 def redirect_stub(target):
+    # A meta-refresh redirect. IMPORTANT: no robots meta here — pairing
+    # `noindex` with a canonical that points at the live target is the one
+    # combination Google warns against (the noindex can carry to the target).
+    # A real 301 (Amplify console rule) needs neither tag; this stub keeps only
+    # the canonical so link equity consolidates on the target.
     return (
         '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
         '  <meta charset="utf-8">\n'
         '  <title>Page moved</title>\n'
         '  <link rel="canonical" href="%s%s">\n'
-        '  <meta name="robots" content="noindex, follow">\n'
         '  <meta http-equiv="refresh" content="0; url=%s">\n'
         '  <script>location.replace(%s);</script>\n'
         '</head>\n<body>\n'

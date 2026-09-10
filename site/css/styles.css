@@ -1070,7 +1070,8 @@ body { background: var(--bg); color: var(--body); }
   .field input, .field select { padding-top: 11px; padding-bottom: 11px; }
   /* Make links/chips actually 44px tall to tap, not just nominally */
   .pest-choice label, .nav-links a, .info-list a, .footer-links a,
-  .card__link, .nav-invoice, .mega-col li a, .crumbs a {
+  .card__link, .nav-invoice, .mega-col li a, .breadcrumb a,
+  .site-footer p a, .hours a {
     display: inline-flex; align-items: center; min-height: 44px;
   }
   .pest-choice label { padding: 11px 16px; }

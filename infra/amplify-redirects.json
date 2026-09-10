@@ -5,7 +5,17 @@
     "status": "301"
   },
   {
+    "source": "/ant-control/",
+    "target": "/services/ant-control.html",
+    "status": "301"
+  },
+  {
     "source": "/scorpion-control",
+    "target": "/services/scorpion-control.html",
+    "status": "301"
+  },
+  {
+    "source": "/scorpion-control/",
     "target": "/services/scorpion-control.html",
     "status": "301"
   },
@@ -15,7 +25,17 @@
     "status": "301"
   },
   {
+    "source": "/termite-control/",
+    "target": "/services/termite-control.html",
+    "status": "301"
+  },
+  {
     "source": "/rodent-control",
+    "target": "/services/rodent-removal.html",
+    "status": "301"
+  },
+  {
+    "source": "/rodent-control/",
     "target": "/services/rodent-removal.html",
     "status": "301"
   },
@@ -25,7 +45,17 @@
     "status": "301"
   },
   {
+    "source": "/wildlife-live-trapping/",
+    "target": "/services/wildlife-live-trapping.html",
+    "status": "301"
+  },
+  {
     "source": "/general-pest-control",
+    "target": "/services/pest-control.html",
+    "status": "301"
+  },
+  {
+    "source": "/general-pest-control/",
     "target": "/services/pest-control.html",
     "status": "301"
   },
@@ -35,7 +65,17 @@
     "status": "301"
   },
   {
+    "source": "/pest-control/",
+    "target": "/services/pest-control.html",
+    "status": "301"
+  },
+  {
     "source": "/mosquito-misting-systems",
+    "target": "/services/mosquito-misting.html",
+    "status": "301"
+  },
+  {
+    "source": "/mosquito-misting-systems/",
     "target": "/services/mosquito-misting.html",
     "status": "301"
   },
@@ -45,7 +85,17 @@
     "status": "301"
   },
   {
+    "source": "/mosquito-control/",
+    "target": "/services/mosquito-misting.html",
+    "status": "301"
+  },
+  {
     "source": "/lawn-care-and-landscaping-services",
+    "target": "/services/lawn-pest-control.html",
+    "status": "301"
+  },
+  {
+    "source": "/lawn-care-and-landscaping-services/",
     "target": "/services/lawn-pest-control.html",
     "status": "301"
   },
@@ -55,7 +105,17 @@
     "status": "301"
   },
   {
+    "source": "/lawn-care/",
+    "target": "/services/lawn-pest-control.html",
+    "status": "301"
+  },
+  {
     "source": "/outdoor-living",
+    "target": "/services.html",
+    "status": "301"
+  },
+  {
+    "source": "/outdoor-living/",
     "target": "/services.html",
     "status": "301"
   },
@@ -65,7 +125,17 @@
     "status": "301"
   },
   {
+    "source": "/landscaping/",
+    "target": "/services/lawn-pest-control.html",
+    "status": "301"
+  },
+  {
     "source": "/blog",
+    "target": "/insights.html",
+    "status": "301"
+  },
+  {
+    "source": "/blog/",
     "target": "/insights.html",
     "status": "301"
   },
@@ -75,7 +145,17 @@
     "status": "301"
   },
   {
+    "source": "/gye-hutsons-landscaping-and-pest-control-blog/",
+    "target": "/insights.html",
+    "status": "301"
+  },
+  {
     "source": "/reviews",
+    "target": "/",
+    "status": "301"
+  },
+  {
+    "source": "/reviews/",
     "target": "/",
     "status": "301"
   },
@@ -85,8 +165,28 @@
     "status": "301"
   },
   {
+    "source": "/contact-us/",
+    "target": "/contact.html",
+    "status": "301"
+  },
+  {
     "source": "/about-us",
     "target": "/about.html",
+    "status": "301"
+  },
+  {
+    "source": "/about-us/",
+    "target": "/about.html",
+    "status": "301"
+  },
+  {
+    "source": "/blog/<*>",
+    "target": "/insights.html",
+    "status": "301"
+  },
+  {
+    "source": "/landscaping/<*>",
+    "target": "/services/lawn-pest-control.html",
     "status": "301"
   },
   {
