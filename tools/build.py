@@ -2036,7 +2036,7 @@ def pay_invoice():
         <div id="paypal-container-{btn}"></div>
         <p class="pay-secure">&#128274; Secure checkout by PayPal &mdash; pay with PayPal, Venmo, or any major card. We never see or store your card details.</p>
       </div>
-      <script src="https://www.paypal.com/sdk/js?client-id={cid}&components=hosted-buttons&enable-funding=venmo&currency=USD"></script>
+      <script src="https://www.paypal.com/sdk/js?client-id={cid}&components=hosted-buttons&disable-funding=venmo,paylater&currency=USD"></script>
       <script>
         paypal.HostedButtons({{ hostedButtonId: "{btn}" }}).render("#paypal-container-{btn}");
       </script>""".format(btn=PAYPAL_HOSTED_BUTTON_ID, cid=html.escape(PAYPAL_CLIENT_ID, quote=True))
