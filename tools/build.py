@@ -2031,67 +2031,84 @@ PAYPAL_CLIENT_ID = "BAArXy7ujNCaXUieuDOjWUf67dYCS_WdWPNnf5mm6HuiUuj3uK4uBi51kyZ9
 def pay_invoice():
     canonical = BIZ["domain"] + "/pay-invoice.html"
     if PAYPAL_CLIENT_ID:
+        # Standard PayPal Smart Button rendered as a SINGLE "Checkout" button
+        # (fundingSource=PAYPAL). Clicking it opens PayPal's full checkout where
+        # the payer can use PayPal, Venmo, Apple Pay or any card. Hosted buttons
+        # always force a separate "Pay with PayPal"/"Pay with Venmo" row, which is
+        # why this uses the standard button instead. Client-side order create +
+        # capture (no server) — fine for a simple invoice-pay page.
         pay_widget = """
-      <div class="paypal-live">
-        <div id="paypal-container-{btn}"></div>
-        <p class="pay-secure">&#128274; Secure checkout by PayPal &mdash; pay with PayPal, Venmo, or any major card. We never see or store your card details.</p>
+      <div class="pay-fields">
+        <label for="pay-invoice-no">Invoice number</label>
+        <input id="pay-invoice-no" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 10432">
+        <label for="pay-amount">Amount to pay (USD)</label>
+        <div class="amt-wrap"><span class="amt-cur">$</span>
+          <input id="pay-amount" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00"></div>
       </div>
-      <script src="https://www.paypal.com/sdk/js?client-id={cid}&components=hosted-buttons&disable-funding=venmo,paylater&currency=USD"></script>
+      <div id="paypal-btn" class="pp-btn"></div>
+      <p class="pay-msg" id="pay-msg" role="status" aria-live="polite"></p>
+      <p class="pay-secure">&#128274; Secure checkout by PayPal &mdash; on the next screen you can pay with PayPal, Venmo, Apple Pay or any major card. We never see or store your card details.</p>
+      <script src="https://www.paypal.com/sdk/js?client-id={cid}&currency=USD&disable-funding=paylater"></script>
       <script>
-        paypal.HostedButtons({{ hostedButtonId: "{btn}" }}).render("#paypal-container-{btn}");
-      </script>""".format(btn=PAYPAL_HOSTED_BUTTON_ID, cid=html.escape(PAYPAL_CLIENT_ID, quote=True))
+      (function(){{
+        if (!window.paypal || !paypal.Buttons) return;
+        var amtEl = document.getElementById('pay-amount');
+        var invEl = document.getElementById('pay-invoice-no');
+        var msg = document.getElementById('pay-msg');
+        function amount(){{ var v = parseFloat(String(amtEl && amtEl.value || '').replace(/[^0-9.]/g,'')); return (v && v > 0) ? v : 0; }}
+        function note(t){{ if (msg) msg.textContent = t || ''; }}
+        paypal.Buttons({{
+          fundingSource: paypal.FUNDING.PAYPAL,
+          style: {{ color: 'black', shape: 'rect', label: 'checkout', height: 48 }},
+          onClick: function(){{ if (amount() <= 0) {{ note('Please enter the amount you want to pay first.'); if (amtEl) amtEl.focus(); }} else {{ note(''); }} }},
+          createOrder: function(data, actions){{
+            var v = amount();
+            if (v <= 0) return Promise.reject(new Error('no amount'));
+            var inv = String(invEl && invEl.value || '').trim();
+            return actions.order.create({{ purchase_units: [{{ amount: {{ value: v.toFixed(2), currency_code: 'USD' }}, custom_id: inv, description: inv ? ('Excel Pest invoice ' + inv) : 'Excel Pest payment' }}] }});
+          }},
+          onApprove: function(data, actions){{ return actions.order.capture().then(function(){{ window.location.href = '/thank-you.html'; }}); }},
+          onError: function(err){{ note('Sorry — something went wrong starting checkout. Please call (512) 291-5900 to pay.'); }}
+        }}).render('#paypal-btn');
+      }})();
+      </script>""".format(cid=html.escape(PAYPAL_CLIENT_ID, quote=True))
     else:
         pay_widget = """
-      <div class="pay-fallback">
-        <p style="margin:0 0 16px;">Online card &amp; PayPal payments are being reconnected. To pay right now, call and we'll take your card over the phone, or we'll text you a secure payment link.</p>
-        <a class="btn btn--primary pay-btn" href="tel:{ptel}">Call {phone} to pay</a>
-      </div>""".format(ptel=BIZ["phone_tel"], phone=BIZ["phone"])
+      <a class="btn btn--primary pay-btn" href="tel:{ptel}">Call {phone} to pay</a>""".format(
+            ptel=BIZ["phone_tel"], phone=BIZ["phone"])
     body = """
   <main id="main" class="pay-wrap">
     <div class="pay-card">
       <span class="pay-company">{name}</span>
       <h1>Pay Your Invoice</h1>
-      <p>Settle your bill securely online, or call us and we'll take payment over the phone.</p>
-      <div class="pay-fields">
-        <label for="pay-invoice-no">Invoice number</label>
-        <input id="pay-invoice-no" name="invoice_no" type="text" inputmode="numeric" autocomplete="off" placeholder="e.g. 10432" required>
-        <label for="pay-billing-name">Billing name</label>
-        <input id="pay-billing-name" name="billing_name" type="text" autocomplete="name" placeholder="Name on the invoice" required>
-        <p class="pay-note">Please enter your <strong>invoice number in the PayPal note</strong> at checkout so we can match your payment quickly.</p>
-      </div>
+      <p>Enter your invoice number and amount, then check out securely — or call and we'll take payment over the phone.</p>
       {pay_widget}
-      <div class="pay-phone">Prefer to pay by phone? Call <a href="tel:{ptel}">{phone}</a>.</div>
+      <div class="pay-phone">Prefer to pay by phone? Call <a href="tel:{ptel}">{phone}</a> (Mon–Fri, 8–5).</div>
     </div>
   </main>""".format(name=html.escape(BIZ["name"]), ptel=BIZ["phone_tel"], phone=BIZ["phone"],
                     pay_widget=pay_widget)
-    launch_comment = """
-  <!--
-    PayPal Hosted Button id %s. This is a modern hosted button and MUST render via the
-    PayPal JS SDK (components=hosted-buttons) — the classic cgi-bin form returns GENERIC_ERROR.
-    Set PAYPAL_CLIENT_ID (from the button's "Copy code") to go live. Until then a pay-by-phone
-    card is shown. Post-launch: make and refund a $1.00 test payment to verify routing.
-  -->""" % PAYPAL_HOSTED_BUTTON_ID
     pay_styles = """
   <style>
     .pay-wrap { background: var(--soft); min-height: 70vh; display: grid; place-items: center; padding: 56px 20px; }
     .pay-card { background:#fff; max-width:520px; width:100%; border:1px solid var(--line); border-radius:var(--radius); box-shadow:var(--shadow-lg); padding:40px; text-align:center; }
     .pay-company { text-transform:uppercase; letter-spacing:.16em; font-size:.78rem; font-weight:700; color:var(--muted); }
     .pay-card h1 { font-size:1.9rem; margin:6px 0 10px; }
-    .pay-checklist { text-align:left; background:var(--soft); border:1px solid var(--line); border-radius:var(--radius); padding:18px 22px; margin:22px 0; }
     .pay-fields { text-align:left; margin:22px 0 6px; }
     .pay-fields label { display:block; font-weight:600; font-size:.9rem; margin:12px 0 5px; }
     .pay-fields input { width:100%; min-height:46px; padding:11px 14px; border:1px solid var(--line); border-radius:var(--radius); font-size:1rem; }
     .pay-fields input:focus { outline:2px solid var(--accent); border-color:var(--accent); }
-    .pay-note { font-size:.86rem; color:var(--muted); margin:12px 0 0; line-height:1.5; }
-    .paypal-form, .paypal-live, .pay-fallback { margin:24px 0 6px; }
+    .amt-wrap { position:relative; } .amt-cur { position:absolute; left:14px; top:50%; transform:translateY(-50%); color:var(--muted); font-weight:600; }
+    .amt-wrap input { padding-left:26px; }
+    .pp-btn { margin:22px 0 6px; min-height:48px; }
     .pay-btn { width:100%; font-size:1.05rem; padding:15px 22px; }
-    .pay-secure { color:var(--muted); font-size:.86rem; margin-top:16px; line-height:1.5; }
-    .pay-phone { margin-top:20px; font-size:1.05rem; } .pay-phone a { font-weight:700; }
+    .pay-msg { color:var(--accent); font-size:.9rem; min-height:1.2em; margin:4px 0 0; }
+    .pay-secure { color:var(--muted); font-size:.86rem; margin-top:14px; line-height:1.5; }
+    .pay-phone { margin-top:20px; font-size:1.02rem; color:var(--muted); } .pay-phone a { font-weight:700; }
   </style>"""
     h = head("Pay Your Invoice | Austin Excel Pest & Lawn Control",
-             "Pay your Excel Pest invoice securely online through PayPal, or call (512) 291-5900 to pay by phone.",
+             "Pay your Excel Pest invoice securely online with PayPal, Venmo, Apple Pay or any card, or call (512) 291-5900 to pay by phone.",
              canonical, [], noindex=True)
-    h = h.replace("</head>", launch_comment + pay_styles + "\n</head>")
+    h = h.replace("</head>", pay_styles + "\n</head>")
     return h + "\n" + header() + "\n" + body + footer() + "\n"
 
 
