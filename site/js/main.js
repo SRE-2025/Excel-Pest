@@ -15,16 +15,16 @@
   var now = new Date().getFullYear();
   yr.forEach(function (el) { el.textContent = now; });
 
-  // Progressive-enhancement contact form.
-  // Until a server-side handler is wired up (Part 1, Sec 5 of the brief, or
-  // API Gateway + SES), this composes an email to the office so the form is
-  // never a dead end. Swap this for a POST handler when the backend is ready.
+  // Progressive-enhancement contact form. FormSubmit emails the office and a
+  // Google Sheet records a backup copy; a normal POST remains the no-JS fallback.
   var form = document.querySelector('form[data-estimate]');
   if (form) {
     var note = form.querySelector('[data-form-note]');
     var OFFICE = 'office@excelpest-lawncontrol.com';
-    // A real endpoint = any http(s) action (FormSubmit). mailto: is the fallback only.
-    var hasBackend = /^https?:/i.test(form.getAttribute('action') || '');
+    // The AJAX endpoint keeps the visitor on-site. The normal form action is a
+    // no-JavaScript and network-error fallback that still delivers to the office.
+    var ajaxEndpoint = form.getAttribute('data-ajax-endpoint') || '';
+    var hasBackend = /^https?:/i.test(ajaxEndpoint);
     var SHEET = form.getAttribute('data-lead-sheet') || '';   // durable backup store
     var get = function (n) { var el = form.elements[n]; return el ? String(el.value || '').trim() : ''; };
 
@@ -56,8 +56,19 @@
     }
 
     function showSuccess() {
-      // Redirect to a real thank-you page (conversion goal for analytics).
+      // Record only the conversion event — never the visitor's form fields.
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', { method: 'website_form' });
+      }
       window.location.href = '/thank-you.html';
+    }
+
+    function fallbackPost() {
+      if (/^https?:/i.test(form.getAttribute('action') || '')) {
+        HTMLFormElement.prototype.submit.call(form);
+      } else {
+        fallbackMailto();
+      }
     }
 
     form.addEventListener('submit', function (e) {
@@ -75,10 +86,10 @@
       captureToSheet();
       if (hasBackend && window.fetch) {
         setNote('Sending…');
-        fetch(form.action, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
+        fetch(ajaxEndpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
           .then(function (r) { return r.json(); })
-          .then(function (j) { if (j && j.success) { showSuccess(); } else { fallbackMailto(); } })
-          .catch(fallbackMailto);
+          .then(function (j) { if (j && j.success) { showSuccess(); } else { fallbackPost(); } })
+          .catch(fallbackPost);
       } else {
         fallbackMailto();
       }

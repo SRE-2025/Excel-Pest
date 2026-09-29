@@ -40,6 +40,7 @@ BIZ = {
     "text": "(512) 291-5900",
     "text_tel": "+15122915900",
     "email": "office@excelpest-lawncontrol.com",
+    "ga4": "G-LDWMBCL4D9",
     "street": "175 Warehouse Drive, Ste A",
     "city": "Buda",
     "state": "TX",
@@ -68,7 +69,8 @@ BIZ = {
 # click its activation link once and all future submissions are delivered.
 # The AJAX endpoint returns JSON so the JS can show the /thank-you page on success
 # and never claim success on a failure.
-FORM_ENDPOINT = "https://formsubmit.co/ajax/" + BIZ["email"]
+FORM_ENDPOINT = "https://formsubmit.co/" + BIZ["email"]
+FORM_AJAX_ENDPOINT = "https://formsubmit.co/ajax/" + BIZ["email"]
 
 # Durable lead capture (safety net): a Google Apps Script Web App URL that appends
 # every submission to a Google Sheet the business owns — so a lead is never lost
@@ -80,11 +82,13 @@ LEAD_SHEET_ENDPOINT = "https://script.google.com/macros/s/AKfycbwoAUHYcDGOTYtt6X
 
 def estimate_form_backend():
     """(action_attrs, hidden_fields) for the estimate form — delivers to office@ via FormSubmit."""
-    action = 'action="%s" method="post"' % html.escape(FORM_ENDPOINT, quote=True)
+    action = 'action="%s" method="post" data-ajax-endpoint="%s"' % (
+        html.escape(FORM_ENDPOINT, quote=True), html.escape(FORM_AJAX_ENDPOINT, quote=True))
     hidden = (
         '<input type="hidden" name="_subject" value="New estimate request from the Excel Pest website">'
         '<input type="hidden" name="_template" value="table">'
         '<input type="hidden" name="_captcha" value="false">'
+        '<input type="hidden" name="_next" value="%s/thank-you.html">' % BIZ["domain"]
     )
     return action, hidden
 
@@ -569,8 +573,18 @@ def head(title, desc, canonical, schema_blocks, noindex=False, og_type="website"
         '  <meta property="og:image:height" content="630">',
         '  <meta property="og:image:alt" content="' + html.escape(BIZ["name"]) + '">',
         '  <meta name="twitter:card" content="summary_large_image">',
+        '  <meta name="twitter:title" content="' + html.escape(title) + '">',
+        '  <meta name="twitter:description" content="' + html.escape(desc) + '">',
         '  <meta name="twitter:image" content="' + BIZ["domain"] + '/assets/og-default.png">',
         '  <meta name="theme-color" content="#101010">',
+        '  <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->',
+        '  <script async src="https://www.googletagmanager.com/gtag/js?id=' + BIZ["ga4"] + '"></script>',
+        '  <script>',
+        '    window.dataLayer = window.dataLayer || [];',
+        '    function gtag(){dataLayer.push(arguments);}',
+        "    gtag('js', new Date());",
+        "    gtag('config', '" + BIZ["ga4"] + "');",
+        '  </script>',
         '  <link rel="preconnect" href="https://fonts.googleapis.com">',
         '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
         '  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">',
@@ -720,7 +734,7 @@ def footer():
       </div>
       <div class="footer-bottom">
         <span>© <span data-year>2026</span> {name} All rights reserved.</span>
-        <span>excelpest-lawncontrol.com</span>
+        <span><a href="/privacy-policy.html">Privacy Policy</a> · excelpest-lawncontrol.com</span>
       </div>
     </div>
   </footer>
@@ -1161,7 +1175,7 @@ def render_location(l):
     canonical = BIZ["domain"] + "/locations/" + l["slug"] + ".html"
     crumbs = [("Home", "/"), ("Service Area", "/service-area.html"), (l["city"], None)]
     title = "Pest Control in %s, TX | Excel Pest since %s" % (l["city"], BIZ["founded"])
-    desc = "Family-owned pest, rodent and scorpion control in %s, %s since %s. Free estimates — call %s." % (
+    desc = "Family-owned pest, rodent and scorpion control in %s, %s since %s. Licensed and insured. Free estimates — call %s." % (
         l["city"], l["county"], BIZ["founded"], BIZ["phone"])
     loc_service_slugs = ["pest-control", "scorpion-control", "ant-control", "rodent-removal",
                          "wildlife-live-trapping", "mosquito-misting", "flea-tick-control", "lawn-pest-control"]
@@ -1858,7 +1872,7 @@ def pet_safety():
     </div>
   </section>""".format(owner=BIZ["owner"], ptel=BIZ["phone_tel"], phone=BIZ["phone"], license=BIZ["license"])
     body += cta_band()
-    desc = "Is pest control safe for kids and pets? Excel Pest uses water-based products applied by licensed technicians. Family-focused pest control in Central Texas since 1998."
+    desc = "Is pest control safe for kids and pets? Excel Pest uses water-based products applied by licensed technicians. Serving Central Texas families since 1998."
     schema = [business_schema(), breadcrumb_schema(crumbs)]
     return assemble("Pet & Family Safety — Water-Based Pest Control | Excel Pest", desc, canonical, body, schema)
 
@@ -1965,7 +1979,7 @@ def contact():
             <div class="field"><label for="message">Anything else? <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
               <textarea id="message" name="message" rows="3"></textarea></div>
             <button class="btn btn--primary" type="submit" style="width:100%;">Request my free estimate</button>
-            <p class="hero__note" style="color:var(--muted);" data-form-note>By submitting, you agree to be contacted about your request.</p>
+            <p class="hero__note" style="color:var(--muted);" data-form-note>By submitting, you agree to be contacted about your request. See our <a href="/privacy-policy.html">privacy policy</a>.</p>
           </form>
         </div>
       </div>
@@ -2019,6 +2033,32 @@ def thank_you():
   </section>""".format(ptel=BIZ["phone_tel"], phone=BIZ["phone"])
     return assemble("Thank You | Excel Pest", "Thanks — your free estimate request has been received.",
                     BIZ["domain"] + "/thank-you.html", body, [], noindex=True)
+
+
+def privacy_policy():
+    canonical = BIZ["domain"] + "/privacy-policy.html"
+    crumbs = [("Home", "/"), ("Privacy Policy", None)]
+    body = page_hero("Privacy Policy", "How we collect and use information submitted through this website.", crumbs) + """
+  <section class="section">
+    <div class="container" style="max-width:820px;">
+      <p><strong>Last updated: September 29, 2026.</strong></p>
+      <h2>Information you provide</h2>
+      <p>When you request an estimate, we collect the name, email address, phone number, ZIP code, service interest and message you choose to provide. The request is delivered to our office at <a href="mailto:{email}">{email}</a> so we can respond and schedule service.</p>
+      <h2>Website analytics</h2>
+      <p>We use Google Analytics to understand visits, traffic sources, page views and general interactions with the site. Google Analytics may use cookies or similar identifiers. We do not intentionally send the personal information entered in our estimate form to Google Analytics.</p>
+      <h2>How we use and share information</h2>
+      <p>We use submitted information to answer questions, prepare estimates, schedule appointments and provide requested services. We do not sell personal information. We share information only with service providers needed to operate the website and deliver requests, or when required by law.</p>
+      <h2>Your choices</h2>
+      <p>You may contact us to ask about, correct or request deletion of information you submitted. You can also limit cookies through your browser settings.</p>
+      <h2>Contact</h2>
+      <p>Email <a href="mailto:{email}">{email}</a>, call <a href="tel:{ptel}">{phone}</a>, or write to {street}, {city}, {state} {zip}.</p>
+    </div>
+  </section>""".format(email=BIZ["email"], ptel=BIZ["phone_tel"], phone=BIZ["phone"],
+                         street=BIZ["street"], city=BIZ["city"], state=BIZ["state"], zip=BIZ["zip"])
+    schema = [business_schema(), breadcrumb_schema(crumbs)]
+    return assemble("Privacy Policy | Austin Excel Pest & Lawn Control",
+                    "Learn how Austin Excel Pest & Lawn Control collects, uses and protects website analytics and estimate-request information for Central Texas customers.",
+                    canonical, body, schema)
 
 
 # PayPal Hosted Button — the "enter an amount" widget with PayPal + Venmo + card, matching the
@@ -2362,6 +2402,7 @@ def main():
     emit("pet-family-safety.html", pet_safety(), pr="0.6")
     emit("faq.html", faq(), pr="0.6")
     emit("contact.html", contact(), cf="monthly", pr="0.8")
+    emit("privacy-policy.html", privacy_policy(), cf="yearly", pr="0.3")
 
     for s in SERVICES:
         emit("services/%s.html" % s["slug"], render_service(s), cf="monthly", pr="0.8")
