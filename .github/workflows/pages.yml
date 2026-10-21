@@ -10,7 +10,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: ["claude/website-github-aws-setup-j7tr24"]
-    paths: ["site/**", "tools/build.py", ".github/workflows/pages.yml"]
+    paths: ["site/**", "content/articles/**", "tools/build.py", ".github/workflows/pages.yml"]
   workflow_dispatch: {}
 
 permissions:
