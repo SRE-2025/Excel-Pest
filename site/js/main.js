@@ -1,5 +1,26 @@
 /* Small, dependency-free site scripts. */
 (function () {
+  var base = window.__BASE__ || '';
+  var pagePath = location.pathname.slice(base.length) || '/';
+  var production = /^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname);
+  function track(name, extra) {
+    if (!production || typeof window.gtag !== 'function') return false;
+    var params = { page_path: pagePath, transport_type: 'beacon' };
+    Object.keys(extra || {}).forEach(function (key) { params[key] = extra[key]; });
+    window.gtag('event', name, params);
+    return true;
+  }
+  // Interaction counts are not completed calls or booked jobs. Never read user
+  // contact fields, free text, or an arbitrary URL query into analytics events.
+  document.addEventListener('click', function (event) {
+    var link = event.target.closest && event.target.closest('a[href]');
+    if (!link) return;
+    var href = link.getAttribute('href');
+    var eventName = /^tel:/i.test(href) ? 'phone_click' : /^sms:/i.test(href) ? 'sms_click' : /^mailto:/i.test(href) ? 'email_click' : '';
+    var placement = link.closest('.mobile-bar') ? 'mobile_bar' : link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'content';
+    if (eventName) track(eventName, { link_placement: placement });
+    else if (link.pathname === base + '/contact.html') track('estimate_cta_click', { link_placement: placement });
+  });
   // Mobile navigation toggle
   var toggle = document.querySelector('.nav-toggle');
   var links = document.querySelector('.nav-links');
@@ -19,6 +40,26 @@
   // Google Sheet records a backup copy; a normal POST remains the no-JS fallback.
   var form = document.querySelector('form[data-estimate]');
   if (form) {
+    var serviceLabels = {
+      'pest-control': 'General Pest Control (ants, roaches, spiders, scorpions, crickets)',
+      'ant-control': 'General Pest Control (ants, roaches, spiders, scorpions, crickets)',
+      'cockroach-control': 'General Pest Control (ants, roaches, spiders, scorpions, crickets)',
+      'scorpion-control': 'General Pest Control (ants, roaches, spiders, scorpions, crickets)',
+      'cricket-control': 'General Pest Control (ants, roaches, spiders, scorpions, crickets)',
+      'spider-control': 'General Pest Control (ants, roaches, spiders, scorpions, crickets)',
+      'rodent-removal': 'Rodents & Wildlife', 'rodent-exclusion': 'Rodents & Wildlife',
+      'wildlife-live-trapping': 'Rodents & Wildlife', 'mosquito-misting': 'Mosquitoes',
+      'flea-tick-control': 'Flea & Tick', 'lawn-pest-control': 'Lawn Pest Control'
+    };
+    var requestedService = new URLSearchParams(location.search).get('service');
+    if (Object.prototype.hasOwnProperty.call(serviceLabels, requestedService) && form.elements.service) {
+      form.elements.service.value = serviceLabels[requestedService];
+    }
+    var started = false;
+    var submitting = false;
+    form.addEventListener('input', function () {
+      if (!started) { started = true; track('estimate_form_start'); }
+    });
     var note = form.querySelector('[data-form-note]');
     var OFFICE = 'office@excelpest-lawncontrol.com';
     // The AJAX endpoint keeps the visitor on-site. The normal form action is a
@@ -55,43 +96,63 @@
       setNote('Opening your email app… if nothing happens, call (512) 291-5900.');
     }
 
-    function showSuccess() {
-      // Record only the conversion event — never the visitor's form fields.
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', { method: 'website_form' });
+    function showSuccess(confirmed) {
+      var redirected = false;
+      function next() {
+        if (redirected) return;
+        redirected = true;
+        window.location.href = base + '/thank-you.html';
       }
-      window.location.href = '/thank-you.html';
+      if (!confirmed) { next(); return; }
+      var selected = get('service');
+      var categories = ['pest-control', 'rodents-wildlife', 'mosquito-misting', 'flea-tick-control', 'lawn-pest-control'];
+      var labels = [serviceLabels['pest-control'], serviceLabels['rodent-removal'], serviceLabels['mosquito-misting'], serviceLabels['flea-tick-control'], serviceLabels['lawn-pest-control']];
+      var category = categories[labels.indexOf(selected)] || 'unspecified';
+      if (Object.prototype.hasOwnProperty.call(serviceLabels, requestedService) && serviceLabels[requestedService] === selected) category = requestedService;
+      // Only the successful email-backend response counts as a confirmed form
+      // lead. The callback/timeout gives analytics time without blocking users.
+      if (!track('generate_lead', { method: 'website_form', service_category: category, event_callback: next, event_timeout: 800 })) next();
+      else window.setTimeout(next, 900);
     }
 
     function fallbackPost() {
+      track('estimate_form_fallback');
       if (/^https?:/i.test(form.getAttribute('action') || '')) {
         HTMLFormElement.prototype.submit.call(form);
       } else {
         fallbackMailto();
+        submitting = false;
       }
     }
 
     form.addEventListener('submit', function (e) {
       e.preventDefault();
+      if (submitting) return;
       // Honeypot: if a bot filled the hidden field, pretend success and stop.
       var hp = form.querySelector('.hp');
-      if (hp && hp.value) { showSuccess(); return; }
+      if (hp && hp.value) { showSuccess(false); return; }
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
       if (!get('name') || !get('email') || !get('phone') || !get('zip')) {
         setNote('Please add your name, email, phone and zip code so we can reach you.');
         var miss = form.elements[!get('name') ? 'name' : (!get('email') ? 'email' : (!get('phone') ? 'phone' : 'zip'))];
         if (miss && miss.focus) miss.focus();
         return;
       }
+      submitting = true;
       // Durable capture first — this is the safety net that survives an email error.
       captureToSheet();
       if (hasBackend && window.fetch) {
         setNote('Sending…');
         fetch(ajaxEndpoint, { method: 'POST', body: new FormData(form), headers: { 'Accept': 'application/json' } })
-          .then(function (r) { return r.json(); })
-          .then(function (j) { if (j && j.success) { showSuccess(); } else { fallbackPost(); } })
+          .then(function (r) { if (!r.ok) throw new Error('Estimate request failed'); return r.json(); })
+          .then(function (j) { if (j && (j.success === true || j.success === 'true')) { showSuccess(true); } else { fallbackPost(); } })
           .catch(fallbackPost);
       } else {
         fallbackMailto();
+        submitting = false;
       }
     });
   }

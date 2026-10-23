@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -339,10 +342,7 @@
       <div class="prose article-body">
         <p>If you live west of I-35 — Buda, Dripping Springs, Wimberley, Driftwood — you already know the striped bark scorpion. It nests in limestone, cedar and rock, hunts at night, and squeezes through gaps as thin as a credit card. The good news: scorpions are one of the most preventable pests in Central Texas once you understand how they get in.</p><h2>Seal the ways in</h2><p>Scorpions follow insects and moisture indoors through the smallest openings. Focus on these first:</p><ul><li><strong>Door sweeps and thresholds.</strong> A worn sweep under an exterior door is the single most common entry point. Replace them and add weatherstripping.</li><li><strong>Weep holes and utility penetrations.</strong> Screen brick weep holes and seal around pipes, cables and A/C lines where they enter the wall.</li><li><strong>Window frames, soffits and the slab.</strong> Caulk gaps around windows and where the slab meets the frame — pier-and-beam homes need extra attention underneath.</li></ul><h2>Make the yard less inviting</h2><p>Scorpions want cool, dark harborage close to the house. Move it away:</p><ul><li>Keep firewood, stone and lumber piles off the ground and away from the foundation.</li><li>Trim shrubs and tree limbs so nothing touches the roof or walls.</li><li>Clear leaf litter and reduce heavy mulch right against the foundation.</li><li>Fix outdoor moisture — dripping spigots, A/C condensate and poor drainage all draw prey insects that scorpions feed on.</li></ul><h2>Cut off their food supply</h2><p>Scorpions go where the crickets, roaches and spiders are. A consistent exterior pest barrier removes the prey, which quietly removes the reason scorpions come close in the first place. This is why treating <em>only</em> the scorpions you see rarely solves the problem.</p><h2>When to call a professional</h2><p>DIY sealing helps, but Central Texas limestone gives scorpions endless harborage that spray alone can't reach. A licensed technician treats the perimeter and known harborage, targets the insects they feed on, and seals the entry points that matter — the same exclusion-first method that keeps them out for the long term. If you're seeing scorpions indoors, especially in bathrooms and closets, it's worth a professional inspection before the weather drives them in.</p>
       </div>
-      <div class="hero__actions" style="margin-top:30px;">
-        <a class="btn btn--primary" href="/contact.html">Get a free estimate</a>
-        <a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a>
-      </div>
+<div class="hero__actions" style="margin-top:30px;"><a class="btn btn--primary" href="/contact.html">Get a free estimate</a><a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a></div>
     </div>
   </section>
   <section class="section section--soft">
@@ -405,6 +405,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

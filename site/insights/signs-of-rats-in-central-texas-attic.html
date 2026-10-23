@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -339,10 +342,7 @@
       <div class="prose article-body">
         <p>In Buda, Kyle, Dripping Springs and the Hill Country, a warm attic can become a quiet shelter for roof rats. They climb trees, fences and utility lines, then take advantage of a roof gap or an unscreened vent. Catching the activity early protects insulation, wiring and indoor air quality.</p><h2>1. Scratching or movement after dark</h2><p>Roof rats are most active at night. Light scratching, scampering or a brief thump above a bedroom ceiling is often most noticeable after the house gets quiet. One sound does not prove an infestation, but repeated nighttime noise is worth an inspection.</p><h2>2. Droppings, nesting material or a stale odor</h2><p>Check safely around the attic access, garage and storage areas for small dark droppings, shredded paper or insulation, and a musty or ammonia-like smell. Do not sweep or vacuum suspected rodent droppings dry; use appropriate protective practices or ask a professional to assess the area.</p><h2>3. Chewed wires, ducts or stored items</h2><p>Rodents gnaw to keep their teeth worn down. New tooth marks on boxes, flexible ductwork, plastic piping or wiring deserve immediate attention. If electrical wiring appears damaged, contact a qualified electrician as well as a pest professional.</p><h2>4. Rub marks and entry clues outside</h2><p>Rats reuse travel paths. Look along eaves, garage corners, attic vents and utility penetrations for dark greasy marks, loose screens or gaps. A gap that looks too small to matter can still be enough for a rodent to exploit.</p><h2>What actually solves an attic rat problem</h2><p>Trapping alone can reduce activity but does not close the route in. A lasting plan starts with an inspection, removes the current activity, and then seals likely access points around the roofline, vents and utilities. Trim branches away from the roof and keep bird seed, pet food and fallen fruit from becoming an easy food source near the home.</p><p>If you hear activity in the attic or find repeated evidence, <a href="/services/rodent-removal.html">schedule a rodent inspection</a>. Excel Pest serves homeowners throughout Central Texas and can help identify the entry route before it becomes a recurring issue.</p>
       </div>
-      <div class="hero__actions" style="margin-top:30px;">
-        <a class="btn btn--primary" href="/contact.html">Get a free estimate</a>
-        <a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a>
-      </div>
+<div class="hero__actions" style="margin-top:30px;"><a class="btn btn--primary" href="/contact.html">Get a free estimate</a><a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a></div>
     </div>
   </section>
   <section class="section section--soft">
@@ -405,6 +405,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

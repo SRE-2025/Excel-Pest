@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -277,8 +280,24 @@
     </div>
   </section>
   <section class="section"><div class="container">
+    <div class="callout"><h2>Find the right place to start</h2><p><a href="/pest-library.html">Identify common pest signs</a> or follow our <a href="/insights/central-texas-pest-calendar.html">month-by-month prevention calendar</a>.</p></div>
     <h2 class="visually-hidden">Latest pest guides</h2>
     <div class="grid grid--3">        <article class="card card--link dir-card">
+          <span class="art-tag">Pest Guide</span>
+          <h3>Central Texas Pest Calendar: A Month-by-Month Checklist</h3>
+          <p>Twelve practical check-ins for your home and yard, with links to current Excel Pest services. Local weather can shift pest activity throughout the yea</p>
+          <a class="card__link" href="/insights/central-texas-pest-calendar.html">Read the guide &rarr;</a>
+        </article>        <article class="card card--link dir-card">
+          <span class="art-tag">Pest Guide</span>
+          <h3>Cockroaches in a Central Texas Kitchen: Next Steps</h3>
+          <p>Turn recurring kitchen sightings into useful inspection notes and practical prevention tasks, without guessing the species or relying on a single spra</p>
+          <a class="card__link" href="/insights/cockroaches-central-texas-kitchen.html">Read the guide &rarr;</a>
+        </article>        <article class="card card--link dir-card">
+          <span class="art-tag">Pest Guide</span>
+          <h3>Fire Ants in a Central Texas Yard: What to Do Next</h3>
+          <p>A practical checklist for ant mounds near patios, play areas and lawns, plus the questions to ask when comparing treatment plans.</p>
+          <a class="card__link" href="/insights/fire-ants-central-texas-yard.html">Read the guide &rarr;</a>
+        </article>        <article class="card card--link dir-card">
           <span class="art-tag">Pest Guide</span>
           <h3>How to Reduce Mosquitoes Around a Central Texas Backyard</h3>
           <p>Mosquitoes need surprisingly little standing water. This backyard checklist helps Central Texas homeowners reduce breeding spots and make outdoor time</p>
@@ -291,7 +310,7 @@
         </article>        <article class="card card--link dir-card">
           <span class="art-tag">Answer Guide</span>
           <h3>When Is Termite Season in Central Texas?</h3>
-          <p>Central Texas termites do not follow a single short season. Warm, damp conditions can increase visible activity, especially in spring, but a home shou</p>
+          <p>General identification information only. Termite treatment and inspections are not part of Excel Pest&#x27;s current advertised service list.</p>
           <a class="card__link" href="/insights/termite-season-central-texas.html">Read the guide &rarr;</a>
         </article>        <article class="card card--link dir-card">
           <span class="art-tag">Answer Guide</span>
@@ -344,6 +363,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

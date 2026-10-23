@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -314,8 +317,8 @@
         <p>Vacation homes that sit empty invite rodents and wildlife, while the water feeds mosquitoes. We treat, seal and set a schedule that fits how the home is used.</p>
         <h2>Local pest control, done by people who live here</h2>
         <p>Canyon Lake sits inside our core Central Texas service area, and we have worked it since 1998. That
-           is the difference between us and the regional franchises: a 5.0-star, family-owned crew that Buda and
-           the surrounding towns have trusted for more than 25 years — not a call center. Our office manager
+           is the difference between us and the regional franchises: a family-owned crew serving Buda and
+           the surrounding towns since 1998 — not a call center. Our office manager
            Megan Avery and our technicians are the same familiar faces on every visit.</p>
         <div class="callout">
           <strong>The crew Canyon Lake can call by name.</strong> Licensed &amp; insured (TPCL 0786979), water-based
@@ -370,7 +373,7 @@
         </article>
       </div>
     </div>
-  </section>
+  </section><section class="section"><div class="container prose"><h2>Plan ahead for your home in Canyon Lake</h2><p>Use the <a href="/pest-library.html">pest library</a> to describe what you are seeing and the <a href="/insights/central-texas-pest-calendar.html">Central Texas prevention calendar</a> to check seasonal maintenance tasks.</p></div></section>
   <section class="cta-band">
     <div class="container">
       <div><h2 class="mb-0">Pest problem in Canyon Lake?</h2><p class="mb-0">Talk to the crew that has served the area since 1998.</p></div>
@@ -410,6 +413,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

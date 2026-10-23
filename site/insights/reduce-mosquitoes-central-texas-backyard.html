@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -339,10 +342,7 @@
       <div class="prose article-body">
         <p>Warm weather and sudden rain are part of life in Central Texas, and both can turn a nice patio into mosquito territory. The good news is that most yards have a manageable list of places where mosquitoes breed or rest during the day.</p><h2>Empty water every week</h2><p>Mosquitoes can develop in small containers of water. Walk the property after irrigation or rain and empty, cover or refresh birdbaths, pet bowls, plant saucers, wheelbarrows, kids' toys, tarps and unused planters. Keep rain barrels covered with tight screens.</p><h2>Fix the overlooked water sources</h2><p>Clean gutters so they drain, correct low spots that stay wet, and repair dripping spigots. Check around A/C condensate lines and irrigation heads. If a pond or water feature is part of the landscape, ask a local professional about appropriate mosquito-larvae management that fits the setup.</p><h2>Make resting spots less comfortable</h2><p>Adult mosquitoes rest in cool, shaded vegetation during the day. Trim dense growth around decks and patios, clear piles of leaves, and keep grass maintained. Outdoor fans near seating areas also help because mosquitoes are weak fliers.</p><h2>Build a plan for the outdoor season</h2><p>For homes that host often or have persistent activity, professional service can target the places mosquitoes rest and breed while giving you a maintenance plan suited to your property. Excel Pest offers <a href="/services/mosquito-misting.html">mosquito control options</a> for Central Texas backyards. Pairing treatment with weekly water checks gives the best chance of keeping the patio usable through the season.</p>
       </div>
-      <div class="hero__actions" style="margin-top:30px;">
-        <a class="btn btn--primary" href="/contact.html">Get a free estimate</a>
-        <a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a>
-      </div>
+<div class="hero__actions" style="margin-top:30px;"><a class="btn btn--primary" href="/contact.html">Get a free estimate</a><a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a></div>
     </div>
   </section>
   <section class="section section--soft">
@@ -405,6 +405,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -438,11 +441,8 @@
       <p>Striped bark scorpions love Hill Country limestone.</p>
     </div>
   </section>
-  <section class="section" style="padding-bottom:0;">
-    <div class="container"><figure class="img-slot ratio-wide" data-filename="services/scorpion-hill-country.webp"><!-- IMAGE SLOT (AI): services/scorpion-hill-country.webp — A close, detailed photo of a striped bark scorpion on pale limestone rock at dusk in the Texas Hill Country, cedar and dry grass softly blurred behind, natural light, photorealistic, no text, no logos, no watermark. --><img src="https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-scorpion-control-1920w.jpg" alt="Striped bark scorpion on Hill Country limestone" width="1920" height="1324" decoding="async"></figure></div>
-  </section>
   <section class="section">
-    <div class="container split">
+    <div class="container split service-layout">
       <div class="prose">
         <p class="lead">If you live west of I-35, you know the striped bark scorpion. They thrive in the limestone, cedar and rock that define the Hill Country, and they slip into homes through the smallest gaps. Scorpions are one of the clearest signs you are dealing with Central Texas — and one of the reasons homeowners call us.</p>
         <h2>Why scorpions get inside here</h2><p>Scorpions follow moisture and prey. During a Hill Country drought they move toward homes for water; after rain they move to escape it. Limestone foundations, weep holes, and gaps under thresholds give them an easy path indoors, often into bathrooms and closets.</p><h2>Our scorpion approach</h2><p>Treating the inside alone never solves a scorpion problem. We treat the perimeter and harborage — rock walls, wood piles, landscaping — reduce the insects scorpions feed on, and seal the entry points that let them in. It is the same exclusion-first method that keeps them out for the long term.</p>
@@ -456,13 +456,17 @@
           <a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a>
         </div>
       </div>
-      <div>
+      <div class="service-side-media">
+        <figure class="img-slot ratio-wide" data-filename="services/scorpion-hill-country.webp"><!-- IMAGE SLOT (AI): services/scorpion-hill-country.webp — A close, detailed photo of a striped bark scorpion on pale limestone rock at dusk in the Texas Hill Country, cedar and dry grass softly blurred behind, natural light, photorealistic, no text, no logos, no watermark. --><img src="https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-scorpion-control-1920w.jpg" alt="Striped bark scorpion on Hill Country limestone" width="1920" height="1324" decoding="async"></figure>
         <div class="card">
           <h3 class="mt-0">What we handle</h3>
           <p style="margin:0 0 8px;font-weight:600;">Common issues we treat:</p>
           <ul class="prose" style="margin:0;"><li>Striped bark scorpions</li><li>Nesting sites in rock &amp; wood piles</li><li>Entry points around slab &amp; pier-and-beam</li><li>Attic &amp; garage harborage</li></ul>
           <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
-          <p style="margin:0;"><strong>Serving:</strong> Buda, Kyle, San Marcos, Dripping Springs, Wimberley and
+          <p style="margin:0;"><strong>Serving:</strong> <a href="/locations/buda.html">Buda</a>,
+             <a href="/locations/kyle.html">Kyle</a>, <a href="/locations/san-marcos.html">San Marcos</a>,
+             <a href="/locations/dripping-springs.html">Dripping Springs</a>,
+             <a href="/locations/wimberley.html">Wimberley</a> and
              <a href="/service-area.html">all of Central Texas</a>.</p>
         </div>
         <div class="offer-strip" style="margin-top:18px;">
@@ -471,7 +475,15 @@
         </div>
       </div>
     </div>
-  </section>
+  </section><section class="section section--soft"><div class="container">
+      <div class="section-head"><span class="eyebrow">Before you book</span><h2>Plan your scorpion control estimate</h2></div>
+      <div class="grid grid--3">
+        <div class="card"><h3>What affects the price?</h3><p>The pest identified, the size and layout of the property, where activity occurs, and whether a single visit or recurring service is appropriate.</p><p>Request a free estimate for your property.</p></div>
+        <div class="card"><h3>What to tell the office</h3><p>Tell the office which rooms or outdoor areas are affected, how often you see activity and what you have already tried. Mention pets and access needs so preparation instructions fit your household.</p></div>
+        <div class="card"><h3>Questions to ask</h3><p>Confirm the areas covered, preparation and re-entry instructions, follow-up schedule, and any applicable warranty terms before scheduling.</p><a href="/contact.html?service=scorpion-control">Request an estimate for this service →</a></div>
+      </div>
+      <div class="prose" style="margin-top:28px"><h3>Helpful reading</h3><ul><li><a href="/insights/when-are-scorpions-most-active-central-texas.html">When Are Scorpions Most Active in Central Texas?</a></li><li><a href="/insights/keep-scorpions-out-central-texas-home.html">How to Keep Scorpions Out of Your Central Texas Home</a></li><li><a href="/pest-library.html">Central Texas pest identification library</a></li></ul></div>
+    </div></section>
   <section class="section section--soft">
     <div class="container">
       <h2>Related services</h2>
@@ -539,6 +551,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

@@ -1,0 +1,25 @@
+{
+  "slug": "central-texas-pest-calendar",
+  "title": "Central Texas Pest Calendar: A Month-by-Month Checklist",
+  "date": "2026-10-23",
+  "kind": "seo",
+  "description": "A month-by-month pest prevention checklist for Buda, Kyle and Central Texas, covering entry points, standing water, indoor pests and lawn inspections.",
+  "summary": "Twelve practical check-ins for your home and yard, with links to current Excel Pest services. Local weather can shift pest activity throughout the year.",
+  "related_services": [
+    "pest-control",
+    "rodent-exclusion",
+    "mosquito-misting"
+  ],
+  "quick_answer": "Check your home throughout the year: entry points and storage in cooler months, outdoor water and ant activity as conditions warm, and lawn damage and hiding places in summer. Weather matters more than exact dates.",
+  "body_html": "<p>The month-by-month checklist is maintained in tools/growth.py and rendered by the site builder.</p>",
+  "faqs": [
+    {
+      "q": "Is there a pest-free season in Central Texas?",
+      "a": "<p>Indoor pests and sheltered rodent activity can persist in any season. Use sightings and the condition of your property, along with weather, to decide when to request an inspection.</p>"
+    },
+    {
+      "q": "Does the calendar tell me when to apply pesticides?",
+      "a": "<p>No. It is a maintenance checklist. Product choice, timing and application depend on the pest, property and label directions; ask the technician what fits your situation.</p>"
+    }
+  ]
+}

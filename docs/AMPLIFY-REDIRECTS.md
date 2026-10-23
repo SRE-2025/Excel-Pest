@@ -39,5 +39,10 @@ Until then, the console rules above cover every `www` request, which is where
 new links and internal navigation point.
 
 ## Keeping it in sync
-`infra/amplify-redirects.json` is generated from the `REDIRECTS` map in
-`tools/build.py`. If you add a legacy URL there, re-generate the JSON and re-paste.
+`infra/amplify-redirects.json` must be maintained alongside the `REDIRECTS` map
+in `tools/build.py`; the current build does not write this console file.
+The 2026-10-23 pass corrected its obsolete termite-control destination to the
+current general pest page. This does not advertise termite services and does
+not prove the console rules have been applied. Verify live status codes before
+changing hosting or DNS. Do not change DNS or email records as part of routine
+content publishing.

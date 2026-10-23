@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -438,11 +441,8 @@
       <p>Water-based pest control for ants, roaches, crickets, spiders, fleas and ticks across Buda, Kyle and Central Texas.</p>
     </div>
   </section>
-  <section class="section" style="padding-bottom:0;">
-    <div class="container"><figure class="img-slot ratio-wide" data-filename="services/pest-control-exterior-treatment.webp"><!-- IMAGE SLOT (AI): services/pest-control-exterior-treatment.webp — A licensed pest control technician in a clean plain uniform spraying a water-based treatment along the exterior foundation of a limestone Central Texas home, live oak trees and Hill Country landscaping behind, warm morning light, photorealistic, no text, no logos, no watermark, no visible brand names. --><img src="https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg" alt="Excel Pest technician treating the exterior of a Central Texas home" width="1920" height="1324" decoding="async"></figure></div>
-  </section>
   <section class="section">
-    <div class="container split">
+    <div class="container split service-layout">
       <div class="prose">
         <p class="lead">Central Texas homes face a year-round rotation of pests — ants in spring, crickets and scorpions in the late-summer heat, spiders and roaches as it cools. We have treated them here since 1998, with water-based products chosen so your family and four-legged family members stay comfortable.</p>
         <h2>Built for Central Texas pests</h2><p>Franchise crews run the same program in Ohio as they do in Hays County. We do not. Our recurring treatments are timed to the local calendar — the spring ant push, the summer scorpion and cricket surge, the fall migration indoors — so pests are handled before they become an infestation, not after.</p><h2>How our treatments work</h2><p>Every visit covers the interior trouble spots and a full exterior barrier: foundation, eaves, window frames, garage, and the cracks in limestone and slab where Central Texas pests get in. We seal and treat entry points rather than just spraying baseboards. Most homes are on a recurring plan; one-time and emergency service are available too.</p>
@@ -456,13 +456,17 @@
           <a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a>
         </div>
       </div>
-      <div>
+      <div class="service-side-media">
+        <figure class="img-slot ratio-wide" data-filename="services/pest-control-exterior-treatment.webp"><!-- IMAGE SLOT (AI): services/pest-control-exterior-treatment.webp — A licensed pest control technician in a clean plain uniform spraying a water-based treatment along the exterior foundation of a limestone Central Texas home, live oak trees and Hill Country landscaping behind, warm morning light, photorealistic, no text, no logos, no watermark, no visible brand names. --><img src="https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg" alt="Excel Pest technician treating the exterior of a Central Texas home" width="1920" height="1324" decoding="async"></figure>
         <div class="card">
           <h3 class="mt-0">What we handle</h3>
           <p style="margin:0 0 8px;font-weight:600;">Common issues we treat:</p>
           <ul class="prose" style="margin:0;"><li>Ants</li><li>Cockroaches</li><li>Crickets</li><li>Fleas</li><li>Spiders</li><li>Ticks</li><li>Silverfish</li><li>Wasps &amp; hornets</li></ul>
           <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
-          <p style="margin:0;"><strong>Serving:</strong> Buda, Kyle, San Marcos, Dripping Springs, Wimberley and
+          <p style="margin:0;"><strong>Serving:</strong> <a href="/locations/buda.html">Buda</a>,
+             <a href="/locations/kyle.html">Kyle</a>, <a href="/locations/san-marcos.html">San Marcos</a>,
+             <a href="/locations/dripping-springs.html">Dripping Springs</a>,
+             <a href="/locations/wimberley.html">Wimberley</a> and
              <a href="/service-area.html">all of Central Texas</a>.</p>
         </div>
         <div class="offer-strip" style="margin-top:18px;">
@@ -471,7 +475,15 @@
         </div>
       </div>
     </div>
-  </section>
+  </section><section class="section section--soft"><div class="container">
+      <div class="section-head"><span class="eyebrow">Before you book</span><h2>Plan your general pest control estimate</h2></div>
+      <div class="grid grid--3">
+        <div class="card"><h3>What affects the price?</h3><p>The pest identified, the size and layout of the property, where activity occurs, and whether a single visit or recurring service is appropriate.</p><p>Request a free estimate for your property.</p></div>
+        <div class="card"><h3>What to tell the office</h3><p>Tell the office which rooms or outdoor areas are affected, how often you see activity and what you have already tried. Mention pets and access needs so preparation instructions fit your household.</p></div>
+        <div class="card"><h3>Questions to ask</h3><p>Confirm the areas covered, preparation and re-entry instructions, follow-up schedule, and any applicable warranty terms before scheduling.</p><a href="/contact.html?service=pest-control">Request an estimate for this service →</a></div>
+      </div>
+      <div class="prose" style="margin-top:28px"><h3>Helpful reading</h3><ul><li><a href="/insights/central-texas-pest-calendar.html">Central Texas Pest Calendar: A Month-by-Month Checklist</a></li><li><a href="/insights/cockroaches-central-texas-kitchen.html">Cockroaches in a Central Texas Kitchen: Next Steps</a></li><li><a href="/pest-library.html">Central Texas pest identification library</a></li></ul></div>
+    </div></section>
   <section class="section section--soft">
     <div class="container">
       <h2>Related services</h2>
@@ -539,6 +551,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

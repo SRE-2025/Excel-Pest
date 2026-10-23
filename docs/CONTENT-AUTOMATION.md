@@ -20,11 +20,16 @@ Everything auto-deploys on push (AWS Amplify / GitHub Pages).
    ```
    ls content/articles/
    ```
-   Cover the real local pests: scorpions, termites, rodents, wildlife,
+   Cover the currently advertised services: scorpions, rats and mice, raccoons,
+   squirrels and opossums,
    mosquitoes, ants, roaches, crickets, fleas, ticks, spiders, wasps, lawn
    pests — and tie topics to local places/seasons (Buda, Kyle, San Marcos,
    Dripping Springs, Wimberley, the Hill Country, and the Central Texas pest
-   calendar). Never repeat an existing slug or angle.
+   calendar). Never repeat an existing slug or angle. Use the current service
+   menu, not old Hibu pages. Do not advertise termite work, bats, snakes,
+   armadillos, skunks or feral cats. Jason confirmed this scope on 2026-10-23.
+   The existing termite guide is informational only and must not imply Excel
+   offers termite inspections or treatment.
 
 2. **Write one file** at `content/articles/<slug>.json` using the schema below.
    - Slug: short, lowercase, hyphenated, keyword-first, unique.
@@ -52,7 +57,9 @@ Everything auto-deploys on push (AWS Amplify / GitHub Pages).
 {
   "slug": "keyword-first-hyphenated-slug",   // required, unique
   "title": "Question or clear headline",       // required
-  "date": "YYYY-MM-DD",                        // required (today's date)
+  "date": "YYYY-MM-DD",                        // original publication date
+  "updated": "YYYY-MM-DD",                     // optional: substantive revision
+  "informational_only": false,                 // true suppresses service CTAs
   "kind": "seo",                                // "seo" (Wed/Fri) or "aeo" (Mon/Thu)
   "description": "150-158 char meta description with the target keyword.",
   "summary": "One-sentence dek shown on the index and hero.",
@@ -92,16 +99,19 @@ Overviews) quotes.
 - Title is a **natural question** people ask (e.g. *"When Are Scorpions Most
   Active in Central Texas?"*).
 - **Always set `quick_answer`** — a direct, factual, self-contained answer in
-  the first 1–3 sentences (this is what gets cited).
+  the first 1–3 sentences. Citation by an answer engine is not guaranteed.
 - Body expands with clear H2 sections and lists; keep claims accurate and
   specific to Central Texas.
 - Include 3+ `faqs` phrased as real questions with concise answers (FAQ schema
-  is emitted automatically and is strong for AEO).
+  is emitted automatically; it does not guarantee rich results or AI citations).
 
 ## Quality rules (both types)
 - **Accurate and genuinely useful** — no filler, no invented statistics.
 - **Local** — Central Texas / Hays & Travis County framing.
 - **Unique** — never duplicate an existing guide's slug, title, or angle.
-- Keep the brand voice: quiet, expert, family-owned since 1998, water-based
-  products safe for family and pets. Phone is **(512) 291-5900**.
+- Keep the brand voice: quiet, expert, family-owned since 1998. Do not call
+  treatments universally safe: use product-specific preparation and re-entry
+  instructions from the technician and product label. Phone is **(512) 291-5900**.
+- Do not invent prices, guarantees, response times, reviews, job photos or local
+  experience. See [GROWTH-PLAYBOOK.md](GROWTH-PLAYBOOK.md) for measurement and scope.
 - One guide per run.

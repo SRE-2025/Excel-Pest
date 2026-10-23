@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -438,11 +441,8 @@
       <p>Grubs, chinch bugs and armyworms plus weed and disease control for Central Texas lawns — St. Augustine and Bermuda.</p>
     </div>
   </section>
-  <section class="section" style="padding-bottom:0;">
-    <div class="container"><figure class="img-slot ratio-wide" data-filename="services/lawn-chinch-bug-damage.webp"><!-- IMAGE SLOT (AI): services/lawn-chinch-bug-damage.webp — A close view of a St. Augustine lawn in Central Texas with a spreading brown chinch-bug patch, healthy green grass beside damaged turf, bright daylight, photorealistic, no text, no logos, no watermark. --><img src="https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-lawn-care-services-1920w.jpg" alt="Chinch bug damage in a St. Augustine lawn" width="1920" height="1324" decoding="async"></figure></div>
-  </section>
   <section class="section">
-    <div class="container split">
+    <div class="container split service-layout">
       <div class="prose">
         <p class="lead">A brown patch that spreads in the July heat usually is not just the drought — it is chinch bugs, grubs, or armyworms working under the surface. We treat the pests and the weeds and disease that damage Central Texas turf, so the lawn recovers and holds.</p>
         <h2>Know what is actually killing the grass</h2><p>St. Augustine and Bermuda each fail in their own way here, and the fix depends on the cause. Chinch bugs cook a lawn in full sun; grubs loosen it from below; brown patch spreads in humidity. We diagnose it first, then treat the right problem.</p><h2>Full landscaping and turf renovation</h2><p>Excel Pest handles the pests, weeds and disease that damage a lawn. For design, installation, sod, and hardscape, our sister company <a href="https://researchturfmgmt.com" rel="noopener">Research Turf Management</a> handles the build side — many of our customers use both.</p>
@@ -456,13 +456,17 @@
           <a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a>
         </div>
       </div>
-      <div>
+      <div class="service-side-media">
+        <figure class="img-slot ratio-wide" data-filename="services/lawn-chinch-bug-damage.webp"><!-- IMAGE SLOT (AI): services/lawn-chinch-bug-damage.webp — A close view of a St. Augustine lawn in Central Texas with a spreading brown chinch-bug patch, healthy green grass beside damaged turf, bright daylight, photorealistic, no text, no logos, no watermark. --><img src="https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-lawn-care-services-1920w.jpg" alt="Chinch bug damage in a St. Augustine lawn" width="1920" height="1324" decoding="async"></figure>
         <div class="card">
           <h3 class="mt-0">What we handle</h3>
           <p style="margin:0 0 8px;font-weight:600;">Common issues we treat:</p>
           <ul class="prose" style="margin:0;"><li>Chinch bugs</li><li>White grubs</li><li>Armyworms</li><li>Weeds &amp; turf disease (brown patch)</li></ul>
           <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
-          <p style="margin:0;"><strong>Serving:</strong> Buda, Kyle, San Marcos, Dripping Springs, Wimberley and
+          <p style="margin:0;"><strong>Serving:</strong> <a href="/locations/buda.html">Buda</a>,
+             <a href="/locations/kyle.html">Kyle</a>, <a href="/locations/san-marcos.html">San Marcos</a>,
+             <a href="/locations/dripping-springs.html">Dripping Springs</a>,
+             <a href="/locations/wimberley.html">Wimberley</a> and
              <a href="/service-area.html">all of Central Texas</a>.</p>
         </div>
         <div class="offer-strip" style="margin-top:18px;">
@@ -471,7 +475,15 @@
         </div>
       </div>
     </div>
-  </section>
+  </section><section class="section section--soft"><div class="container">
+      <div class="section-head"><span class="eyebrow">Before you book</span><h2>Plan your lawn pest control estimate</h2></div>
+      <div class="grid grid--3">
+        <div class="card"><h3>What affects the price?</h3><p>The area of affected turf, the pest identified, access to the lawn and the follow-up recommended after assessment. Similar-looking turf damage may need a different response.</p><p>Request a free estimate for your property.</p></div>
+        <div class="card"><h3>What to tell the office</h3><p>Note when damage appeared, how it has spread and recent watering or treatment changes. Photographs can help document the pattern before a visit.</p></div>
+        <div class="card"><h3>Questions to ask</h3><p>Confirm the areas covered, preparation and re-entry instructions, follow-up schedule, and any applicable warranty terms before scheduling.</p><a href="/contact.html?service=lawn-pest-control">Request an estimate for this service →</a></div>
+      </div>
+      <div class="prose" style="margin-top:28px"><h3>Helpful reading</h3><ul><li><a href="/insights/central-texas-pest-calendar.html">Central Texas Pest Calendar: A Month-by-Month Checklist</a></li><li><a href="/pest-library.html">Central Texas pest identification library</a></li></ul></div>
+    </div></section>
   <section class="section section--soft">
     <div class="container">
       <h2>Related services</h2>
@@ -539,6 +551,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

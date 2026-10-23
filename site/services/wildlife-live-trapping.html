@@ -21,12 +21,16 @@
   <meta name="twitter:image" content="https://www.excelpest-lawncontrol.com/assets/og-default.png">
   <meta name="theme-color" content="#101010">
   <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-LDWMBCL4D9');
+    if (/^(www\.)?excelpest-lawncontrol\.com$/.test(location.hostname)) {
+      var analytics = document.createElement('script'); analytics.async = true;
+      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=G-LDWMBCL4D9';
+      document.head.appendChild(analytics);
+      gtag('js', new Date());
+      gtag('config', 'G-LDWMBCL4D9');
+    }
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +197,7 @@
     "https://www.bbb.org/us/tx/buda/profile/pest-control/excel-pest-lawn-control-0825-90034821",
     "https://www.yelp.com/biz/austin-excel-pest-and-lawn-control-buda",
     "https://www.facebook.com/profile.php?id=100069621902603",
-    "https://www.youtube.com/@excelpestlawncontrol",
-    "https://researchturfmgmt.com"
+    "https://www.youtube.com/@excelpestlawncontrol"
   ]
 }
   </script>
@@ -438,11 +441,8 @@
       <p>Humane live trapping and removal of raccoons, squirrels and opossums from Central Texas homes, with entry points sealed.</p>
     </div>
   </section>
-  <section class="section" style="padding-bottom:0;">
-    <div class="container"><figure class="img-slot ratio-wide" data-filename="services/wildlife-attic-raccoon.webp"><!-- IMAGE SLOT (AI): services/wildlife-attic-raccoon.webp — A raccoon peeking out of an attic gable vent on a suburban Central Texas home at dusk, cedar and oak around the roof, natural light, photorealistic, no text, no logos, no watermark. --><img src="https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg" alt="Raccoon at an attic vent of a Central Texas home" width="1920" height="1324" decoding="async"></figure></div>
-  </section>
   <section class="section">
-    <div class="container split">
+    <div class="container split service-layout">
       <div class="prose">
         <p class="lead">Raccoons in the attic, squirrels in the soffit, opossums under the deck — Central Texas wildlife treats homes like the hollow trees they replaced. We remove them humanely with live trapping and close off the damage so they cannot move back in.</p>
         <h2>Humane, and it lasts</h2><p>We use humane live-trapping and hands-on removal, then repair and seal the entry points — the vent, gable, or roofline gap that let the animal in. Without that last step, the next animal simply finds the same open door.</p><h2>Acreage and Hill Country lots</h2><p>On the larger lots around Driftwood, Dripping Springs and Wimberley, wildlife pressure is constant. We know the local species and the ways they get into a home out here — and we pair trapping with <a href="/services/rodent-exclusion.html">exclusion</a> so it holds.</p>
@@ -456,13 +456,17 @@
           <a class="btn btn--outline" href="tel:+15122915900">Call (512) 291-5900</a>
         </div>
       </div>
-      <div>
+      <div class="service-side-media">
+        <figure class="img-slot ratio-wide" data-filename="services/wildlife-attic-raccoon.webp"><!-- IMAGE SLOT (AI): services/wildlife-attic-raccoon.webp — A raccoon peeking out of an attic gable vent on a suburban Central Texas home at dusk, cedar and oak around the roof, natural light, photorealistic, no text, no logos, no watermark. --><img src="https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg" alt="Raccoon at an attic vent of a Central Texas home" width="1920" height="1324" decoding="async"></figure>
         <div class="card">
           <h3 class="mt-0">What we handle</h3>
           <p style="margin:0 0 8px;font-weight:600;">Common issues we treat:</p>
           <ul class="prose" style="margin:0;"><li>Raccoons</li><li>Squirrels</li><li>Opossums</li><li>Attic, soffit &amp; deck intrusions</li></ul>
           <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
-          <p style="margin:0;"><strong>Serving:</strong> Buda, Kyle, San Marcos, Dripping Springs, Wimberley and
+          <p style="margin:0;"><strong>Serving:</strong> <a href="/locations/buda.html">Buda</a>,
+             <a href="/locations/kyle.html">Kyle</a>, <a href="/locations/san-marcos.html">San Marcos</a>,
+             <a href="/locations/dripping-springs.html">Dripping Springs</a>,
+             <a href="/locations/wimberley.html">Wimberley</a> and
              <a href="/service-area.html">all of Central Texas</a>.</p>
         </div>
         <div class="offer-strip" style="margin-top:18px;">
@@ -471,7 +475,15 @@
         </div>
       </div>
     </div>
-  </section>
+  </section><section class="section section--soft"><div class="container">
+      <div class="section-head"><span class="eyebrow">Before you book</span><h2>Plan your wildlife live trapping estimate</h2></div>
+      <div class="grid grid--3">
+        <div class="card"><h3>What affects the price?</h3><p>The animal involved, access to the affected space, the extent of activity, follow-up visits and any entry-point repairs. Ask whether removal and exclusion are quoted separately.</p><p>Request a free estimate for your property.</p></div>
+        <div class="card"><h3>What to tell the office</h3><p>Describe the animal or sounds, the time of day, and where activity occurs. Share any photos taken safely from a distance. Tell the office about inaccessible areas before the visit.</p></div>
+        <div class="card"><h3>Questions to ask</h3><p>Confirm the areas covered, preparation and re-entry instructions, follow-up schedule, and any applicable warranty terms before scheduling.</p><a href="/contact.html?service=wildlife-live-trapping">Request an estimate for this service →</a></div>
+      </div>
+      <div class="prose" style="margin-top:28px"><h3>Helpful reading</h3><ul><li><a href="/insights/central-texas-pest-calendar.html">Central Texas Pest Calendar: A Month-by-Month Checklist</a></li><li><a href="/pest-library.html">Central Texas pest identification library</a></li></ul></div>
+    </div></section>
   <section class="section section--soft">
     <div class="container">
       <h2>Related services</h2>
@@ -539,6 +551,8 @@
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>

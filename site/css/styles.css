@@ -982,6 +982,7 @@ body { background: var(--bg); color: var(--body); }
 /* Real-photo side media replaces every AI illustration and oversized top graphic. */
 .img-slot:not(:has(img)) { display: none; }
 .service-side-media { display: grid; gap: 18px; align-content: start; }
+.service-layout { align-items: start; }
 .service-side-media .img-slot { display: block; width: 100%; max-width: 430px; margin: 0 0 4px auto; aspect-ratio: 4 / 3; border-radius: 10px; }
 .service-side-media .img-slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
 @media (max-width: 820px) { .service-side-media .img-slot { max-width: none; margin: 0; } }
@@ -1049,6 +1050,12 @@ body { background: var(--bg); color: var(--body); }
   padding: 16px 20px; margin: 0 0 26px; font-size: 1.08rem; line-height: 1.6; }
 .art-answer strong { color: var(--ink); }
 .article-body { font-size: 1.08rem; line-height: 1.75; }
+.library-jump { display:flex; flex-wrap:wrap; gap:10px; list-style:none; padding:0; margin:0 0 28px; }
+.library-jump a { display:inline-flex; align-items:center; min-height:44px; padding:8px 16px; border:1px solid var(--line); border-radius:24px; }
+.library-entry { scroll-margin-top:130px; }
+.library-entry h2 { font-size:1.65rem; }
+.library-entry h3 { font-size:1.05rem; margin:20px 0 8px; }
+.calendar-month { border-top:1px solid var(--line); padding:12px 0; }
 .article-body h2 { margin: 1.8rem 0 .7rem; }
 .article-body h3 { margin: 1.4rem 0 .5rem; }
 .article-body ul, .article-body ol { padding-left: 1.3em; margin: 0 0 1rem; }

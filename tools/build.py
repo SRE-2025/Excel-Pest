@@ -16,12 +16,10 @@ import html
 import json
 import os
 import re
+from growth import LIBRARY, library_body, service_support, calendar_html
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE = os.path.join(ROOT, "site")
-
-# Build date — used for sitemap <lastmod> (Google uses this to decide recrawls).
-BUILD_DATE = datetime.date.today().isoformat()
 
 # Optional base path for hosting under a sub-directory (e.g. GitHub Pages
 # project site at /Excel-Pest/). Empty for root hosting (Amplify, S3/CloudFront).
@@ -49,8 +47,6 @@ BIZ = {
     "founded": "1998",
     "owner": "Gye Hutson",
     "office_mgr": "Megan Avery",
-    "rating": "5.0",
-    "reviews": "41",
     "lat": 30.0813,
     "lng": -97.8403,
     "sister_name": "Research Turf Management",
@@ -578,12 +574,16 @@ def head(title, desc, canonical, schema_blocks, noindex=False, og_type="website"
         '  <meta name="twitter:image" content="' + BIZ["domain"] + '/assets/og-default.png">',
         '  <meta name="theme-color" content="#101010">',
         '  <!-- Google Analytics 4: Austin Excel Pest & Lawn Control -->',
-        '  <script async src="https://www.googletagmanager.com/gtag/js?id=' + BIZ["ga4"] + '"></script>',
         '  <script>',
         '    window.dataLayer = window.dataLayer || [];',
         '    function gtag(){dataLayer.push(arguments);}',
-        "    gtag('js', new Date());",
-        "    gtag('config', '" + BIZ["ga4"] + "');",
+        "    if (/^(www\\.)?excelpest-lawncontrol\\.com$/.test(location.hostname)) {",
+        "      var analytics = document.createElement('script'); analytics.async = true;",
+        "      analytics.src = 'https://www.googletagmanager.com/gtag/js?id=" + BIZ["ga4"] + "';",
+        "      document.head.appendChild(analytics);",
+        "      gtag('js', new Date());",
+        "      gtag('config', '" + BIZ["ga4"] + "');",
+        "    }",
         '  </script>',
         '  <link rel="preconnect" href="https://fonts.googleapis.com">',
         '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
@@ -719,6 +719,8 @@ def footer():
         <div><h3>Company</h3><ul class="footer-links">
           <li><a href="/about.html">About</a></li>
           <li><a href="/insights.html">Pest Guides</a></li>
+          <li><a href="/pest-library.html">Pest Library</a></li>
+          <li><a href="/insights/central-texas-pest-calendar.html">Pest Calendar</a></li>
           <li><a href="/pet-family-safety.html">Pet &amp; Family Safety</a></li>
           <li><a href="/faq.html">FAQ</a></li>
           <li><a href="/service-area.html">Service Area</a></li>
@@ -787,7 +789,6 @@ REMOTE_IMAGES = {
     "services/pest-control-exterior-treatment.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg",
     "services/rodent-removal-attic.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg",
     "services/scorpion-hill-country.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-scorpion-control-1920w.jpg",
-    "services/termite-mud-tubes.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-termite-control-1920w.jpg",
     "services/lawn-chinch-bug-damage.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-lawn-care-services-1920w.jpg",
 }
 # Real hero photograph (business-owned) shown behind the home hero scrim.
@@ -907,9 +908,7 @@ def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="",
     image_url = REMOTE_IMAGES.get(filename)
     if not image_url and filename.startswith("services/"):
         low = filename.lower()
-        if "termite" in low:
-            image_url = REMOTE_IMAGES["services/termite-mud-tubes.webp"]
-        elif "rodent" in low or "wildlife" in low:
+        if "rodent" in low or "wildlife" in low:
             image_url = REMOTE_IMAGES["services/rodent-removal-attic.webp"]
         elif "scorpion" in low:
             image_url = REMOTE_IMAGES["services/scorpion-hill-country.webp"]
@@ -934,7 +933,7 @@ def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="",
 
 # ---------- Schema builders ----------
 
-def business_schema(with_rating=False, with_reviews=False):
+def business_schema():
     node = {
         "@context": "https://schema.org",
         "@type": "PestControlService",
@@ -963,28 +962,8 @@ def business_schema(with_rating=False, with_reviews=False):
             "opens": "08:00", "closes": "17:00",
         }],
         "areaServed": [{"@type": "City", "name": c} for c in ALL_CITIES],
-        "sameAs": [BIZ["bbb"], BIZ["yelp"], BIZ["facebook"], BIZ["youtube"], BIZ["sister_url"]],
+        "sameAs": [BIZ["bbb"], BIZ["yelp"], BIZ["facebook"], BIZ["youtube"]],
     }
-    if with_rating:
-        node["aggregateRating"] = {
-            "@type": "AggregateRating", "ratingValue": BIZ["rating"],
-            "reviewCount": BIZ["reviews"], "bestRating": "5",
-        }
-    if with_reviews:
-        node["review"] = [
-            {
-                "@type": "Review",
-                "author": {"@type": "Person", "name": "Karla Mathews"},
-                "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
-                "reviewBody": "Been with this company for 30+ years.",
-            },
-            {
-                "@type": "Review",
-                "author": {"@type": "Person", "name": "Judy Buck"},
-                "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
-                "reviewBody": "We have used Excel Pest / Research Turf Mgmt for the past 13+ years — pergola, extending patio, masonry work, tree trimming, plus regular lawn care.",
-            },
-        ]
     return node
 
 
@@ -1121,11 +1100,8 @@ def render_service(s):
   </section>""".format(name=html.escape(s["nav"]), items=faq_items)) if faqs else ""
 
     body = page_hero(s["h1"], first_sentence(s["desc"]), crumbs) + """
-  <section class="section" style="padding-bottom:0;">
-    <div class="container">{hero_img}</div>
-  </section>
   <section class="section">
-    <div class="container split">
+    <div class="container split service-layout">
       <div class="prose">
         <p class="lead">{lead}</p>
         {sections}
@@ -1139,13 +1115,17 @@ def render_service(s):
           <a class="btn btn--outline" href="tel:{ptel}">Call {phone}</a>
         </div>
       </div>
-      <div>
+      <div class="service-side-media">
+        {hero_img}
         <div class="card">
           <h3 class="mt-0">What we handle</h3>
           <p style="margin:0 0 8px;font-weight:600;">Common issues we treat:</p>
           <ul class="prose" style="margin:0;">{treats}</ul>
           <hr style="border:0;border-top:1px solid var(--line);margin:18px 0;">
-          <p style="margin:0;"><strong>Serving:</strong> Buda, Kyle, San Marcos, Dripping Springs, Wimberley and
+          <p style="margin:0;"><strong>Serving:</strong> <a href="/locations/buda.html">Buda</a>,
+             <a href="/locations/kyle.html">Kyle</a>, <a href="/locations/san-marcos.html">San Marcos</a>,
+             <a href="/locations/dripping-springs.html">Dripping Springs</a>,
+             <a href="/locations/wimberley.html">Wimberley</a> and
              <a href="/service-area.html">all of Central Texas</a>.</p>
         </div>
         <div class="offer-strip" style="margin-top:18px;">
@@ -1156,6 +1136,7 @@ def render_service(s):
     </div>
   </section>""".format(hero_img=hero_img, lead=s["lead"], sections=sections, treats=treats,
                        ptel=BIZ["phone_tel"], phone=BIZ["phone"])
+    body += service_support(s, load_articles())
     body += related_services_grid(s["related"])
     body += faq_section
     body += cta_band()
@@ -1206,8 +1187,8 @@ def render_location(l):
         <p>{angle}</p>
         <h2>Local pest control, done by people who live here</h2>
         <p>{city} sits inside our core Central Texas service area, and we have worked it since {founded}. That
-           is the difference between us and the regional franchises: a 5.0-star, family-owned crew that Buda and
-           the surrounding towns have trusted for more than 25 years — not a call center. Our office manager
+           is the difference between us and the regional franchises: a family-owned crew serving Buda and
+           the surrounding towns since 1998 — not a call center. Our office manager
            {mgr} and our technicians are the same familiar faces on every visit.</p>
         <div class="callout">
           <strong>The crew {city} can call by name.</strong> Licensed &amp; insured ({license}), water-based
@@ -1243,6 +1224,7 @@ def render_location(l):
         license=BIZ["license"], ptel=BIZ["phone_tel"], phone=BIZ["phone"], nearby=nearby,
         sister_url=BIZ["sister_url"], sister=BIZ["sister_name"], svc_cards=svc_cards, loc_img=loc_img,
     )
+    body += '<section class="section"><div class="container prose"><h2>Plan ahead for your home in %s</h2><p>Use the <a href="/pest-library.html">pest library</a> to describe what you are seeing and the <a href="/insights/central-texas-pest-calendar.html">Central Texas prevention calendar</a> to check seasonal maintenance tasks.</p></div></section>' % html.escape(l["city"])
     body += cta_band(heading="Pest problem in " + l["city"] + "?", sub="Talk to the crew that has served the area since " + BIZ["founded"] + ".")
     # Location "Service" schema scoped to the city
     loc_service = {
@@ -1391,8 +1373,8 @@ def stat_band():
     # even with JS disabled; JS animates them up from 0 on scroll-in (no clipping).
     return """
   <section class="statband"><div class="container">
-    <div><div class="stat__num" data-count="28">28</div><div class="stat__lbl">Years serving Central Texas</div></div>
-    <div><div class="stat__num" data-count="5.0" data-decimals="1">5.0</div><div class="stat__lbl">&#9733; Google rating &middot; 41 reviews</div></div>
+    <div><div class="stat__num">1998</div><div class="stat__lbl">Serving Central Texas since</div></div>
+    <div><div class="stat__num">Local</div><div class="stat__lbl">Family-owned in Buda</div></div>
     <div><div class="stat__num" data-count="27">27</div><div class="stat__lbl">Central Texas cities served</div></div>
     <div><div class="stat__num">A+</div><div class="stat__lbl">BBB accredited &middot; insured</div></div>
   </div></section>"""
@@ -1479,7 +1461,7 @@ def home():
     canonical = BIZ["domain"] + "/"
     marquee_items = ["General Pest Control", "Flea &amp; Tick Control", "Rodents &amp; Exclusion",
                      "Wildlife Removal", "Scorpion Control", "Mosquito Control",
-                     "Licensed &amp; Insured", "Family-Owned Since 1998", "5.0&#9733; Google Rating"]
+                     "Licensed &amp; Insured", "Family-Owned Since 1998", "Free Estimates"]
     marquee = "".join('<span class="marquee__item">%s</span><span class="marquee__dot" aria-hidden="true">&bull;</span>' % m
                       for m in marquee_items)
     core_names = {
@@ -1498,9 +1480,8 @@ def home():
     city_links = " · ".join('<a href="/locations/%s.html">%s</a>' % (LOCATION_BY_SLUG[s]["slug"], html.escape(LOCATION_BY_SLUG[s]["city"])) for s in PRIORITY_CITIES)
     spotlight = """
         <div class="spotlight">
-          <div class="stars" aria-hidden="true">★★★★★</div>
-          <p class="spotlight__q">Central Texas homeowners rate Excel Pest <strong>5.0 stars</strong> — the same
-             local crew, one home at a time, since 1998.</p>
+          <p class="spotlight__q">Get to know Excel Pest through the experiences our customers share.
+             Read their feedback on our Facebook page.</p>
           <div class="hero__actions" style="justify-content:center;margin-top:20px;">
             <a class="btn btn--outline" href="%s" rel="noopener">Read reviews on Facebook &rarr;</a>
           </div>
@@ -1528,7 +1509,7 @@ def home():
       <div class="section-head text-center" style="max-width:660px;margin:0 auto 34px;">
         <span class="eyebrow">Why homeowners choose us</span>
         <h2>Local expertise you can actually trust</h2>
-        <p class="lead">Twenty-eight years, one owner, and a 5.0 rating — the things a national franchise can't copy.</p>
+        <p class="lead">Family-owned since 1998, with an office and a crew rooted in Central Texas.</p>
       </div>
       <div class="grid grid--3">
         <div class="card"><div class="card__icon">🛡️</div><h3>Licensed &amp; insured</h3>
@@ -1536,10 +1517,10 @@ def home():
         <div class="card"><div class="card__icon">🐾</div><h3>Water-based products</h3>
           <p class="mb-0">Water-based products applied by licensed technicians, only where needed. See our <a href="/pet-family-safety.html">approach for families &amp; pets</a>.</p></div>
         <div class="card"><div class="card__icon">📍</div><h3>Local since {founded}</h3>
-          <p class="mb-0">Family-owned in Buda, 5.0★ across {reviews} reviews. We know the Central Texas pest calendar because we live it.</p></div>
+          <p class="mb-0">Family-owned in Buda. We know the Central Texas pest calendar because we live it.</p></div>
       </div>
     </div>
-  </section>""".format(license=BIZ["license"], founded=BIZ["founded"], reviews=BIZ["reviews"])
+  </section>""".format(license=BIZ["license"], founded=BIZ["founded"])
     body = """
   <div class="intro" data-intro aria-hidden="true">
     <div class="intro__mark">
@@ -1560,7 +1541,7 @@ def home():
         <span class="hero__call">or call <a href="tel:{ptel}">{phone}</a></span>
       </div>
       <div class="badges">
-        <span class="badge">5.0&#9733; · {reviews} Google reviews</span>
+        <span class="badge">Family-owned since {founded}</span>
         <span class="badge">BBB A+ accredited</span>
         <span class="badge">Licensed &amp; insured · {license}</span>
       </div>
@@ -1589,12 +1570,11 @@ def home():
   <section class="section section--soft">
     <div class="container split">
       <div>
-        <span class="eyebrow">28 years, one owner</span>
+        <span class="eyebrow">One owner since {founded}</span>
         <h2>Not a franchise — the crew that knows Central Texas.</h2>
         <p>{owner} started Excel Pest in {founded} and has run it ever since. We know the local
            pest calendar — when scorpions move indoors, when chinch bugs cook a lawn, when rodents look for a warm
-           attic — because we have worked this ground for more than 25 years. Nobody in this market beats our
-           5.0 rating; we just earn it quietly, one neighbor at a time.</p>
+           attic — because we have worked this ground since {founded}, one neighbor at a time.</p>
         <a class="btn btn--outline" href="/about.html">Read our story</a>
       </div>
       <div>
@@ -1603,7 +1583,7 @@ def home():
           <ul class="why-list">
             <li><strong>Licensed &amp; insured.</strong> Texas {license}, with the same trained techs on every visit — not a rotating call center.</li>
             <li><strong>Water-based products.</strong> Applied by licensed technicians, only where they're needed. See our <a href="/pet-family-safety.html">approach for families &amp; pets</a>.</li>
-            <li><strong>Local since {founded}.</strong> Family-owned in Buda, 5.0&#9733; across {reviews} reviews. We live the Central Texas pest calendar.</li>
+            <li><strong>Local since {founded}.</strong> Family-owned in Buda. We live the Central Texas pest calendar.</li>
           </ul>
         </div>
       </div>
@@ -1615,7 +1595,7 @@ def home():
     <div class="container">
       <div class="section-head" style="max-width:560px;margin:0 auto 30px;text-align:center;">
         <span class="eyebrow">In their words</span>
-        <h2>Reviewed 5.0 by Central Texas neighbors</h2>
+        <h2>Hear from Central Texas neighbors</h2>
       </div>
       <div style="max-width:680px;margin:0 auto;">
 {spotlight}
@@ -1638,11 +1618,11 @@ def home():
     <div class="container">{cross}</div>
   </section>""".format(
         founded=BIZ["founded"], ptel=BIZ["phone_tel"], phone=BIZ["phone"],
-        reviews=BIZ["reviews"], license=BIZ["license"], svc_cards=svc_cards, owner=BIZ["owner"],
+        license=BIZ["license"], svc_cards=svc_cards, owner=BIZ["owner"],
         city_links=city_links, cross=crosslink_block(), statband=stat_band(),
         spotlight=spotlight, flow=flow, hero_img=HOME_HERO_IMG, marquee=marquee,
     )
-    desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. 5.0-star, BBB A+, licensed. Free estimates — call (512) 291-5900."
+    desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. Licensed and insured. Free estimates — call (512) 291-5900."
     schema = [business_schema(), {
         "@context": "https://schema.org", "@type": "WebSite", "name": BIZ["name"],
         "url": BIZ["domain"] + "/",
@@ -1680,8 +1660,8 @@ def about():
           for both brands — customers name-check her in their reviews — and our technicians are the same familiar
           faces on every visit.
         </div>
-        <p>Twenty-eight years in, we hold a 5.0 rating across {reviews} Google reviews and an A+ from the BBB.
-           We are licensed and insured in Texas ({license}). We are proud of it — and we would rather earn your
+        <p>Serving Central Texas since {founded}, we are licensed and insured in Texas ({license}).
+           We are proud of it — and we would rather earn your
            trust one visit at a time than act like a franchise that just moved to town.</p>
         <div class="hero__actions">
           <a class="btn btn--primary" href="/contact.html">Get a free estimate</a>
@@ -1696,7 +1676,6 @@ def about():
             <li><span class="label">Owner</span><span class="value">{owner}</span></li>
             <li><span class="label">Based in</span><span class="value">{city}, Texas</span></li>
             <li><span class="label">License</span><span class="value">{license}</span></li>
-            <li><span class="label">Rating</span><span class="value">★ {rating} · {reviews} reviews</span></li>
             <li><span class="label">BBB</span><span class="value">A+ · accredited 2007</span></li>
           </ul>
           <a class="btn btn--primary" href="/contact.html">Contact us</a>
@@ -1709,8 +1688,8 @@ def about():
     </div>
   </section>""".format(
         owner=BIZ["owner"], founded=BIZ["founded"], sister_url=BIZ["sister_url"], street=BIZ["street"],
-        city=BIZ["city"], mgr=BIZ["office_mgr"], reviews=BIZ["reviews"], license=BIZ["license"],
-        rating=BIZ["rating"], ptel=BIZ["phone_tel"], phone=BIZ["phone"],
+        city=BIZ["city"], mgr=BIZ["office_mgr"], license=BIZ["license"],
+        ptel=BIZ["phone_tel"], phone=BIZ["phone"],
         owner_photo=img_slot("photo", "🧑‍🔧", "Owner Gye Hutson", "photos/gye-hutson.webp",
                              "Gye Hutson, owner of Excel Pest & Lawn Control",
                              "Real portrait photo of owner Gye Hutson (client to supply).",
@@ -1742,7 +1721,7 @@ def about():
     </div>
   </section>""".format(ptel=BIZ["phone_tel"], phone=BIZ["phone"])
     body += cta_band()
-    desc = "Family-owned in Buda since 1998, still run by owner Gye Hutson. 5.0-star, BBB A+, licensed Texas pest control (TPCL 0786979). Read the Excel Pest story."
+    desc = "Family-owned in Buda since 1998, still run by owner Gye Hutson. Licensed and insured Texas pest control (TPCL 0786979). Read the Excel Pest story."
     schema = [business_schema(), breadcrumb_schema(crumbs), {
         "@context": "https://schema.org", "@type": "AboutPage", "url": canonical, "name": "About Excel Pest",
     }]
@@ -1752,16 +1731,9 @@ def about():
 def reviews():
     canonical = BIZ["domain"] + "/reviews.html"
     crumbs = [("Home", "/"), ("Reviews", None)]
-    body = page_hero("Reviews", "A 5.0 rating built one Central Texas neighbor at a time.", crumbs) + """
+    body = page_hero("Reviews", "Read what Central Texas customers share about their experience.", crumbs) + """
   <section class="section">
     <div class="container">
-      <div class="big-rating" style="margin-bottom:30px;">
-        <span class="num">{rating}</span>
-        <div>
-          <div class="stars">★★★★★</div>
-          <p class="mb-0"><strong>{reviews} Google reviews</strong> · BBB A+ accredited since 2007</p>
-        </div>
-      </div>
       <div class="grid grid--2">
         <div class="review-card">
           <div class="stars">★★★★★</div>
@@ -1786,11 +1758,11 @@ def reviews():
         <a class="btn btn--outline" href="{yelp}" rel="noopener">Read us on Yelp</a>
       </div>
     </div>
-  </section>""".format(rating=BIZ["rating"], reviews=BIZ["reviews"], bbb=BIZ["bbb"], yelp=BIZ["yelp"])
+  </section>""".format(bbb=BIZ["bbb"], yelp=BIZ["yelp"])
     body += cta_band()
-    desc = "Excel Pest holds a 5.0 rating across 41 Google reviews and a BBB A+ — some customers for 13 and 30+ years. Read reviews of our Central Texas pest control."
-    schema = [business_schema(with_rating=True, with_reviews=True), breadcrumb_schema(crumbs)]
-    return assemble("Reviews — 5.0 Stars Across Central Texas | Excel Pest", desc, canonical, body, schema)
+    desc = "Read customer feedback about Excel Pest, a family-owned Central Texas pest control company based in Buda since 1998."
+    schema = [business_schema(), breadcrumb_schema(crumbs)]
+    return assemble("Customer Reviews | Excel Pest", desc, canonical, body, schema)
 
 
 def offers():
@@ -1864,7 +1836,7 @@ def pet_safety():
             <li>Licensed &amp; insured ({license})</li>
             <li>Ongoing technician education</li>
             <li>Targeted treatment, not over-spraying</li>
-            <li>28 years serving Central Texas families</li>
+            <li>Serving Central Texas families since 1998</li>
           </ul>
           <a class="btn btn--primary" href="/contact.html" style="margin-top:16px;">Get a free estimate</a>
         </div>
@@ -2191,6 +2163,9 @@ def render_article(a):
     quick = ""
     if a.get("quick_answer"):
         quick = '<div class="art-answer"><strong>Quick answer:</strong> %s</div>' % a["quick_answer"]
+    if a.get("updated"):
+        meta_bits += ' &middot; Updated <time datetime="%s">%s</time>' % (html.escape(a["updated"], quote=True), _fmt_date(a["updated"]))
+    actions = '' if a.get("informational_only") else '<div class="hero__actions" style="margin-top:30px;"><a class="btn btn--primary" href="/contact.html">Get a free estimate</a><a class="btn btn--outline" href="tel:%s">Call %s</a></div>' % (BIZ["phone_tel"], BIZ["phone"])
 
     faqs = a.get("faqs") or []
     faq_html = ""
@@ -2222,21 +2197,19 @@ def render_article(a):
       <div class="prose article-body">
         {content}
       </div>
-      <div class="hero__actions" style="margin-top:30px;">
-        <a class="btn btn--primary" href="/contact.html">Get a free estimate</a>
-        <a class="btn btn--outline" href="tel:{ptel}">Call {phone}</a>
-      </div>
+{actions}
     </div>
   </section>{faq}{related}""".format(
-        meta=meta_bits, quick=quick, content=a["body_html"],
+        meta=meta_bits, quick=quick, content=calendar_html() if slug == "central-texas-pest-calendar" else a["body_html"], actions=actions,
         ptel=BIZ["phone_tel"], phone=BIZ["phone"], faq=faq_html, related=related)
-    body += cta_band()
+    if not a.get("informational_only"):
+        body += cta_band()
 
     article_schema = {
         "@context": "https://schema.org", "@type": "Article",
         "headline": a["title"][:110],
         "description": a.get("description", summary)[:300],
-        "datePublished": a["date"], "dateModified": a.get("date"),
+        "datePublished": a["date"], "dateModified": a.get("updated", a["date"]),
         "author": {"@type": "Organization", "name": BIZ["name"]},
         "publisher": {"@type": "Organization", "name": BIZ["name"],
                       "logo": {"@type": "ImageObject", "url": BIZ["domain"] + "/assets/favicon.svg"}},
@@ -2273,6 +2246,7 @@ def insights_index(articles):
     body = page_hero("Pest Guides & Answers",
                      "Practical, local advice on the pests Central Texas homeowners actually deal with.", crumbs) + """
   <section class="section"><div class="container">
+    <div class="callout"><h2>Find the right place to start</h2><p><a href="/pest-library.html">Identify common pest signs</a> or follow our <a href="/insights/central-texas-pest-calendar.html">month-by-month prevention calendar</a>.</p></div>
     <h2 class="visually-hidden">Latest pest guides</h2>
     {grid}
   </div></section>""".format(grid=grid)
@@ -2288,8 +2262,12 @@ def insights_index(articles):
 # --------------------------------------------------------------------------
 
 def build_sitemap(urls):
+    # Rebuilding is not a content revision. Use known article dates and omit
+    # lastmod elsewhere rather than claiming every page changed on each deploy.
+    modified = {BIZ["domain"] + "/insights/" + a["slug"] + ".html": a.get("updated", a["date"])
+                for a in load_articles()}
     rows = "\n".join(
-        "  <url><loc>%s</loc><lastmod>%s</lastmod><changefreq>%s</changefreq></url>" % (u, BUILD_DATE, cf)
+        "  <url><loc>%s</loc>%s</url>" % (u, "<lastmod>%s</lastmod>" % modified[u] if u in modified else "")
         for u, cf, pr in urls
     )
     return '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + rows + '\n</urlset>\n'
@@ -2386,6 +2364,9 @@ def main():
     emit("faq.html", faq(), pr="0.6")
     emit("contact.html", contact(), cf="monthly", pr="0.8")
     emit("privacy-policy.html", privacy_policy(), cf="yearly", pr="0.3")
+    library, library_crumbs = library_body(page_hero)
+    library_schema = {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Central Texas Pest Library", "url": BIZ["domain"] + "/pest-library.html", "mainEntity": {"@type": "ItemList", "itemListElement": [{"@type": "ListItem", "position": i + 1, "name": p[1], "url": BIZ["domain"] + "/pest-library.html#" + p[0]} for i, p in enumerate(LIBRARY)]}}
+    emit("pest-library.html", assemble("Central Texas Pest Library | Signs & Help | Excel Pest", "Recognize common pests in Buda and Central Texas. Find signs, practical next steps and Excel Pest services for insects, rats, mice and listed wildlife.", BIZ["domain"] + "/pest-library.html", library + cta_band(), [business_schema(), breadcrumb_schema(library_crumbs), library_schema]))
 
     for s in SERVICES:
         emit("services/%s.html" % s["slug"], render_service(s), cf="monthly", pr="0.8")
