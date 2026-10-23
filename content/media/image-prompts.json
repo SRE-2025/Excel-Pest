@@ -1,0 +1,169 @@
+{
+  "created": "2026-10-23",
+  "method": "OpenAI built-in image generation",
+  "note": "Illustrative generated imagery, not actual Excel staff, customers, job sites or pest-identification reference photographs.",
+  "assets": [
+    {
+      "id": "services/pest-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: A neat residential limestone foundation and black-framed exterior doorway, close eye-level architectural view, a few live oak shadows, well-kept porch and visible door sweep, early morning. Visual theme: protecting the home's entry points. No sprayer and no insects.",
+      "source_file": "exec-f3c172f3-6818-4a0d-9e3e-a4febbd93868.png",
+      "final_assets": [
+        "site/assets/images/services/pest-control-480.webp",
+        "site/assets/images/services/pest-control-960.webp"
+      ]
+    },
+    {
+      "id": "services/scorpion-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: One small naturally proportioned striped bark scorpion resting on pale rough limestone beside dry oak leaves. Close wildlife photograph from a slightly elevated angle, recognizable narrow pincers and curved segmented tail, biologically plausible anatomy, afternoon side light. Do not make it monstrous or oversized.",
+      "source_file": "exec-d3191ea4-412b-47e7-bab9-ffda87044e0e.png",
+      "final_assets": [
+        "site/assets/images/services/scorpion-control-480.webp",
+        "site/assets/images/services/scorpion-control-960.webp"
+      ]
+    },
+    {
+      "id": "services/rodent-removal",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: One ordinary gray-brown house mouse on a weathered wooden beam in a garage, photographed at the animal's eye level. Clear whiskers, rounded ears, natural four-footed stance and one tail, gentle side light, tidy softly blurred background. No traps, poison, blood or human.",
+      "source_file": "exec-16878025-eb09-424d-b4e6-43d8e9f36f15.png",
+      "final_assets": [
+        "site/assets/images/services/rodent-removal-480.webp",
+        "site/assets/images/services/rodent-removal-960.webp"
+      ]
+    },
+    {
+      "id": "services/rodent-exclusion",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: Detailed architectural photograph of a small exterior crawlspace vent secured with neatly fitted galvanized steel hardware mesh and a tidy metal frame, screws visible, light limestone wall. Close three-quarter view showing the mesh texture and finished edges. No animals or tools, no claim of a real job.",
+      "source_file": "exec-3159cbe5-c9b6-4d65-92b4-8ef6309657a3.png",
+      "final_assets": [
+        "site/assets/images/services/rodent-exclusion-480.webp",
+        "site/assets/images/services/rodent-exclusion-960.webp"
+      ]
+    },
+    {
+      "id": "services/wildlife-live-trapping",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: One healthy raccoon standing naturally beside a weathered cedar fence under an oak, looking slightly toward the camera. Environmental wildlife photograph with natural fur, black face mask and ringed tail, soft morning light, green foliage in background. No cage, suffering or people.",
+      "source_file": "exec-e4592ccc-19b8-4ee4-a8f6-c3c2ff18919c.png",
+      "final_assets": [
+        "site/assets/images/services/wildlife-live-trapping-480.webp",
+        "site/assets/images/services/wildlife-live-trapping-960.webp"
+      ]
+    },
+    {
+      "id": "services/mosquito-misting",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: Close photograph of a small brass misting nozzle mounted under a cedar pergola beam, a delicate fan of fine mist catching late-afternoon sunlight, softly blurred garden behind. Plausible clean hardware and tubing. No dense fog, people or insects.",
+      "source_file": "exec-5fc9d599-a2ca-406b-8d3e-470001fbf74b.png",
+      "final_assets": [
+        "site/assets/images/services/mosquito-misting-480.webp",
+        "site/assets/images/services/mosquito-misting-960.webp"
+      ]
+    },
+    {
+      "id": "services/lawn-pest-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: Close ground-level photograph of a small lifted edge of lawn sod revealing fine grass roots and one small cream-colored C-shaped grub in brown soil. Lush Bermuda grass at the top of frame, realistic scale and texture, soft daylight. Useful lawn-pest context, not an infestation or disgusting oversized insect.",
+      "source_file": "exec-d521e9aa-985d-49c4-aaef-f5a7782ae511.png",
+      "final_assets": [
+        "site/assets/images/services/lawn-pest-control-480.webp",
+        "site/assets/images/services/lawn-pest-control-960.webp"
+      ]
+    },
+    {
+      "id": "services/ant-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: Macro nature photograph of three small reddish fire ants moving along a narrow dry soil edge between short grass blades. Plausible insect anatomy, six legs per ant, elbowed antennae and segmented bodies. Warm textured soil, clear main ant, soft green background. Do not make giant ants.",
+      "source_file": "exec-bb1238b0-be38-4f1b-aadf-f9366efd90d4.png",
+      "final_assets": [
+        "site/assets/images/services/ant-control-480.webp",
+        "site/assets/images/services/ant-control-960.webp"
+      ]
+    },
+    {
+      "id": "services/cockroach-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: One adult brown cockroach on a weathered terracotta patio edge near an exterior threshold, close natural macro photograph, oval body, folded wings, six legs and long antennae, sharp realistic detail. Warm earth tones and soft daylight, not a dirty kitchen, no swarm.",
+      "source_file": "exec-086df9a8-0fa4-4755-b388-3a49db532aa0.png",
+      "final_assets": [
+        "site/assets/images/services/cockroach-control-480.webp",
+        "site/assets/images/services/cockroach-control-960.webp"
+      ]
+    },
+    {
+      "id": "services/cricket-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: One black field cricket on a pale weathered stone garden border. Side-profile macro photograph showing long antennae and strong rear jumping legs, plausible six-legged anatomy. Soft sage green background and late-afternoon light, natural small scale, not scary.",
+      "source_file": "exec-b9be9fe5-c74d-47a8-abe9-6e335500ba96.png",
+      "final_assets": [
+        "site/assets/images/services/cricket-control-480.webp",
+        "site/assets/images/services/cricket-control-960.webp"
+      ]
+    },
+    {
+      "id": "services/flea-tick-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: Close nature photograph of one small brown hard tick perched on the tip of a narrow green grass blade beside a garden path. Realistic small oval body and eight legs, detailed texture, fresh green background with shallow depth of field. No blood, skin, pet or exaggerated size.",
+      "source_file": "exec-4a50096e-eb7f-479a-8b95-82e870a477c6.png",
+      "final_assets": [
+        "site/assets/images/services/flea-tick-control-480.webp",
+        "site/assets/images/services/flea-tick-control-960.webp"
+      ]
+    },
+    {
+      "id": "services/spider-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: A small ordinary orb-weaver spider near the center of its delicate dew-covered web between two garden twigs, photographed in natural morning light. Plausible eight-legged anatomy, detailed silk against a dark softly blurred green garden, beautiful and calm rather than frightening.",
+      "source_file": "exec-dc81ec7e-9761-4d58-b564-73e8f5052041.png",
+      "final_assets": [
+        "site/assets/images/services/spider-control-480.webp",
+        "site/assets/images/services/spider-control-960.webp"
+      ]
+    },
+    {
+      "id": "cards/pest-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: Welcoming single-story Central Texas limestone home entrance with dark front door, live oak shade and simple native landscaping. Wide architectural photograph at morning light, no people or insects. Subject fills upper area; lower third naturally subdued for overlaid white service-card text.",
+      "source_file": "exec-17bfbe91-fd1f-4b0b-b289-ed6fecd25dd9.png",
+      "final_assets": [
+        "site/assets/images/cards/pest-control-480.webp",
+        "site/assets/images/cards/pest-control-960.webp"
+      ]
+    },
+    {
+      "id": "cards/ant-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: A distinct low fire-ant mound made of crumbly dry brown earth among short sunlit lawn grass, close landscape photograph with the mound placed in upper middle. No enlarged insects or people. Lower third is softly shaded grass for overlaid white card text.",
+      "source_file": "exec-f47a0195-2db2-468f-9e5d-6aed026c1d90.png",
+      "final_assets": [
+        "site/assets/images/cards/ant-control-480.webp",
+        "site/assets/images/cards/ant-control-960.webp"
+      ]
+    },
+    {
+      "id": "cards/rodent-exclusion",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: Upward architectural photograph of a clean white gable vent and soffit on a light gray Central Texas home, with oak branches beyond. Wider roofline view, not a mesh close-up. Early morning light, dark softly shaded lower area for white service-card text. No person or animal.",
+      "source_file": "exec-cffd2ec5-c598-4b2e-8fef-1696fe2128de.png",
+      "final_assets": [
+        "site/assets/images/cards/rodent-exclusion-480.webp",
+        "site/assets/images/cards/rodent-exclusion-960.webp"
+      ]
+    },
+    {
+      "id": "cards/wildlife-live-trapping",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: One healthy fox squirrel on the textured trunk of a mature live oak, natural bushy tail curling behind, bright soft woodland light. Environmental wildlife photo framed with squirrel in upper half and darker bark below for overlaid white service-card text. No raccoon, cage or person.",
+      "source_file": "exec-1d37b510-e22a-4f45-ac7e-1c5a6ffe72c5.png",
+      "final_assets": [
+        "site/assets/images/cards/wildlife-live-trapping-480.webp",
+        "site/assets/images/cards/wildlife-live-trapping-960.webp"
+      ]
+    },
+    {
+      "id": "cards/scorpion-control",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: Beautiful Central Texas limestone garden wall and dry stacked limestone rocks beside sparse native grasses and live oak leaf litter. Low-angle outdoor architectural nature photograph at dusk with believable textures, not California or desert mountains. Upper half is visual focus, lower third darker for white service-card text, no people or animals.",
+      "source_file": "exec-0cf6acc0-c2af-45a3-96d0-82b90044224e.png",
+      "final_assets": [
+        "site/assets/images/cards/scorpion-control-480.webp",
+        "site/assets/images/cards/scorpion-control-960.webp"
+      ]
+    },
+    {
+      "id": "cards/mosquito-misting",
+      "prompt": "Use case: photorealistic-natural. Asset type: one standalone website service image, landscape 4:3 composition. Natural editorial photography aesthetic, crisp subject, real material texture, tasteful warm Central Texas light, restrained neutral colors. This is illustrative stock-style imagery, not a photograph of an actual Excel Pest employee, customer or completed job. No people, text, logos, watermarks, split panels or collage. Keep the subject inside a crop-safe central area. Subject and composition: An inviting shaded Central Texas backyard patio with cedar pergola, empty simple chairs and restrained garden planting, warm evening sun through oak leaves. Wide lifestyle photograph without people, no visible sprayer or nozzle. Upper half visual interest, darker lower third for white service-card text.",
+      "source_file": "exec-d92ead41-4aee-4b82-8877-ac9e06884b47.png",
+      "final_assets": [
+        "site/assets/images/cards/mosquito-misting-480.webp",
+        "site/assets/images/cards/mosquito-misting-960.webp"
+      ]
+    }
+  ]
+}

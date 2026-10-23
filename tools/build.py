@@ -343,33 +343,34 @@ SERVICE_FAQS = {
     ],
 }
 
-# Per-service inline image (ChatGPT generation prompt)
-SERVICE_IMAGES = {
-    "pest-control": ("🏡", "pest-control-exterior-treatment.webp", "Excel Pest technician treating the exterior of a Central Texas home",
-        "A licensed pest control technician in a clean plain uniform spraying a water-based treatment along the exterior foundation of a limestone Central Texas home, live oak trees and Hill Country landscaping behind, warm morning light, photorealistic, no text, no logos, no watermark, no visible brand names."),
-    "scorpion-control": ("🦂", "scorpion-hill-country.webp", "Striped bark scorpion on Hill Country limestone",
-        "A close, detailed photo of a striped bark scorpion on pale limestone rock at dusk in the Texas Hill Country, cedar and dry grass softly blurred behind, natural light, photorealistic, no text, no logos, no watermark."),
-    "rodent-removal": ("🐀", "rodent-removal-attic.webp", "Roof rat at the edge of a home attic",
-        "A roof rat peering from the edge of a home attic with insulation visible, dim natural light, photorealistic, no text, no logos, no watermark."),
-    "rodent-exclusion": ("🧰", "rodent-exclusion-sealing.webp", "Sealing a rodent entry point along a roofline",
-        "A technician's hands sealing a gap along a Central Texas home's roofline with steel mesh and sealant, ladder visible, daylight, photorealistic, no text, no logos, no watermark."),
-    "wildlife-live-trapping": ("🦝", "wildlife-attic-raccoon.webp", "Raccoon at an attic vent of a Central Texas home",
-        "A raccoon peeking out of an attic gable vent on a suburban Central Texas home at dusk, cedar and oak around the roof, natural light, photorealistic, no text, no logos, no watermark."),
-    "mosquito-misting": ("🦟", "mosquito-misting-pergola.webp", "Mosquito misting nozzle on a backyard pergola",
-        "A backyard mosquito misting system nozzle mounted on a wooden pergola in a lush Central Texas backyard at golden hour, patio and native plants around, a fine mist visible, photorealistic, no text, no logos, no watermark."),
-    "lawn-pest-control": ("🌱", "lawn-chinch-bug-damage.webp", "Chinch bug damage in a St. Augustine lawn",
-        "A close view of a St. Augustine lawn in Central Texas with a spreading brown chinch-bug patch, healthy green grass beside damaged turf, bright daylight, photorealistic, no text, no logos, no watermark."),
-    "ant-control": ("🐜", "ant-control-fire-ant-mound.webp", "Fire ant mound in a Central Texas lawn",
-        "A close photo of a fire ant mound in a Central Texas St. Augustine lawn, a suburban home softly blurred behind, bright daylight, photorealistic, no text, no logos, no watermark."),
-    "cockroach-control": ("🪳", "cockroach-control.webp", "American cockroach on a kitchen floor",
-        "A single American cockroach on a tiled kitchen floor at night, shallow depth of field, photorealistic, no text, no logos, no watermark."),
-    "cricket-control": ("🦗", "cricket-control-doorway.webp", "Field crickets gathered by a doorway at night",
-        "Field crickets clustered on limestone and concrete near a doorway at night under a porch light in Central Texas, photorealistic, no text, no logos, no watermark."),
-    "flea-tick-control": ("🐾", "flea-tick-control-backyard-dog.webp", "A dog resting in a treated Central Texas backyard",
-        "A dog resting on a healthy lawn in a Central Texas backyard at golden hour, photorealistic, no text, no logos, no watermark."),
-    "spider-control": ("🕷️", "spider-control-web-eave.webp", "Spider web in the eave of a Central Texas home",
-        "A spider web glistening with morning dew in the corner of a limestone home's eave in Central Texas, soft backlight, photorealistic, no text, no logos, no watermark."),
+# Unique, self-hosted imagery; generated illustrations are not real Excel job photos.
+SERVICE_IMAGE_ALTS = {
+    "pest-control": "Limestone foundation and a well-fitted exterior door",
+    "scorpion-control": "Illustration of a bark scorpion on limestone",
+    "rodent-removal": "Illustration of a house mouse on a wooden garage beam",
+    "rodent-exclusion": "Illustration of a vent protected with metal mesh",
+    "wildlife-live-trapping": "Illustration of a raccoon beside a cedar fence",
+    "mosquito-misting": "Illustration of a misting nozzle beneath a pergola",
+    "lawn-pest-control": "Illustration of a white grub beneath grass roots",
+    "ant-control": "Illustration of reddish ants moving along a soil edge",
+    "cockroach-control": "Illustration of a cockroach beside an exterior threshold",
+    "cricket-control": "Illustration of a field cricket on a stone garden border",
+    "flea-tick-control": "Illustration of a tick on a blade of grass",
+    "spider-control": "Illustration of an orb-weaver spider on a dewy web",
 }
+
+
+def service_image(slug, card=False):
+    """Responsive assets; cards and detail pages never reuse the same image."""
+    path = "/assets/images/" + ("cards" if card else "services") + "/" + slug
+    sizes = ("(max-width: 700px) calc(100vw - 40px), (max-width: 1000px) 46vw, 370px"
+             if card else "(max-width: 820px) calc(100vw - 40px), 430px")
+    image = ('<img class="{cls}" src="{path}-480.webp" '
+             'srcset="{path}-480.webp 480w, {path}-960.webp 960w" sizes="{sizes}" '
+             'alt="{alt}" width="960" height="720" loading="lazy" decoding="async">').format(
+                 cls="svc-card__photo" if card else "service-image", path=path, sizes=sizes,
+                 alt=html.escape("" if card else SERVICE_IMAGE_ALTS[slug], quote=True))
+    return image if card else '<figure class="img-slot ratio-wide">' + image + '</figure>'
 
 # --------------------------------------------------------------------------
 # Priority-corridor city pages
@@ -585,9 +586,8 @@ def head(title, desc, canonical, schema_blocks, noindex=False, og_type="website"
         "      gtag('config', '" + BIZ["ga4"] + "');",
         "    }",
         '  </script>',
-        '  <link rel="preconnect" href="https://fonts.googleapis.com">',
-        '  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>',
-        '  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap">',
+        '  <link rel="preload" href="/assets/fonts/inter-latin-variable.woff2" as="font" type="font/woff2" crossorigin>',
+        '  <link rel="preload" href="/assets/fonts/fraunces-latin-variable.woff2" as="font" type="font/woff2" crossorigin>',
         '  <link rel="stylesheet" href="/css/styles.css">',
         '  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">',
         '  <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">',
@@ -784,15 +784,6 @@ def crosslink_block():
 
 IMG_REGISTRY = []
 
-# Existing business-owned photography used while the full custom photo library is completed.
-REMOTE_IMAGES = {
-    "services/pest-control-exterior-treatment.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg",
-    "services/rodent-removal-attic.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg",
-    "services/scorpion-hill-country.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-scorpion-control-1920w.jpg",
-    "services/lawn-chinch-bug-damage.webp": "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-lawn-care-services-1920w.jpg",
-}
-# Real hero photograph (business-owned) shown behind the home hero scrim.
-HOME_HERO_IMG = "https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-home-1920w.jpg"
 
 
 def scene_svg(alt):
@@ -905,28 +896,9 @@ def img_slot(kind, emo, label, filename, alt, spec, ratio="ratio-wide", page="",
     badge = '' if art == "portrait" else '<span class="slot-badge" aria-hidden="true">%s</span>' % emo
     cap = '<figcaption class="slot-cap">%s</figcaption>' % html.escape(caption) if caption else ''
     real_img = ''
-    image_url = REMOTE_IMAGES.get(filename)
-    if not image_url and filename.startswith("services/"):
-        low = filename.lower()
-        if "rodent" in low or "wildlife" in low:
-            image_url = REMOTE_IMAGES["services/rodent-removal-attic.webp"]
-        elif "scorpion" in low:
-            image_url = REMOTE_IMAGES["services/scorpion-hill-country.webp"]
-        elif "mosquito" in low or "lawn" in low:
-            image_url = REMOTE_IMAGES["services/lawn-chinch-bug-damage.webp"]
-        else:
-            image_url = REMOTE_IMAGES["services/pest-control-exterior-treatment.webp"]
-    if image_url:
-        # Explicit intrinsic dimensions reserve the box and kill layout shift
-        # (the business photos are 1920-wide; the figure's aspect-ratio + object-fit
-        # still control the rendered crop). decoding async keeps them off the
-        # main thread.
-        real_img = ('<img src="%s" alt="%s" width="1920" height="1324" decoding="async">'
-                    % (html.escape(image_url, quote=True), html.escape(alt, quote=True)))
-        art_svg = ''
-        badge = ''
-    elif filename.startswith("services/"):
-        return ''
+    # Never substitute an unrelated service photograph for missing owner/location media.
+    if filename.startswith("services/"):
+        return ""
     return ('<figure class="img-slot {ratio}" data-filename="{fn}">{comment}{real_img}{art}{badge}{cap}</figure>'
             ).format(ratio=ratio, fn=html.escape(filename), comment=comment, real_img=real_img, art=art_svg, badge=badge, cap=cap)
 
@@ -999,8 +971,11 @@ def apply_base(htmltext):
     prefixes each URL exactly once."""
     if not BASE:
         return htmltext
-    htmltext = re.sub(r'(data-href|href|src)="/',
+    htmltext = re.sub(r'(?<![\w-])(data-href|data-video-desktop|data-video-mobile|href|src|poster)="/(?!/)',
                       lambda m: m.group(1) + '="' + BASE + "/", htmltext)
+    htmltext = re.sub(r'srcset="([^"]+)"', lambda m: 'srcset="' + ", ".join(
+        (BASE + c.strip() if c.strip().startswith("/") and not c.strip().startswith("//")
+         else c.strip()) for c in m.group(1).split(",")) + '"', htmltext)
     inject = '<script>window.__BASE__=%s;</script></head>' % json.dumps(BASE)
     return htmltext.replace("</head>", inject, 1)
 
@@ -1078,10 +1053,7 @@ def render_service(s):
     sections = "".join(
         "<h2>%s</h2>%s" % (html.escape(h), body) for h, body in s["sections"]
     )
-    emo, fn, alt, prompt = SERVICE_IMAGES[s["slug"]]
-    hero_img = img_slot("ai", emo, alt, "services/" + fn, alt, prompt, ratio="ratio-wide",
-                        page="/services/" + s["slug"] + ".html",
-                        svg=pest_scene(alt, SERVICE_MOTIF.get(s["slug"], "bug")))
+    hero_img = service_image(s["slug"])
     faqs = SERVICE_FAQS.get(s["slug"], [])
     faq_items = "".join(
         ('<div class="acc-item"><button class="acc-head">{q}<span class="ic" aria-hidden="true">+</span></button>'
@@ -1470,11 +1442,12 @@ def home():
         "scorpion-control": "Scorpion Control", "mosquito-misting": "Mosquito Control",
     }
     svc_cards = "".join("""        <article class="card card--link svc-card svc-card--{slug}">
+          {image}
           <div class="svc-card__ic">{icon}</div>
           <h3>{name}</h3>
           <p>{blurb}</p>
           <a class="card__link" href="/services/{slug}.html">Explore service <span aria-hidden="true">&rarr;</span></a>
-        </article>""".format(icon=CORE_ICONS[slug], name=core_names[slug], slug=slug,
+        </article>""".format(image=service_image(slug, card=True), icon=CORE_ICONS[slug], name=core_names[slug], slug=slug,
                              blurb=html.escape(CORE_BLURB[slug]))
         for slug in CORE_HOME)
     city_links = " · ".join('<a href="/locations/%s.html">%s</a>' % (LOCATION_BY_SLUG[s]["slug"], html.escape(LOCATION_BY_SLUG[s]["city"])) for s in PRIORITY_CITIES)
@@ -1522,14 +1495,16 @@ def home():
     </div>
   </section>""".format(license=BIZ["license"], founded=BIZ["founded"])
     body = """
-  <div class="intro" data-intro aria-hidden="true">
-    <div class="intro__mark">
-      <span class="intro__excel">EXCEL</span>
-      <span class="intro__desc">Pest Control &middot; Central Texas since 1998</span>
-    </div>
-  </div>
   <section class="hero">
-    <video class="hero-video" autoplay muted loop playsinline preload="metadata" aria-hidden="true"><source src="https://videos.pexels.com/video-files/38774248/16480441_640_360_24fps.mp4" type="video/mp4"></video>
+    <picture class="hero-poster">
+      <source media="(max-width: 700px)" srcset="/assets/images/austin-pennybacker-mobile.webp">
+      <img src="/assets/images/austin-pennybacker-1600.webp" width="1600" height="900"
+           alt="Pennybacker Bridge across Lake Austin, framed by the Central Texas hills"
+           fetchpriority="high" decoding="async">
+    </picture>
+    <video id="austin-flyover" class="hero-video" muted loop playsinline preload="none" aria-hidden="true"
+           data-video-desktop="/assets/video/austin-pennybacker-desktop.mp4"
+           data-video-mobile="/assets/video/austin-pennybacker-mobile.mp4"></video>
     <div class="hero-scrim" aria-hidden="true"></div>
     <div class="container">
       <span class="eyebrow">The crew Buda has trusted since {founded}</span>
@@ -1546,7 +1521,12 @@ def home():
         <span class="badge">Licensed &amp; insured · {license}</span>
       </div>
     </div>
+    <div class="hero-media-bar">
+      <span>Lake Austin &middot; Pennybacker Bridge</span>
+      <button class="hero-motion-toggle" type="button" aria-controls="austin-flyover" hidden>Play Austin flyover</button>
+    </div>
   </section>
+  <script src="/js/hero-media.js" defer></script>
 {statband}
 
   <div class="marquee" aria-hidden="true"><div class="marquee__track">{marquee}{marquee}</div></div>
@@ -1620,7 +1600,7 @@ def home():
         founded=BIZ["founded"], ptel=BIZ["phone_tel"], phone=BIZ["phone"],
         license=BIZ["license"], svc_cards=svc_cards, owner=BIZ["owner"],
         city_links=city_links, cross=crosslink_block(), statband=stat_band(),
-        spotlight=spotlight, flow=flow, hero_img=HOME_HERO_IMG, marquee=marquee,
+        spotlight=spotlight, flow=flow, marquee=marquee,
     )
     desc = "Family-owned pest, rodent, wildlife and lawn-pest control in Buda and Central Texas since 1998. Licensed and insured. Free estimates — call (512) 291-5900."
     schema = [business_schema(), {
@@ -2436,11 +2416,12 @@ def write_image_brief():
     lines = [
         "# Image Brief — Austin Excel Pest & Lawn Control",
         "",
-        "Auto-generated by `tools/build.py`. Every image slot on the site is listed here with its",
-        "filename, alt text, and either a ChatGPT generation prompt (AI) or a real-photo requirement.",
+        "Auto-generated by `tools/build.py`. Remaining optional owner/location photo requests are below.",
+        "The 18 completed service/card images and genuine Austin video are documented in",
+        "[MEDIA-SOURCES.md](MEDIA-SOURCES.md); final prompts are in `content/media/image-prompts.json`.",
         "",
-        "**Workflow (from the brief):** generate or shoot → save with the exact filename → convert to",
-        "WebP and compress → drop into `site/` at the path shown → the styled placeholder is replaced.",
+        "**Remaining real-photo workflow:** obtain client photo → optimize → add explicit responsive",
+        "markup in the generator. These unfilled slots stay hidden; adding a file alone does not publish it.",
         "Every image must keep its alt text. Never AI-generate real people, trucks, or completed jobs.",
         "",
         "## Real photos to request from the client (%d)" % len(photo),

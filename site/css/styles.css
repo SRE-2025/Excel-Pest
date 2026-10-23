@@ -1,6 +1,10 @@
+@font-face { font-family: "Inter"; font-style: normal; font-weight: 400 700; font-display: swap;
+  src: url("../assets/fonts/inter-latin-variable.woff2") format("woff2"); }
+@font-face { font-family: "Fraunces"; font-style: normal; font-weight: 400 600; font-display: swap;
+  src: url("../assets/fonts/fraunces-latin-variable.woff2") format("woff2"); }
 /* =========================================================================
    Austin Excel Pest & Lawn Control — global stylesheet
-   Brand: deep navy blue + orange
+   Brand: black-led editorial identity with restrained accent color
    Single source of truth for colour, type, and layout tokens.
    ========================================================================= */
 
@@ -909,16 +913,15 @@ body { background: var(--bg); color: var(--body); }
   overflow: hidden; border: 0; border-radius: var(--radius); color: #fff;
   background-color: var(--ink); isolation: isolate;
 }
-/* photo lives on ::before so it can zoom smoothly under the scrim (robust, per-image) */
-.home-services .svc-card::before {
-  content: ""; position: absolute; inset: 0; z-index: -2;
-  background-size: cover; background-position: center;
-  transition: transform .7s cubic-bezier(.2,.7,.2,1); }
+/* Real img elements allow responsive sources and native lazy loading. */
+.home-services .svc-card__photo {
+  position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%;
+  object-fit: cover; object-position: center; transition: transform .7s cubic-bezier(.2,.7,.2,1); }
 .home-services .svc-card::after {
   content: ""; position: absolute; inset: 0; z-index: -1;
   background: linear-gradient(180deg, rgba(16,16,16,.06) 12%, rgba(16,16,16,.9) 100%);
   transition: background .45s ease; }
-.home-services .svc-card:hover::before { transform: scale(1.12); }
+.home-services .svc-card:hover .svc-card__photo { transform: scale(1.05); }
 .home-services .svc-card:hover::after { background: linear-gradient(180deg, rgba(16,16,16,0) 8%, rgba(16,16,16,.82) 100%); }
 /* content lifts on hover; a warm accent bar wipes in above the title */
 .home-services .svc-card__ic, .home-services .svc-card h3, .home-services .svc-card p, .home-services .svc-card .card__link {
@@ -930,13 +933,7 @@ body { background: var(--bg); color: var(--body); }
   content: ""; position: absolute; left: 0; top: -14px; height: 3px; width: 0; background: var(--accent);
   transition: width .5s cubic-bezier(.2,.7,.2,1); }
 .home-services .svc-card:hover h3::before { width: 46px; }
-.home-services .svc-card--pest-control::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-insect-control-1920w.jpg"); }
-.home-services .svc-card--termite-control::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-termite-control-1920w.jpg"); }
-.home-services .svc-card--rodent-exclusion::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg"); }
-.home-services .svc-card--wildlife-live-trapping::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-rodent-control-1920w.jpg"); }
-.home-services .svc-card--scorpion-control::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-scorpion-control-1920w.jpg"); }
-.home-services .svc-card--mosquito-misting::before { background-image: url("https://le-cdn.hibuwebsites.com/537af7c0228d4470bd70c076341bd233/dms3rep/multi/opt/austin-excel-pest-and-lawn-control-hero-lawn-care-services-1920w.jpg"); }
-@media (prefers-reduced-motion: reduce) { .home-services .svc-card:hover::before { transform: none; } }
+@media (prefers-reduced-motion: reduce) { .home-services .svc-card:hover .svc-card__photo { transform: none; } }
 .home-services .svc-card__ic { color: #fff; margin-bottom: auto; opacity: .94; }
 .home-services .svc-card h3 { color: #fff; font-size: 1.42rem; margin-top: 28px; }
 .home-services .svc-card p { color: rgba(255,255,255,.9); }
@@ -956,30 +953,42 @@ body { background: var(--bg); color: var(--body); }
 @keyframes countPop { 0% { transform: scale(1); } 42% { transform: scale(1.16); } 100% { transform: scale(1); } }
 @media (prefers-reduced-motion: reduce) { .statband .stat__num.count-done { animation: none; } }
 
-/* Generic residential exterior motion supports the service story without looking like an advertisement. */
-.hero .hero-photo { display: none; }
-.hero .hero-video { position: absolute; inset: 0; z-index: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.72) contrast(1.04) brightness(.72); }
-@media (prefers-reduced-motion: reduce) { .hero .hero-video { display: none; } }
-
-
-/* Motion-first homepage: let the real service video lead the entire first screen. */
+/* Genuine Austin footage, with an immediately visible, lightweight still. */
+.hero .hero-poster, .hero .hero-video { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; }
+.hero .hero-poster img, .hero .hero-video { width: 100%; height: 100%; object-fit: cover; object-position: center 52%; }
+.hero .hero-video { opacity: 0; transition: opacity .4s ease; pointer-events: none; }
+.hero .hero-video.is-playing { opacity: 1; }
+.hero-media-bar { position: absolute; z-index: 3; bottom: 22px; left: max(20px, calc((100vw - 1180px) / 2));
+  right: max(20px, calc((100vw - 1180px) / 2)); display: flex; align-items: center; justify-content: space-between;
+  gap: 16px; color: #fff; font-size: .73rem; letter-spacing: .03em; text-shadow: 0 1px 4px #000; }
+.hero-motion-toggle { min-height: 44px; border: 1px solid rgba(255,255,255,.65); border-radius: 999px;
+  color: #fff; background: rgba(16,16,16,.72); padding: 8px 16px; font: inherit; cursor: pointer; }
+.hero-motion-toggle[hidden] { display: none; }
+.hero-motion-toggle:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+.home-services .svc-card:focus-within { outline: 3px solid var(--accent); outline-offset: 4px; }
 @media (min-width: 701px) {
-  .hero { min-height: 92vh; }
-  .hero .hero-scrim { background: linear-gradient(90deg, rgba(16,16,16,.76), rgba(16,16,16,.34) 56%, rgba(16,16,16,.06)); }
+  .hero { min-height: 86vh; }
+  .hero .hero-scrim { background: linear-gradient(90deg, rgba(16,16,16,.8), rgba(16,16,16,.4) 56%, rgba(16,16,16,.08)); }
 }
-.hero .hero-video { filter: saturate(.82) contrast(1.06) brightness(.86); transform: scale(1.01); }
+@media (max-width: 700px) {
+  .hero .container { padding-bottom: 112px; }
+  .hero-media-bar { bottom: 20px; gap: 8px; font-size: .65rem; }
+  .hero-motion-toggle { padding: 8px 12px; flex-shrink: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .hero .hero-video { transition: none; } }
 
 
 /* Each service is a distinct destination; the complete visual panel is the link target. */
-.home-services .svc-card::after { background: linear-gradient(180deg, rgba(16,16,16,.04) 20%, rgba(16,16,16,.78) 100%); }
+.home-services .svc-card::after, .home-services .svc-card:hover::after {
+  background: linear-gradient(180deg, rgba(16,16,16,.16), rgba(16,16,16,.58) 45%, rgba(16,16,16,.92));
+}
 .home-services .svc-card { cursor: pointer; }
 .home-services .svc-card .card__link::after { content: ""; position: absolute; inset: 0; z-index: 2; cursor: pointer; }
 
-/* Hill Country-style flyover keeps the horizon and neighborhoods in view. */
-.hero .hero-video { object-position: center 46%; }
+/* The flyover location and source are documented in docs/MEDIA-SOURCES.md. */
 
 
-/* Real-photo side media replaces every AI illustration and oversized top graphic. */
+/* Compact, individually art-directed service images sit beside their writeups. */
 .img-slot:not(:has(img)) { display: none; }
 .service-side-media { display: grid; gap: 18px; align-content: start; }
 .service-layout { align-items: start; }
@@ -990,18 +999,6 @@ body { background: var(--bg); color: var(--body); }
 /* =========================================================================
    Wow-factor motion: branded intro + marquee ticker
    ========================================================================= */
-/* Branded page-load intro (home only, once per session) */
-.intro { position: fixed; inset: 0; z-index: 999; background: var(--ink); display: grid; place-items: center;
-  animation: introOut 1.4s cubic-bezier(.7,0,.3,1) .85s forwards; }
-.intro__mark { text-align: center; animation: introMark 1s cubic-bezier(.2,.7,.2,1) both; }
-.intro__excel { display: block; font-family: var(--font-heading); font-weight: 600; color: #fff;
-  font-size: clamp(2.6rem, 8vw, 4.4rem); letter-spacing: .2em; text-indent: .2em; }
-.intro__desc { display: block; margin-top: 12px; color: #C9C4BA; text-transform: uppercase;
-  letter-spacing: .3em; font-size: .68rem; font-weight: 600; }
-@keyframes introMark { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
-@keyframes introOut { to { transform: translateY(-100%); opacity: 0; visibility: hidden; } }
-.intro.is-hidden { display: none !important; }
-@media (prefers-reduced-motion: reduce) { .intro { display: none !important; } }
 
 /* Marquee ticker band */
 .marquee { background: var(--ink); color: #fff; overflow: hidden;
@@ -1099,4 +1096,22 @@ body { background: var(--bg); color: var(--body); }
   .nav-links.open { z-index: 60; }
   /* mega-head was ink-on-dark (invisible) inside the open mobile menu */
   .mega-col .mega-head { color: #e7ecf6; }
+}
+
+/* Avoid blur-heavy scroll effects and permanent compositor layers on phones. */
+.hero .eyebrow, .hero h1, .hero p, .hero__actions, .hero .badges {
+  opacity: 1; transform: none; clip-path: none; animation: none;
+}
+.reveal { filter: none; will-change: auto; transform: translateY(24px);
+  transition: opacity .45s ease, transform .45s ease; }
+.reveal.in { filter: none; transform: none; }
+@media (hover: none), (pointer: coarse), (prefers-reduced-motion: reduce) {
+  .hero .eyebrow, .hero h1, .hero p, .hero__actions, .hero .badges {
+    opacity: 1; transform: none; clip-path: none; animation: none;
+  }
+  .reveal { opacity: 1; transform: none; filter: none; transition: none; }
+  .marquee__track { animation: none; will-change: auto; }
+  .home-services .svc-card, .home-services .svc-card__photo,
+  .home-services .svc-card h3, .home-services .svc-card p { transform: none !important; }
+  .statband .stat__num.count-done { animation: none; }
 }

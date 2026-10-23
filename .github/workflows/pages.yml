@@ -34,6 +34,8 @@ jobs:
         run: BASE_PATH=/Excel-Pest python3 tools/build.py
       - name: Check links, metadata and service scope
         run: python3 tools/verify_growth.py --base /Excel-Pest
+      - name: Check distinct images, responsive media and mobile byte budgets
+        run: python3 tools/verify_media.py --base /Excel-Pest
       - name: Test conversion events without sending leads
         run: node tools/test_tracking.cjs
       - name: Disable Jekyll processing

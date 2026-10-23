@@ -5,22 +5,10 @@
 (function () {
   "use strict";
   var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var lightMotion = reduce || window.matchMedia('(hover: none), (pointer: coarse)').matches;
   var B = (typeof window !== "undefined" && window.__BASE__) ? window.__BASE__ : "";  // sub-path host prefix
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
-
-  /* ---------- Branded page-load intro (home, once per session) ---------- */
-  var intro = $("[data-intro]");
-  if (intro) {
-    var seenIntro = false;
-    try { seenIntro = sessionStorage.getItem("xpIntro") === "1"; } catch (e) {}
-    if (seenIntro || reduce) {
-      intro.classList.add("is-hidden");
-    } else {
-      try { sessionStorage.setItem("xpIntro", "1"); } catch (e) {}
-      setTimeout(function () { intro.classList.add("is-hidden"); }, 2300);
-    }
-  }
 
   /* ---------- Scroll progress bar ---------- */
   var bar = $(".scroll-progress");
@@ -38,7 +26,12 @@
     if (header) header.classList.toggle("is-stuck", st > 10);
     if (toTop) toTop.classList.toggle("show", st > 600);
   }
-  window.addEventListener("scroll", onScroll, { passive: true });
+  var scrollPending = false;
+  window.addEventListener("scroll", function () {
+    if (scrollPending) return;
+    scrollPending = true;
+    requestAnimationFrame(function () { scrollPending = false; onScroll(); });
+  }, { passive: true });
   onScroll();
 
   if (toTop) {
@@ -51,7 +44,7 @@
   var revealSel = ".section > .container > .grid > *, .card, .review-card, .stat, .offer-strip, " +
                   ".crosslink, .spotlight, .flow .step, .pest-panel, .checker, .section-head, .prose, " +
                   ".statband .container > div, .why-panel, .split > div";
-  if (!reduce && "IntersectionObserver" in window) {
+  if (!lightMotion && "IntersectionObserver" in window) {
     var targets = $$(revealSel).filter(function (el) { return !el.closest(".site-footer"); });
     targets.forEach(function (el, i) {
       el.classList.add("reveal");
@@ -83,7 +76,7 @@
     var decimals = (el.getAttribute("data-decimals") | 0);
     var suffix = el.getAttribute("data-suffix") || "";
     var dur = 1400, start = null;
-    if (reduce) { el.textContent = target.toFixed(decimals) + suffix; return; }
+    if (lightMotion) { el.textContent = target.toFixed(decimals) + suffix; return; }
     function tick(ts) {
       if (!start) start = ts;
       var p = Math.min((ts - start) / dur, 1);
@@ -198,16 +191,7 @@
     go(0); rearm();
   }
 
-  /* ---------- Hero content parallax (drifts up gently as you scroll) ---------- */
-  var heroInner = $(".hero .container");
-  if (!reduce && heroInner) {
-    window.addEventListener("scroll", function () {
-      var y = window.pageYOffset || 0;
-      if (y > 760) return;
-      heroInner.style.transform = "translateY(" + (y * 0.12) + "px)";
-      heroInner.style.opacity = String(Math.max(0, 1 - y / 620));
-    }, { passive: true });
-  }
+  // The real flyover provides motion; leave headline and contact actions stable.
 
   /* ---------- Smooth in-page anchor scrolling ---------- */
   $$('a[href^="#"]').forEach(function (a) {

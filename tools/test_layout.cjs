@@ -12,7 +12,7 @@ fs.mkdirSync(output, {recursive:true});
     // No form, analytics, maps or video requests leave this local test.
     await context.route('**/*', route => {
       const url = new URL(route.request().url());
-      if (url.hostname === '127.0.0.1' || url.hostname === 'fonts.googleapis.com' || url.hostname === 'fonts.gstatic.com' || url.hostname === 'le-cdn.hibuwebsites.com') return route.continue();
+      if (url.hostname === '127.0.0.1') return route.continue();
       return route.abort();
     });
     const page = await context.newPage();

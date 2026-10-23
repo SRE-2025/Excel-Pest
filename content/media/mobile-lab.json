@@ -1,0 +1,103 @@
+{
+  "conditions": "Chrome; 390x844 DPR2; 4x CPU; 1.6 Mbps down/0.75 Mbps up, 150ms simulated latency; fresh context/cache disabled; sample 10s after DOMContentLoaded. Local HTML; before version retains external font/media origins. Lab observations, not field data.",
+  "samples": [
+    {
+      "version": "before",
+      "run": 1,
+      "lcp": 8356,
+      "cls": 0.0037495472642123944,
+      "longTaskMs": 796,
+      "firstContentfulPaint": 5724,
+      "videoPlaying": true,
+      "transferredBytesAt10s": 1577320,
+      "failures": [
+        {
+          "url": "https://videos.pexels.com/video-files/38774248/16480441_640_360_24fps.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://videos.pexels.com/video-files/38774248/16480441_640_360_24fps.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "run": 2,
+      "lcp": 9096,
+      "cls": 0.0037495472642123944,
+      "longTaskMs": 335,
+      "firstContentfulPaint": 4428,
+      "videoPlaying": true,
+      "transferredBytesAt10s": 1500804,
+      "failures": [
+        {
+          "url": "https://videos.pexels.com/video-files/38774248/16480441_640_360_24fps.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://videos.pexels.com/video-files/38774248/16480441_640_360_24fps.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "version": "before",
+      "run": 3,
+      "lcp": 6072,
+      "cls": 0,
+      "longTaskMs": 53,
+      "firstContentfulPaint": 3008,
+      "videoPlaying": false,
+      "transferredBytesAt10s": 2167988,
+      "failures": [
+        {
+          "url": "https://videos.pexels.com/video-files/38774248/16480441_640_360_24fps.mp4",
+          "error": "net::ERR_ABORTED"
+        },
+        {
+          "url": "https://videos.pexels.com/video-files/38774248/16480441_640_360_24fps.mp4",
+          "error": "net::ERR_ABORTED"
+        }
+      ]
+    },
+    {
+      "version": "after",
+      "run": 1,
+      "lcp": 2760,
+      "cls": 0.0001910867185119785,
+      "longTaskMs": 165,
+      "firstContentfulPaint": 2760,
+      "videoPlaying": true,
+      "transferredBytesAt10s": 1561323,
+      "failures": []
+    },
+    {
+      "version": "after",
+      "run": 2,
+      "lcp": 2580,
+      "cls": 0.0001910867185119785,
+      "longTaskMs": 165,
+      "firstContentfulPaint": 2580,
+      "videoPlaying": true,
+      "transferredBytesAt10s": 1567323,
+      "failures": []
+    },
+    {
+      "version": "after",
+      "run": 3,
+      "lcp": 3388,
+      "cls": 0.0001910867185119785,
+      "longTaskMs": 378,
+      "firstContentfulPaint": 3388,
+      "videoPlaying": true,
+      "transferredBytesAt10s": 1564323,
+      "failures": []
+    }
+  ],
+  "finalMobileVideo": {
+    "width": 608,
+    "height": 1080,
+    "bytes": 1614606
+  }
+}
