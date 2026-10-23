@@ -106,7 +106,7 @@ organization, existing-listing URL, owner-approved contact date, reply, next ste
 
 ## 6. Measurement and weekly scorecard
 
-GA4 property ID in the site: `G-LDWMBCL4D9`. The implementation adds no new
+GA4 measurement ID in the site: `G-LDWMBCL4D9`. The implementation adds no new
 analytics vendor. No names, emails, phone numbers, ZIPs or message text are sent
 as custom event parameters.
 
@@ -175,4 +175,9 @@ Its conclusions are leads to verify, not independent evidence of live indexation
   current wildlife scope documented. Checks pass for 81 HTML pages and 57 sitemap
   URLs at both root and preview paths. Nineteen routes checked at desktop and
   mobile widths, including all 12 service pages. Conversion tests use mock
-  requests, with no emails or analytics sent. Deployment verification follows push.
+  requests, with no emails or analytics sent. Changes pushed in commit `75ef6c5`;
+  the production library, calendar, service estimate section and tracking script
+  returned HTTP 200 with the new content. GitHub preview also serves the library
+  with correctly prefixed links. Weekly follow-up scheduled for Mondays at
+  10:00 a.m. America/Los_Angeles in this chat. Google account connections remain
+  outstanding; no ranking or traffic improvement has yet been measured.
