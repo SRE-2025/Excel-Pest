@@ -27,12 +27,13 @@ function harness(options = {}) {
   vm.runInNewContext(script, {window, location, document, fetch, URLSearchParams, FormData: class {append(){}}, HTMLFormElement: {prototype:{submit(){nativePosts++;}}}, Date, Object, String});
   return {form, events, requests, location, timers, nativePosts:()=>nativePosts,
     input(){formHandlers.input();}, submit(){formHandlers.submit({preventDefault(){}});},
-    click(href, place='content') { handlers.click({ target: { closest(){ return {getAttribute(){return href;}, pathname: href.startsWith('/') ? href : '', closest(selector){return selector === place;}};}}}); }
+    click(href, place='content') { handlers.click({ target: { closest(){ return {getAttribute(){return href;}, pathname: href.startsWith('/') ? href : '', closest(selector){return selector.split(',').some(s=>s.trim() === place);}};}}}); }
   };
 }
 const flush = () => new Promise(resolve => setImmediate(resolve));
 (async () => {
   const html = fs.readFileSync(path.join(__dirname,'../site/contact.html'),'utf8');
+  assert(html.includes('class="mobile-actionbar"'), 'test must cover the current rendered mobile bar');
   const headScript = html.match(/<!-- Google Analytics 4[^]*?<script>([^]*?)<\/script>/)[1];
   for (const hostname of ['localhost','sre-2025.github.io','www.excelpest-lawncontrol.com','excelpest-lawncontrol.com']) {
     const appended=[];
@@ -41,6 +42,17 @@ const flush = () => new Promise(resolve => setImmediate(resolve));
     vm.runInNewContext(headScript,runtime);
     assert.equal(appended.length,hostname.includes('excelpest-lawncontrol.com') ? 1 : 0);
     assert.equal(runtime.dataLayer.length,appended.length ? 2 : 0);
+  }
+  // Match both the current visible mobile bar and the retained legacy markup.
+  // These are click placements, not completed calls or booked jobs.
+  for (const [container, expected] of [['.mobile-actionbar','mobile_bar'],['.mobile-bar','mobile_bar'],['header','header'],['footer','footer'],['content','content']]) {
+    const placed = harness();
+    placed.click('tel:+15122915900',container);
+    placed.click('/contact.html',container);
+    assert.deepEqual(placed.events.map(e=>[e.name,e.data.link_placement]),[
+      ['phone_click',expected],['estimate_cta_click',expected]
+    ], 'incorrect attribution for '+container);
+    assert.equal(placed.requests.length,0);
   }
   let h = harness({search:'?service=rodent-exclusion'});
   assert.equal(h.form.elements.service.value, 'Rodents & Wildlife');

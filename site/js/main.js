@@ -17,7 +17,7 @@
     if (!link) return;
     var href = link.getAttribute('href');
     var eventName = /^tel:/i.test(href) ? 'phone_click' : /^sms:/i.test(href) ? 'sms_click' : /^mailto:/i.test(href) ? 'email_click' : '';
-    var placement = link.closest('.mobile-bar') ? 'mobile_bar' : link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'content';
+    var placement = link.closest('.mobile-actionbar, .mobile-bar') ? 'mobile_bar' : link.closest('header') ? 'header' : link.closest('footer') ? 'footer' : 'content';
     if (eventName) track(eventName, { link_placement: placement });
     else if (link.pathname === base + '/contact.html') track('estimate_cta_click', { link_placement: placement });
   });

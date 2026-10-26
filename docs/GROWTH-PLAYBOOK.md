@@ -1,6 +1,6 @@
 # Excel Pest: qualified-traffic growth plan
 
-Updated 2026-10-23. Owner: Jason / Excel office. Implementation: Codex.
+Updated 2026-10-26. Owner: Jason / Excel office. Implementation: Codex.
 
 ## Scope and success criteria
 
@@ -121,6 +121,9 @@ as custom event parameters.
 Parameters are limited to page path, link placement, allowlisted service category,
 and method. Service-specific links preserve the requested service if the visitor
 keeps its matching form option; otherwise the selected broad group is used.
+Both the current `.mobile-actionbar` and legacy `.mobile-bar` use the existing
+`mobile_bar` placement value. Desktop header/footer and content placements are
+unchanged. Mobile clicks remain clicks, not completed calls or booked work.
 Never count a fallback as confirmed
 delivery. The Google Sheet backup is best effort and is not independently verified.
 
@@ -170,6 +173,36 @@ Its conclusions are leads to verify, not independent evidence of live indexation
   not proven by a file in the repo.
 
 ## Change log
+
+- 2026-10-26 weekly review: fetched the active branch; clean starting tree and no
+  incoming Claude changes. Prior image/video deployment `3a0322e` is live and its
+  preview workflow succeeded. Fresh HTTP checks confirmed 57/57 sitemap URLs
+  return 200 with their expected canonical and no noindex, robots.txt returns
+  200 with the correct sitemap, and an invented missing route returns 404.
+  All 81 generated HTML pages, internal links, service scope and 18-image
+  uniqueness/budgets pass the existing checks. The current wildlife page uses
+  its new raccoon image; a search tool's cached older image was not a live rollback.
+  The Austin flyover remains present. Existing eight guides and Claude's
+  documented publishing routine were reviewed; no duplicate article was added.
+- One modest improvement selected: the visible mobile call/estimate bar uses
+  `.mobile-actionbar`, but tracking recognized only `.mobile-bar`, labeling its
+  clicks as `content`. A new failing regression reproduced both errors before
+  the selector fix. Updated the selector without changing events, destinations,
+  form delivery, prices, service claims or any other business settings. Unit
+  tests now cover both mobile classes, header, footer and ordinary content.
+  Browser tests exercise the real visible buttons at 390px and 760px, desktop
+  buttons at 1440px, keyboard activation and preview isolation; analytics
+  requests are blocked and no inquiries are submitted. Repeat the browser test
+  with `EXCEL_QA_LIVE=1` after deployment to verify the published script.
+- Account evidence remains unavailable: discovery found Windsor.ai available
+  but unconnected, with previous suggestions already recorded. No GA4, Search
+  Console or Business Profile metrics, event receipt or booking outcomes are
+  claimed. **Next action:** connect the existing Google properties, verify the
+  corrected event placement in GA4, and use the last 28 versus previous 28 days
+  of Search Console queries to choose an existing page to improve. Do not create
+  a duplicate Google profile. A separate open technical item is the legacy
+  `/general-pest-control.html` URL, which returns 200 with an HTML refresh rather
+  than an HTTP 301; review the existing hosting redirect rules before any fix.
 
 - 2026-10-23: first six workstreams implemented/prepared; termite guide corrected;
   current wildlife scope documented. Checks pass for 81 HTML pages and 57 sitemap
