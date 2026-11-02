@@ -1928,8 +1928,9 @@ def contact():
               <input id="zip" name="zip" type="text" inputmode="numeric" autocomplete="postal-code" maxlength="10" required></div>
             <div class="field"><label for="service">What do you want help with?</label>
               <select id="service" name="service" required>{help_options}</select></div>
-            <div class="field"><label for="message">Anything else? <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
-              <textarea id="message" name="message" rows="3"></textarea></div>
+            <div class="field"><label for="message">What are you seeing? <span style="font-weight:400;color:var(--muted);">(optional)</span></label>
+              <p id="message-help" class="hero__note" style="color:var(--muted);margin:0 0 8px;">Where are you noticing activity, and when did it start? If you're unsure which pest it is, describe the signs.</p>
+              <textarea id="message" name="message" rows="3" aria-describedby="message-help"></textarea></div>
             <button class="btn btn--primary" type="submit" style="width:100%;">Request my free estimate</button>
             <p class="hero__note" style="color:var(--muted);" data-form-note>By submitting, you agree to be contacted about your request. See our <a href="/privacy-policy.html">privacy policy</a>.</p>
           </form>

@@ -1,6 +1,6 @@
 # Excel Pest: qualified-traffic growth plan
 
-Updated 2026-10-26. Owner: Jason / Excel office. Implementation: Codex.
+Updated 2026-11-02. Owner: Jason / Excel office. Implementation: Codex.
 
 ## Scope and success criteria
 
@@ -173,6 +173,32 @@ Its conclusions are leads to verify, not independent evidence of live indexation
   not proven by a file in the repo.
 
 ## Change log
+
+- 2026-11-02 weekly review: fetched the active branch with a clean tree and no
+  incoming Claude changes. Reviewed all eight existing guides and the documented
+  publishing routines; no overlapping article added. Today's read-only reporting
+  review checked all 57 sitemap URLs (200, expected canonical, no noindex), and
+  confirmed the current tracking script and approved wildlife/rodent scope.
+  GA4, Search Console and Business Profile account metrics remain unavailable.
+- Selected one small conversion improvement from actual form evidence: two
+  October potential service inquiries in the backup log had no message. Replaced
+  the vague "Anything else?" label with "What are you seeing?" and visible,
+  screen-reader-associated help asking where activity occurs and when it began.
+  The existing message stays optional; form delivery, analytics, service options
+  and business claims are unchanged. This is intended to help visitors explain
+  their problem, not a claim of measured conversion or traffic growth.
+  Root build, all-page links/metadata/scope checks, media checks and existing
+  conversion tests pass. Browser checks at 390px and 1440px verified wrapping,
+  accessible help, optional input, service preselection and the existing message
+  field name; no forms or analytics were sent. Verify the new prompt on both
+  production and the GitHub preview after deployment.
+- Next action: the office should classify the three potential October inquiries
+  as genuine/supported, qualified and booked (or not) using its own records;
+  one mixed request included unsupported termite work. Keep solicitations and
+  tests out of lead counts. The backup log is incomplete evidence, not proof
+  of email delivery or channel attribution. Connect the existing Google
+  properties for reliable search and conversion comparisons. The legacy
+  HTML-refresh redirect remains a separate hosting-console follow-up.
 
 - 2026-10-26 weekly review: fetched the active branch; clean starting tree and no
   incoming Claude changes. Prior image/video deployment `3a0322e` is live and its
