@@ -1,6 +1,6 @@
 # Excel Pest: qualified-traffic growth plan
 
-Updated 2026-11-02. Owner: Jason / Excel office. Implementation: Codex.
+Updated 2026-11-09. Owner: Jason / Excel office. Implementation: Codex.
 
 ## Scope and success criteria
 
@@ -173,6 +173,24 @@ Its conclusions are leads to verify, not independent evidence of live indexation
   not proven by a file in the repo.
 
 ## Change log
+
+- 2026-11-09: The November 1 US desktop search snapshot surfaced the old
+  `/rodent-removal` address. A fresh production request followed it to
+  `/rodent-removal/` and received HTTP 404. The current rat and mouse page at
+  `/services/rodent-removal.html` returned 200. The build now supplies a
+  directory index at the old address with an immediate refresh, browser
+  redirect and visible link to the current page. The sitemap lists the
+  destination. The preview uses its project prefix for browser navigation.
+  Both old URL forms are also in the Amplify rules file for a future HTTP 301.
+  A hosting administrator should first compare those entries with the active
+  console rules and merge only the two exact paths if needed.
+- The eight guide files and Claude's documented publishing schedule were
+  reviewed. The production and preview builds passed checks for 82 HTML
+  pages, local links, service scope, and 57 sitemap entries. The existing
+  contact-event and form tests passed using simulated requests.
+  Google account metrics and office booking outcomes remain
+  unverified. Check both old URL forms against the destination after deploy.
+  Use Search Console landing-page data to measure visits when available.
 
 - 2026-11-02 weekly review: fetched the active branch with a clean tree and no
   incoming Claude changes. Reviewed all eight existing guides and the documented

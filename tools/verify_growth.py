@@ -94,6 +94,13 @@ def verify(base=""):
     ns = {"s": "http://www.sitemaps.org/schemas/sitemap/0.9"}
     sitemap = ET.parse(site / "sitemap.xml")
     urls = [e.text for e in sitemap.findall("s:url/s:loc", ns)]
+    rodent_alias = pages.get("rodent-removal/index.html")
+    destination = base + "/services/rodent-removal.html"
+    if rodent_alias is None or not any(
+        t == "meta" and a.get("http-equiv") == "refresh" and a.get("content") == "0; url=" + destination
+        for t, a in rodent_alias.tags
+    ):
+        errors.append("Legacy /rodent-removal/ must forward to the current service on this host")
     for url in urls:
         path = urlsplit(url).path.lstrip("/") or "index.html"
         if path not in pages:

@@ -2286,6 +2286,7 @@ REDIRECTS = {
     "flea-control": "/services/flea-tick-control.html",
     "tick-control": "/services/flea-tick-control.html",
     "rodent-control": "/services/rodent-removal.html",
+    "rodent-removal/": "/services/rodent-removal.html",
     "wildlife-live-trapping": "/services/wildlife-live-trapping.html",
     "general-pest-control": "/services/pest-control.html",
     "pest-control": "/services/pest-control.html",
@@ -2309,6 +2310,9 @@ def redirect_stub(target):
     # combination Google warns against (the noindex can carry to the target).
     # A real 301 (Amplify console rule) needs neither tag; this stub keeps only
     # the canonical so link equity consolidates on the target.
+    # write() prefixes the visible link on preview builds. Refresh and script
+    # destinations need the same prefix, while the canonical stays in production.
+    destination = BASE + target
     return (
         '<!DOCTYPE html>\n<html lang="en">\n<head>\n'
         '  <meta charset="utf-8">\n'
@@ -2320,7 +2324,7 @@ def redirect_stub(target):
         '  <p>This page has moved. If you are not redirected, '
         '<a href="%s">continue here</a>.</p>\n'
         '</body>\n</html>\n'
-    ) % (BIZ["domain"], target, target, json.dumps(target), target)
+    ) % (BIZ["domain"], target, destination, json.dumps(destination), target)
 
 
 # --------------------------------------------------------------------------
@@ -2373,7 +2377,7 @@ def main():
     # Legacy-URL redirect stubs (old Hibu paths → closest current page).
     # Guard: never overwrite a real page already emitted above.
     for old, target in REDIRECTS.items():
-        fn = "%s.html" % old
+        fn = old + ("index.html" if old.endswith("/") else ".html")
         if fn in written:
             continue
         write(fn, redirect_stub(target))
