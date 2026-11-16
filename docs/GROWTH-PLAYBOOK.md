@@ -1,6 +1,6 @@
 # Excel Pest: qualified-traffic growth plan
 
-Updated 2026-11-09. Owner: Jason / Excel office. Implementation: Codex.
+Updated 2026-11-16. Owner: Jason / Excel office. Implementation: Codex.
 
 ## Scope and success criteria
 
@@ -173,6 +173,20 @@ Its conclusions are leads to verify, not independent evidence of live indexation
   not proven by a file in the repo.
 
 ## Change log
+
+- 2026-11-16. On all 12 live service pages, five estimate buttons opened
+  the form with an empty service field. Only the estimate-planning link
+  carried the service through. All estimate buttons now use that same link.
+  Visitors can change the preselected category, and the general Contact
+  navigation still opens a blank selection.
+- Browser tests at 390px and 1440px followed the estimate buttons on all 12
+  pages and changed the selection in the form. Production and preview builds
+  passed link, media, and service-scope checks. All 57 live sitemap pages
+  returned 200 with their expected canonical and allowed indexing. The eight
+  guides and Claude's publishing schedule were reviewed. Next measurement
+  step when GA4 access is available is to compare service-page estimate clicks,
+  form starts, and accepted forms over equal periods. Booking outcomes require
+  office records.
 
 - 2026-11-09: The November 1 US desktop search snapshot surfaced the old
   `/rodent-removal` address. A fresh production request followed it to

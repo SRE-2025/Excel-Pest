@@ -116,6 +116,12 @@ def verify(base=""):
             errors.append("Off-menu library content: " + prohibited)
     for path, page in pages.items():
         if path.startswith("services/"):
+            estimate_url = base + "/contact.html?service=" + Path(path).stem
+            for tag, attrs in page.tags:
+                classes = attrs.get("class", "").split()
+                if tag == "a" and urlsplit(attrs.get("href", "")).path == base + "/contact.html":
+                    if classes and attrs["href"] != estimate_url:
+                        errors.append(f"{path}: estimate button drops the service selection: {classes}")
             cities = {a.get("href") for t, a in page.tags if t == "a" and "/locations/" in a.get("href", "")}
             if len(cities) < 5:
                 errors.append("Missing service-to-city links: " + path)

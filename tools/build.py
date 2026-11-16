@@ -24,6 +24,7 @@ SITE = os.path.join(ROOT, "site")
 # Optional base path for hosting under a sub-directory (e.g. GitHub Pages
 # project site at /Excel-Pest/). Empty for root hosting (Amplify, S3/CloudFront).
 BASE = os.environ.get("BASE_PATH", "").rstrip("/")
+CONTACT_PATH = "/contact.html"
 
 # --------------------------------------------------------------------------
 # Business facts (single source of truth — from the discovery brief)
@@ -617,7 +618,7 @@ def mega_menu():
             '<div class="mega"><div class="mega-inner">' + cols + '</div></div></li>')
 
 
-def header():
+def header(estimate_url=CONTACT_PATH):
     parts = []
     for label, url in NAV:
         if label == "Services":
@@ -661,35 +662,35 @@ def header():
             <svg class="btn__ph" viewBox="0 0 24 24" width="19" height="19" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.3 1L6.6 10.8z"/></svg>
             {phone}
           </a>
-          <a class="btn btn--primary" href="/contact.html">Free estimate</a>
+          <a class="btn btn--primary" href="{estimate_url}">Free estimate</a>
         </li>
       </ul>
     </div></nav>
   </header>
   <div class="mobile-actionbar" aria-label="Quick actions">
     <a class="mab mab--call" href="tel:{ptel}">Call now</a>
-    <a class="mab mab--est" href="/contact.html">Free estimate</a>
+    <a class="mab mab--est" href="{estimate_url}">Free estimate</a>
   </div>""".format(
         founded=BIZ["founded"], license=BIZ["license"], ptel=BIZ["phone_tel"],
         phone=BIZ["phone"], ttel=BIZ["text_tel"], text=BIZ["text"],
-        links=links,
+        links=links, estimate_url=estimate_url,
     )
 
 
-def cta_band(heading="Seeing something you shouldn't?", sub="Get a free estimate today — no obligation."):
+def cta_band(heading="Seeing something you shouldn't?", sub="Get a free estimate today — no obligation.", estimate_url=CONTACT_PATH):
     return """
   <section class="cta-band">
     <div class="container">
       <div><h2 class="mb-0">{h}</h2><p class="mb-0">{s}</p></div>
       <div class="hero__actions" style="margin:0;">
         <a class="btn btn--primary" href="tel:{ptel}">Call {phone}</a>
-        <a class="btn btn--ghost" href="/contact.html">Request Online</a>
+        <a class="btn btn--ghost" href="{estimate_url}">Request Online</a>
       </div>
     </div>
-  </section>""".format(h=html.escape(heading), s=html.escape(sub), ptel=BIZ["phone_tel"], phone=BIZ["phone"])
+  </section>""".format(h=html.escape(heading), s=html.escape(sub), ptel=BIZ["phone_tel"], phone=BIZ["phone"], estimate_url=estimate_url)
 
 
-def footer():
+def footer(estimate_url=CONTACT_PATH):
     # A curated subset of services in the footer (the full list lives on /services.html)
     footer_service_slugs = ["pest-control", "scorpion-control", "ant-control", "rodent-removal",
                             "wildlife-live-trapping", "mosquito-misting", "flea-tick-control", "lawn-pest-control"]
@@ -743,7 +744,7 @@ def footer():
   <button class="to-top" aria-label="Back to top">↑</button>
   <div class="mobile-bar">
     <a class="mb-call" href="tel:{ptel}">📞 Call Now</a>
-    <a class="mb-quote" href="/contact.html">Free Estimate</a>
+    <a class="mb-quote" href="{estimate_url}">Free Estimate</a>
   </div>
   <script src="/js/main.js" defer></script>
   <script src="/js/interactive.js" defer></script>
@@ -752,7 +753,7 @@ def footer():
         name=html.escape(BIZ["name"]), founded=BIZ["founded"], street=html.escape(BIZ["street"]),
         city=BIZ["city"], state=BIZ["state"], zip=BIZ["zip"], license=BIZ["license"],
         bbb=BIZ["bbb"], yelp=BIZ["yelp"], facebook=BIZ["facebook"], youtube=BIZ["youtube"],
-        svc_links=svc_links, ptel=BIZ["phone_tel"], phone=BIZ["phone"], ttel=BIZ["text_tel"],
+        svc_links=svc_links, ptel=BIZ["phone_tel"], phone=BIZ["phone"], ttel=BIZ["text_tel"], estimate_url=estimate_url,
         text=BIZ["text"], email=BIZ["email"], sister_url=BIZ["sister_url"], sister_name=BIZ["sister_name"],
     )
 
@@ -990,9 +991,9 @@ def write(path, content):
     return path
 
 
-def assemble(title, desc, canonical, body, schema_blocks, noindex=False, og_type="website"):
-    return (head(title, desc, canonical, schema_blocks, noindex, og_type) + "\n" + header()
-            + '\n  <main id="main">\n' + body + '\n  </main>\n' + footer() + "\n")
+def assemble(title, desc, canonical, body, schema_blocks, noindex=False, og_type="website", estimate_url=CONTACT_PATH):
+    return (head(title, desc, canonical, schema_blocks, noindex, og_type) + "\n" + header(estimate_url)
+            + '\n  <main id="main">\n' + body + '\n  </main>\n' + footer(estimate_url) + "\n")
 
 
 def map_embed(heading="Find us in Buda"):
@@ -1048,6 +1049,7 @@ def related_services_grid(slugs, heading="Related services"):
 
 def render_service(s):
     canonical = BIZ["domain"] + "/services/" + s["slug"] + ".html"
+    estimate_url = CONTACT_PATH + "?service=" + s["slug"]
     crumbs = [("Home", "/"), ("Services", "/services.html"), (s["nav"], None)]
     treats = "".join("<li>%s</li>" % html.escape(t) for t in s["treats"])
     sections = "".join(
@@ -1083,7 +1085,7 @@ def render_service(s):
           our <a href="/pet-family-safety.html">approach for families &amp; pets</a>.
         </div>
         <div class="hero__actions">
-          <a class="btn btn--primary" href="/contact.html">Get My Free Estimate</a>
+          <a class="btn btn--primary" href="{estimate_url}">Get My Free Estimate</a>
           <a class="btn btn--outline" href="tel:{ptel}">Call {phone}</a>
         </div>
       </div>
@@ -1106,12 +1108,12 @@ def render_service(s):
         </div>
       </div>
     </div>
-  </section>""".format(hero_img=hero_img, lead=s["lead"], sections=sections, treats=treats,
+  </section>""".format(hero_img=hero_img, lead=s["lead"], sections=sections, treats=treats, estimate_url=estimate_url,
                        ptel=BIZ["phone_tel"], phone=BIZ["phone"])
-    body += service_support(s, load_articles())
+    body += service_support(s, load_articles(), estimate_url)
     body += related_services_grid(s["related"])
     body += faq_section
-    body += cta_band()
+    body += cta_band(estimate_url=estimate_url)
     schema = [business_schema(), service_schema(s), breadcrumb_schema(crumbs)]
     if faqs:
         import re as _re
@@ -1121,7 +1123,7 @@ def render_service(s):
                             "acceptedAnswer": {"@type": "Answer", "text": _re.sub("<[^>]+>", "", a)}}
                            for q, a in faqs],
         })
-    return assemble(s["title"], s["desc"], canonical, body, schema)
+    return assemble(s["title"], s["desc"], canonical, body, schema, estimate_url=estimate_url)
 
 
 def render_location(l):

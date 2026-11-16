@@ -65,7 +65,7 @@ GUIDE_MAP = {
 }
 
 
-def service_support(service, articles):
+def service_support(service, articles, estimate_url):
     slug = service["slug"]
     if slug in ("rodent-removal", "rodent-exclusion", "wildlife-live-trapping"):
         factors = "The animal involved, access to the affected space, the extent of activity, follow-up visits and any entry-point repairs. Ask whether removal and exclusion are quoted separately."
@@ -86,10 +86,10 @@ def service_support(service, articles):
       <div class="grid grid--3">
         <div class="card"><h3>What affects the price?</h3><p>%s</p><p>Request a free estimate for your property.</p></div>
         <div class="card"><h3>What to tell the office</h3><p>%s</p></div>
-        <div class="card"><h3>Questions to ask</h3><p>Confirm the areas covered, preparation and re-entry instructions, follow-up schedule, and any applicable warranty terms before scheduling.</p><a href="/contact.html?service=%s">Request an estimate for this service →</a></div>
+        <div class="card"><h3>Questions to ask</h3><p>Confirm the areas covered, preparation and re-entry instructions, follow-up schedule, and any applicable warranty terms before scheduling.</p><a href="%s">Request an estimate for this service →</a></div>
       </div>
       <div class="prose" style="margin-top:28px"><h3>Helpful reading</h3><ul>%s<li><a href="/pest-library.html">Central Texas pest identification library</a></li></ul></div>
-    </div></section>''' % (html.escape(service["nav"].lower()), factors, prepare, slug, links)
+    </div></section>''' % (html.escape(service["nav"].lower()), factors, prepare, estimate_url, links)
 
 
 def library_body(page_hero):
